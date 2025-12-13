@@ -151,7 +151,7 @@
   </select>
 </div>
 
-<h1>YouTube Education 再生ツール</h1>
+<h1>YouTube 埋め込み再生ツール</h1>
 
 <div class="layout">
 
@@ -166,12 +166,12 @@
   <div class="right">
     <div class="card">
 
-      <label>使用するURLパラメーター：</label>
+      <label>使用する再生方法：</label>
       <select id="paramSource">
-        <option value="wakame">wakame</option>
-        <option value="siawaseok">siawaseok</option>
-        <option value="woolisbest4520-1">woolisbest4520-1</option>
-        <option value="woolisbest4520-2">woolisbest4520-2</option>
+        <option value="Education - wakame">Education - wakame</option>
+        <option value="Education - siawaseok">Education - siawaseok</option>
+        <option value="Education - woolisbest4520-1">Education - woolisbest4520-1</option>
+        <option value="Education - woolisbest4520-2">Education - woolisbest4520-2</option>
       </select>
 
       <label for="videoUrlInput">YouTubeのURLまたは動画IDを入力：</label>
@@ -213,10 +213,10 @@
   ================================ */
 
   const URLS = {
-    "wakame": "https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text",
-    "siawaseok": "https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json",
-    "woolisbest4520-1": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu.json",
-    "woolisbest4520-2": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/parameter.json"
+    "Education - wakame": "https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text",
+    "Education - siawaseok": "https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json",
+    "Education - woolisbest4520-1": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.json",
+    "Education - woolisbest4520-2": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.json"
   };
 
   function extractVideoId(input) {
@@ -248,15 +248,15 @@
 
       let params = "";
 
-      if (source === "wakame") {
+      if (source === "Education - wakame") {
         params = await r.text();
-      } else if (source === "siawaseok") {
+      } else if (source === "Education - siawaseok") {
         params = (await r.json()).params || "";
-      } else if (source === "woolisbest4520-1") {
+      } else if (source === "Education - woolisbest4520-1") {
         const json = await r.json();
         const keys = Object.keys(json);
         params = "?" + keys.map(k => `${k}=${json[k]}`).join("&");
-      } else if (source === "woolisbest4520-2") {
+      } else if (source === "Education - woolisbest4520-2") {
         params = (await r.json()).params || "";
       }
 

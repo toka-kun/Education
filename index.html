@@ -244,10 +244,9 @@
       } else if (source === "Education - siawaseok") {
         params = (await r.json()).params || "";
       } else if (source === "Education - woolisbest4520-1") {
-        const json = await r.json();
-        params = "?" + Object.keys(json).map(k => `${k}=${json[k]}`).join("&");
+        params = (await r.json()).key || "";
       } else if (source === "Education - woolisbest4520-2") {
-        params = (await r.json()).params || "";
+        params = (await r.json()).key || "";
       }
 
       videoFrame.src = `https://www.youtubeeducation.com/embed/${videoId}${params}`;

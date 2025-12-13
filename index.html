@@ -6,10 +6,6 @@
   <title>Player</title>
 
   <style>
-    /* ===============================
-       テーマ（ライト / ダーク / 自動）
-    ================================ */
-
     :root {
       --main-color: #ff0000;
       --bg-color: #f9f9f9;
@@ -50,7 +46,6 @@
       color: var(--text-color);
       padding: 0.5rem;
       margin: 0;
-      transition: background 0.3s, color 0.3s;
     }
 
     h1 {
@@ -90,7 +85,6 @@
       border-radius: var(--border-radius);
       box-shadow: 0 4px 12px var(--shadow-color);
       padding: 1rem;
-      transition: background 0.3s, box-shadow 0.3s;
     }
 
     label {
@@ -161,9 +155,11 @@
         <option value="Education - siawaseok">Education - siawaseok</option>
         <option value="Education - woolisbest4520-1">Education - woolisbest4520-1</option>
         <option value="Education - woolisbest4520-2">Education - woolisbest4520-2</option>
+        <option value="Thumbnail-img">サムネイル - img.youtube.com</option>
+        <option value="Thumbnail-i">サムネイル - i.ytimg.com</option>
       </select>
 
-      <label for="videoUrlInput">YouTubeのURLまたは動画IDを入力：</label>
+      <label>YouTubeのURLまたは動画IDを入力：</label>
       <input type="text" id="videoUrlInput"
         placeholder="例: https://youtu.be/HRlW6yZo6Kc または HRlW6yZo6Kc">
 
@@ -223,8 +219,17 @@
     }
 
     if (source === "Nocookie") {
-      document.getElementById("videoFrame").src =
-        `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+      videoFrame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+      return;
+    }
+
+    if (source === "Thumbnail-img") {
+      videoFrame.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      return;
+    }
+
+    if (source === "Thumbnail-i") {
+      videoFrame.src = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
       return;
     }
 
@@ -240,14 +245,12 @@
         params = (await r.json()).params || "";
       } else if (source === "Education - woolisbest4520-1") {
         const json = await r.json();
-        const keys = Object.keys(json);
-        params = "?" + keys.map(k => `${k}=${json[k]}`).join("&");
+        params = "?" + Object.keys(json).map(k => `${k}=${json[k]}`).join("&");
       } else if (source === "Education - woolisbest4520-2") {
         params = (await r.json()).params || "";
       }
 
-      document.getElementById("videoFrame").src =
-        `https://www.youtubeeducation.com/embed/${videoId}${params}`;
+      videoFrame.src = `https://www.youtubeeducation.com/embed/${videoId}${params}`;
 
     } catch (e) {
       console.error(e);

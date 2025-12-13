@@ -1,4 +1,6 @@
-<html lang="ja"><head>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Player</title>
@@ -8,7 +10,6 @@
        テーマ（ライト / ダーク / 自動）
     ================================ */
 
-    /* ライトテーマ（デフォルト） */
     :root {
       --main-color: #ff0000;
       --bg-color: #f9f9f9;
@@ -18,7 +19,6 @@
       --border-radius: 12px;
     }
 
-    /* ダークテーマ */
     :root.dark {
       --bg-color: #181818;
       --card-color: #202020;
@@ -26,7 +26,6 @@
       --shadow-color: rgba(0,0,0,0.4);
     }
 
-    /* OS連動（ライト） */
     @media (prefers-color-scheme: light) {
       :root.auto {
         --bg-color: #f9f9f9;
@@ -36,7 +35,6 @@
       }
     }
 
-    /* OS連動（ダーク） */
     @media (prefers-color-scheme: dark) {
       :root.auto {
         --bg-color: #181818;
@@ -45,10 +43,6 @@
         --shadow-color: rgba(0,0,0,0.4);
       }
     }
-
-    /* ===============================
-       基本デザイン
-    ================================ */
 
     body {
       background-color: var(--bg-color);
@@ -65,7 +59,6 @@
       margin: 0.5rem 0 1rem 0;
     }
 
-    /* テーマ切り替えセレクタ */
     .theme-switcher {
       position: fixed;
       top: 10px;
@@ -73,7 +66,6 @@
       padding: 0.3rem;
     }
 
-    /* レイアウト */
     .layout {
       display: flex;
       flex-direction: column;
@@ -117,7 +109,6 @@
       margin-bottom: 1rem;
       background: var(--card-color);
       color: var(--text-color);
-      transition: background 0.3s, color 0.3s;
     }
 
     button {
@@ -142,7 +133,6 @@
 
 <body>
 
-<!-- ▼ テーマ切り替え -->
 <div class="theme-switcher">
   <select id="themeSelect" onchange="changeTheme(this.value)">
     <option value="auto">自動</option>
@@ -155,14 +145,12 @@
 
 <div class="layout">
 
-  <!-- 左：動画プレイヤー -->
   <div class="left">
     <iframe id="videoFrame" allowfullscreen
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
 
-  <!-- 右：入力フォーム -->
   <div class="right">
     <div class="card">
 
@@ -187,10 +175,6 @@
 </div>
 
 <script>
-  /* ===============================
-     テーマ管理
-  ================================ */
-
   function applyTheme(mode) {
     document.documentElement.classList.remove("light", "dark", "auto");
     document.documentElement.classList.add(mode);
@@ -201,17 +185,11 @@
     localStorage.setItem("themeMode", mode);
   }
 
-  // 初期化
   (function() {
     const saved = localStorage.getItem("themeMode") || "auto";
     applyTheme(saved);
     document.getElementById("themeSelect").value = saved;
   })();
-
-
-  /* ===============================
-     YouTube パラメーター処理
-  ================================ */
 
   const URLS = {
     "Nocookie": null,
@@ -241,6 +219,12 @@
 
     if (!videoId) {
       alert("正しいURLまたは動画IDを入力してください。");
+      return;
+    }
+
+    if (source === "Nocookie") {
+      document.getElementById("videoFrame").src =
+        `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
       return;
     }
 

@@ -13,6 +13,7 @@
       --text-color: #333;
       --shadow-color: rgba(0,0,0,0.08);
       --border-radius: 12px;
+      --link-color: #065fd4;
     }
 
     :root.dark {
@@ -20,6 +21,7 @@
       --card-color: #202020;
       --text-color: #eaeaea;
       --shadow-color: rgba(0,0,0,0.4);
+      --link-color: #3ea6ff;
     }
 
     @media (prefers-color-scheme: light) {
@@ -28,6 +30,7 @@
         --card-color: #ffffff;
         --text-color: #333;
         --shadow-color: rgba(0,0,0,0.08);
+        --link-color: #065fd4;
       }
     }
 
@@ -37,6 +40,7 @@
         --card-color: #202020;
         --text-color: #eaeaea;
         --shadow-color: rgba(0,0,0,0.4);
+        --link-color: #3ea6ff;
       }
     }
 
@@ -214,19 +218,69 @@
       font-size: 0.85rem;
     }
 
+    .edited-mark {
+      color: #888;
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+
     .comment-text {
       font-size: 0.95rem;
       line-height: 1.4;
       margin: 0.3rem 0;
     }
 
+    /* タイムスタンプのリンク色 */
+    .timestamp-link {
+      color: var(--link-color);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .timestamp-link:hover {
+      text-decoration: underline;
+    }
+
     .comment-footer {
       display: flex;
-      gap: 1rem;
+      flex-direction: column;
+      gap: 0.5rem;
       font-size: 0.85rem;
       color: #888;
-      align-items: center;
     }
+
+    .footer-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* ハート（所有者のいいね）のスタイル */
+    .creator-heart {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .creator-heart img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+    .heart-icon {
+      color: #ff0000;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    .heart-badge-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+    .heart-badge-icon {
+        position: absolute;
+        bottom: -2px;
+        right: -4px;
+        font-size: 10px;
+    }
+
   </style>
 </head>
 
@@ -338,6 +392,70 @@
     return null;
   }
 
+  // --- タイムスタンプ処理 ---
+  function parseTimestamp(text) {
+    const regex = /\b(?:(\d{1,2}):)?(\d{1,2}):(\d{2})\b/g;
+    
+    return text.replace(regex, (match, h, m, s) => {
+      let seconds = 0;
+      if (h) seconds += parseInt(h) * 3600;
+      seconds += parseInt(m) * 60;
+      seconds += parseInt(s);
+      
+      return `<a class="timestamp-link" onclick="seekVideo(${seconds}); return false;">${match}</a>`;
+    });
+  }
+
+  // --- 動画シーク（再読み込み）機能 ---
+  function seekVideo(seconds) {
+    const frame = document.getElementById("videoFrame");
+    let src = frame.src;
+
+    // 現在何も再生されていない、またはサムネイル表示中の場合は何もしない
+    if (!src || src.includes("img.youtube.com") || src.includes("i.ytimg.com") || src === "about:blank") {
+      return;
+    }
+
+    // --- パターンA: HTMLエンコードされたパラメータ (&amp;start=) がある場合 ---
+    // Education - siawaseok などで発生する可能性があります
+    if (src.includes("&amp;start=")) {
+      // 正規表現で数字部分を置換
+      const newSrc = src.replace(/(&amp;start=)\d+/, `$1${seconds}`);
+      // 変更があった場合のみiframeを更新
+      if (src !== newSrc) {
+        frame.src = newSrc;
+        return;
+      }
+    }
+
+    // --- パターンB: 通常のパラメータ (?start= または &start=) がある場合 ---
+    // Education - wakame や Education - woolisbest、通常のNocookie埋め込みなど
+    // 正規表現 [?&] は「?」または「&」のいずれかにマッチします
+    if (src.match(/[?&]start=\d+/)) {
+      const newSrc = src.replace(/([?&]start=)\d+/, `$1${seconds}`);
+      if (src !== newSrc) {
+        frame.src = newSrc;
+        return;
+      }
+    }
+
+    // --- パターンC: startパラメータがまだ存在しない場合 ---
+    // パラメータを新規に追加します
+    try {
+      // URLオブジェクトを使用して安全に追加を試みる (Nocookieなどの標準URL向け)
+      const url = new URL(src);
+      url.searchParams.delete('t');
+      url.searchParams.set('start', seconds);
+      frame.src = url.toString();
+    } catch (e) {
+      // URL解析に失敗した場合 (Education独自のURL形式などでnew URL()が使えない場合) のフォールバック
+      // 既存のクエリパラメータがあるか確認して連結文字を決定
+      const separator = src.includes('?') ? '&' : '?';
+      frame.src = `${src}${separator}start=${seconds}`;
+    }
+  }
+
+  // --- コメント取得 ---
   async function fetchComments(videoId) {
     const container = document.getElementById("commentsContainer");
     const countBadge = document.getElementById("commentCountBadge");
@@ -362,13 +480,34 @@
       data.comments.forEach(c => {
         const iconUrl = (c.authorThumbnails && c.authorThumbnails.length > 0) ? c.authorThumbnails[0].url : '';
         
+        // バッジ
         let badges = '';
-        if (c.isPinned) {
-          badges += `<span class="badge badge-pinned">固定済み</span>`;
+        if (c.isPinned) badges += `<span class="badge badge-pinned">固定済み</span>`;
+        if (c.authorIsChannelOwner) badges += `<span class="badge badge-owner">所有者</span>`;
+
+        // 編集済み
+        let editedHtml = '';
+        if (c.isEdited) {
+          editedHtml = `<span class="edited-mark">(編集済み)</span>`;
         }
-        if (c.authorIsChannelOwner) {
-          badges += `<span class="badge badge-owner">所有者</span>`;
+
+        // 所有者のハート
+        let heartHtml = '';
+        if (c.creatorHeart) {
+          const ownerThumb = c.creatorHeart.creatorThumbnail || iconUrl; 
+          heartHtml = `
+            <div class="creator-heart">
+              <div class="heart-badge-wrapper">
+                <img src="${ownerThumb}" alt="Owner">
+                <span class="heart-badge-icon">❤️</span>
+              </div>
+              <span>${c.creatorHeart.creatorName || '所有者'} がハートを付けました</span>
+            </div>
+          `;
         }
+
+        // コメント本文のタイムスタンプ処理
+        const processedContent = parseTimestamp(c.contentHtml);
 
         html += `
           <div class="comment-item">
@@ -382,12 +521,16 @@
                 <a href="https://www.youtube.com${c.authorUrl}" target="_blank" class="author-name">${c.author}</a>
                 ${badges}
                 <span class="published-date">${c.publishedText}</span>
+                ${editedHtml}
               </div>
               <div class="comment-text">
-                ${c.contentHtml}
+                ${processedContent}
               </div>
               <div class="comment-footer">
-                <span>👍 ${c.likeCount}</span>
+                <div class="footer-actions">
+                  <span>👍 ${c.likeCount}</span>
+                </div>
+                ${heartHtml}
               </div>
             </div>
           </div>
@@ -419,14 +562,12 @@
       return;
     }
 
-    // サムネイル処理 (img.youtube.com)
     if (source.startsWith("Thumbnail-img-")) {
       const quality = source.replace("Thumbnail-img-", "");
       videoFrame.src = `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
       return;
     }
 
-    // サムネイル処理 (i.ytimg.com)
     if (source.startsWith("Thumbnail-i-")) {
       const quality = source.replace("Thumbnail-i-", "");
       videoFrame.src = `https://i.ytimg.com/vi/${videoId}/${quality}.jpg`;

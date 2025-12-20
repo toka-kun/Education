@@ -70,7 +70,7 @@
     }
 
     @media (min-width: 900px) {
-      .layout {
+      .layout-main {
         flex-direction: row;
       }
       .left, .right {
@@ -122,6 +122,111 @@
       border-radius: var(--border-radius);
       border: none;
     }
+
+    /* --- コメント欄用のCSS --- */
+    .comments-wrapper summary {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.5rem;
+      outline: none;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .comments-wrapper summary::-webkit-details-marker {
+      display: none;
+    }
+    .comments-wrapper summary::after {
+      content: '+'; 
+      font-size: 1.5rem;
+      font-weight: normal;
+    }
+    .comments-wrapper details[open] summary::after {
+      content: '-';
+    }
+    
+    .comment-list {
+      margin-top: 1rem;
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+    }
+    
+    .comment-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+      padding-bottom: 1rem;
+    }
+    
+    .comment-avatar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .comment-content {
+      flex: 1;
+      overflow-wrap: anywhere;
+    }
+    
+    .comment-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+      font-size: 0.9rem;
+    }
+    
+    .author-name {
+      font-weight: bold;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+    
+    .badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: bold;
+    }
+    
+    .badge-pinned {
+      background-color: var(--text-color);
+      opacity: 0.8;
+    }
+    
+    .badge-owner {
+      background-color: #606060;
+    }
+    :root.dark .badge-owner {
+      background-color: #aaa;
+      color: #000;
+    }
+
+    .published-date {
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    .comment-text {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin: 0.3rem 0;
+    }
+
+    .comment-footer {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #888;
+      align-items: center;
+    }
   </style>
 </head>
 
@@ -137,7 +242,7 @@
 
 <h1>YouTube 埋め込み再生ツール</h1>
 
-<div class="layout">
+<div class="layout layout-main">
 
   <div class="left">
     <iframe id="videoFrame" allowfullscreen
@@ -155,8 +260,22 @@
         <option value="Education - siawaseok">Education - siawaseok</option>
         <option value="Education - woolisbest4520-1">Education - woolisbest4520-1</option>
         <option value="Education - woolisbest4520-2">Education - woolisbest4520-2</option>
-        <option value="Thumbnail-img">サムネイル - img.youtube.com</option>
-        <option value="Thumbnail-i">サムネイル - i.ytimg.com</option>
+        
+        <optgroup label="サムネイル - img.youtube.com">
+            <option value="Thumbnail-img-maxresdefault">img - maxresdefault (最大)</option>
+            <option value="Thumbnail-img-sddefault">img - sddefault (標準)</option>
+            <option value="Thumbnail-img-hqdefault">img - hqdefault (高)</option>
+            <option value="Thumbnail-img-mqdefault">img - mqdefault (中)</option>
+            <option value="Thumbnail-img-default">img - default (デフォルト)</option>
+        </optgroup>
+        
+        <optgroup label="サムネイル - i.ytimg.com">
+            <option value="Thumbnail-i-maxresdefault">i.ytimg - maxresdefault (最大)</option>
+            <option value="Thumbnail-i-sddefault">i.ytimg - sddefault (標準)</option>
+            <option value="Thumbnail-i-hqdefault">i.ytimg - hqdefault (高)</option>
+            <option value="Thumbnail-i-mqdefault">i.ytimg - mqdefault (中)</option>
+            <option value="Thumbnail-i-default">i.ytimg - default (デフォルト)</option>
+        </optgroup>
       </select>
 
       <label>YouTubeのURLまたは動画IDを入力：</label>
@@ -168,6 +287,17 @@
     </div>
   </div>
 
+</div>
+
+<div class="layout" style="margin-top: 1rem;">
+  <div class="card comments-wrapper">
+    <details open>
+      <summary>コメント <span id="commentCountBadge"></span></summary>
+      <div id="commentsContainer" class="comment-list">
+        <p style="text-align:center; color:#888;">動画を再生するとここにコメントが表示されます。</p>
+      </div>
+    </details>
+  </div>
 </div>
 
 <script>
@@ -208,6 +338,70 @@
     return null;
   }
 
+  async function fetchComments(videoId) {
+    const container = document.getElementById("commentsContainer");
+    const countBadge = document.getElementById("commentCountBadge");
+    
+    container.innerHTML = '<p style="text-align:center;">読み込み中...</p>';
+    countBadge.innerText = '';
+
+    try {
+      const res = await fetch(`https://min-tube-api-3.vercel.app/api/comments/${videoId}`);
+      if (!res.ok) throw new Error("API Error");
+      
+      const data = await res.json();
+      
+      if (!data.comments || data.comments.length === 0) {
+        container.innerHTML = '<p style="text-align:center;">コメントが見つかりませんでした。</p>';
+        return;
+      }
+
+      countBadge.innerText = `(${data.commentCount || data.comments.length})`;
+      
+      let html = '';
+      data.comments.forEach(c => {
+        const iconUrl = (c.authorThumbnails && c.authorThumbnails.length > 0) ? c.authorThumbnails[0].url : '';
+        
+        let badges = '';
+        if (c.isPinned) {
+          badges += `<span class="badge badge-pinned">固定済み</span>`;
+        }
+        if (c.authorIsChannelOwner) {
+          badges += `<span class="badge badge-owner">所有者</span>`;
+        }
+
+        html += `
+          <div class="comment-item">
+            <div class="comment-avatar">
+              <a href="https://www.youtube.com${c.authorUrl}" target="_blank">
+                <img src="${iconUrl}" alt="${c.author}">
+              </a>
+            </div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <a href="https://www.youtube.com${c.authorUrl}" target="_blank" class="author-name">${c.author}</a>
+                ${badges}
+                <span class="published-date">${c.publishedText}</span>
+              </div>
+              <div class="comment-text">
+                ${c.contentHtml}
+              </div>
+              <div class="comment-footer">
+                <span>👍 ${c.likeCount}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+
+    } catch (e) {
+      console.error(e);
+      container.innerHTML = '<p style="text-align:center; color:red;">コメントの取得に失敗しました。</p>';
+    }
+  }
+
   async function loadVideo() {
     const source = document.getElementById("paramSource").value;
     const input = document.getElementById("videoUrlInput").value.trim();
@@ -218,18 +412,24 @@
       return;
     }
 
+    fetchComments(videoId);
+
     if (source === "Nocookie") {
       videoFrame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
       return;
     }
 
-    if (source === "Thumbnail-img") {
-      videoFrame.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    // サムネイル処理 (img.youtube.com)
+    if (source.startsWith("Thumbnail-img-")) {
+      const quality = source.replace("Thumbnail-img-", "");
+      videoFrame.src = `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
       return;
     }
 
-    if (source === "Thumbnail-i") {
-      videoFrame.src = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+    // サムネイル処理 (i.ytimg.com)
+    if (source.startsWith("Thumbnail-i-")) {
+      const quality = source.replace("Thumbnail-i-", "");
+      videoFrame.src = `https://i.ytimg.com/vi/${videoId}/${quality}.jpg`;
       return;
     }
 

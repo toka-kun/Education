@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Player</title>
 
-  <style>
+<style>
     :root {
       --main-color: #ff0000;
       --bg-color: #f9f9f9;
@@ -281,6 +281,27 @@
         font-size: 10px;
     }
 
+    /* ======================================================
+       追加修正コード：ダークモード時のバッジ色補正
+       ====================================================== */
+    /* 全モード共通：バッジの色を統一 */
+    .badge-pinned, .badge-owner {
+      background-color: #606060 !important;
+      color: #ffffff !important;
+      opacity: 1 !important;
+    }
+
+    /* ダークモード選択時、または自動設定でのダークモード判定時 */
+    :root.dark .badge-pinned,
+    :root.dark .badge-owner,
+    @media (prefers-color-scheme: dark) {
+      :root.auto .badge-pinned,
+      :root.auto .badge-owner {
+        background-color: #888888 !important; /* ダーク背景でも読みやすいグレー */
+        color: #181818 !important; /* 文字を暗くしてコントラストを確保 */
+      }
+    }
+
   </style>
 </head>
 
@@ -309,11 +330,13 @@
 
       <label>使用する再生方法：</label>
       <select id="paramSource">
-        <option value="Nocookie">Nocookie</option>
-        <option value="Education - wakame">Education - wakame</option>
-        <option value="Education - siawaseok">Education - siawaseok</option>
-        <option value="Education - woolisbest4520-1">Education - woolisbest4520-1</option>
-        <option value="Education - woolisbest4520-2">Education - woolisbest4520-2</option>
+        <optgroup label="埋め込み再生">
+            <option value="Nocookie">Nocookie</option>
+            <option value="Education - wakame">Education - wakame</option>
+            <option value="Education - siawaseok">Education - siawaseok</option>
+            <option value="Education - woolisbest4520-1">Education - woolisbest4520-1</option>
+            <option value="Education - woolisbest4520-2">Education - woolisbest4520-2</option>
+        </optgroup>
         
         <optgroup label="サムネイル - img.youtube.com">
             <option value="Thumbnail-img-maxresdefault">img - maxresdefault (最大)</option>

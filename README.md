@@ -38,6 +38,7 @@ https://www.youtubeeducation.com/embed/(動画のID)(パラメーター)
   - わかめtube Eduとトレンド復活版 → https://github.com/toka-kun/wkt
   - しあtube → https://github.com/siawaseoktest/youtube
   - Yuki YouTube+ → https://github.com/myproxy0107-hash/new-yu-yu
+  - YuZuTube → https://github.com/yuzubb/yuzutube1
 
 ---
 

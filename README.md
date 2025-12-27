@@ -4,7 +4,7 @@
 
 ### こんな感じにすればエラーが出ずに再生できるようになります。
 
-https://www.youtubeeducation.com/embed/(動画のID)(パラメーター)
+`https://www.youtubeeducation.com/embed/(動画のID)(パラメーター)`
 
 ### ここからテスト可能です。
 

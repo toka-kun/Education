@@ -30,7 +30,7 @@ https://www.youtubeeducation.com/embed/(動画のID)(パラメーター)
 
 ### 特徴
 
-- **更新頻度が高い**ため、ほぼ常に視聴可能です。
+- **更新頻度が非常に高い**ため、ほぼ常に視聴可能です。一つだけ導入するんだったらこれがおすすめ。
 
 ### URL
 
@@ -53,7 +53,8 @@ https://www.youtubeeducation.com/embed/(動画のID)(パラメーター)
 ### URL
 
 - **keyを取得しましょう**  
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/parameter.json`
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.json`
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.json`
 
 - **利用しているサイトの例**  
   - Wool-Tube Education版 → https://github.com/woolisbest-4520/wooltube-education

@@ -38,7 +38,7 @@ https://www.youtubeeducation.com/embed/(動画のID)(パラメーター)
   `https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json`  
 
 - **利用しているサイトの例**  
-  - わかめtube Edu改造版 → https://github.com/toka-kun/wkt
+  - わかめtube Eduとトレンド復活版 → https://github.com/toka-kun/wkt
   - しあtube → https://github.com/siawaseoktest/youtube
   - Yuki YouTube+ → https://github.com/myproxy0107-hash/new-yu-yu
 

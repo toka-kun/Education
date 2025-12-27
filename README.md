@@ -6,6 +6,12 @@
 
 https://www.youtubeeducation.com/embed/(動画のID)(パラメーター)
 
+### ここからテスト可能です。
+
+- https://html.cafe/x770792f9
+- https://ytedu-player.pages.dev/
+-https://ytedu-player.smooth.ytalt.f5.si/
+
 ---
 
 ## わかめさんが更新しているURLパラメーター

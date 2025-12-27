@@ -10,7 +10,7 @@ https://www.youtubeeducation.com/embed/(動画のID)(パラメーター)
 
 - https://html.cafe/x770792f9
 - https://ytedu-player.pages.dev/
--https://ytedu-player.smooth.ytalt.f5.si/
+- https://ytedu-player.smooth.ytalt.f5.si/
 
 ---
 

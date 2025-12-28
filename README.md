@@ -65,7 +65,21 @@
 
 ---
 
+## Toka_Kun_が更新しているURLパラメーター
+
+### 特徴
+
+- **GitHub Actionsで自動化しているので更新頻度が安定して非常に高い**ため、常に視聴可能です。
+
+### URL
+
+- **resultを取得しましょう**  
+  `https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key1.json`
+  `https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key2.json`
+
+---
+
 ## 注意点
 
-- siawaseokさんのパラメーターにしておけばだいたい大丈夫です。
+- siawaseokさんかToka_Kun_のパラメーターにしておけばだいたい大丈夫です。
 - 全てのパラメーターを活用することで、より安定して視聴できます。

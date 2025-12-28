@@ -42,7 +42,7 @@
 
 - **利用しているサイトの例**  
   - わかめtube Eduとトレンド復活版 → https://github.com/toka-kun/wkt
-  - しあtube → https://github.com/siawaseoktest/youtube
+  - しあtube → https://github.com/siawaseoktest/youtube https://github.com/ajgpw/youtube
   - Yuki YouTube+ → https://github.com/myproxy0107-hash/new-yu-yu
   - YuZuTube → https://github.com/yuzubb/yuzutube1
 

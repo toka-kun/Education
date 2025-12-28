@@ -1,0 +1,93 @@
+name: Update Kahoot Keys
+
+on:
+  schedule:
+    # 毎日 日本時間 午前9時 (UTC 0:00) に実行
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 手動実行ボタンも有効化
+
+jobs:
+  update-keys:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # リポジトリへの書き込み権限を付与
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch key and generate files
+        run: |
+          python -c "
+          import requests
+          import json
+          import urllib.parse
+          import os
+
+          # 1. キーの取得
+          try:
+              url = 'https://apis.kahoot.it/media-api/youtube/key'
+              response = requests.get(url)
+              response.raise_for_status()
+              data = response.json()
+              key_value = data['key']
+              print(f'Key fetched successfully: {key_value[:10]}...')
+          except Exception as e:
+              print(f'Error fetching key: {e}')
+              exit(1)
+
+          # 2. ベースとなるURLパラメータ
+          # ご指定のパラメータ（不変部分）
+          base_params = '?autoplay=1&mute=0&controls=1&start=0&origin=https%3A%2F%2Fcreate.kahoot.it&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&fs=1&enablejsapi=1&widgetid=1'
+
+          # 3. 設定の生成とエンコード処理
+          # 注意: ご提示の {enc'...' はJSONとして不正なため {'enc'...' (ダブルクォートあり) として処理します
+
+          # key1用: hideTitle: false
+          config_dict_1 = {'enc': key_value, 'hideTitle': False}
+          # JSON文字列にし、さらにURLエンコードする
+          config_json_1 = json.dumps(config_dict_1, separators=(',', ':'))
+          encoded_config_1 = urllib.parse.quote(config_json_1)
+          final_str_1 = f'{base_params}&embed_config={encoded_config_1}'
+
+          # key2用: hideTitle: true
+          config_dict_2 = {'enc': key_value, 'hideTitle': True}
+          # JSON文字列にし、さらにURLエンコードする
+          config_json_2 = json.dumps(config_dict_2, separators=(',', ':'))
+          encoded_config_2 = urllib.parse.quote(config_json_2)
+          final_str_2 = f'{base_params}&embed_config={encoded_config_2}'
+
+          # 4. ファイルへの保存
+          # key1.json と key2.json というファイル名なので、中身も扱いやすいJSON形式で保存します。
+          # 単なる文字列が欲しい場合は、json.dumpではなく、open(..., 'w').write(final_str_1) に変更可能です。
+          
+          with open('key1.json', 'w') as f:
+              json.dump({'result': final_str_1}, f, indent=2)
+
+          with open('key2.json', 'w') as f:
+              json.dump({'result': final_str_2}, f, indent=2)
+          
+          print('Files generated successfully.')
+          "
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 変更がある場合のみコミット
+          git add key1.json key2.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update Kahoot keys [skip ci]"
+            git push
+          fi

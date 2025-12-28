@@ -70,10 +70,10 @@ jobs:
           # 単なる文字列が欲しい場合は、json.dumpではなく、open(..., 'w').write(final_str_1) に変更可能です。
           
           with open('key1.json', 'w') as f:
-              json.dump({'result': final_str_1}, f, indent=2)
+              json.dump({'key': final_str_1}, f, indent=2)
 
           with open('key2.json', 'w') as f:
-              json.dump({'result': final_str_2}, f, indent=2)
+              json.dump({'key': final_str_2}, f, indent=2)
           
           print('Files generated successfully.')
           "

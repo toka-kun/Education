@@ -334,6 +334,8 @@
             <option value="Education - siawaseok">Education - siawaseok</option>
             <option value="Education - woolisbest4520-1">Education - woolisbest4520-1</option>
             <option value="Education - woolisbest4520-2">Education - woolisbest4520-2</option>
+            <option value="Education - Toka_Kun_-1">Education - Toka_Kun_-1</option>
+            <option value="Education - Toka_Kun_-2">Education - Toka_Kun_-2</option>
         </optgroup>
         
         <optgroup label="サムネイル - img.youtube.com">
@@ -364,7 +366,7 @@
         </div>
         <div>
           <label for="endTimeInput">終了時刻</label>
-          <input type="text" id="endTimeInput" placeholder="例: 2:00, 120">
+          <input type="text" id="endTimeInput" placeholder="例: 2:00">
         </div>
       </div>
 
@@ -408,7 +410,9 @@
     "Education - wakame": "https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text",
     "Education - siawaseok": "https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json",
     "Education - woolisbest4520-1": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.json",
-    "Education - woolisbest4520-2": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.json"
+    "Education - woolisbest4520-2": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.json",
+    "Education - Toka_Kun_-1": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key1.json",
+    "Education - Toka_Kun_-2": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key2.json"
   };
 
   function extractVideoId(input) {
@@ -587,7 +591,7 @@
   async function loadVideo() {
     const source = document.getElementById("paramSource").value;
     const input = document.getElementById("videoUrlInput").value.trim();
-    const frame = document.getElementById("videoFrame"); // 安全のためID取得
+    const frame = document.getElementById("videoFrame");
     const videoId = extractVideoId(input);
 
     if (!videoId) {
@@ -634,6 +638,10 @@
           params = (await r.json()).key || "";
         } else if (source === "Education - woolisbest4520-2") {
           params = (await r.json()).key || "";
+        } else if (source === "Education - Toka_Kun_-1") {
+          params = (await r.json()).result || "";
+        } else if (source === "Education - Toka_Kun_-2") {
+          params = (await r.json()).result || "";
         }
         
         finalUrl = `https://www.youtubeeducation.com/embed/${videoId}${params}`;
@@ -641,7 +649,6 @@
       } catch (e) {
         console.error(e);
         alert("パラメーターの取得に失敗しました。");
-        // 取得失敗時はここで処理を止める (空のURLなどで再生しない)
         return;
       }
     }

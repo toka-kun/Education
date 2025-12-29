@@ -9,7 +9,7 @@ on:
 jobs:
   update-keys:
     runs-on: ubuntu-latest
-    # 5時間の待機に耐えられるようタイムアウトを長めに設定
+    # スケジュール実行時は長時間待機する可能性があるため長めに設定
     timeout-minutes: 360
     permissions:
       contents: write
@@ -27,6 +27,9 @@ jobs:
         run: pip install requests
 
       - name: Fetch key and generate files
+        env:
+          # Python内でイベント名判定に使うため環境変数を渡す
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: |
           python -c "
           import requests
@@ -37,43 +40,43 @@ jobs:
           import random
 
           # ---------------------------------------------------------
-          # 1. 起動時間のランダム化 (5分〜5時間)
+          # 1. 実行モードの判定（手動 or 自動）
           # ---------------------------------------------------------
-          min_wait = 300      # 5分
-          max_wait = 18000    # 5時間
+          event_name = os.environ.get('GITHUB_EVENT_NAME')
           
-          wait_seconds = random.randint(min_wait, max_wait)
-          wait_hours = wait_seconds // 3600
-          wait_mins = (wait_seconds % 3600) // 60
+          if event_name == 'workflow_dispatch':
+              print('Manual trigger detected. Skipping wait time.')
+              wait_seconds = 0
+          else:
+              # スケジュール実行の場合はランダム待機 (5分〜5時間)
+              min_wait = 300      # 5分
+              max_wait = 18000    # 5時間
+              wait_seconds = random.randint(min_wait, max_wait)
+              
+              wait_hours = wait_seconds // 3600
+              wait_mins = (wait_seconds % 3600) // 60
+              print(f'Scheduled trigger detected. Sleeping for {wait_seconds}s ({wait_hours}h {wait_mins}m)...')
           
-          print(f'Creating a random schedule... Sleeping for {wait_seconds}s ({wait_hours}h {wait_mins}m).')
-          time.sleep(wait_seconds)
+          # 待機実行
+          if wait_seconds > 0:
+              time.sleep(wait_seconds)
 
 
           # ---------------------------------------------------------
-          # 2. 人間らしく振る舞うための準備
+          # 2. ブラウザ偽装（Windows Chrome と iPad Safari 限定）
           # ---------------------------------------------------------
-          
-          # 複数のブラウザのふりをするリスト
           user_agents = [
-              # Win10 Chrome
+              # Windows 10 Chrome
               'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-              # Mac Safari
-              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15',
-              # Win10 Edge
-              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0',
-              # Mac Chrome
-              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+              # iPad Safari (iPadOS 17)
+              'Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'
           ]
 
-          # 今回使うブラウザをランダムに決定
           current_ua = random.choice(user_agents)
           print(f'Acting as: {current_ua}')
 
-          # セッションを開始（Cookieを保持するため）
+          # セッション準備
           session = requests.Session()
-          
-          # ヘッダー設定
           session.headers.update({
               'User-Agent': current_ua,
               'Referer': 'https://create.kahoot.it/',
@@ -82,17 +85,16 @@ jobs:
 
 
           # ---------------------------------------------------------
-          # 3. サイト閲覧のシミュレーション（寄り道）
-          # いきなりAPIを叩かず、まずはトップページを見に行く
+          # 3. サイト閲覧シミュレーション（手動実行時も少しだけ"間"を入れる）
           # ---------------------------------------------------------
           try:
-              # Kahootのトップページ(または作成ページ)へアクセスしてCookieをもらう
               print('Visiting home page first...')
               session.get('https://create.kahoot.it/')
               
-              # 人間がページを見ている時間をシミュレート（3秒〜10秒待つ）
-              browsing_time = random.uniform(3, 10)
-              time.sleep(browsing_time)
+              # ページ遷移の自然な間隔（3〜8秒）
+              # 手動実行でもここは少し待ったほうがエラーになりにくいですが、
+              # 急ぎならここも短くできます。今は安全のため入れています。
+              time.sleep(random.uniform(3, 8))
               
               # -----------------------------------------------------
               # 4. 本命のキー取得
@@ -100,7 +102,6 @@ jobs:
               print('Now fetching the key...')
               url = 'https://apis.kahoot.it/media-api/youtube/key'
               
-              # session.getを使うことでCookieが引き継がれる
               response = session.get(url)
               response.raise_for_status()
               

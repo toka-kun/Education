@@ -2,12 +2,15 @@ name: Update Kahoot Keys
 
 on:
   schedule:
-    - cron: '0 20 * * *'
+    # 2日ごとの 日本時間 朝5時 (UTC 20:00)
+    - cron: '0 20 */2 * *'
   workflow_dispatch:
 
 jobs:
   update-keys:
     runs-on: ubuntu-latest
+    # 5時間の待機に耐えられるようタイムアウトを長めに設定
+    timeout-minutes: 360
     permissions:
       contents: write
 
@@ -30,43 +33,103 @@ jobs:
           import json
           import urllib.parse
           import os
+          import time
+          import random
 
-          # 1. キーの取得
+          # ---------------------------------------------------------
+          # 1. 起動時間のランダム化 (5分〜5時間)
+          # ---------------------------------------------------------
+          min_wait = 300      # 5分
+          max_wait = 18000    # 5時間
+          
+          wait_seconds = random.randint(min_wait, max_wait)
+          wait_hours = wait_seconds // 3600
+          wait_mins = (wait_seconds % 3600) // 60
+          
+          print(f'Creating a random schedule... Sleeping for {wait_seconds}s ({wait_hours}h {wait_mins}m).')
+          time.sleep(wait_seconds)
+
+
+          # ---------------------------------------------------------
+          # 2. 人間らしく振る舞うための準備
+          # ---------------------------------------------------------
+          
+          # 複数のブラウザのふりをするリスト
+          user_agents = [
+              # Win10 Chrome
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              # Mac Safari
+              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15',
+              # Win10 Edge
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0',
+              # Mac Chrome
+              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+          ]
+
+          # 今回使うブラウザをランダムに決定
+          current_ua = random.choice(user_agents)
+          print(f'Acting as: {current_ua}')
+
+          # セッションを開始（Cookieを保持するため）
+          session = requests.Session()
+          
+          # ヘッダー設定
+          session.headers.update({
+              'User-Agent': current_ua,
+              'Referer': 'https://create.kahoot.it/',
+              'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8'
+          })
+
+
+          # ---------------------------------------------------------
+          # 3. サイト閲覧のシミュレーション（寄り道）
+          # いきなりAPIを叩かず、まずはトップページを見に行く
+          # ---------------------------------------------------------
           try:
+              # Kahootのトップページ(または作成ページ)へアクセスしてCookieをもらう
+              print('Visiting home page first...')
+              session.get('https://create.kahoot.it/')
+              
+              # 人間がページを見ている時間をシミュレート（3秒〜10秒待つ）
+              browsing_time = random.uniform(3, 10)
+              time.sleep(browsing_time)
+              
+              # -----------------------------------------------------
+              # 4. 本命のキー取得
+              # -----------------------------------------------------
+              print('Now fetching the key...')
               url = 'https://apis.kahoot.it/media-api/youtube/key'
-              headers = {
-                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                  'Referer': 'https://create.kahoot.it/',
-                  'Accept': 'application/json, text/plain, */*',
-                  'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8'
-              }
-              response = requests.get(url, headers=headers)
+              
+              # session.getを使うことでCookieが引き継がれる
+              response = session.get(url)
               response.raise_for_status()
+              
               data = response.json()
               key_value = data['key']
               print(f'Key fetched successfully.')
+
           except Exception as e:
-              print(f'Error fetching key: {e}')
+              print(f'Error: {e}')
               exit(1)
 
-          # 2. ベースパラメータ
+
+          # ---------------------------------------------------------
+          # 5. URL生成と保存
+          # ---------------------------------------------------------
           base_params = '?autoplay=1&mute=0&controls=1&start=0&origin=https%3A%2F%2Fcreate.kahoot.it&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&fs=1&enablejsapi=1&widgetid=1'
 
-          # 3. 設定生成 (ここを修正: false -> False, true -> True)
-
-          # key1用: hideTitle: false -> False
+          # key1用: hideTitle: False
           config_dict_1 = {'enc': key_value, 'hideTitle': False}
           config_json_1 = json.dumps(config_dict_1, separators=(',', ':'))
           encoded_config_1 = urllib.parse.quote(config_json_1)
           final_str_1 = f'{base_params}&embed_config={encoded_config_1}'
 
-          # key2用: hideTitle: true -> True
+          # key2用: hideTitle: True
           config_dict_2 = {'enc': key_value, 'hideTitle': True}
           config_json_2 = json.dumps(config_dict_2, separators=(',', ':'))
           encoded_config_2 = urllib.parse.quote(config_json_2)
           final_str_2 = f'{base_params}&embed_config={encoded_config_2}'
 
-          # 4. 保存 (フォルダがない場合に備えて作成する処理を追加)
           output_dir = 'keys'
           os.makedirs(output_dir, exist_ok=True)
 
@@ -84,7 +147,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # keysフォルダ内の変更を追加
           git add keys/key1.json keys/key2.json
           
           if git diff --staged --quiet; then

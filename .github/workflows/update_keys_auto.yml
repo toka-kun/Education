@@ -1,4 +1,4 @@
-name: Update Kahoot Keys
+name: Auto
 
 on:
   schedule:

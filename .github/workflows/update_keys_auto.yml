@@ -57,7 +57,7 @@ jobs:
               time.sleep(wait_seconds)
 
           # ---------------------------------------------------------
-          # 2. ブラウザ偽装設定 (Windows Chrome / iPad Safari)
+          # 2. 
           # ---------------------------------------------------------
           # どちらかを選択
           is_ipad = random.choice([True, False])
@@ -65,7 +65,6 @@ jobs:
           if is_ipad:
               # iPad Safari
               user_agent = 'Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'
-              # Safari特有のヘッダー構成
               headers = {
                   'User-Agent': user_agent,
                   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -80,7 +79,6 @@ jobs:
           else:
               # Windows Chrome
               user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-              # Chrome特有のヘッダー構成 (Sec-Ch-Uaなど)
               headers = {
                   'User-Agent': user_agent,
                   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
@@ -101,10 +99,10 @@ jobs:
           session.headers.update(headers)
 
           # ---------------------------------------------------------
-          # 3. サイト閲覧シミュレーション (本物のブラウザの動き)
+          # 3. 
           # ---------------------------------------------------------
           
-          # 関数: 失敗しても1回だけリトライする仕組み (人間がF5押す動き)
+          # 関数: 失敗しても1回だけリトライする仕組み
           def fetch_with_retry(url, description, is_json=False):
               max_retries = 2
               for attempt in range(1, max_retries + 1):
@@ -124,14 +122,13 @@ jobs:
                           raise e
 
           try:
-              # Step A: トップページへアクセス
+              # Step A: 
               fetch_with_retry('https://create.kahoot.it/', 'Home Page')
               
-              # ページの読み込み待ち（人間が画面を見ている時間）
+              # ページの読み込み待ち
               time.sleep(random.uniform(2, 5))
 
-              # Step B: ★ここが新機能★ アイコン画像を取りに行く
-              # ブラウザはHTMLを取った後、必ずfaviconを取りに行きます。これを再現。
+              # Step B: 
               try:
                   # ヘッダーを画像用に少し変更
                   img_headers = {'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8', 'Sec-Fetch-Dest': 'image'}

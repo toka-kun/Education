@@ -3,7 +3,7 @@ name: Auto Update
 on:
   schedule:
     # 2日ごとの 日本時間 朝5時 (UTC 20:00)
-    - cron: '0 20 */2 * *'
+    - cron: '0 18 */2 * *'
   workflow_dispatch:
 
 jobs:

@@ -417,8 +417,16 @@
 
   function extractVideoId(input) {
     const patterns = [
-      /(?:youtube\.com\/watch\?v=)([^&\s]+)/,
-      /youtu\.be\/([^?\s]+)/
+      // 1. パラメータ型: ドメイン不問
+      //    /watch?v=ID, /edu?v=ID, /w?v=ID, /ume?v=ID
+      //    他のパラメータが前後にあっても対応 (?foo=bar&v=ID)
+      /(?:\/watch|\/edu|\/w|\/ume)\?(?:.*&)?v=([\w-]{11})/,
+
+      // 2. パス型: ドメイン不問
+      //    youtu.be/ID
+      //    /embed/ID, /video/ID
+      //    /wkt/watch/ID, /wkt/yt/edu/ID, /wkt/yt/nocookie/ID
+      /(?:youtu\.be|embed|video|wkt\/watch|wkt\/yt\/edu|wkt\/yt\/nocookie)\/([\w-]{11})/
     ];
     for (const p of patterns) {
       const m = input.match(p);

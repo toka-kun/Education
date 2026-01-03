@@ -8,6 +8,7 @@
 <style>
     :root {
       --main-color: #ff0000;
+      --loop-color: #065fd4; /* ループボタン用の青色 */
       --bg-color: #f9f9f9;
       --card-color: #ffffff;
       --text-color: #333;
@@ -22,6 +23,7 @@
       --text-color: #eaeaea;
       --shadow-color: rgba(0,0,0,0.4);
       --link-color: #3ea6ff;
+      --loop-color: #3ea6ff;
     }
 
     @media (prefers-color-scheme: light) {
@@ -31,6 +33,7 @@
         --text-color: #333;
         --shadow-color: rgba(0,0,0,0.08);
         --link-color: #065fd4;
+        --loop-color: #065fd4;
       }
     }
 
@@ -41,6 +44,7 @@
         --text-color: #eaeaea;
         --shadow-color: rgba(0,0,0,0.4);
         --link-color: #3ea6ff;
+        --loop-color: #3ea6ff;
       }
     }
 
@@ -122,6 +126,12 @@
     
     button:hover {
       opacity: 0.9;
+    }
+
+    /* ループボタン用の追加スタイル */
+    .btn-loop {
+      background-color: var(--loop-color);
+      margin-top: 0.8rem;
     }
 
     iframe {
@@ -370,7 +380,9 @@
         </div>
       </div>
 
-      <button onclick="loadVideo()">▶️ 再生</button>
+      <button onclick="loadVideo(false)">▶️ 再生</button>
+      
+      <button onclick="loadVideo(true)" class="btn-loop">🔁 ループ再生</button>
 
     </div>
   </div>
@@ -596,7 +608,8 @@
     }
   }
 
-  async function loadVideo() {
+  // --- 引数 isLoop を追加 ---
+  async function loadVideo(isLoop = false) {
     const source = document.getElementById("paramSource").value;
     const input = document.getElementById("videoUrlInput").value.trim();
     const frame = document.getElementById("videoFrame");
@@ -659,6 +672,13 @@
         alert("パラメーターの取得に失敗しました。");
         return;
       }
+    }
+
+    // --- ループ設定の適用 (iframeの場合のみ) ---
+    // YouTube埋め込みで1つの動画をループするには loop=1 と playlist=動画ID の両方が必要です
+    if (isLoop) {
+        finalUrl = updateUrlParam(finalUrl, 'loop', '1');
+        finalUrl = updateUrlParam(finalUrl, 'playlist', videoId);
     }
 
     // --- Start/End パラメータの適用 ---

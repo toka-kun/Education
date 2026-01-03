@@ -8,7 +8,7 @@
 <style>
     :root {
       --main-color: #ff0000;
-      --loop-color: #065fd4; /* ループボタン用の青色 */
+      --loop-color: #065fd4;
       --bg-color: #f9f9f9;
       --card-color: #ffffff;
       --text-color: #333;
@@ -128,7 +128,6 @@
       opacity: 0.9;
     }
 
-    /* ループボタン用の追加スタイル */
     .btn-loop {
       background-color: var(--loop-color);
       margin-top: 0.8rem;
@@ -139,10 +138,9 @@
       aspect-ratio: 16 / 9;
       border-radius: var(--border-radius);
       border: none;
-      background-color: #000; /* 読み込み前のチラつき防止 */
+      background-color: #000;
     }
 
-    /* --- 時間指定入力欄用のスタイル --- */
     .time-inputs {
       display: flex;
       gap: 1rem;
@@ -242,7 +240,6 @@
       margin: 0.3rem 0;
     }
 
-    /* タイムスタンプのリンク色 */
     .timestamp-link {
       color: var(--link-color);
       text-decoration: none;
@@ -266,7 +263,6 @@
       gap: 1rem;
     }
 
-    /* ハート（所有者のいいね）のスタイル */
     .creator-heart {
       display: flex;
       align-items: center;
@@ -293,14 +289,12 @@
         font-size: 10px;
     }
 
-    /* バッジの色設定 */
     .badge-pinned, .badge-owner {
       background-color: #606060 !important;
       color: #ffffff !important;
       opacity: 1 !important;
     }
 
-    /* ダークモード時のバッジ色補正 */
     :root.dark .badge-pinned,
     :root.dark .badge-owner,
     @media (prefers-color-scheme: dark) {
@@ -367,7 +361,7 @@
 
       <label>YouTubeのURLまたは動画IDを入力：</label>
       <input type="text" id="videoUrlInput"
-        placeholder="例: https://youtu.be/HRlW6yZo6Kc または HRlW6yZo6Kc">
+        placeholder="例: https://youtu.be/HRlW6yZo6Kc?list=PLxxx... または HRlW6yZo6Kc">
 
       <div class="time-inputs">
         <div>
@@ -376,12 +370,11 @@
         </div>
         <div>
           <label for="endTimeInput">終了時刻</label>
-          <input type="text" id="endTimeInput" placeholder="例: 2:00, 120">
+          <input type="text" id="endTimeInput" placeholder="例: 2:00">
         </div>
       </div>
 
       <button onclick="loadVideo(false)">▶️ 再生</button>
-      
       <button onclick="loadVideo(true)" class="btn-loop">🔁 ループ再生</button>
 
     </div>
@@ -448,52 +441,49 @@
     return null;
   }
 
-  // --- タイムスタンプ文字列を秒数に変換するヘルパー ---
+  // --- 新追加: Playlist ID 抽出 ---
+  function extractListId(input) {
+    // ?list=... または &list=... に対応
+    const m = input.match(/[?&]list=([a-zA-Z0-9_-]+)/);
+    return m ? m[1] : null;
+  }
+
   function convertToSeconds(input) {
     if (!input) return null;
-    
-    // 全角数字を半角に変換（１：３０ -> 1:30）
     const str = input.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0)).replace(/：/g, ':').trim();
     if (!str) return null;
 
-    // "mm:ss" や "hh:mm:ss" の形式対応
     if (str.includes(':')) {
       const parts = str.split(':').map(Number);
       if (parts.some(isNaN)) return null;
 
-      if (parts.length === 3) { // hh:mm:ss
+      if (parts.length === 3) {
         return parts[0] * 3600 + parts[1] * 60 + parts[2];
       }
-      if (parts.length === 2) { // mm:ss
+      if (parts.length === 2) {
         return parts[0] * 60 + parts[1];
       }
     }
     
-    // 単純な数字の場合
     const val = parseInt(str, 10);
     return isNaN(val) ? null : val;
   }
 
-  // --- URLパラメータ更新ヘルパー ---
   function updateUrlParam(url, key, value) {
-    // 1. &amp;key=数字 のパターン (HTMLエンコード済み対応)
     const ampRegex = new RegExp(`(&amp;${key}=)\\d+`);
     if (url.match(ampRegex)) {
       return url.replace(ampRegex, `$1${value}`);
     }
 
-    // 2. ?key=数字 または &key=数字 のパターン (通常版対応)
     const standardRegex = new RegExp(`([?&]${key}=)\\d+`);
     if (url.match(standardRegex)) {
       return url.replace(standardRegex, `$1${value}`);
     }
 
-    // 3. まだ存在しない場合 -> 追加する
     const separator = url.includes('?') ? '&' : '?';
     return `${url}${separator}${key}=${value}`;
   }
 
-  // --- タイムスタンプ処理 ---
   function parseTimestamp(text) {
     const regex = /\b(?:(\d{1,2}):)?(\d{1,2}):(\d{2})\b/g;
     
@@ -507,7 +497,6 @@
     });
   }
 
-  // --- 動画シーク（再読み込み）機能 ---
   function seekVideo(seconds) {
     const frame = document.getElementById("videoFrame");
     let src = frame.src;
@@ -522,7 +511,6 @@
     }
   }
 
-  // --- コメント取得 ---
   async function fetchComments(videoId) {
     const container = document.getElementById("commentsContainer");
     const countBadge = document.getElementById("commentCountBadge");
@@ -608,12 +596,13 @@
     }
   }
 
-  // --- 引数 isLoop を追加 ---
   async function loadVideo(isLoop = false) {
     const source = document.getElementById("paramSource").value;
     const input = document.getElementById("videoUrlInput").value.trim();
     const frame = document.getElementById("videoFrame");
+    
     const videoId = extractVideoId(input);
+    const listId = extractListId(input); // Playlist IDを取得
 
     if (!videoId) {
       alert("正しいURLまたは動画IDを入力してください。");
@@ -622,13 +611,11 @@
 
     fetchComments(videoId);
 
-    // --- Start/End 入力値の取得と変換 ---
     const startInput = document.getElementById("startTimeInput").value;
     const endInput = document.getElementById("endTimeInput").value;
     const startSeconds = convertToSeconds(startInput);
     const endSeconds = convertToSeconds(endInput);
 
-    // --- URL生成 ---
     let finalUrl = "";
 
     if (source === "Nocookie") {
@@ -674,11 +661,18 @@
       }
     }
 
-    // --- ループ設定の適用 (iframeの場合のみ) ---
-    // YouTube埋め込みで1つの動画をループするには loop=1 と playlist=動画ID の両方が必要です
+    // --- Playlist IDの適用 ---
+    if (listId) {
+      finalUrl = updateUrlParam(finalUrl, 'list', listId);
+    }
+
+    // --- ループ設定の適用 ---
     if (isLoop) {
-        finalUrl = updateUrlParam(finalUrl, 'loop', '1');
+      finalUrl = updateUrlParam(finalUrl, 'loop', '1');
+      // 再生リストがない場合のみ、単体ループのためにplaylistパラメータを追加
+      if (!listId) {
         finalUrl = updateUrlParam(finalUrl, 'playlist', videoId);
+      }
     }
 
     // --- Start/End パラメータの適用 ---

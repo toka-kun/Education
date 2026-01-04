@@ -8,7 +8,7 @@
 <style>
     :root {
       --main-color: #ff0000;
-      --loop-color: #065fd4; /* ここで定義した色に統一されます */
+      --loop-color: #065fd4;
       --bg-color: #f9f9f9;
       --card-color: #ffffff;
       --text-color: #333;
@@ -23,7 +23,6 @@
       --text-color: #eaeaea;
       --shadow-color: rgba(0,0,0,0.4);
       --link-color: #3ea6ff;
-      /* ループカラーの上書きを削除しました */
     }
 
     @media (prefers-color-scheme: light) {
@@ -33,7 +32,6 @@
         --text-color: #333;
         --shadow-color: rgba(0,0,0,0.08);
         --link-color: #065fd4;
-        /* ループカラーの上書きを削除しました */
       }
     }
 
@@ -44,7 +42,6 @@
         --text-color: #eaeaea;
         --shadow-color: rgba(0,0,0,0.4);
         --link-color: #3ea6ff;
-        /* ループカラーの上書きを削除しました */
       }
     }
 
@@ -245,6 +242,15 @@
       font-size: 0.95rem;
       line-height: 1.4;
       margin: 0.3rem 0;
+    }
+    
+    /* コメント内のリンク色 */
+    .comment-text a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+    .comment-text a:hover {
+      text-decoration: underline;
     }
 
     .timestamp-link {
@@ -599,7 +605,12 @@
           `;
         }
 
-        const processedContent = parseTimestamp(c.contentHtml);
+        // --- 修正箇所: リンクを新しいタブで開くように置換 ---
+        // コメント本文内の <a ...> タグ全てに target="_blank" を付与します
+        let rawHtml = c.contentHtml.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
+        
+        // その後、タイムスタンプのリンク生成処理を通します
+        const processedContent = parseTimestamp(rawHtml);
 
         html += `
           <div class="comment-item">

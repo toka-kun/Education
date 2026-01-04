@@ -661,10 +661,15 @@
       }
     }
 
-    // --- Playlist IDの適用 (常にリスト化) ---
+    // --- Playlist IDの適用 (ロジック修正) ---
     if (listId) {
-      // 入力URLにリストID(list/playlist)が含まれている場合はそれを優先
-      finalUrl = updateUrlParam(finalUrl, 'list', listId);
+      // 抽出したリストIDが動画IDと同じ場合、それは「list」ではなく「playlist」パラメータとして扱う（単体ループ用）
+      if (listId === videoId) {
+        finalUrl = updateUrlParam(finalUrl, 'playlist', listId);
+      } else {
+        // それ以外は通常の再生リストとして扱う
+        finalUrl = updateUrlParam(finalUrl, 'list', listId);
+      }
     } else {
       // リストIDがない場合、常に playlist=動画ID を付与してリスト状態にする
       finalUrl = updateUrlParam(finalUrl, 'playlist', videoId);

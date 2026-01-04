@@ -8,7 +8,7 @@
 <style>
     :root {
       --main-color: #ff0000;
-      --loop-color: #065fd4;
+      --loop-color: #065fd4; /* ここで定義した色に統一されます */
       --bg-color: #f9f9f9;
       --card-color: #ffffff;
       --text-color: #333;
@@ -23,7 +23,7 @@
       --text-color: #eaeaea;
       --shadow-color: rgba(0,0,0,0.4);
       --link-color: #3ea6ff;
-      --loop-color: #3ea6ff;
+      /* ループカラーの上書きを削除しました */
     }
 
     @media (prefers-color-scheme: light) {
@@ -33,7 +33,7 @@
         --text-color: #333;
         --shadow-color: rgba(0,0,0,0.08);
         --link-color: #065fd4;
-        --loop-color: #065fd4;
+        /* ループカラーの上書きを削除しました */
       }
     }
 
@@ -44,7 +44,7 @@
         --text-color: #eaeaea;
         --shadow-color: rgba(0,0,0,0.4);
         --link-color: #3ea6ff;
-        --loop-color: #3ea6ff;
+        /* ループカラーの上書きを削除しました */
       }
     }
 
@@ -133,12 +133,19 @@
       margin-top: 0.8rem;
     }
 
-    iframe {
+    /* iframeを囲むコンテナ */
+    #videoContainer {
       width: 100%;
       aspect-ratio: 16 / 9;
-      border-radius: var(--border-radius);
-      border: none;
       background-color: #000;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     .time-inputs {
@@ -322,9 +329,8 @@
 <div class="layout layout-main">
 
   <div class="left">
-    <iframe id="videoFrame" allowfullscreen
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <div id="videoContainer">
+        </div>
   </div>
 
   <div class="right">
@@ -394,6 +400,15 @@
 </div>
 
 <script>
+  // --- YouTube IFrame Player API の読み込み ---
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player = null; // YouTubeプレーヤーオブジェクト
+  var currentLoadedVideoId = null; // 現在コメントを表示している動画ID
+
   function applyTheme(mode) {
     document.documentElement.classList.remove("light", "dark", "auto");
     document.documentElement.classList.add(mode);
@@ -441,9 +456,7 @@
     return null;
   }
 
-  // --- Playlist ID 抽出 (list または playlist パラメータ) ---
   function extractListId(input) {
-    // ?list=ID, &list=ID, ?playlist=ID, &playlist=ID に対応
     const m = input.match(/[?&](?:list|playlist)=([a-zA-Z0-9_-]+)/);
     return m ? m[1] : null;
   }
@@ -452,32 +465,23 @@
     if (!input) return null;
     const str = input.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0)).replace(/：/g, ':').trim();
     if (!str) return null;
-
     if (str.includes(':')) {
       const parts = str.split(':').map(Number);
       if (parts.some(isNaN)) return null;
-
-      if (parts.length === 3) {
-        return parts[0] * 3600 + parts[1] * 60 + parts[2];
-      }
-      if (parts.length === 2) {
-        return parts[0] * 60 + parts[1];
-      }
+      if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+      if (parts.length === 2) return parts[0] * 60 + parts[1];
     }
-    
     const val = parseInt(str, 10);
     return isNaN(val) ? null : val;
   }
 
   function updateUrlParam(url, key, value) {
-    const ampRegex = new RegExp(`(&amp;${key}=)\\d+`);
-    if (url.match(ampRegex)) {
-      return url.replace(ampRegex, `$1${value}`);
-    }
+    const ampRegex = new RegExp(`(&amp;${key}=)[^&]*`);
+    const ampSimpleRegex = new RegExp(`(&${key}=)[^&]*`);
+    const questionRegex = new RegExp(`(\\?${key}=)[^&]*`);
 
-    const standardRegex = new RegExp(`([?&]${key}=)\\d+`);
-    if (url.match(standardRegex)) {
-      return url.replace(standardRegex, `$1${value}`);
+    if (url.match(ampRegex) || url.match(ampSimpleRegex) || url.match(questionRegex)) {
+       return url.replace(new RegExp(`([?&])${key}=[^&]*`), `$1${key}=${value}`);
     }
 
     const separator = url.includes('?') ? '&' : '?';
@@ -486,28 +490,67 @@
 
   function parseTimestamp(text) {
     const regex = /\b(?:(\d{1,2}):)?(\d{1,2}):(\d{2})\b/g;
-    
     return text.replace(regex, (match, h, m, s) => {
       let seconds = 0;
       if (h) seconds += parseInt(h) * 3600;
       seconds += parseInt(m) * 60;
       seconds += parseInt(s);
-      
       return `<a class="timestamp-link" onclick="seekVideo(${seconds}); return false;">${match}</a>`;
     });
   }
 
   function seekVideo(seconds) {
-    const frame = document.getElementById("videoFrame");
-    let src = frame.src;
-
-    if (!src || src.includes("img.youtube.com") || src.includes("i.ytimg.com") || src === "about:blank") {
-      return;
+    // APIが有効な場合はAPIを使用
+    if (player && typeof player.seekTo === 'function') {
+        player.seekTo(seconds, true);
+        return;
     }
 
+    // APIがない場合のフォールバック
+    const frame = document.getElementById("videoFrame");
+    if (!frame) return;
+    
+    let src = frame.src;
+    if (!src || src.includes("img.youtube.com") || src.includes("i.ytimg.com") || src === "about:blank") return;
     const newSrc = updateUrlParam(src, 'start', seconds);
-    if (src !== newSrc) {
-      frame.src = newSrc;
+    if (src !== newSrc) frame.src = newSrc;
+  }
+
+  // --- プレーヤーの状態変化イベント ---
+  function onPlayerStateChange(event) {
+    // 再生中(1) または バッファリング中(3) の時に動画IDをチェック
+    if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
+        if (event.target && event.target.getVideoData) {
+            const data = event.target.getVideoData();
+            if (data && data.video_id) {
+                // IDが変わっていたらコメントを再取得
+                // ここで「現在のID」と「APIが報告するID」が違う場合のみ更新
+                if (currentLoadedVideoId && data.video_id !== currentLoadedVideoId) {
+                    console.log("動画の切り替わりを検知しました: " + data.video_id);
+                    currentLoadedVideoId = data.video_id;
+                    fetchComments(currentLoadedVideoId);
+                }
+            }
+        }
+    }
+  }
+
+  // --- iframe読み込み後にAPIをバインドする関数 ---
+  function initYouTubePlayer() {
+    // APIがまだ読み込まれていない場合は何もしない（ロード後に動く）
+    if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
+        return; 
+    }
+
+    // 新しく作られたiframeに対してAPIを紐付ける
+    try {
+        player = new YT.Player('videoFrame', {
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    } catch (e) {
+        console.error("YouTube Player APIの初期化に失敗しました", e);
     }
   }
 
@@ -540,9 +583,7 @@
         if (c.authorIsChannelOwner) badges += `<span class="badge badge-owner">所有者</span>`;
 
         let editedHtml = '';
-        if (c.isEdited) {
-          editedHtml = `<span class="edited-mark">(編集済み)</span>`;
-        }
+        if (c.isEdited) editedHtml = `<span class="edited-mark">(編集済み)</span>`;
 
         let heartHtml = '';
         if (c.creatorHeart) {
@@ -587,9 +628,7 @@
           </div>
         `;
       });
-      
       container.innerHTML = html;
-
     } catch (e) {
       console.error(e);
       container.innerHTML = '<p style="text-align:center; color:red;">コメントの取得に失敗しました。</p>';
@@ -597,18 +636,39 @@
   }
 
   async function loadVideo(isLoop = false) {
+    // 1. まず古いプレーヤーを完全に破棄する
+    if (player) {
+      try { player.destroy(); } catch(e) {}
+      player = null;
+    }
+
+    const container = document.getElementById("videoContainer");
+    
+    // 2. コンテナを空にして、新しいiframe要素を一から作る
+    // これにより、APIによるiframeの書き換えや「2回目再生できない」問題を解消します
+    container.innerHTML = '';
+    
+    const newIframe = document.createElement("iframe");
+    newIframe.id = "videoFrame";
+    newIframe.allowFullscreen = true;
+    newIframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    newIframe.referrerPolicy = "strict-origin-when-cross-origin";
+    
+    container.appendChild(newIframe);
+
     const source = document.getElementById("paramSource").value;
     const input = document.getElementById("videoUrlInput").value.trim();
-    const frame = document.getElementById("videoFrame");
     
     const videoId = extractVideoId(input);
-    const listId = extractListId(input); // list または playlist パラメータからID取得
+    const listId = extractListId(input);
 
     if (!videoId) {
       alert("正しいURLまたは動画IDを入力してください。");
       return;
     }
 
+    // 初回コメント読み込みを明示的に実行
+    currentLoadedVideoId = videoId;
     fetchComments(videoId);
 
     const startInput = document.getElementById("startTimeInput").value;
@@ -618,21 +678,19 @@
 
     let finalUrl = "";
 
+    // サムネイルモード
+    if (source.startsWith("Thumbnail-")) {
+      const isImg = source.startsWith("Thumbnail-img-");
+      const quality = source.replace(isImg ? "Thumbnail-img-" : "Thumbnail-i-", "");
+      const domain = isImg ? "img.youtube.com" : "i.ytimg.com";
+      // サムネモードではAPI初期化しない
+      newIframe.src = `https://${domain}/vi/${videoId}/${quality}.jpg`;
+      return;
+    }
+
     if (source === "Nocookie") {
       finalUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
-    } 
-    else if (source.startsWith("Thumbnail-img-")) {
-      const quality = source.replace("Thumbnail-img-", "");
-      frame.src = `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
-      return;
-    }
-    else if (source.startsWith("Thumbnail-i-")) {
-      const quality = source.replace("Thumbnail-i-", "");
-      frame.src = `https://i.ytimg.com/vi/${videoId}/${quality}.jpg`;
-      return;
-    }
-    else {
-      // Education系の処理
+    } else {
       try {
         const r = await fetch(URLS[source], { cache: "no-store" });
         if (!r.ok) throw new Error("取得失敗");
@@ -642,13 +700,9 @@
           params = await r.text();
         } else if (source === "Education - siawaseok") {
           params = (await r.json()).params || "";
-        } else if (source === "Education - woolisbest4520-1") {
+        } else if (source.includes("woolisbest4520")) {
           params = (await r.json()).key || "";
-        } else if (source === "Education - woolisbest4520-2") {
-          params = (await r.json()).key || "";
-        } else if (source === "Education - Toka_Kun_-1") {
-          params = (await r.json()).result || "";
-        } else if (source === "Education - Toka_Kun_-2") {
+        } else if (source.includes("Toka_Kun")) {
           params = (await r.json()).result || "";
         }
         
@@ -661,34 +715,39 @@
       }
     }
 
-    // --- Playlist IDの適用 (ロジック修正) ---
+    // --- パラメータ処理 ---
+
+    // 1. リストパラメータ
     if (listId) {
-      // 抽出したリストIDが動画IDと同じ場合、それは「list」ではなく「playlist」パラメータとして扱う（単体ループ用）
       if (listId === videoId) {
         finalUrl = updateUrlParam(finalUrl, 'playlist', listId);
       } else {
-        // それ以外は通常の再生リストとして扱う
         finalUrl = updateUrlParam(finalUrl, 'list', listId);
       }
     } else {
-      // リストIDがない場合、常に playlist=動画ID を付与してリスト状態にする
       finalUrl = updateUrlParam(finalUrl, 'playlist', videoId);
     }
 
-    // --- ループ設定の適用 ---
+    // 2. ループ
     if (isLoop) {
       finalUrl = updateUrlParam(finalUrl, 'loop', '1');
     }
 
-    // --- Start/End パラメータの適用 ---
-    if (startSeconds !== null) {
-      finalUrl = updateUrlParam(finalUrl, 'start', startSeconds);
-    }
-    if (endSeconds !== null) {
-      finalUrl = updateUrlParam(finalUrl, 'end', endSeconds);
-    }
+    // 3. 時間指定
+    if (startSeconds !== null) finalUrl = updateUrlParam(finalUrl, 'start', startSeconds);
+    if (endSeconds !== null) finalUrl = updateUrlParam(finalUrl, 'end', endSeconds);
 
-    frame.src = finalUrl;
+    // 4. API制御用パラメータ
+    finalUrl = updateUrlParam(finalUrl, 'enablejsapi', '1');
+    finalUrl = updateUrlParam(finalUrl, 'origin', window.location.origin);
+
+    // --- src設定とAPIバインド ---
+    // iframeのsrcを設定した後に、読み込み完了を待ってAPIを初期化
+    newIframe.onload = function() {
+        initYouTubePlayer();
+    };
+    
+    newIframe.src = finalUrl;
   }
 </script>
 

@@ -441,10 +441,10 @@
     return null;
   }
 
-  // --- 新追加: Playlist ID 抽出 ---
+  // --- Playlist ID 抽出 (list または playlist パラメータ) ---
   function extractListId(input) {
-    // ?list=... または &list=... に対応
-    const m = input.match(/[?&]list=([a-zA-Z0-9_-]+)/);
+    // ?list=ID, &list=ID, ?playlist=ID, &playlist=ID に対応
+    const m = input.match(/[?&](?:list|playlist)=([a-zA-Z0-9_-]+)/);
     return m ? m[1] : null;
   }
 
@@ -602,7 +602,7 @@
     const frame = document.getElementById("videoFrame");
     
     const videoId = extractVideoId(input);
-    const listId = extractListId(input); // Playlist IDを取得
+    const listId = extractListId(input); // list または playlist パラメータからID取得
 
     if (!videoId) {
       alert("正しいURLまたは動画IDを入力してください。");
@@ -661,18 +661,18 @@
       }
     }
 
-    // --- Playlist IDの適用 ---
+    // --- Playlist IDの適用 (常にリスト化) ---
     if (listId) {
+      // 入力URLにリストID(list/playlist)が含まれている場合はそれを優先
       finalUrl = updateUrlParam(finalUrl, 'list', listId);
+    } else {
+      // リストIDがない場合、常に playlist=動画ID を付与してリスト状態にする
+      finalUrl = updateUrlParam(finalUrl, 'playlist', videoId);
     }
 
     // --- ループ設定の適用 ---
     if (isLoop) {
       finalUrl = updateUrlParam(finalUrl, 'loop', '1');
-      // 再生リストがない場合のみ、単体ループのためにplaylistパラメータを追加
-      if (!listId) {
-        finalUrl = updateUrlParam(finalUrl, 'playlist', videoId);
-      }
     }
 
     // --- Start/End パラメータの適用 ---

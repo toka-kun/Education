@@ -98,6 +98,12 @@
       margin-bottom: 0.4rem;
     }
 
+    /* Input Wrapper for Clear Button Position */
+    .input-wrapper {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
     input[type="text"], select {
       width: 100%;
       padding: 0.75rem;
@@ -105,12 +111,47 @@
       border: 1px solid #ccc;
       border-radius: var(--border-radius);
       box-sizing: border-box;
-      margin-bottom: 1rem;
       background: var(--card-color);
       color: var(--text-color);
     }
+    
+    /* Input specific margin removed because wrapper handles it */
+    select {
+      margin-bottom: 1rem;
+    }
+    
+    /* Add padding to right so text doesn't hit the X button */
+    #videoUrlInput {
+      padding-right: 2.5rem;
+    }
 
-    button {
+    /* Clear Button Style */
+    .clear-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: auto;
+      background: transparent;
+      color: #999;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      display: none; /* Initially hidden */
+      line-height: 1;
+      height: 80%;
+      border-radius: 4px;
+    }
+    
+    .clear-btn:hover {
+      color: var(--text-color);
+      background-color: rgba(128, 128, 128, 0.1);
+      opacity: 1;
+    }
+
+    /* Main Buttons */
+    .action-btn {
       background-color: var(--main-color);
       color: white;
       border: none;
@@ -122,10 +163,10 @@
       transition: opacity 0.2s, transform 0.1s;
     }
     
-    button:hover {
+    .action-btn:hover {
       opacity: 0.9;
     }
-    button:active {
+    .action-btn:active {
       transform: scale(0.98);
     }
 
@@ -371,12 +412,14 @@
             <option value="Thumbnail-i-hqdefault">i.ytimg - hqdefault</option>
             <option value="Thumbnail-i-mqdefault">i.ytimg - mqdefault</option>
             <option value="Thumbnail-i-default">i.ytimg - default</option>
-        </optgroup>
       </select>
 
       <label>YouTubeのURLまたは動画IDを入力：</label>
-      <input type="text" id="videoUrlInput"
-        placeholder="例: https://youtu.be/HRlW6yZo6Kc?list=PLxxx... または HRlW6yZo6Kc">
+      <div class="input-wrapper">
+        <input type="text" id="videoUrlInput"
+          placeholder="例: https://youtu.be/HRlW6yZo6Kc?list=PLxxx... または HRlW6yZo6Kc">
+        <button id="btnClearInput" class="clear-btn" aria-label="クリア">×</button>
+      </div>
 
       <div class="time-inputs">
         <div>
@@ -389,8 +432,8 @@
         </div>
       </div>
 
-      <button id="btnPlay" onclick="loadVideo(false)">▶️ 再生</button>
-      <button id="btnLoop" onclick="loadVideo(true)" class="btn-loop">🔁 ループ再生</button>
+      <button id="btnPlay" class="action-btn" onclick="loadVideo(false)">▶️ 再生</button>
+      <button id="btnLoop" class="action-btn btn-loop" onclick="loadVideo(true)">🔁 ループ再生</button>
 
     </div>
   </div>
@@ -449,12 +492,32 @@
     localStorage.setItem("preferredSource", this.value);
   });
 
-  document.getElementById("videoUrlInput").addEventListener("keydown", function(event) {
+  // URL入力欄のクリア機能とEnterキー処理
+  const videoInput = document.getElementById("videoUrlInput");
+  const clearBtn = document.getElementById("btnClearInput");
+
+  function toggleClearButton() {
+    clearBtn.style.display = videoInput.value.length > 0 ? "block" : "none";
+  }
+
+  videoInput.addEventListener("input", toggleClearButton);
+  
+  clearBtn.addEventListener("click", function() {
+    videoInput.value = "";
+    videoInput.focus();
+    toggleClearButton();
+  });
+
+  videoInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
       event.preventDefault(); 
       loadVideo(false);
     }
   });
+  
+  // 初期表示時にもチェック
+  toggleClearButton();
+
 
   const URLS = {
     "Nocookie": null,
@@ -641,9 +704,7 @@
           `;
         }
 
-        // HTMLサニタイズ適用
         let safeHtml = sanitizeHTML(c.contentHtml);
-        // リンクを新しいタブで開く
         safeHtml = safeHtml.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
         const processedContent = parseTimestamp(safeHtml);
 
@@ -690,14 +751,12 @@
     const btnPlay = document.getElementById("btnPlay");
     const btnLoop = document.getElementById("btnLoop");
 
-    // 入力チェック
     const input = document.getElementById("videoUrlInput").value.trim();
     if (!input) {
       alert("URLまたは動画IDを入力してください。");
       return;
     }
 
-    // UI更新
     resetButtons();
     if (isLoop) {
       btnLoop.innerText = "🔁 ループ再生中...";
@@ -705,7 +764,6 @@
       btnPlay.innerText = "▶️ 再生中...";
     }
 
-    // プレイヤー破棄
     if (player) {
       try { player.destroy(); } catch(e) {}
       player = null;
@@ -714,7 +772,6 @@
     const container = document.getElementById("videoContainer");
     container.innerHTML = '';
     
-    // ソース判定
     const source = document.getElementById("paramSource").value;
     const videoId = extractVideoId(input);
     const listId = extractListId(input);
@@ -725,9 +782,7 @@
       return;
     }
 
-    // サムネイルの場合の特別処理
     if (source.startsWith("Thumbnail-")) {
-      // サムネイルなのにループ再生ボタンが押された場合
       if (isLoop) {
         alert("サムネイル（画像）はループ再生できません。");
         resetButtons();
@@ -743,14 +798,12 @@
       img.src = `https://${domain}/vi/${videoId}/${quality}.jpg`;
       container.appendChild(img);
       
-      // サムネイルの場合はコメントだけ取得して終了
       currentLoadedVideoId = videoId;
       fetchComments(videoId);
-      resetButtons(); // ボタン表記を戻す
+      resetButtons();
       return;
     }
 
-    // iframe作成
     const newIframe = document.createElement("iframe");
     newIframe.id = "videoFrame";
     newIframe.allowFullscreen = true;
@@ -778,7 +831,6 @@
 
             let params = "";
             
-            // 厳密な条件分岐
             if (source === "Education - wakame") {
               params = await r.text();
             } else if (source === "Education - siawaseok") {

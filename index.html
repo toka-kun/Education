@@ -119,10 +119,14 @@
       border-radius: var(--border-radius);
       cursor: pointer;
       width: 100%;
+      transition: opacity 0.2s, transform 0.1s;
     }
     
     button:hover {
       opacity: 0.9;
+    }
+    button:active {
+      transform: scale(0.98);
     }
 
     .btn-loop {
@@ -130,19 +134,20 @@
       margin-top: 0.8rem;
     }
 
-    /* iframeを囲むコンテナ */
     #videoContainer {
       width: 100%;
       aspect-ratio: 16 / 9;
       background-color: #000;
       border-radius: var(--border-radius);
       overflow: hidden;
+      position: relative;
     }
 
-    iframe {
+    iframe, img.thumbnail-display {
       width: 100%;
       height: 100%;
       border: none;
+      object-fit: contain;
     }
 
     .time-inputs {
@@ -154,7 +159,7 @@
       flex: 1;
     }
 
-    /* --- コメント欄用のCSS --- */
+    /* --- コメント欄 --- */
     .comments-wrapper summary {
       cursor: pointer;
       font-weight: bold;
@@ -384,8 +389,8 @@
         </div>
       </div>
 
-      <button onclick="loadVideo(false)">▶️ 再生</button>
-      <button onclick="loadVideo(true)" class="btn-loop">🔁 ループ再生</button>
+      <button id="btnPlay" onclick="loadVideo(false)">▶️ 再生</button>
+      <button id="btnLoop" onclick="loadVideo(true)" class="btn-loop">🔁 ループ再生</button>
 
     </div>
   </div>
@@ -404,14 +409,14 @@
 </div>
 
 <script>
-  // --- YouTube IFrame Player API の読み込み ---
+  // --- YouTube IFrame Player API ---
   var tag = document.createElement('script');
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-  var player = null; // YouTubeプレーヤーオブジェクト
-  var currentLoadedVideoId = null; // 現在コメントを表示している動画ID
+  var player = null;
+  var currentLoadedVideoId = null;
 
   function applyTheme(mode) {
     document.documentElement.classList.remove("light", "dark", "auto");
@@ -423,18 +428,15 @@
     localStorage.setItem("themeMode", mode);
   }
 
-  // --- 初期化処理 (テーマと設定の復元) ---
+  // --- 初期化 ---
   (function() {
-    // テーマの復元
     const savedTheme = localStorage.getItem("themeMode") || "auto";
     applyTheme(savedTheme);
     document.getElementById("themeSelect").value = savedTheme;
 
-    // 再生方法の復元
     const savedSource = localStorage.getItem("preferredSource");
     if (savedSource) {
       const sourceSelect = document.getElementById("paramSource");
-      // 保存された値が現在の選択肢に存在するか確認してからセット
       const optionExists = Array.from(sourceSelect.options).some(opt => opt.value === savedSource);
       if (optionExists) {
         sourceSelect.value = savedSource;
@@ -442,20 +444,17 @@
     }
   })();
 
-  // --- イベントリスナー設定 ---
-  // 再生方法の変更を保存
+  // --- イベントリスナー ---
   document.getElementById("paramSource").addEventListener("change", function() {
     localStorage.setItem("preferredSource", this.value);
   });
 
-  // URL入力欄でEnterキーが押されたら通常再生
   document.getElementById("videoUrlInput").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
-      event.preventDefault(); // フォーム送信などを防ぐ（念の為）
+      event.preventDefault(); 
       loadVideo(false);
     }
   });
-
 
   const URLS = {
     "Nocookie": null,
@@ -468,6 +467,7 @@
   };
 
   function extractVideoId(input) {
+    if (!input) return null;
     const patterns = [
       // 1. パラメータ型: ドメイン不問
       //    /watch?v=ID, /edu?v=ID, /w?v=ID, /ume?v=ID
@@ -489,6 +489,7 @@
   }
 
   function extractListId(input) {
+    if (!input) return null;
     const m = input.match(/[?&](?:list|playlist)=([a-zA-Z0-9_-]+)/);
     return m ? m[1] : null;
   }
@@ -520,6 +521,29 @@
     return `${url}${separator}${key}=${value}`;
   }
 
+  // --- XSS対策のための簡易サニタイザー ---
+  function sanitizeHTML(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    // 危険なタグを削除
+    const dangerousTags = ['script', 'iframe', 'object', 'embed', 'form', 'style', 'meta', 'link'];
+    dangerousTags.forEach(tag => {
+      const elements = div.querySelectorAll(tag);
+      elements.forEach(el => el.remove());
+    });
+    // イベントハンドラ属性(onClick等)とjavascript:プロトコルを削除
+    const allElements = div.querySelectorAll('*');
+    allElements.forEach(el => {
+      Array.from(el.attributes).forEach(attr => {
+        if (attr.name.startsWith('on') || 
+           (attr.value && attr.value.toLowerCase().includes('javascript:'))) {
+          el.removeAttribute(attr.name);
+        }
+      });
+    });
+    return div.innerHTML;
+  }
+
   function parseTimestamp(text) {
     const regex = /\b(?:(\d{1,2}):)?(\d{1,2}):(\d{2})\b/g;
     return text.replace(regex, (match, h, m, s) => {
@@ -536,7 +560,6 @@
         player.seekTo(seconds, true);
         return;
     }
-
     const frame = document.getElementById("videoFrame");
     if (!frame) return;
     
@@ -552,7 +575,6 @@
             const data = event.target.getVideoData();
             if (data && data.video_id) {
                 if (currentLoadedVideoId && data.video_id !== currentLoadedVideoId) {
-                    console.log("動画の切り替わりを検知しました: " + data.video_id);
                     currentLoadedVideoId = data.video_id;
                     fetchComments(currentLoadedVideoId);
                 }
@@ -562,9 +584,7 @@
   }
 
   function initYouTubePlayer() {
-    if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
-        return; 
-    }
+    if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') return; 
     try {
         player = new YT.Player('videoFrame', {
             events: {
@@ -621,9 +641,11 @@
           `;
         }
 
-        // コメント本文内のリンクを新しいタブで開くように処理
-        let rawHtml = c.contentHtml.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
-        const processedContent = parseTimestamp(rawHtml);
+        // HTMLサニタイズ適用
+        let safeHtml = sanitizeHTML(c.contentHtml);
+        // リンクを新しいタブで開く
+        safeHtml = safeHtml.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
+        const processedContent = parseTimestamp(safeHtml);
 
         html += `
           <div class="comment-item">
@@ -659,7 +681,31 @@
     }
   }
 
+  function resetButtons() {
+    document.getElementById("btnPlay").innerText = "▶️ 再生";
+    document.getElementById("btnLoop").innerText = "🔁 ループ再生";
+  }
+
   async function loadVideo(isLoop = false) {
+    const btnPlay = document.getElementById("btnPlay");
+    const btnLoop = document.getElementById("btnLoop");
+
+    // 入力チェック
+    const input = document.getElementById("videoUrlInput").value.trim();
+    if (!input) {
+      alert("URLまたは動画IDを入力してください。");
+      return;
+    }
+
+    // UI更新
+    resetButtons();
+    if (isLoop) {
+      btnLoop.innerText = "🔁 ループ再生中...";
+    } else {
+      btnPlay.innerText = "▶️ 再生中...";
+    }
+
+    // プレイヤー破棄
     if (player) {
       try { player.destroy(); } catch(e) {}
       player = null;
@@ -668,6 +714,43 @@
     const container = document.getElementById("videoContainer");
     container.innerHTML = '';
     
+    // ソース判定
+    const source = document.getElementById("paramSource").value;
+    const videoId = extractVideoId(input);
+    const listId = extractListId(input);
+
+    if (!videoId) {
+      alert("正しいURLまたは動画IDを入力してください。");
+      resetButtons();
+      return;
+    }
+
+    // サムネイルの場合の特別処理
+    if (source.startsWith("Thumbnail-")) {
+      // サムネイルなのにループ再生ボタンが押された場合
+      if (isLoop) {
+        alert("サムネイル（画像）はループ再生できません。");
+        resetButtons();
+        return;
+      }
+      
+      const isImg = source.startsWith("Thumbnail-img-");
+      const quality = source.replace(isImg ? "Thumbnail-img-" : "Thumbnail-i-", "");
+      const domain = isImg ? "img.youtube.com" : "i.ytimg.com";
+      
+      const img = document.createElement("img");
+      img.className = "thumbnail-display";
+      img.src = `https://${domain}/vi/${videoId}/${quality}.jpg`;
+      container.appendChild(img);
+      
+      // サムネイルの場合はコメントだけ取得して終了
+      currentLoadedVideoId = videoId;
+      fetchComments(videoId);
+      resetButtons(); // ボタン表記を戻す
+      return;
+    }
+
+    // iframe作成
     const newIframe = document.createElement("iframe");
     newIframe.id = "videoFrame";
     newIframe.allowFullscreen = true;
@@ -675,17 +758,6 @@
     newIframe.referrerPolicy = "strict-origin-when-cross-origin";
     
     container.appendChild(newIframe);
-
-    const source = document.getElementById("paramSource").value;
-    const input = document.getElementById("videoUrlInput").value.trim();
-    
-    const videoId = extractVideoId(input);
-    const listId = extractListId(input);
-
-    if (!videoId) {
-      alert("正しいURLまたは動画IDを入力してください。");
-      return;
-    }
 
     currentLoadedVideoId = videoId;
     fetchComments(videoId);
@@ -697,39 +769,37 @@
 
     let finalUrl = "";
 
-    if (source.startsWith("Thumbnail-")) {
-      const isImg = source.startsWith("Thumbnail-img-");
-      const quality = source.replace(isImg ? "Thumbnail-img-" : "Thumbnail-i-", "");
-      const domain = isImg ? "img.youtube.com" : "i.ytimg.com";
-      newIframe.src = `https://${domain}/vi/${videoId}/${quality}.jpg`;
-      return;
-    }
+    try {
+        if (source === "Nocookie") {
+          finalUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+        } else {
+            const r = await fetch(URLS[source], { cache: "no-store" });
+            if (!r.ok) throw new Error("取得失敗");
 
-    if (source === "Nocookie") {
-      finalUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
-    } else {
-      try {
-        const r = await fetch(URLS[source], { cache: "no-store" });
-        if (!r.ok) throw new Error("取得失敗");
-
-        let params = "";
-        if (source === "Education - wakame") {
-          params = await r.text();
-        } else if (source === "Education - siawaseok") {
-          params = (await r.json()).params || "";
-        } else if (source.includes("woolisbest4520")) {
-          params = (await r.json()).key || "";
-        } else if (source.includes("Toka_Kun")) {
-          params = (await r.json()).result || "";
+            let params = "";
+            
+            // 厳密な条件分岐
+            if (source === "Education - wakame") {
+              params = await r.text();
+            } else if (source === "Education - siawaseok") {
+              params = (await r.json()).params || "";
+            } else if (source === "Education - woolisbest4520-1") {
+              params = (await r.json()).key || "";
+            } else if (source === "Education - woolisbest4520-2") {
+              params = (await r.json()).key || "";
+            } else if (source === "Education - Toka_Kun_-1") {
+              params = (await r.json()).result || "";
+            } else if (source === "Education - Toka_Kun_-2") {
+              params = (await r.json()).result || "";
+            }
+            
+            finalUrl = `https://www.youtubeeducation.com/embed/${videoId}${params}`;
         }
-        
-        finalUrl = `https://www.youtubeeducation.com/embed/${videoId}${params}`;
-
-      } catch (e) {
+    } catch (e) {
         console.error(e);
-        alert("パラメーターの取得に失敗しました。");
+        alert("設定の取得に失敗しました。");
+        resetButtons();
         return;
-      }
     }
 
     if (listId) {

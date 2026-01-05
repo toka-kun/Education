@@ -244,7 +244,6 @@
       margin: 0.3rem 0;
     }
     
-    /* コメント内のリンク色 */
     .comment-text a {
       color: var(--link-color);
       text-decoration: none;
@@ -335,8 +334,7 @@
 <div class="layout layout-main">
 
   <div class="left">
-    <div id="videoContainer">
-        </div>
+    <div id="videoContainer"></div>
   </div>
 
   <div class="right">
@@ -425,11 +423,39 @@
     localStorage.setItem("themeMode", mode);
   }
 
+  // --- 初期化処理 (テーマと設定の復元) ---
   (function() {
-    const saved = localStorage.getItem("themeMode") || "auto";
-    applyTheme(saved);
-    document.getElementById("themeSelect").value = saved;
+    // テーマの復元
+    const savedTheme = localStorage.getItem("themeMode") || "auto";
+    applyTheme(savedTheme);
+    document.getElementById("themeSelect").value = savedTheme;
+
+    // 再生方法の復元
+    const savedSource = localStorage.getItem("preferredSource");
+    if (savedSource) {
+      const sourceSelect = document.getElementById("paramSource");
+      // 保存された値が現在の選択肢に存在するか確認してからセット
+      const optionExists = Array.from(sourceSelect.options).some(opt => opt.value === savedSource);
+      if (optionExists) {
+        sourceSelect.value = savedSource;
+      }
+    }
   })();
+
+  // --- イベントリスナー設定 ---
+  // 再生方法の変更を保存
+  document.getElementById("paramSource").addEventListener("change", function() {
+    localStorage.setItem("preferredSource", this.value);
+  });
+
+  // URL入力欄でEnterキーが押されたら通常再生
+  document.getElementById("videoUrlInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault(); // フォーム送信などを防ぐ（念の為）
+      loadVideo(false);
+    }
+  });
+
 
   const URLS = {
     "Nocookie": null,
@@ -506,13 +532,11 @@
   }
 
   function seekVideo(seconds) {
-    // APIが有効な場合はAPIを使用
     if (player && typeof player.seekTo === 'function') {
         player.seekTo(seconds, true);
         return;
     }
 
-    // APIがない場合のフォールバック
     const frame = document.getElementById("videoFrame");
     if (!frame) return;
     
@@ -522,15 +546,11 @@
     if (src !== newSrc) frame.src = newSrc;
   }
 
-  // --- プレーヤーの状態変化イベント ---
   function onPlayerStateChange(event) {
-    // 再生中(1) または バッファリング中(3) の時に動画IDをチェック
     if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
         if (event.target && event.target.getVideoData) {
             const data = event.target.getVideoData();
             if (data && data.video_id) {
-                // IDが変わっていたらコメントを再取得
-                // ここで「現在のID」と「APIが報告するID」が違う場合のみ更新
                 if (currentLoadedVideoId && data.video_id !== currentLoadedVideoId) {
                     console.log("動画の切り替わりを検知しました: " + data.video_id);
                     currentLoadedVideoId = data.video_id;
@@ -541,14 +561,10 @@
     }
   }
 
-  // --- iframe読み込み後にAPIをバインドする関数 ---
   function initYouTubePlayer() {
-    // APIがまだ読み込まれていない場合は何もしない（ロード後に動く）
     if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
         return; 
     }
-
-    // 新しく作られたiframeに対してAPIを紐付ける
     try {
         player = new YT.Player('videoFrame', {
             events: {
@@ -605,11 +621,8 @@
           `;
         }
 
-        // --- 修正箇所: リンクを新しいタブで開くように置換 ---
-        // コメント本文内の <a ...> タグ全てに target="_blank" を付与します
+        // コメント本文内のリンクを新しいタブで開くように処理
         let rawHtml = c.contentHtml.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
-        
-        // その後、タイムスタンプのリンク生成処理を通します
         const processedContent = parseTimestamp(rawHtml);
 
         html += `
@@ -647,16 +660,12 @@
   }
 
   async function loadVideo(isLoop = false) {
-    // 1. まず古いプレーヤーを完全に破棄する
     if (player) {
       try { player.destroy(); } catch(e) {}
       player = null;
     }
 
     const container = document.getElementById("videoContainer");
-    
-    // 2. コンテナを空にして、新しいiframe要素を一から作る
-    // これにより、APIによるiframeの書き換えや「2回目再生できない」問題を解消します
     container.innerHTML = '';
     
     const newIframe = document.createElement("iframe");
@@ -678,7 +687,6 @@
       return;
     }
 
-    // 初回コメント読み込みを明示的に実行
     currentLoadedVideoId = videoId;
     fetchComments(videoId);
 
@@ -689,12 +697,10 @@
 
     let finalUrl = "";
 
-    // サムネイルモード
     if (source.startsWith("Thumbnail-")) {
       const isImg = source.startsWith("Thumbnail-img-");
       const quality = source.replace(isImg ? "Thumbnail-img-" : "Thumbnail-i-", "");
       const domain = isImg ? "img.youtube.com" : "i.ytimg.com";
-      // サムネモードではAPI初期化しない
       newIframe.src = `https://${domain}/vi/${videoId}/${quality}.jpg`;
       return;
     }
@@ -726,9 +732,6 @@
       }
     }
 
-    // --- パラメータ処理 ---
-
-    // 1. リストパラメータ
     if (listId) {
       if (listId === videoId) {
         finalUrl = updateUrlParam(finalUrl, 'playlist', listId);
@@ -739,21 +742,16 @@
       finalUrl = updateUrlParam(finalUrl, 'playlist', videoId);
     }
 
-    // 2. ループ
     if (isLoop) {
       finalUrl = updateUrlParam(finalUrl, 'loop', '1');
     }
 
-    // 3. 時間指定
     if (startSeconds !== null) finalUrl = updateUrlParam(finalUrl, 'start', startSeconds);
     if (endSeconds !== null) finalUrl = updateUrlParam(finalUrl, 'end', endSeconds);
 
-    // 4. API制御用パラメータ
     finalUrl = updateUrlParam(finalUrl, 'enablejsapi', '1');
     finalUrl = updateUrlParam(finalUrl, 'origin', window.location.origin);
 
-    // --- src設定とAPIバインド ---
-    // iframeのsrcを設定した後に、読み込み完了を待ってAPIを初期化
     newIframe.onload = function() {
         initYouTubePlayer();
     };

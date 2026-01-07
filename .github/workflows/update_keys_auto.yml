@@ -48,7 +48,7 @@ jobs:
               print('Manual trigger: Skipping long sleep.')
           else:
               min_wait = 300      # 5分
-              max_wait = 18000    # 5時間
+              max_wait = 14400    # 4時間
               wait_seconds = random.randint(min_wait, max_wait)
               
               h = wait_seconds // 3600

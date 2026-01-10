@@ -115,7 +115,6 @@
       color: var(--text-color);
     }
     
-    /* Input specific margin removed because wrapper handles it */
     select {
       margin-bottom: 1rem;
     }
@@ -428,7 +427,7 @@
         </div>
         <div>
           <label for="endTimeInput">終了時刻</label>
-          <input type="text" id="endTimeInput" placeholder="例: 2:00, 120">
+          <input type="text" id="endTimeInput" placeholder="例: 2:00">
         </div>
       </div>
 
@@ -497,6 +496,7 @@
   const clearBtn = document.getElementById("btnClearInput");
 
   function toggleClearButton() {
+    if (!videoInput) return;
     clearBtn.style.display = videoInput.value.length > 0 ? "block" : "none";
   }
 
@@ -515,8 +515,11 @@
     }
   });
   
-  // 初期表示時にもチェック
-  toggleClearButton();
+  // タブ複製や戻る操作で値が復元されたときのために複数のイベントでチェック
+  window.addEventListener('pageshow', toggleClearButton);
+  document.addEventListener('DOMContentLoaded', toggleClearButton);
+  // 少し遅れてチェック（ブラウザの自動入力が遅れる場合への対策）
+  setTimeout(toggleClearButton, 100);
 
 
   const URLS = {
@@ -539,9 +542,9 @@
 
       // 2. パス型: ドメイン不問
       //    youtu.be/ID
-      //    /embed/ID, /shorts/ID, /watch/ID, /video/ID
+      //    /embed/ID, /shorts/ID, /live/ID, /watch/ID, /video/ID
       //    /wkt/watch/ID, /wkt/yt/edu/ID, /wkt/yt/nocookie/ID
-      /(?:youtu\.be|embed|shorts|watch|video|wkt\/watch|wkt\/yt\/edu|wkt\/yt\/nocookie)\/([\w-]{11})/
+      /(?:youtu\.be|embed|shorts|live|watch|video|wkt\/watch|wkt\/yt\/edu|wkt\/yt\/nocookie)\/([\w-]{11})/
     ];
     for (const p of patterns) {
       const m = input.match(p);
@@ -637,6 +640,7 @@
         if (event.target && event.target.getVideoData) {
             const data = event.target.getVideoData();
             if (data && data.video_id) {
+                // プレイヤー内で動画が変わった場合(自動遷移など)のみ更新
                 if (currentLoadedVideoId && data.video_id !== currentLoadedVideoId) {
                     currentLoadedVideoId = data.video_id;
                     fetchComments(currentLoadedVideoId);
@@ -782,6 +786,13 @@
       return;
     }
 
+    // --- 修正: 同じ動画IDの場合はコメントを再取得しない ---
+    if (currentLoadedVideoId !== videoId) {
+        currentLoadedVideoId = videoId;
+        fetchComments(videoId);
+    }
+    // ------------------------------------------------
+
     if (source.startsWith("Thumbnail-")) {
       if (isLoop) {
         alert("サムネイル（画像）はループ再生できません。");
@@ -798,8 +809,6 @@
       img.src = `https://${domain}/vi/${videoId}/${quality}.jpg`;
       container.appendChild(img);
       
-      currentLoadedVideoId = videoId;
-      fetchComments(videoId);
       resetButtons();
       return;
     }
@@ -812,9 +821,6 @@
     
     container.appendChild(newIframe);
 
-    currentLoadedVideoId = videoId;
-    fetchComments(videoId);
-
     const startInput = document.getElementById("startTimeInput").value;
     const endInput = document.getElementById("endTimeInput").value;
     const startSeconds = convertToSeconds(startInput);
@@ -824,7 +830,7 @@
 
     try {
         if (source === "Nocookie") {
-          finalUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+          finalUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&amp;mute=0`;
         } else {
             const r = await fetch(URLS[source], { cache: "no-store" });
             if (!r.ok) throw new Error("取得失敗");

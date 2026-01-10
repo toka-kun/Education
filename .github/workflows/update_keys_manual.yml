@@ -43,13 +43,13 @@ jobs:
           print(f'Processing key: {key_value[:5]}... (hidden)')
 
           # 2. ベースパラメータ
-          base_params = '?autoplay=1&mute=0&controls=1&start=0&origin=https%3A%2F%2Fcreate.kahoot.it&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&fs=1&enablejsapi=1&widgetid=1'
+          base_params = '?autoplay=1&amp;mute=0&amp;controls=1&amp;start=0&amp;origin=https%3A%2F%2Fcreate.kahoot.it&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;fs=1&amp;cc_load_policy=0&amp;enablejsapi=1&amp;widgetid=1&amp;forigin=https%3A%2F%2Fcreate.kahoot.it%2Flearner%2Fcb8cb5ae-d835-4c4a-bc2d-9cc78519d646%2Fcourse%2F6fba06e3-1f76-47a8-9a4a-53c53eb86286%2F0&amp;aoriginsup=1&amp;vf=6'
 
           # 3. 設定生成関数
           def make_config(k, hide):
               cfg = {'enc': k, 'hideTitle': hide}
               json_str = json.dumps(cfg, separators=(',', ':'))
-              return f'{base_params}&embed_config={urllib.parse.quote(json_str)}'
+              return f'{base_params}&amp;embed_config={urllib.parse.quote(json_str)}'
 
           # 4. 生成処理
           final_str_1 = make_config(key_value, False)

@@ -176,7 +176,7 @@ jobs:
                   json.dump({'result': final_str_2}, f, indent=2)
 
               with open(os.path.join(output_dir, 'key.json'), 'w') as f:
-              json.dump({'key': key_value}, f, indent=2)
+                  json.dump({'key': key_value}, f, indent=2)
               
               print('Files saved.')
 

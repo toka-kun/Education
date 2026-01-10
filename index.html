@@ -393,6 +393,7 @@
             <option value="Education - siawaseok">Education - siawaseok</option>
             <option value="Education - woolisbest4520-1">Education - woolisbest4520-1</option>
             <option value="Education - woolisbest4520-2">Education - woolisbest4520-2</option>
+            <option value="Education - woolisbest4520-3">Education - woolisbest4520-3</option>
             <option value="Education - Toka_Kun_-1">Education - Toka_Kun_-1</option>
             <option value="Education - Toka_Kun_-2">Education - Toka_Kun_-2</option>
         </optgroup>
@@ -526,8 +527,9 @@
     "Nocookie": null,
     "Education - wakame": "https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text",
     "Education - siawaseok": "https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json",
-    "Education - woolisbest4520-1": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.json",
-    "Education - woolisbest4520-2": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.json",
+    "Education - woolisbest4520-1": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.txt",
+    "Education - woolisbest4520-2": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.txt",
+    "Education - woolisbest4520-3": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/ep.txt",
     "Education - Toka_Kun_-1": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key1.json",
     "Education - Toka_Kun_-2": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key2.json"
   };
@@ -575,14 +577,30 @@
   }
 
   function updateUrlParam(url, key, value) {
-    const ampRegex = new RegExp(`(&amp;${key}=)[^&]*`);
-    const ampSimpleRegex = new RegExp(`(&${key}=)[^&]*`);
-    const questionRegex = new RegExp(`(\\?${key}=)[^&]*`);
+    // ユーザーが懸念している以下のパターン全てにマッチする正規表現を作成します
+    // 1. ?start=0
+    // 2. &start=0
+    // 3. &amp;start=0 (HTMLエンティティが含まれる場合)
+    // 4. ?amp;start=0
+    
+    // 正規表現の解説:
+    // ([?&])       -> グループ1: '?' または '&' の開始文字をキャプチャ
+    // (?:amp;)?    -> 'amp;' という文字列があってもなくてもマッチ（キャプチャはしない）
+    // ${key}=      -> パラメータ名とイコール（例: start=）
+    // [^&]* -> 次の '&' が来るまで、または文字列の終わりまでの値
+    const regex = new RegExp(`([?&])(?:amp;)?${key}=[^&]*`, 'gi');
 
-    if (url.match(ampRegex) || url.match(ampSimpleRegex) || url.match(questionRegex)) {
-       return url.replace(new RegExp(`([?&])${key}=[^&]*`), `$1${key}=${value}`);
+    // URL内にすでにそのキー（例: start）が存在するかチェック
+    if (regex.test(url)) {
+       // 存在する場合、その部分を新しい値に置換します
+       // match: マッチした文字列全体, separator: 最初の?か&
+       return url.replace(regex, (match, separator) => {
+          // セパレータ(?か&)を維持しつつ、amp;を除去して値を更新
+          return `${separator}${key}=${value}`;
+       });
     }
 
+    // 存在しない場合は、末尾に新規追加します
     const separator = url.includes('?') ? '&' : '?';
     return `${url}${separator}${key}=${value}`;
   }
@@ -842,9 +860,11 @@
             } else if (source === "Education - siawaseok") {
               params = (await r.json()).params || "";
             } else if (source === "Education - woolisbest4520-1") {
-              params = (await r.json()).key || "";
+              params = await r.text();
             } else if (source === "Education - woolisbest4520-2") {
-              params = (await r.json()).key || "";
+              params = await r.text();
+            } else if (source === "Education - woolisbest4520-2") {
+              params = await r.text();
             } else if (source === "Education - Toka_Kun_-1") {
               params = (await r.json()).result || "";
             } else if (source === "Education - Toka_Kun_-2") {

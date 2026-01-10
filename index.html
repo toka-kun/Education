@@ -120,7 +120,7 @@
     }
     
     /* Add padding to right so text doesn't hit the X button */
-    #videoUrlInput {
+    #videoUrlInput, #startTimeInput, #endTimeInput {
       padding-right: 2.5rem;
     }
 
@@ -424,11 +424,17 @@
       <div class="time-inputs">
         <div>
           <label for="startTimeInput">開始時刻</label>
-          <input type="text" id="startTimeInput" placeholder="例: 1:30, 90">
+          <div class="input-wrapper">
+            <input type="text" id="startTimeInput" placeholder="例: 1:05:00, 1:30, 90">
+            <button id="btnClearStart" class="clear-btn" aria-label="クリア">×</button>
+          </div>
         </div>
         <div>
           <label for="endTimeInput">終了時刻</label>
-          <input type="text" id="endTimeInput" placeholder="例: 2:00">
+          <div class="input-wrapper">
+            <input type="text" id="endTimeInput" placeholder="例: 2:00, 120">
+            <button id="btnClearEnd" class="clear-btn" aria-label="クリア">×</button>
+          </div>
         </div>
       </div>
 
@@ -492,35 +498,63 @@
     localStorage.setItem("preferredSource", this.value);
   });
 
-  // URL入力欄のクリア機能とEnterキー処理
-  const videoInput = document.getElementById("videoUrlInput");
-  const clearBtn = document.getElementById("btnClearInput");
+  // --- 入力欄のクリア機能とEnterキー処理 (URL, 開始, 終了) ---
+  const inputGroups = [
+    { inputId: "videoUrlInput", btnId: "btnClearInput" },
+    { inputId: "startTimeInput", btnId: "btnClearStart" },
+    { inputId: "endTimeInput", btnId: "btnClearEnd" }
+  ];
 
-  function toggleClearButton() {
-    if (!videoInput) return;
-    clearBtn.style.display = videoInput.value.length > 0 ? "block" : "none";
+  function setupInputControl(group) {
+    const input = document.getElementById(group.inputId);
+    const btn = document.getElementById(group.btnId);
+    if (!input || !btn) return;
+
+    // ボタンの表示/非表示を切り替える関数
+    const toggleBtn = () => {
+      btn.style.display = input.value.length > 0 ? "block" : "none";
+    };
+
+    // 入力時にボタン表示判定
+    input.addEventListener("input", toggleBtn);
+
+    // クリアボタンクリック時
+    btn.addEventListener("click", function() {
+      input.value = "";
+      input.focus();
+      toggleBtn();
+    });
+
+    // Enterキーで再生
+    input.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        loadVideo(false);
+      }
+    });
+
+    // 初期状態チェックのために関数をプロパティとして保存しておく
+    input.checkClearButton = toggleBtn;
   }
 
-  videoInput.addEventListener("input", toggleClearButton);
-  
-  clearBtn.addEventListener("click", function() {
-    videoInput.value = "";
-    videoInput.focus();
-    toggleClearButton();
-  });
+  // 全てのグループに設定を適用
+  inputGroups.forEach(setupInputControl);
 
-  videoInput.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-      event.preventDefault(); 
-      loadVideo(false);
-    }
-  });
+  // 全てのボタン状態を一括チェックする関数（ページ読み込み時や復元時用）
+  function checkAllInputs() {
+    inputGroups.forEach(group => {
+      const input = document.getElementById(group.inputId);
+      if (input && input.checkClearButton) {
+        input.checkClearButton();
+      }
+    });
+  }
   
   // タブ複製や戻る操作で値が復元されたときのために複数のイベントでチェック
-  window.addEventListener('pageshow', toggleClearButton);
-  document.addEventListener('DOMContentLoaded', toggleClearButton);
-  // 少し遅れてチェック（ブラウザの自動入力が遅れる場合への対策）
-  setTimeout(toggleClearButton, 100);
+  window.addEventListener('pageshow', checkAllInputs);
+  document.addEventListener('DOMContentLoaded', checkAllInputs);
+  // ブラウザの自動入力遅延対策
+  setTimeout(checkAllInputs, 100);
 
 
   const URLS = {

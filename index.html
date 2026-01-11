@@ -604,9 +604,9 @@
     if (!input) return null;
     const patterns = [
       // 1. パラメータ型: ドメイン不問
-      //    /watch?v=ID, /edu?v=ID, /w?v=ID, /ume?v=ID, /thumbnail?v=ID
+      //    /watch?v=ID, /watch_main?v=ID, /w?v=ID, /embed?v=ID, /edu?v=ID, /ume?v=ID, /nocookie?v=ID, /thumbnail?v=ID
       //    他のパラメータが前後にあっても対応 (?foo=bar&v=ID)
-      /(?:\/watch|\/edu|\/w|\/ume|\/thumbnail)\?(?:.*&)?v=([\w-]{11})/,
+      /(?:\/watch|\/watch_main|\/w|\/embed|\/edu|\/ume|\/nocookie|\/thumbnail)\?(?:.*&)?v=([\w-]{11})/,
 
       // 2. パス型: ドメイン不問
       //    youtu.be/ID

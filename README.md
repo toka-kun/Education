@@ -33,7 +33,7 @@
 
 ### 特徴
 
-- **更新頻度が非常に高い**ので常に視聴可能です。
+- **更新頻度が高い**ため、ほぼ常に視聴可能です。
 
 ### URL
 
@@ -56,9 +56,10 @@
 
 ### URL
 
-- **keyを取得しましょう**  
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.json`
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.json`
+- **ここから取得したものをそのまま使えます**  
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.txt`
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.txt`
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/ep.txt`  
 
 - **利用しているサイトの例**  
   - Wool-Tube Education版 → https://github.com/woolisbest-4520/wooltube-education

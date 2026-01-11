@@ -540,6 +540,38 @@
   // 全てのグループに設定を適用
   inputGroups.forEach(setupInputControl);
 
+  // URL入力時に start/end パラメータを自動検知して入力欄に反映する処理
+  document.getElementById("videoUrlInput").addEventListener("input", function() {
+    const val = this.value;
+    const startInput = document.getElementById("startTimeInput");
+    const endInput = document.getElementById("endTimeInput");
+
+    // t= または start= を探す (例: ?t=90, &start=120)
+    const startMatch = val.match(/[?&](?:t|start)=([^&]+)/);
+    if (startMatch) {
+      let t = startMatch[1];
+      // "120s" のように末尾に s がある場合、数値だけにする (1m30sなどはそのまま)
+      if (t.endsWith('s') && !t.includes('m') && !t.includes('h')) {
+         t = t.slice(0, -1);
+      }
+      startInput.value = t;
+      // ×ボタンの表示状態を更新
+      if (startInput.checkClearButton) startInput.checkClearButton();
+    }
+
+    // end= を探す (例: ?end=200)
+    const endMatch = val.match(/[?&]end=([^&]+)/);
+    if (endMatch) {
+      let t = endMatch[1];
+      if (t.endsWith('s') && !t.includes('m') && !t.includes('h')) {
+         t = t.slice(0, -1);
+      }
+      endInput.value = t;
+      // ×ボタンの表示状態を更新
+      if (endInput.checkClearButton) endInput.checkClearButton();
+    }
+  });
+
   // 全てのボタン状態を一括チェックする関数（ページ読み込み時や復元時用）
   function checkAllInputs() {
     inputGroups.forEach(group => {

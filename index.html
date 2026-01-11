@@ -605,8 +605,10 @@
     const patterns = [
       // 1. パラメータ型: ドメイン不問
       //    /watch?v=ID, /watch_main?v=ID, /w?v=ID, /embed?v=ID, /edu?v=ID, /ume?v=ID, /nocookie?v=ID, /thumbnail?v=ID
+      //    これらを　/(?:\/watch|\/watch_main|\/w|\/embed|\/edu|\/ume|\/nocookie|\/thumbnail)\?(?:.*&)?v=([\w-]{11})/, 
+      //    みたいに分けてたけどドメインやパスに関係なく、?v=ID または &v=ID が含まれていれば反応するように統一。
       //    他のパラメータが前後にあっても対応 (?foo=bar&v=ID)
-      /(?:\/watch|\/watch_main|\/w|\/embed|\/edu|\/ume|\/nocookie|\/thumbnail)\?(?:.*&)?v=([\w-]{11})/,
+      /[?&]v=([\w-]{11})/,
 
       // 2. パス型: ドメイン不問
       //    youtu.be/ID

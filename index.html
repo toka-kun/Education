@@ -792,6 +792,11 @@
           `;
         }
 
+        let replyHtml = '';
+        if (c.replyCount > 0) {
+          replyHtml = `<span>💬 ${c.replyCount}</span>`;
+        }
+
         let safeHtml = sanitizeHTML(c.contentHtml);
         safeHtml = safeHtml.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
         const processedContent = parseTimestamp(safeHtml);

@@ -778,6 +778,15 @@
         let editedHtml = '';
         if (c.isEdited) editedHtml = `<span class="edited-mark">(編集済み)</span>`;
 
+        let replyCountHtml = '';
+        // c.replies が存在し、かつ replyCount がある場合のみ処理
+        if (c.replies && c.replies.replyCount) {
+           const count = Number(c.replies.replyCount); // 念のため数値化
+           if (count > 0) {
+             replyCountHtml = `<span style="margin-left: 1rem; cursor:help;" title="返信数">💬 ${count}</span>`;
+           }
+        }
+
         let heartHtml = '';
         if (c.creatorHeart) {
           const ownerThumb = c.creatorHeart.creatorThumbnail || iconUrl; 
@@ -816,7 +825,7 @@
               <div class="comment-footer">
                 <div class="footer-actions">
                   <span>👍 ${c.likeCount}</span>
-                </div>
+                  ${replyCountHtml} </div>
                 ${heartHtml}
               </div>
             </div>

@@ -549,27 +549,35 @@
     // t= または start= を探す (例: ?t=90, &start=120)
     const startMatch = val.match(/[?&](?:t|start)=([^&]+)/);
     if (startMatch) {
+      // パラメータがある場合：値を抽出してセット
       let t = startMatch[1];
-      // "120s" のように末尾に s がある場合、数値だけにする (1m30sなどはそのまま)
       if (t.endsWith('s') && !t.includes('m') && !t.includes('h')) {
          t = t.slice(0, -1);
       }
       startInput.value = t;
-      // ×ボタンの表示状態を更新
-      if (startInput.checkClearButton) startInput.checkClearButton();
+    } else {
+      // パラメータがない場合：入力欄をクリアする
+      startInput.value = "";
     }
+    // ×ボタンの表示状態を更新（値が入れば表示、消えれば非表示）
+    if (startInput.checkClearButton) startInput.checkClearButton();
 
     // end= を探す (例: ?end=200)
+    // --- 終了位置 (end=) の処理 ---
     const endMatch = val.match(/[?&]end=([^&]+)/);
     if (endMatch) {
+      // パラメータがある場合
       let t = endMatch[1];
       if (t.endsWith('s') && !t.includes('m') && !t.includes('h')) {
          t = t.slice(0, -1);
       }
       endInput.value = t;
-      // ×ボタンの表示状態を更新
-      if (endInput.checkClearButton) endInput.checkClearButton();
+    } else {
+      // パラメータがない場合
+      endInput.value = "";
     }
+    // ×ボタンの表示状態を更新
+    if (endInput.checkClearButton) endInput.checkClearButton();
   });
 
   // 全てのボタン状態を一括チェックする関数（ページ読み込み時や復元時用）

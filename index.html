@@ -778,12 +778,6 @@
         let editedHtml = '';
         if (c.isEdited) editedHtml = `<span class="edited-mark">(編集済み)</span>`;
 
-        let replyCountHtml = '';
-        if (c.replies && c.replies.replyCount > 0) {
-           // 返信がある場合のみ表示 (例: 💬 2)
-           replyCountHtml = `<span style="margin-left: 1rem;" title="返信数">💬 ${c.replies.replyCount}</span>`;
-        }
-
         let heartHtml = '';
         if (c.creatorHeart) {
           const ownerThumb = c.creatorHeart.creatorThumbnail || iconUrl; 

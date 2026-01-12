@@ -993,7 +993,78 @@
     };
     
     newIframe.src = finalUrl;
+
+    // ブラウザのURLを更新する処理
+    try {
+      const hashParams = new URLSearchParams();
+      hashParams.set('v', videoId);
+
+      // リストIDがある場合
+      if (listId && listId !== videoId) {
+        hashParams.set('list', listId);
+      } else {
+        // 単体動画の場合も playlist=videoID を付ける（ご要望の形式）
+        hashParams.set('playlist', videoId);
+      }
+
+      // 時間指定がある場合 (入力された値をそのまま保存)
+      if (startInput) hashParams.set('start', startInput);
+      if (endInput) hashParams.set('end', endInput);
+
+      // #?v=... の形式でURLを更新 (履歴に残さず書き換えたい場合は replaceState)
+      const newHash = "#?" + hashParams.toString();
+      history.replaceState(null, '', newHash);
+    } catch (e) {
+      console.error("URL update failed", e);
+    }
   }
+
+  // ▼▼▼ 追加: ページ読み込み時にURLパラメータから入力欄を復元する処理 ▼▼▼
+  function restoreStateFromUrl() {
+    // URLのハッシュ部分 (#?v=... または #v=...) を取得
+    const hash = window.location.hash;
+    if (!hash || hash.length < 2) return;
+
+    // 先頭の # や #? を取り除く
+    const queryString = hash.replace(/^#\??/, '');
+    const params = new URLSearchParams(queryString);
+
+    const v = params.get('v');
+    const list = params.get('list');
+    const start = params.get('start');
+    const end = params.get('end');
+
+    // 動画IDがあればURL欄を復元
+    if (v) {
+      let urlValue = v;
+      // リストIDがあれば、YouTubeの標準的なURL形式で復元してあげる
+      if (list) {
+        urlValue = `https://www.youtube.com/watch?v=${v}&list=${list}`;
+      }
+      
+      const urlInput = document.getElementById("videoUrlInput");
+      urlInput.value = urlValue;
+      // ×ボタンなどを表示させるためにinputイベントを発火
+      urlInput.dispatchEvent(new Event('input'));
+    }
+
+    // 開始時間の復元
+    if (start) {
+      const sInput = document.getElementById("startTimeInput");
+      sInput.value = start;
+      sInput.dispatchEvent(new Event('input'));
+    }
+
+    // 終了時間の復元
+    if (end) {
+      const eInput = document.getElementById("endTimeInput");
+      eInput.value = end;
+      eInput.dispatchEvent(new Event('input'));
+    }
+  }
+
+  // ページ読み込み完了時に実行
+  window.addEventListener('DOMContentLoaded', restoreStateFromUrl);
 </script>
 
 </body>

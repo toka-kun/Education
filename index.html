@@ -1036,7 +1036,7 @@
 
     // 動画IDがあればURL欄を復元
     if (v) {
-      let urlValue = v;
+      let urlValue = `https://www.youtube.com/watch?v=${v}`;
       // リストIDがあれば、YouTubeの標準的なURL形式で復元してあげる
       if (list) {
         urlValue = `https://www.youtube.com/watch?v=${v}&list=${list}`;

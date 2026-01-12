@@ -539,7 +539,7 @@
 
   // 全てのグループに設定を適用
   inputGroups.forEach(setupInputControl);
-
+  
   // ページ読み込み時にURL欄にフォーカスする
   document.getElementById("videoUrlInput").focus();
 
@@ -581,15 +581,6 @@
     }
     // ×ボタンの表示状態を更新
     if (endInput.checkClearButton) endInput.checkClearButton();
-
-    // IDが判明し、かつプレイヤーが空なら自動再生
-    const videoId = extractVideoId(val);
-    const playerContainer = document.getElementById("videoPlayer"); // プレイヤーの枠
-    
-    // IDがあり、かつ プレイヤー枠の中にiframe（動画）がまだ無い場合
-    if (videoId && !playerContainer.querySelector("iframe")) {
-      loadVideo(); // 再生ボタンを押した時と同じ関数を実行
-    }
   });
 
   // 全てのボタン状態を一括チェックする関数（ページ読み込み時や復元時用）
@@ -665,7 +656,7 @@
   }
 
   function updateUrlParam(url, key, value) {
-    // 懸念している以下のパターン全てにマッチする正規表現を作成します
+    // 以下のパターン全てにマッチする正規表現を作成します
     // 1. ?start=0
     // 2. &start=0
     // 3. &amp;start=0 (HTMLエンティティが含まれる場合)

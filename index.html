@@ -540,6 +540,9 @@
   // 全てのグループに設定を適用
   inputGroups.forEach(setupInputControl);
 
+  // ページ読み込み時にURL欄にフォーカスする
+  document.getElementById("videoUrlInput").focus();
+
   // URL入力時に start/end パラメータを自動検知して入力欄に反映する処理
   document.getElementById("videoUrlInput").addEventListener("input", function() {
     const val = this.value;

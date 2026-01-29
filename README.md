@@ -45,7 +45,7 @@
   - しあtube → https://github.com/siawaseoktest/youtube https://github.com/ajgpw/youtube
   - Yuki YouTube+ → https://github.com/myproxy0107-hash/new-yu-yu
   - YuZuTube → https://github.com/yuzubb/yuzutube1
-  - XeroYT → https://github.com/Xerox-Pro/XeroxYT-NTv4X-beta
+  - XeroxYT → https://github.com/Xerox-Pro/XeroxYT-NTv4X-beta
 
 ---
 

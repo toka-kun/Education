@@ -549,8 +549,8 @@
     const startInput = document.getElementById("startTimeInput");
     const endInput = document.getElementById("endTimeInput");
 
-    // t= または start= を探す (例: ?t=90, &start=120)
-    const startMatch = val.match(/[?&](?:t|start)=([^&]+)/);
+    // t= または start= を探す (例: ?t=90, &start=120, &amp;start=120)
+    const startMatch = val.match(/[?&](?:amp;)?(?:t|start)=([^&]+)/);
     if (startMatch) {
       // パラメータがある場合：値を抽出してセット
       let t = startMatch[1];
@@ -565,9 +565,9 @@
     // ×ボタンの表示状態を更新（値が入れば表示、消えれば非表示）
     if (startInput.checkClearButton) startInput.checkClearButton();
 
-    // end= を探す (例: ?end=200)
+    // end= を探す (例: ?end=200, &amp;end=200)
     // --- 終了位置 (end=) の処理 ---
-    const endMatch = val.match(/[?&]end=([^&]+)/);
+    const endMatch = val.match(/[?&](?:amp;)?end=([^&]+)/);
     if (endMatch) {
       // パラメータがある場合
       let t = endMatch[1];

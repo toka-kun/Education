@@ -623,9 +623,9 @@
 
       // 2. パス型: ドメイン不問
       //    youtu.be/ID
-      //    /embed/ID, /shorts/ID, /live/ID, /vi/ID, /videos/ID, /watch/ID, /w/ID, /video/ID, /stream/ID, /streams/ID
-      //    /nocookie/ID, /edu/ID, /education/ID, /umekomi/ID
-      /(?:youtu\.be|embed|shorts|live|vi|videos|watch|w|s|v|video|stream|streams|nocookie|edu|education|umekomi)\/([\w-]{11})/
+      //    /embed/ID, /shorts/ID, /live/ID, /vi/ID, /videos/ID, /watch/ID, /w/ID, /s/ID, /v/ID, /video/ID, /stream/ID, /streams/ID
+      //    /nocookie/ID, /edu/ID, /education/ID, /umekomi/ID, /stream_360p_url/ID, /stream_high/ID
+      /(?:youtu\.be|embed|shorts|live|vi|videos|watch|w|s|v|video|stream|streams|nocookie|edu|education|umekomi|stream_360p_url|stream_high)\/([\w-]{11})/
     ];
     for (const p of patterns) {
       const m = input.match(p);

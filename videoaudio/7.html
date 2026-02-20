@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>高音質タイムストレッチプレイヤー — 完全版v5</title>
+<style>
+:root{--primary:#007bff;--primary-dark:#0056b3;--bg:#fafafa}
+html,body{height:100%}
+body{font-family:"Segoe UI",system-ui,Arial,sans-serif;background:var(--bg);color:#111;margin:0;padding:18px;display:flex;justify-content:center;align-items:flex-start}
+.app{width:100%;max-width:980px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-size:18px;margin:0}
+.controls{margin-top:12px;display:grid;gap:10px}
+.row{display:flex;gap:8px;align-items:center}
+input[type=text]{flex:1;padding:9px;border-radius:6px;border:1px solid #ccc}
+button{padding:8px 12px;border-radius:6px;border:none;background:var(--primary);color:#fff;cursor:pointer}
+button.secondary{background:#6c757d}
+button.ghost{background:transparent;color:var(--primary);border:1px solid #ddd}
+button:focus{outline:3px solid rgba(0,123,255,0.25)}
+.slider-row{display:flex;align-items:center;gap:10px}
+input[type=range]{flex:1}
+.video-wrap{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+video{width:100%;border-radius:8px;background:#000}
+audio{width:100%;border-radius:8px;outline:none}
+.status{margin-top:10px;font-size:14px;font-weight:bold}
+.presets{display:flex;gap:6px;flex-wrap:wrap}
+.preset-btn{padding:6px 8px;border-radius:6px;border:1px solid #ddd;background:#fff;cursor:pointer}
+.dropzone{margin-top:8px;padding:12px;border:2px dashed #ccc;border-radius:8px;text-align:center;color:#666;cursor:pointer;transition:all 0.2s}
+.small{font-size:13px;color:#555}
+.tooltip{font-size:12px;color:#666}
+kbd{background:#eee;border-radius:4px;padding:2px 6px;font-size:12px;border:1px solid #ddd}
+.bad{color:crimson}
+.good{color:green}
+
+@media (pointer: coarse) {
+  input[type=range]{height: 28px}
+  button{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+<div class="app" aria-label="高音質タイムストレッチプレイヤー">
+  <div class="header">
+    <h1>🎬 高音質タイムストレッチプレイヤー — 完全版 v5</h1>
+    <div class="tooltip" id="helpTooltip">キーボード: <kbd>Space</kbd>=再生/停止 <kbd>&larr;&rarr;</kbd>=5秒シーク <kbd>&uarr;&darr;</kbd>=音量 ±5 <kbd>&lt;</kbd>/<kbd>&gt;</kbd>=速度 ±0.05</div>
+  </div>
+
+  <div class="controls" aria-live="polite">
+    <div class="row">
+      <label for="videoURL" class="small" style="margin-right:8px">動画 URL</label>
+      <input id="videoURL" type="text" placeholder="https://... もしくはここへファイルをドロップ" aria-label="動画URL入力">
+      <button id="btnLoad" title="動画と音声を読み込み">読み込み</button>
+      <button id="btnPlay" title="再生 (Space)" aria-pressed="false">▶ 再生</button>
+      <button id="btnPause" title="停止" aria-pressed="false">⏸ 停止</button>
+    </div>
+
+    <div class="row">
+      <label for="audioURL" class="small" style="margin-right:8px">音声 URL</label>
+      <input id="audioURL" type="text" placeholder="https://... またはここへ音声ファイルをドロップ" aria-label="音声URL入力">
+      <button id="btnSyncNow" class="ghost" title="手動で音声の再同期">強制同期</button>
+    </div>
+
+    <div id="dropzone" class="dropzone" tabindex="0" aria-label="ファイルをここにドロップして読み込み">🎥 🎵 単体・複数に関わらず、メディアファイルをここにドラッグ＆ドロップ</div>
+
+    <div class="slider-row" aria-label="音声遅延">
+      <label class="small" for="delaySlider">遅延（秒） <span id="delayValue">0.00</span></label>
+      <input id="delaySlider" type="range" min="-1" max="1" step="0.01" value="0" aria-label="音声遅延スライダー">
+    </div>
+
+    <div class="slider-row" aria-label="音量">
+      <label class="small" for="volumeSlider">音量 <span id="volumeValue">100%</span></label>
+      <input id="volumeSlider" type="range" min="0" max="100" step="1" value="100" aria-label="音量スライダー">
+    </div>
+
+    <div class="slider-row" aria-label="再生速度">
+      <label class="small" for="speedSlider">速度 <span id="speedValue">1.00x</span></label>
+      <input id="speedSlider" type="range" min="0.25" max="2" step="0.01" value="1" aria-label="速度スライダー">
+    </div>
+
+    <div class="slider-row" aria-label="ドリフト補正強度">
+      <label class="small">補正 <span id="strengthValue">1.00</span></label>
+      <input id="strengthSlider" type="range" min="0" max="10" step="0.01" value="1" aria-label="補正強度スライダー">
+    </div>
+
+    <div class="row">
+      <label><input id="loopToggle" type="checkbox" aria-label="ループ切替"> ループ再生</label>
+      <label style="margin-left:8px"><input id="autoSyncToggle" type="checkbox" checked> 自動同期</label>
+    </div>
+
+    <div class="row">
+      <div class="presets" aria-label="プリセット">
+        <button id="savePresetBtn" class="preset-btn">プリセット保存</button>
+        <button id="loadPresetBtn" class="preset-btn">プリセット読込</button>
+        <button id="exportPresetBtn" class="preset-btn">エクスポート</button>
+        <button id="importPresetBtn" class="preset-btn">インポート</button>
+        <button id="resetPresetsBtn" class="preset-btn">プリセット全削除</button>
+      </div>
+    </div>
+
+    <div id="presetList" class="small"></div>
+
+    <div id="driftDisplay" class="status" aria-live="polite">ファイルが読み込まれていません</div>
+    <div id="info" class="small" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="video-wrap">
+    <video id="video" controls crossorigin="anonymous" aria-label="動画プレイヤー"></video>
+    <audio id="audio" controls crossorigin="anonymous" aria-label="音声プレイヤー" style="display:none;"></audio>
+  </div>
+</div>
+
+<script>
+/* ----- DOM ----- */
+const video = document.getElementById('video');
+const audio = document.getElementById('audio');
+const btnLoad = document.getElementById('btnLoad');
+const btnPlay = document.getElementById('btnPlay');
+const btnPause = document.getElementById('btnPause');
+const btnSyncNow = document.getElementById('btnSyncNow');
+
+const videoURL = document.getElementById('videoURL');
+const audioURL = document.getElementById('audioURL');
+const dropzone = document.getElementById('dropzone');
+
+const delaySlider = document.getElementById('delaySlider');
+const volumeSlider = document.getElementById('volumeSlider');
+const speedSlider = document.getElementById('speedSlider');
+const strengthSlider = document.getElementById('strengthSlider');
+const loopToggle = document.getElementById('loopToggle');
+const autoSyncToggle = document.getElementById('autoSyncToggle');
+
+const delayValue = document.getElementById('delayValue');
+const volumeValue = document.getElementById('volumeValue');
+const speedValue = document.getElementById('speedValue');
+const strengthValue = document.getElementById('strengthValue');
+const driftDisplay = document.getElementById('driftDisplay');
+const info = document.getElementById('info');
+
+const savePresetBtn = document.getElementById('savePresetBtn');
+const loadPresetBtn = document.getElementById('loadPresetBtn');
+const exportPresetBtn = document.getElementById('exportPresetBtn');
+const importPresetBtn = document.getElementById('importPresetBtn');
+const resetPresetsBtn = document.getElementById('resetPresetsBtn');
+const presetList = document.getElementById('presetList');
+
+/* ----- 状態 ----- */
+let audioCtx = null, sourceNodeAudio = null, sourceNodeVideo = null, gainNode = null;
+let rafId = null;
+let audioDelay = 0.0;
+let baseSpeed = 1.0;
+let userDriftStrength = 1.0;
+let driftStrength = 1.0;
+let isLooping = false;
+let isSyncing = false;
+let objectURLs = [];
+let activeMode = 'none'; // 'dual', 'video', 'audio', 'none'
+let wasPlayingBeforeSeek = false; // シーク前の再生状態を保持
+
+const PRESET_KEY = 'ts_player_presets_v1';
+const PRESET_SCHEMA_VERSION = 1;
+
+/* ======= プリセット管理 ======= */
+function loadPresets(){
+  try { return JSON.parse(localStorage.getItem(PRESET_KEY)) || {}; } catch(e){ return {}; }
+}
+function savePresets(obj){
+  try { localStorage.setItem(PRESET_KEY, JSON.stringify(obj)); } catch(e) {}
+}
+function addPreset(name, cfg){
+  const ps = loadPresets();
+  if(ps[name] && !confirm(`プリセット "${name}" を上書きしますか？`)) return;
+  ps[name] = cfg; savePresets(ps); renderPresetList();
+}
+function removePreset(name){
+  const ps = loadPresets();
+  delete ps[name]; savePresets(ps); renderPresetList();
+}
+function renderPresetList(){
+  const ps = loadPresets();
+  presetList.innerHTML = '';
+  if(Object.keys(ps).length === 0){ presetList.textContent = 'プリセットなし'; return; }
+  for(const k of Object.keys(ps)){
+    const b = document.createElement('button');
+    b.textContent = k; b.className = 'preset-btn';
+    b.addEventListener('click', ()=>applyPreset(ps[k]));
+    b.addEventListener('contextmenu', (ev)=>{ ev.preventDefault(); if(confirm(`"${k}" を削除？`)) removePreset(k); });
+    presetList.appendChild(b);
+  }
+}
+renderPresetList();
+
+savePresetBtn.addEventListener('click', ()=>{
+  const name = prompt('プリセット名:');
+  if(name) { addPreset(name, currentConfig()); showInfo(`保存: ${name}`); }
+});
+loadPresetBtn.addEventListener('click', ()=>{
+  const ps = loadPresets(); const keys = Object.keys(ps);
+  if(!keys.length) return alert('プリセットなし');
+  const name = prompt('読込プリセット名:\n' + keys.join(', '));
+  if(name && ps[name]) { applyPreset(ps[name]); showInfo(`適用: ${name}`); }
+});
+exportPresetBtn.addEventListener('click', ()=>{
+  const blob = new Blob([JSON.stringify(loadPresets(), null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'ts_presets.json'; a.click(); URL.revokeObjectURL(url);
+});
+importPresetBtn.addEventListener('click', ()=>{
+  const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'application/json';
+  inp.onchange = ()=> {
+    const reader = new FileReader();
+    reader.onload = ()=> {
+      try{
+        const data = JSON.parse(reader.result);
+        const ps = loadPresets(); let count = 0;
+        for(const [k,v] of Object.entries(data)){
+          const valid = validatePresetObject(v);
+          if(valid) { ps[k] = valid; count++; }
+        }
+        savePresets(ps); renderPresetList(); showInfo(`インポート完了 (${count}件)`);
+      }catch(e){ alert('不正なファイルです'); }
+    };
+    if(inp.files[0]) reader.readAsText(inp.files[0]);
+  };
+  inp.click();
+});
+resetPresetsBtn.addEventListener('click', ()=>{
+  if(confirm('全削除しますか？')){ localStorage.removeItem(PRESET_KEY); renderPresetList(); showInfo('リセット完了'); }
+});
+
+function validatePresetObject(obj){
+  if(!obj || typeof obj !== 'object') return null;
+  const v = {};
+  if(typeof obj.delay === 'number') v.delay = Math.max(-10, Math.min(10, obj.delay));
+  if(typeof obj.volume === 'number') v.volume = Math.max(0, Math.min(100, Math.round(obj.volume)));
+  if(typeof obj.speed === 'number') v.speed = Math.max(0.25, Math.min(2, obj.speed));
+  if(typeof obj.strength === 'number') v.strength = Math.max(0, Math.min(10, obj.strength));
+  if(typeof obj.loop === 'boolean') v.loop = obj.loop;
+  return Object.keys(v).length ? v : null;
+}
+function currentConfig(){
+  return { version: PRESET_SCHEMA_VERSION, delay: parseFloat(delaySlider.value), volume: parseInt(volumeSlider.value), speed: parseFloat(speedSlider.value), strength: parseFloat(strengthSlider.value), loop: loopToggle.checked };
+}
+function applyPreset(cfg){
+  if(cfg.delay !== undefined) { delaySlider.value = cfg.delay; audioDelay = cfg.delay; delayValue.textContent = cfg.delay.toFixed(2); }
+  if(cfg.volume !== undefined) { volumeSlider.value = cfg.volume; applyVolume(cfg.volume); }
+  if(cfg.speed !== undefined) { speedSlider.value = cfg.speed; baseSpeed = cfg.speed; video.playbackRate = audio.playbackRate = baseSpeed; speedValue.textContent = baseSpeed.toFixed(2) + 'x'; updateStrength(); }
+  if(cfg.strength !== undefined) { strengthSlider.value = cfg.strength; userDriftStrength = cfg.strength; updateStrength(); }
+  if(cfg.loop !== undefined) { loopToggle.checked = cfg.loop; video.loop = audio.loop = cfg.loop; }
+}
+
+function showInfo(msg, isErr=false){
+  info.textContent = msg; info.className = isErr ? 'small bad' : 'small';
+}
+
+/* ======= AudioContext 安全化 ======= */
+function ensureAudioContext(){
+  try {
+    if(!audioCtx || audioCtx.state === 'closed') audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if(audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{});
+
+    if(!gainNode) {
+      gainNode = audioCtx.createGain();
+      gainNode.connect(audioCtx.destination);
+    }
+    gainNode.gain.value = parseFloat(volumeSlider.value)/100 || 1.0;
+
+    try { if(!sourceNodeAudio) sourceNodeAudio = audioCtx.createMediaElementSource(audio); } catch(e){}
+    try { if(!sourceNodeVideo) sourceNodeVideo = audioCtx.createMediaElementSource(video); } catch(e){}
+
+    if(sourceNodeAudio) try { sourceNodeAudio.disconnect(); } catch(e){}
+    if(sourceNodeVideo) try { sourceNodeVideo.disconnect(); } catch(e){}
+
+    if(activeMode === 'video' && sourceNodeVideo) {
+      sourceNodeVideo.connect(gainNode);
+    } else if((activeMode === 'audio' || activeMode === 'dual') && sourceNodeAudio) {
+      sourceNodeAudio.connect(gainNode);
+    }
+  } catch(e) { 
+    applyVolume(parseInt(volumeSlider.value)); // フォールバック
+  }
+}
+
+/* ======= ファイル読み込み・モード判定 ======= */
+function clearMedia() {
+  video.removeAttribute('src'); audio.removeAttribute('src');
+  try { video.load(); audio.load(); } catch(e){}
+}
+function clearObjectURLs(){
+  objectURLs.forEach(url => URL.revokeObjectURL(url));
+  objectURLs = [];
+}
+
+function updatePlayerVisibility() {
+  if (activeMode === 'dual') {
+    video.style.display = 'block';
+    audio.style.display = 'block';
+  } else if (activeMode === 'video') {
+    video.style.display = 'block';
+    audio.style.display = 'none';
+  } else if (activeMode === 'audio') {
+    video.style.display = 'none';
+    audio.style.display = 'block';
+  } else {
+    video.style.display = 'block';
+    audio.style.display = 'none';
+  }
+}
+
+function loadMedia(vSrc, aSrc) {
+  clearMedia();
+  video.muted = false; 
+  
+  if(vSrc && aSrc && vSrc !== aSrc) {
+    activeMode = 'dual';
+    video.src = vSrc; audio.src = aSrc;
+    video.muted = true;
+    driftDisplay.textContent = 'ズレ: 0.000 秒';
+    driftDisplay.style.color = 'green';
+  } else if(vSrc) {
+    activeMode = 'video';
+    video.src = vSrc;
+    driftDisplay.textContent = '▶ 動画単体モード (同期補正は無効化されます)';
+    driftDisplay.style.color = '#007bff';
+  } else if(aSrc) {
+    activeMode = 'audio';
+    audio.src = aSrc;
+    driftDisplay.textContent = '🎵 音声単体モード (同期補正は無効化されます)';
+    driftDisplay.style.color = '#007bff';
+  } else {
+    activeMode = 'none';
+    driftDisplay.textContent = 'ファイルが読み込まれていません';
+    driftDisplay.style.color = 'inherit';
+  }
+
+  updatePlayerVisibility();
+  showInfo(activeMode !== 'none' ? '読み込み完了。再生ボタンを押してください' : '');
+}
+
+['dragenter','dragover','dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, e => {
+  e.preventDefault();
+  dropzone.style.borderColor = (evt==='dragenter'||evt==='dragover') ? '#007bff' : '#ccc';
+  dropzone.style.background = (evt==='dragenter'||evt==='dragover') ? '#f6fbff' : '';
+}));
+
+dropzone.addEventListener('drop', e => {
+  if(e.dataTransfer && e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+});
+dropzone.addEventListener('click', ()=>{ 
+  const inp = document.createElement('input'); inp.type='file'; inp.accept='audio/*,video/*'; inp.multiple=true; 
+  inp.onchange = ()=> handleFiles(inp.files); inp.click(); 
+});
+
+function handleFiles(files){
+  clearObjectURLs();
+  let vFile = null, aFile = null;
+  const fileArray = Array.from(files);
+
+  if(fileArray.length === 1) {
+    if(fileArray[0].type.startsWith('video/')) vFile = fileArray[0];
+    else aFile = fileArray[0];
+  } else {
+    fileArray.forEach(f => {
+      if(f.type.startsWith('video/')) vFile = f;
+      else if(f.type.startsWith('audio/')) aFile = f;
+    });
+  }
+
+  const vUrl = vFile ? URL.createObjectURL(vFile) : null;
+  const aUrl = aFile ? URL.createObjectURL(aFile) : null;
+  if(vUrl) objectURLs.push(vUrl);
+  if(aUrl) objectURLs.push(aUrl);
+
+  loadMedia(vUrl, aUrl);
+}
+
+btnLoad.addEventListener('click', ()=> loadMedia(videoURL.value.trim() || null, audioURL.value.trim() || null));
+
+/* ======= 再生制御 ======= */
+function waitForMetadata(el){
+  return new Promise(resolve => {
+    if(!el.src) return resolve();
+    if(el.readyState >= 1) return resolve();
+    const onLoaded = ()=>{ el.removeEventListener('loadedmetadata', onLoaded); resolve(); };
+    el.addEventListener('loadedmetadata', onLoaded);
+    setTimeout(resolve, 3000);
+  });
+}
+
+// データ読み込みを待機するヘルパー（シーク時に使用）
+function waitForBuffer(el){
+  return new Promise(resolve => {
+    if(!el.src) return resolve();
+    // HAVE_FUTURE_DATA (3) 以上であれば、すぐ再生できる状態
+    if(el.readyState >= 3) return resolve();
+    const onCanPlay = ()=>{ el.removeEventListener('canplay', onCanPlay); resolve(); };
+    el.addEventListener('canplay', onCanPlay);
+    // 永遠に待たないようタイムアウトを設ける（5秒）
+    setTimeout(() => { el.removeEventListener('canplay', onCanPlay); resolve(); }, 5000);
+  });
+}
+
+btnPlay.addEventListener('click', async ()=>{
+  if(activeMode === 'none') return showInfo('ファイルがありません', true);
+
+  ensureAudioContext();
+  try{ if(audioCtx && audioCtx.state === 'suspended') await audioCtx.resume(); }catch(e){}
+  await Promise.all([waitForMetadata(video), waitForMetadata(audio)]);
+
+  if(activeMode === 'dual') {
+    audio.currentTime = Math.max(0, (video.currentTime||0) + audioDelay);
+    try{ await Promise.all([video.play(), audio.play()]); }catch(e){}
+    startSyncLoop();
+  } else if(activeMode === 'video') {
+    try{ await video.play(); }catch(e){}
+  } else if(activeMode === 'audio') {
+    try{ await audio.play(); }catch(e){}
+  }
+  
+  btnPlay.setAttribute('aria-pressed', 'true'); btnPause.setAttribute('aria-pressed', 'false');
+});
+
+btnPause.addEventListener('click', ()=>{
+  video.pause(); audio.pause(); stopSyncLoop();
+  btnPlay.setAttribute('aria-pressed', 'false'); btnPause.setAttribute('aria-pressed', 'true');
+});
+
+btnSyncNow.addEventListener('click', ()=>{
+  if(activeMode !== 'dual') return showInfo('デュアルモードでのみ有効です');
+  audio.currentTime = Math.max(0, (isFinite(video.currentTime)?video.currentTime:0) + audioDelay);
+  smoothedRate = baseSpeed;
+});
+
+/* ======= スライダー ======= */
+function updateStrength() { driftStrength = Math.max(0.1, Math.min(10, userDriftStrength * baseSpeed)); strengthValue.textContent = driftStrength.toFixed(2); }
+delaySlider.addEventListener('input', e => { audioDelay = parseFloat(e.target.value); delayValue.textContent = audioDelay.toFixed(2); });
+volumeSlider.addEventListener('input', e => { const v = parseInt(e.target.value); volumeValue.textContent = v + '%'; applyVolume(v); });
+function applyVolume(v){
+  const vol = v / 100;
+  if(gainNode && audioCtx) {
+    try{ gainNode.gain.linearRampToValueAtTime(vol, audioCtx.currentTime + 0.05); }catch(e){}
+  } else {
+    audio.volume = vol; video.volume = vol;
+  }
+}
+speedSlider.addEventListener('input', e => { 
+  baseSpeed = parseFloat(e.target.value); 
+  speedValue.textContent = baseSpeed.toFixed(2) + 'x'; 
+  video.playbackRate = audio.playbackRate = baseSpeed; 
+  updateStrength(); 
+});
+strengthSlider.addEventListener('input', e => { userDriftStrength = parseFloat(e.target.value); updateStrength(); });
+loopToggle.addEventListener('change', e => { isLooping = e.target.checked; video.loop = audio.loop = isLooping; });
+
+/* ======= 同期ループ (デュアルモード専用) ======= */
+let lastUpdateTime = performance.now();
+let smoothedRate = 1.0;
+
+function startSyncLoop(){
+  if(isSyncing || activeMode !== 'dual') return;
+  isSyncing = true; lastUpdateTime = performance.now(); smoothedRate = baseSpeed;
+
+  function loop(now){
+    if(!isSyncing) return;
+    if(!autoSyncToggle.checked){
+      driftDisplay.textContent = `ズレ: ${((video.currentTime||0) + audioDelay - (audio.currentTime||0)).toFixed(3)} 秒 (自動オフ)`;
+      rafId = requestAnimationFrame(loop); return;
+    }
+
+    const diff = ((video.currentTime||0) + audioDelay) - (audio.currentTime||0);
+    const k = 0.05 * Math.min(1, driftStrength/2);
+    const targetRate = baseSpeed * Math.max(0.95, Math.min(1.05, 1 + diff * k));
+    
+    const dt = Math.min(0.1, (now - lastUpdateTime) / 1000);
+    smoothedRate += (targetRate - smoothedRate) * (1 - Math.exp(-10 * dt));
+
+    try{
+      audio.playbackRate = Math.max(0.25, Math.min(2.0, smoothedRate));
+      ['preservesPitch', 'mozPreservesPitch', 'webkitPreservesPitch'].forEach(p => { if(p in audio) audio[p] = true; });
+    }catch(e){}
+
+    driftDisplay.textContent = `ズレ: ${diff.toFixed(3)} 秒`;
+    driftDisplay.style.color = Math.abs(diff) < 0.05 ? 'green' : (Math.abs(diff) < 0.2 ? 'orange' : 'red');
+
+    lastUpdateTime = now; rafId = requestAnimationFrame(loop);
+  }
+  rafId = requestAnimationFrame(loop);
+}
+
+function stopSyncLoop(){
+  isSyncing = false;
+  if(rafId) { cancelAnimationFrame(rafId); rafId = null; }
+}
+
+/* ======= タブ移動時の自動停止処理 ======= */
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    if ((activeMode === 'dual' && !video.paused) || 
+        (activeMode === 'video' && !video.paused) || 
+        (activeMode === 'audio' && !audio.paused)) {
+      btnPause.click();
+      showInfo('別タブが開かれたため、再生を一時停止しました');
+    }
+  }
+});
+
+/* ======= シーク・イベント制御 ======= */
+// シーク開始（大きく位置を移動した時）
+video.addEventListener('seeking', () => {
+  if (activeMode !== 'dual') return;
+  
+  // シークされる直前が「再生中」だったかを記憶
+  wasPlayingBeforeSeek = !video.paused;
+  
+  // 同期ループを止め、一旦両方とも強制ポーズ
+  stopSyncLoop();
+  video.pause();
+  audio.pause();
+  
+  showInfo('シーク中... メディアの読み込みを待機しています');
+});
+
+// シーク完了（ドロップ直後、目的の時間に到達した時）
+video.addEventListener('seeked', async () => {
+  if (activeMode !== 'dual') return;
+
+  // 音声の位置も動画の位置＋遅延設定に合わせる
+  audio.currentTime = Math.max(0, (video.currentTime || 0) + audioDelay);
+
+  // 動画・音声両方のバッファリング完了を待つ
+  await Promise.all([waitForBuffer(video), waitForBuffer(audio)]);
+  
+  showInfo(''); // 読み込みメッセージをクリア
+
+  // シーク前に再生中だった場合のみ、再び両方を同時再生
+  if (wasPlayingBeforeSeek) {
+    try {
+      await Promise.all([video.play(), audio.play()]);
+    } catch(e) {}
+  }
+  
+  // 同期ループを再開
+  startSyncLoop();
+});
+
+video.addEventListener('ended', () => {
+  if(activeMode === 'dual') stopSyncLoop();
+});
+
+
+/* ======= ショートカット ======= */
+window.addEventListener('keydown', e => {
+  if(document.activeElement && ['input','textarea'].includes(document.activeElement.tagName.toLowerCase())) return;
+  
+  if(e.code === 'Space'){ 
+    e.preventDefault(); 
+    const isPaused = activeMode === 'audio' ? audio.paused : video.paused;
+    isPaused ? btnPlay.click() : btnPause.click(); 
+  }
+  if(e.code === 'ArrowLeft'){ 
+    e.preventDefault(); 
+    if(activeMode === 'audio') audio.currentTime = Math.max(0, audio.currentTime - 5);
+    else video.currentTime = Math.max(0, video.currentTime - 5); 
+  }
+  if(e.code === 'ArrowRight'){ 
+    e.preventDefault(); 
+    if(activeMode === 'audio') audio.currentTime += 5;
+    else video.currentTime += 5; 
+  }
+  if(e.code === 'ArrowUp'){ e.preventDefault(); volumeSlider.value = Math.min(100, parseInt(volumeSlider.value) + 5); volumeSlider.dispatchEvent(new Event('input')); }
+  if(e.code === 'ArrowDown'){ e.preventDefault(); volumeSlider.value = Math.max(0, parseInt(volumeSlider.value) - 5); volumeSlider.dispatchEvent(new Event('input')); }
+  if(e.key === '<' || e.key === ','){ e.preventDefault(); speedSlider.value = Math.max(0.25, parseFloat(speedSlider.value) - 0.05); speedSlider.dispatchEvent(new Event('input')); }
+  if(e.key === '>' || e.key === '.'){ e.preventDefault(); speedSlider.value = Math.min(2.0, parseFloat(speedSlider.value) + 0.05); speedSlider.dispatchEvent(new Event('input')); }
+});
+
+// UI連携: 動画プレイヤーの標準コントロール操作時
+video.addEventListener('play', ()=> { 
+  if(activeMode==='dual' && audio.paused && !isSyncing) try{ audio.play(); }catch(e){} 
+  btnPlay.setAttribute('aria-pressed', 'true'); btnPause.setAttribute('aria-pressed', 'false'); 
+});
+video.addEventListener('pause', ()=> { 
+  // seekingによる一時停止の場合は無視させる（UIのチラつき防止）
+  if(activeMode==='dual' && !audio.paused && !isSyncing) audio.pause(); 
+  btnPlay.setAttribute('aria-pressed', 'false'); btnPause.setAttribute('aria-pressed', 'true'); 
+});
+
+// UI連携: 音声プレイヤーの標準コントロール操作時
+audio.addEventListener('play', ()=> { 
+  if(activeMode==='dual' && video.paused && !isSyncing) try{ video.play(); }catch(e){} 
+  btnPlay.setAttribute('aria-pressed', 'true'); btnPause.setAttribute('aria-pressed', 'false'); 
+});
+audio.addEventListener('pause', ()=> { 
+  if(activeMode==='dual' && !video.paused && !isSyncing) video.pause(); 
+  btnPlay.setAttribute('aria-pressed', 'false'); btnPause.setAttribute('aria-pressed', 'true'); 
+});
+
+window.addEventListener('beforeunload', ()=> { try{ if(audioCtx) audioCtx.close(); }catch(e){} clearObjectURLs(); });
+
+delayValue.textContent = parseFloat(delaySlider.value).toFixed(2);
+volumeValue.textContent = volumeSlider.value + '%';
+speedValue.textContent = parseFloat(speedSlider.value).toFixed(2) + 'x';
+strengthValue.textContent = parseFloat(strengthSlider.value).toFixed(2);
+</script>
+</body>
+</html>

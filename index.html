@@ -391,27 +391,29 @@
             <option value="Nocookie">Nocookie</option>
             <option value="Education - wakame">Education - wakame</option>
             <option value="Education - siawaseok">Education - siawaseok</option>
+            <option value="Education - Toka_Kun_-1">Education - Toka_Kun_-1</option>
+            <option value="Education - Toka_Kun_-2">Education - Toka_Kun_-2</option>
             <option value="Education - woolisbest4520-1">Education - woolisbest4520-1</option>
             <option value="Education - woolisbest4520-2">Education - woolisbest4520-2</option>
             <option value="Education - woolisbest4520-3">Education - woolisbest4520-3</option>
-            <option value="Education - Toka_Kun_-1">Education - Toka_Kun_-1</option>
-            <option value="Education - Toka_Kun_-2">Education - Toka_Kun_-2</option>
+            <option value="Education - woolisbest4520-3">Education - woolisbest4520-4</option>
+            <option value="Education - woolisbest4520-3">Education - woolisbest4520-5</option>
         </optgroup>
         
         <optgroup label="サムネイル - img.youtube.com">
-            <option value="Thumbnail-img-maxresdefault">img - maxresdefault</option>
-            <option value="Thumbnail-img-sddefault">img - sddefault</option>
-            <option value="Thumbnail-img-hqdefault">img - hqdefault</option>
-            <option value="Thumbnail-img-mqdefault">img - mqdefault</option>
-            <option value="Thumbnail-img-default">img - default</option>
+            <option value="Thumbnail-img-maxresdefault">maxresdefault</option>
+            <option value="Thumbnail-img-sddefault">sddefault</option>
+            <option value="Thumbnail-img-hqdefault">hqdefault</option>
+            <option value="Thumbnail-img-mqdefault">mqdefault</option>
+            <option value="Thumbnail-img-default">default</option>
         </optgroup>
         
         <optgroup label="サムネイル - i.ytimg.com">
-            <option value="Thumbnail-i-maxresdefault">i.ytimg - maxresdefault</option>
-            <option value="Thumbnail-i-sddefault">i.ytimg - sddefault</option>
-            <option value="Thumbnail-i-hqdefault">i.ytimg - hqdefault</option>
-            <option value="Thumbnail-i-mqdefault">i.ytimg - mqdefault</option>
-            <option value="Thumbnail-i-default">i.ytimg - default</option>
+            <option value="Thumbnail-i-maxresdefault">maxresdefault</option>
+            <option value="Thumbnail-i-sddefault">sddefault</option>
+            <option value="Thumbnail-i-hqdefault">hqdefault</option>
+            <option value="Thumbnail-i-mqdefault">mqdefault</option>
+            <option value="Thumbnail-i-default">default</option>
       </select>
 
       <label>YouTubeのURLまたは動画IDを入力：</label>
@@ -604,11 +606,13 @@
     "Nocookie": null,
     "Education - wakame": "https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text",
     "Education - siawaseok": "https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json",
+    "Education - Toka_Kun_-1": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key1.json",
+    "Education - Toka_Kun_-2": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key2.json"
     "Education - woolisbest4520-1": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.txt",
     "Education - woolisbest4520-2": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.txt",
     "Education - woolisbest4520-3": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/ep.txt",
-    "Education - Toka_Kun_-1": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key1.json",
-    "Education - Toka_Kun_-2": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key2.json"
+    "Education - woolisbest4520-4": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key1.txt",
+    "Education - woolisbest4520-5": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key2.txt"
   };
 
   function extractVideoId(input) {
@@ -947,16 +951,20 @@
               params = await r.text();
             } else if (source === "Education - siawaseok") {
               params = (await r.json()).params || "";
+            } else if (source === "Education - Toka_Kun_-1") {
+              params = (await r.json()).result || "";
+            } else if (source === "Education - Toka_Kun_-2") {
+              params = (await r.json()).result || "";
             } else if (source === "Education - woolisbest4520-1") {
               params = await r.text();
             } else if (source === "Education - woolisbest4520-2") {
               params = await r.text();
             } else if (source === "Education - woolisbest4520-3") {
               params = await r.text();
-            } else if (source === "Education - Toka_Kun_-1") {
-              params = (await r.json()).result || "";
-            } else if (source === "Education - Toka_Kun_-2") {
-              params = (await r.json()).result || "";
+            } else if (source === "Education - woolisbest4520-4") {
+              params = await r.text();
+            } else if (source === "Education - woolisbest4520-5") {
+              params = await r.text();
             }
             
             finalUrl = `https://www.youtubeeducation.com/embed/${videoId}${params}`;

@@ -26,6 +26,7 @@
   `https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text`  
 - **利用しているサイトの例**  
   - わかめtube → https://github.com/wakame02/wkt
+  - わかめtube Eduとトレンド復活、VercelとKoyeb、Csbでのデプロイに対応版 → https://github.com/toka-kun/wkt
 
 ---
 
@@ -41,29 +42,11 @@
   `https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json`  
 
 - **利用しているサイトの例**  
-  - わかめtube Eduとトレンド復活、KoyebとCsbでのデプロイに対応版 → https://github.com/toka-kun/wkt
+  - わかめtube Eduとトレンド復活、VercelとKoyeb、Csbでのデプロイに対応版 → https://github.com/toka-kun/wkt
   - しあtube → https://github.com/siawaseoktest/youtube https://github.com/ajgpw/youtube
   - Yuki YouTube+ → https://github.com/myproxy0107-hash/new-yu-yu
   - YuZuTube → https://github.com/yuzubb/yuzutube1
   - XeroxYT → https://github.com/Xerox-Pro/XeroxYT-NTv4X-beta
-
----
-
-## woolisbest4520さんが更新しているURLパラメーター
-
-### 特徴
-
-- **更新頻度が高い**ため、ほぼ常に視聴可能です。
-
-### URL
-
-- **ここから取得したものをそのまま使えます**  
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.txt`
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.txt`
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/ep.txt`  
-
-- **利用しているサイトの例**  
-  - Wool-Tube Education版 → https://github.com/woolisbest-4520/wooltube-education
 
 ---
 
@@ -79,9 +62,32 @@
   `https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key1.json`
   `https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key2.json`
 
+- **利用しているサイトの例**  
+  - わかめtube Eduとトレンド復活、VercelとKoyeb、Csbでのデプロイに対応版 → https://github.com/toka-kun/wkt
+
+---
+
+## woolisbest4520さんが更新しているURLパラメーター
+
+### 特徴
+
+- 自動化しており**更新頻度が安定して非常に高い**ため、常に視聴可能です。
+
+### URL
+
+- **ここから取得したものをそのまま使えます**  
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.txt`
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.txt`
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/ep.txt`
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key1.txt`
+  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key2.txt`
+
+- **利用しているサイトの例**  
+  - わかめtube Eduとトレンド復活、VercelとKoyeb、Csbでのデプロイに対応版 → https://github.com/toka-kun/wkt
+  - Wool-Tube Education版 → https://github.com/woolisbest-4520/wooltube-education
+
 ---
 
 ## 注意点
 
-- siawaseokさんかToka_Kun_のパラメーターにしておけばだいたい大丈夫です。
 - 全てのパラメーターを活用することで、より安定して視聴できます。

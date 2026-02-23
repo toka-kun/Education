@@ -6,3 +6,4 @@
 - https://i4.ytimg.com
 - https://i9.ytimg.com
 - https://s.ytimg.com
+- https://image-proxy.poketube.fun/proxy?url=https://i.ytimg.com

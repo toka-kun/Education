@@ -764,6 +764,9 @@
     }
   }
 
+  // APIリストを保存しておくための変数（無駄な通信を減らすため）
+  let cachedApiUrls = null;
+
   async function fetchComments(videoId) {
     const container = document.getElementById("commentsContainer");
     const countBadge = document.getElementById("commentCountBadge");
@@ -772,11 +775,40 @@
     countBadge.innerText = '';
 
     try {
-      const res = await fetch(`https://min-tube-api-3.vercel.app/api/comments/${videoId}`);
-      if (!res.ok) throw new Error("API Error");
+      // 1. APIリストの取得（キャッシュがなければ取得する）
+      if (!cachedApiUrls) {
+        const listRes = await fetch("https://raw.githubusercontent.com/Minotaur-ZAOU/test/refs/heads/main/min-tube-api.json");
+        if (!listRes.ok) throw new Error("APIリストの取得に失敗しました");
+        cachedApiUrls = await listRes.json();
+      }
+
+      let data = null;
+      let isSuccess = false;
+
+      // 2. リスト内のURLを順番に試す
+      for (const baseUrl of cachedApiUrls) {
+        try {
+          // 末尾にスラッシュがある場合を考慮してクリーンに結合
+          const apiUrl = `${baseUrl.replace(/\/$/, '')}/api/comments/${videoId}`;
+          const res = await fetch(apiUrl);
+          
+          if (res.ok) {
+            data = await res.json();
+            isSuccess = true;
+            break; // 取得に成功したらループを抜ける
+          }
+        } catch (err) {
+          // ネットワークエラーなどの場合はコンソールに警告を出して次へ
+          console.warn(`${baseUrl} からの取得に失敗しました。次を試します...`, err);
+        }
+      }
+
+      // 全てのAPIを試してもダメだった場合
+      if (!isSuccess || !data) {
+        throw new Error("すべてのAPIサーバーでコメント取得に失敗しました");
+      }
       
-      const data = await res.json();
-      
+      // --- ここから下は元の表示処理と同じ ---
       if (!data.comments || data.comments.length === 0) {
         container.innerHTML = '<p style="text-align:center;">コメントが見つかりませんでした。</p>';
         return;
@@ -796,11 +828,10 @@
         if (c.isEdited) editedHtml = `<span class="edited-mark">(編集済み)</span>`;
 
         let replyCountHtml = '';
-        // c.replies が存在し、かつ replyCount がある場合のみ処理
         if (c.replies && c.replies.replyCount) {
-           const count = Number(c.replies.replyCount); // 念のため数値化
+           const count = Number(c.replies.replyCount);
            if (count > 0) {
-             replyCountHtml = `<span style="margin-left">💬 ${count}</span>`;
+             replyCountHtml = `<span style="margin-left: 0.5rem">💬 ${count}</span>`; // margin-leftの記述を少し修正しています
            }
         }
 
@@ -842,7 +873,8 @@
               <div class="comment-footer">
                 <div class="footer-actions">
                   <span>👍 ${c.likeCount}</span>
-                  ${replyCountHtml} </div>
+                  ${replyCountHtml} 
+                </div>
                 ${heartHtml}
               </div>
             </div>

@@ -10,8 +10,6 @@ CodeSandbox
 
 
 
-GitHub Pages
-
 Cloudflare Pages
 
 Netlify

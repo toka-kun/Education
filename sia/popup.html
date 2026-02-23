@@ -9,9 +9,21 @@
     fetch("https://raw.githubusercontent.com/ajgpw/ajgpw.github.io/refs/heads/main/%E3%81%97%E3%81%82tube/index.html")
       .then(r => r.text())
       .then(html => {
-        document.open();
-        document.write(html);
-        document.close();
+        // 1. 新しいタブ（about:blank）を開く
+        const newWin = window.open('about:blank', '_blank');
+        
+        // 2. 新しいタブが正常に開けた場合、そこにHTMLを書き込む
+        if (newWin) {
+          newWin.document.open();
+          newWin.document.write(html);
+          newWin.document.close();
+        }
+
+        // 3. 元のタブを閉じることを試みる
+        window.close();
+
+        // 4. タブが閉じられなかった場合、履歴に残らないよう about:blank で上書きする
+        window.location.replace('about:blank');
       });
   </script>
 

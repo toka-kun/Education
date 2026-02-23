@@ -1,12 +1,10 @@
-## Educaitonでの再生について注意点 - わかめさん談要約
+# Educaitonでの再生について注意点 - わかめさん談要約
 
 - Educationでの再生は、本来は教育機関のみが有償で使用できるものです。キーが必要だと思ってください。キーは一時的なものなので3日ほどで有効期限が切れるため、その度に更新する必要があります。
 
-### こんな感じにすればエラーが出ずに再生できるようになります。
+## こんな感じにすればエラーが出ずに再生できるようになります。
 
 `https://www.youtubeeducation.com/embed/(動画のID)(パラメーター)`
-
-- 全てのパラメーターを活用することで、より安定して視聴できます。
 
 ### ここからテスト可能です。
 
@@ -15,6 +13,8 @@
 - https://ytedu-player.smooth.ytalt.f5.si/
 
 ---
+
+# 全てのパラメーターを活用することで、より安定して視聴できます。
 
 ## わかめさんが更新しているURLパラメーター
 
@@ -87,3 +87,5 @@
 - **利用しているサイトの例**  
   - わかめtube Eduとトレンド復活、VercelとKoyeb、Csbでのデプロイに対応版 → https://github.com/toka-kun/wkt
   - Wool-Tube Education版 → https://github.com/woolisbest-4520/wooltube-education
+
+---

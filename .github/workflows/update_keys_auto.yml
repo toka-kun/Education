@@ -2,8 +2,8 @@ name: Auto Update
 
 on:
   schedule:
-    # 2日ごとの 日本時間 夜1時 (UTC 16:00)
-    - cron: '0 16 */2 * *'
+    # 毎日の 日本時間 夜3時 (UTC 18:00)
+    - cron: '0 18 * * *'
   workflow_dispatch:
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
           # 1. 時間調整 (手動ならスキップ、自動なら長時間待機)
           # ---------------------------------------------------------
           event_name = os.environ.get('GITHUB_EVENT_NAME')
-           
+          
           if event_name == 'workflow_dispatch':
               print('Manual trigger: Skipping long sleep.')
           else:
@@ -147,16 +147,23 @@ jobs:
               # -----------------------------------------------------
               # 4. ファイル生成と保存
               # -----------------------------------------------------
-              base_params = '?autoplay=1&amp;mute=0&amp;controls=1&amp;start=0&amp;origin=https%3A%2F%2Fcreate.kahoot.it&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;fs=1&amp;cc_load_policy=0&amp;enablejsapi=1&amp;widgetid=1&amp;forigin=https%3A%2F%2Fcreate.kahoot.it%2Flearner%2Fcb8cb5ae-d835-4c4a-bc2d-9cc78519d646%2Fcourse%2F6fba06e3-1f76-47a8-9a4a-53c53eb86286%2F0&amp;aoriginsup=1&amp;vf=6'
+              # key1, key2用のベースパラメータ (controls=1, fs=1)
+              base_params_1_2 = '?autoplay=1&amp;mute=0&amp;controls=1&amp;start=0&amp;origin=https%3A%2F%2Fcreate.kahoot.it&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;fs=1&amp;cc_load_policy=0&amp;enablejsapi=1&amp;widgetid=1&amp;forigin=https%3A%2F%2Fcreate.kahoot.it%2Flearner%2Fcb8cb5ae-d835-4c4a-bc2d-9cc78519d646%2Fcourse%2F6fba06e3-1f76-47a8-9a4a-53c53eb86286%2F0&amp;aoriginsup=1&amp;vf=6'
 
-              # Config作成
-              def make_config(k, hide):
+              # key3用の新しいベースパラメータ (controls=0, fs=0)
+              base_params_3 = '?autoplay=1&amp;mute=0&amp;controls=0&amp;start=0&amp;origin=https%3A%2F%2Fcreate.kahoot.it&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;fs=0&amp;cc_load_policy=0&amp;enablejsapi=1&amp;widgetid=1&amp;forigin=https%3A%2F%2Fcreate.kahoot.it%2Flearner%2Fcb8cb5ae-d835-4c4a-bc2d-9cc78519d646%2Fcourse%2F6fba06e3-1f76-47a8-9a4a-53c53eb86286%2F0&amp;aoriginsup=1&amp;vf=6'
+
+              # Config作成関数（引数にベースパラメータを受け取るように改良）
+              def make_config(base_url, k, hide):
                   cfg = {'enc': k, 'hideTitle': hide}
                   json_str = json.dumps(cfg, separators=(',', ':'))
-                  return f'{base_params}&amp;embed_config={urllib.parse.quote(json_str)}'
+                  return f'{base_url}&amp;embed_config={urllib.parse.quote(json_str)}'
 
-              final_str_1 = make_config(key_value, False)
-              final_str_2 = make_config(key_value, True)
+              final_str_1 = make_config(base_params_1_2, key_value, False)
+              final_str_2 = make_config(base_params_1_2, key_value, True)
+              
+              # key3.json の内容を作成 (hideTitle: true で生成)
+              final_str_3 = make_config(base_params_3, key_value, True)
 
               output_dir = 'keys'
               os.makedirs(output_dir, exist_ok=True)
@@ -166,6 +173,9 @@ jobs:
 
               with open(os.path.join(output_dir, 'key2.json'), 'w') as f:
                   json.dump({'result': final_str_2}, f, indent=2)
+
+              with open(os.path.join(output_dir, 'key3.json'), 'w') as f:
+                  json.dump({'result': final_str_3}, f, indent=2)
 
               with open(os.path.join(output_dir, 'key.json'), 'w') as f:
                   json.dump({'key': key_value}, f, indent=2)
@@ -182,7 +192,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add keys/key1.json keys/key2.json keys/key.json
+          # key3.json もコミット対象に追加
+          git add keys/key1.json keys/key2.json keys/key3.json keys/key.json
           
           if git diff --staged --quiet; then
             echo "No changes to commit."

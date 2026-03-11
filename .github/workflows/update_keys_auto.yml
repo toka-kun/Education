@@ -40,21 +40,9 @@ jobs:
           from urllib3.util.retry import Retry
 
           # ---------------------------------------------------------
-          # 1. 時間調整 (手動ならスキップ、自動なら長時間待機)
+          # 1. 時間調整 (待機なし)
           # ---------------------------------------------------------
-          event_name = os.environ.get('GITHUB_EVENT_NAME')
-          
-          if event_name == 'workflow_dispatch':
-              print('Manual trigger: Skipping long sleep.')
-          else:
-              min_wait = 0
-              max_wait = 14400    # 4時間
-              wait_seconds = random.randint(min_wait, max_wait)
-              
-              h = wait_seconds // 3600
-              m = (wait_seconds % 3600) // 60
-              print(f'Scheduled trigger: Sleeping for {wait_seconds}s ({h}h {m}m)...')
-              time.sleep(wait_seconds)
+          print('Skipping long sleep as requested. Starting immediately.')
 
           # ---------------------------------------------------------
           # 2. ブラウザ偽装設定
@@ -153,7 +141,7 @@ jobs:
               # key3用の新しいベースパラメータ (controls=0, fs=0)
               base_params_3 = '?autoplay=1&amp;mute=0&amp;controls=0&amp;start=0&amp;origin=https%3A%2F%2Fcreate.kahoot.it&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;fs=0&amp;cc_load_policy=0&amp;enablejsapi=1&amp;widgetid=1&amp;forigin=https%3A%2F%2Fcreate.kahoot.it%2Flearner%2Fcb8cb5ae-d835-4c4a-bc2d-9cc78519d646%2Fcourse%2F6fba06e3-1f76-47a8-9a4a-53c53eb86286%2F0&amp;aoriginsup=1&amp;vf=6'
 
-              # Config作成関数（引数にベースパラメータを受け取るように改良）
+              # Config作成関数
               def make_config(base_url, k, hide):
                   cfg = {'enc': k, 'hideTitle': hide}
                   json_str = json.dumps(cfg, separators=(',', ':'))

@@ -28,7 +28,7 @@
   `https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text`  
 - **利用しているサイトの例**  
   - わかめtube → https://github.com/wakame02/wkt
-  - わかめtube Eduとトレンド復活、VercelとKoyeb、Csbでのデプロイに対応版 → https://github.com/toka-kun/wkt
+  - わかめtube Plus → https://github.com/toka-kun/wkt
 
 ---
 
@@ -44,7 +44,7 @@
   `https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json`  
 
 - **利用しているサイトの例**  
-  - わかめtube Eduとトレンド復活、VercelとKoyeb、Csbでのデプロイに対応版 → https://github.com/toka-kun/wkt
+  - わかめtube Plus → https://github.com/toka-kun/wkt
   - しあtube → https://github.com/siawaseoktest/youtube https://github.com/ajgpw/youtube
   - Yuki YouTube+ → https://github.com/myproxy0107-hash/new-yu-yu
   - YuZuTube → https://github.com/yuzubb/yuzutube1
@@ -65,7 +65,7 @@
   `https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key2.json`
 
 - **利用しているサイトの例**  
-  - わかめtube Eduとトレンド復活、VercelとKoyeb、Csbでのデプロイに対応版 → https://github.com/toka-kun/wkt
+  - わかめtube Plus → https://github.com/toka-kun/wkt
 
 ---
 
@@ -85,7 +85,7 @@
   `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key2.txt`
 
 - **利用しているサイトの例**  
-  - わかめtube Eduとトレンド復活、VercelとKoyeb、Csbでのデプロイに対応版 → https://github.com/toka-kun/wkt
+  - わかめtube Plus → https://github.com/toka-kun/wkt
   - Wool-Tube Education版 → https://github.com/woolisbest-4520/wooltube-education
 
 ---

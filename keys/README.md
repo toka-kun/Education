@@ -27,7 +27,7 @@
 - **ここから取得したものをそのまま使えます**  
   `https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text`  
 - **利用しているサイトの例**  
-  - わかめtube → https://github.com/wakame02/wkt
+  - わかめtube → https://github.com/wakame02/wkt-Plus
   - わかめtube Plus → https://github.com/toka-kun/wkt
 
 ---
@@ -44,7 +44,7 @@
   `https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json`  
 
 - **利用しているサイトの例**  
-  - わかめtube Plus → https://github.com/toka-kun/wkt
+  - わかめtube Plus → https://github.com/toka-kun/wkt-Plus
   - しあtube → https://github.com/siawaseoktest/youtube https://github.com/ajgpw/youtube
   - Yuki YouTube+ → https://github.com/myproxy0107-hash/new-yu-yu
   - YuZuTube → https://github.com/yuzubb/yuzutube1
@@ -63,9 +63,11 @@
 - **resultを取得しましょう**  
   `https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key1.json`
   `https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key2.json`
+  `https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key3.json`
+  `https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key4.json`
 
 - **利用しているサイトの例**  
-  - わかめtube Plus → https://github.com/toka-kun/wkt
+  - わかめtube Plus → https://github.com/toka-kun/wkt-Plus
 
 ---
 
@@ -85,7 +87,7 @@
   `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key2.txt`
 
 - **利用しているサイトの例**  
-  - わかめtube Plus → https://github.com/toka-kun/wkt
+  - わかめtube Plus → https://github.com/toka-kun/wkt-Plus
   - Wool-Tube Education版 → https://github.com/woolisbest-4520/wooltube-education
 
 ---

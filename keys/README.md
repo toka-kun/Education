@@ -27,8 +27,8 @@
 - **ここから取得したものをそのまま使えます**  
   `https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text`  
 - **利用しているサイトの例**  
-  - わかめtube → https://github.com/wakame02/wkt-Plus
-  - わかめtube Plus → https://github.com/toka-kun/wkt
+  - わかめtube → https://github.com/wakame02/wkt
+  - わかめtube Plus → https://github.com/toka-kun/wkt-Plus
 
 ---
 

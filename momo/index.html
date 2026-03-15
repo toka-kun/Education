@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="教育版 桃太郎電鉄のパスワード一覧と便利リンク集です。" />
+  <title>教育版 桃太郎電鉄 — パスワード一覧</title>
+  <style>
+    body {
+      font-family: "Hiragino Maru Gothic ProN", "Noto Sans JP", sans-serif;
+      background: linear-gradient(#cce7ff 0%, #ffffff 60%);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff8f0;
+      border: 4px solid #ff4242;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      margin-top: 40px;
+      margin-bottom: 40px;
+      padding: 30px;
+      width: 92%;
+      max-width: 680px;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    /* スマホ向け調整 */
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+        margin-top: 20px;
+      }
+      td, th {
+        font-size: 14px;
+        padding: 8px;
+      }
+      .title {
+        font-size: 22px;
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #ff2a2a;
+      text-shadow: 2px 2px 0 #ffd700, 4px 4px 0 rgba(0,0,0,0.15);
+      margin: 0;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: #444;
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th {
+      background: linear-gradient(90deg, #ff4b4b, #ff7b00);
+      color: #fff;
+      padding: 12px;
+      font-size: 16px;
+      border-bottom: 3px solid #ffd700;
+    }
+
+    td {
+      text-align: center;
+      padding: 12px;
+      border-bottom: 1px solid #ffe3c2;
+      font-size: 18px;
+    }
+
+    td.password {
+      font-family: "Courier New", monospace;
+      font-weight: bold;
+      font-size: 22px;
+      color: #8a2b2b;
+      letter-spacing: 1px;
+    }
+
+    tr:nth-child(even) td {
+      background: #fff5ec;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #fff;
+      transition: transform 0.1s ease, opacity 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    #copyBtn {
+      background: linear-gradient(90deg, #ff4b4b, #ff7b00);
+    }
+
+    #printBtn {
+      background: linear-gradient(90deg, #0077cc, #00aaff);
+    }
+
+    .note {
+      text-align: center;
+      font-size: 13px;
+      color: #444;
+      margin-top: 16px;
+    }
+
+    .update-time {
+      text-align: right;
+      font-size: 12px;
+      color: #666;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">教育版 桃太郎電鉄</h1>
+      <p class="subtitle">～パスワード一覧～</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>番号</th><th>パスワード</th></tr>
+      </thead>
+      <tbody id="passwordTableBody">
+        <tr><td>1</td><td class="password">読み込み中...</td></tr>
+        <tr><td>2</td><td class="password">読み込み中...</td></tr>
+        <tr><td>3</td><td class="password">読み込み中...</td></tr>
+        <tr><td>4</td><td class="password">読み込み中...</td></tr>
+        <tr><td>5</td><td class="password">読み込み中...</td></tr>
+        <tr><td>6</td><td class="password">読み込み中...</td></tr>
+        <tr><td>7</td><td class="password">読み込み中...</td></tr>
+        <tr><td>8</td><td class="password">読み込み中...</td></tr>
+      </tbody>
+    </table>
+
+    <div class="controls">
+      <button id="copyBtn">有効なパスをコピー</button>
+      <button id="printBtn">印刷する</button>
+    </div>
+
+    <p class="note" id="statusNote">※サーバーからパスワードを取得しています...</p>
+
+    <div class="update-time" id="updateTime">最終更新：----/--/-- --:--</div>
+  </div>
+
+  <script>
+    // JSONデータからパスワードを動的取得
+    document.addEventListener("DOMContentLoaded", async () => {
+      const dataUrl = "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/momo/pass.json";
+      
+      try {
+        const response = await fetch(dataUrl);
+        if (!response.ok) throw new Error("データの取得に失敗しました");
+        const data = await response.json();
+
+        const tbody = document.getElementById("passwordTableBody");
+        tbody.innerHTML = ""; // 初期状態をクリア
+
+        // 最低8行は表示する（データが8個未満の場合は「未取得」で埋める）
+        const maxRows = Math.max(8, data.passwords.length);
+
+        for (let i = 0; i < maxRows; i++) {
+          const tr = document.createElement("tr");
+          
+          const tdNum = document.createElement("td");
+          tdNum.textContent = i + 1;
+          
+          const tdPass = document.createElement("td");
+          tdPass.className = "password";
+          tdPass.textContent = data.passwords[i] || "未取得";
+          
+          tr.appendChild(tdNum);
+          tr.appendChild(tdPass);
+          tbody.appendChild(tr);
+        }
+
+        // 最終更新日時の反映
+        if (data.updated && data.updated.length > 0) {
+          document.getElementById("updateTime").textContent = `最終更新：${data.updated[0]}`;
+        }
+
+        document.getElementById("statusNote").textContent = "※最新のパスワードを取得しました。";
+
+      } catch (error) {
+        console.error(error);
+        document.getElementById("statusNote").textContent = "※パスワードの取得に失敗しました。";
+        // 取得失敗時は一旦すべて未取得にする
+        const passwords = document.querySelectorAll(".password");
+        passwords.forEach(td => td.textContent = "未取得");
+      }
+    });
+
+    // コピー機能（未取得・読み込み中を除外）
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const passwords = Array.from(document.querySelectorAll(".password"))
+        .map(td => td.textContent.trim())
+        .filter(text => text !== "未取得" && text !== "読み込み中..." && text !== ""); 
+      
+      const btn = document.getElementById("copyBtn");
+
+      if (passwords.length === 0) {
+        const originalText = btn.textContent;
+        btn.textContent = "パスワードがありません";
+        btn.style.background = "#888"; 
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = ""; 
+        }, 1500);
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(passwords.join("\n"));
+        btn.textContent = "コピーしました！";
+        setTimeout(() => btn.textContent = "有効なパスをコピー", 1500);
+      } catch (err) {
+        alert("コピーに失敗しました。");
+      }
+    });
+
+    // 印刷機能
+    document.getElementById("printBtn").addEventListener("click", () => {
+      window.print();
+    });
+  </script>
+</body>
+</html>

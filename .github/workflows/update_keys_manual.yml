@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       kahoot_key:
-        description: 'Kahootから取得したKeyをここに貼り付け'
+        description: 'Keyをここに貼り付け'
         required: true
         type: string
 

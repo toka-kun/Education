@@ -771,6 +771,14 @@
   // APIリストを保存しておくための変数（無駄な通信を減らすため）
   let cachedApiUrls = null;
 
+  const fallbackApiUrls = [
+    "https://min-tube2-api.vercel.app",
+    "https://min-tube-api-3.vercel.app",
+    "https://min-tube-api4.vercel.app",
+    "https://server-minp.vercel.app",
+    "https://min-tube-api5.vercel.app"
+  ];
+
   async function fetchComments(videoId) {
     const container = document.getElementById("commentsContainer");
     const countBadge = document.getElementById("commentCountBadge");
@@ -781,9 +789,15 @@
     try {
       // 1. APIリストの取得（キャッシュがなければ取得する）
       if (!cachedApiUrls) {
-        const listRes = await fetch("https://raw.githubusercontent.com/Minotaur-ZAOU/test/refs/heads/main/min-tube-api.json");
-        if (!listRes.ok) throw new Error("APIリストの取得に失敗しました");
-        cachedApiUrls = await listRes.json();
+        try {
+          const listRes = await fetch("https://raw.githubusercontent.com/Minotaur-ZAOU/test/refs/heads/main/min-tube-api.json");
+          if (!listRes.ok) throw new Error("APIリストのステータスエラー");
+          cachedApiUrls = await listRes.json();
+        } catch (err) {
+          //  取得エラー時はフォールバックのリストを代入する ▼▼▼
+          console.warn("GitHubからのAPIリスト取得に失敗したため、予備のAPIリストを使用します。", err);
+          cachedApiUrls = fallbackApiUrls;
+        }
       }
 
       let data = null;

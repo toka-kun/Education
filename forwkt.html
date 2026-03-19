@@ -958,13 +958,6 @@
         return;
       }
       
-      if (source.startsWith("Thumbnail-")) {
-      if (isLoop) {
-        alert("サムネイル（画像）はループ再生できません。");
-        resetButtons();
-        return;
-      }
-      
       const quality = source.replace("Thumbnail-", "");
       
       const img = document.createElement("img");

@@ -778,6 +778,8 @@
     container.innerHTML = '<p style="text-align:center;">読み込み中...</p>';
     countBadge.innerText = '';
 
+    try {
+
     // 1. APIリストの取得（キャッシュがなければ取得する）
       if (!cachedApiUrls) {
         try {

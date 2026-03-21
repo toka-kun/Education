@@ -2,6 +2,10 @@ DDNS Now
 
 FreeDNS
 
-DuckDNS
+DuckDNS - Vercelとの組み合わせが最強
 
 deSEC
+
+duiadns
+
+Dynu

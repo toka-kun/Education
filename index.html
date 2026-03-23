@@ -645,11 +645,31 @@
 
   function extractListId(input) {
     if (!input) return null;
-    const m = input.match(/[?&](?:list|playlist)=([a-zA-Z0-9_-]+)/);
-    if (m) return m[1];
+
+    // 1. URLパラメータからのリストID抽出 (?list= または &playlist=)
+    const mList = input.match(/[?&](?:list|playlist)=([a-zA-Z0-9_-]+)/);
+    if (mList) return mList[1];
     
-    // "PL" などから始まる文字列単体が入力された場合もリストIDとして扱う
-    if (/^(?:PL|RD|LL|UU|FL|OLAK5uy_)[a-zA-Z0-9_-]+$/.test(input)) return input;
+    // 2. チャンネルURLからの抽出 (/channel/ID または /wkt/c/ID)
+    const mChannel = input.match(/\/(?:channel|wkt\/c)\/([a-zA-Z0-9_-]+)/);
+    if (mChannel) {
+        const cid = mChannel[1];
+        // UCから始まるチャンネルIDなら、UUに変換してアップロード動画リストとして返す
+        if (cid.startsWith('UC')) {
+            return 'UU' + cid.substring(2);
+        }
+        return cid;
+    }
+    
+    // 3. ID単体での入力
+    // PL, UC などのプレフィックスから始まり、かつ「11文字ではない」場合（11文字は動画IDとして扱うため）
+    if (/^(?:PL|RD|LL|UU|FL|UC|OLAK5uy_)[a-zA-Z0-9_-]+$/.test(input) && input.length !== 11) {
+        // UCから始まる場合はUUに変換して返す
+        if (input.startsWith('UC')) {
+            return 'UU' + input.substring(2);
+        }
+        return input;
+    }
     
     return null;
   }

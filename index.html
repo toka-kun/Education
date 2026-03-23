@@ -1094,9 +1094,8 @@
     if (endSeconds !== null) finalUrl = updateUrlParam(finalUrl, 'end', endSeconds);
 
     finalUrl = updateUrlParam(finalUrl, 'enablejsapi', '1');
-    if (!source.startsWith("Education")) {
-        finalUrl = updateUrlParam(finalUrl, 'origin', window.location.origin);
-    }
+    // if文による条件分岐を削除し、常にoriginを上書きするように変更
+    finalUrl = updateUrlParam(finalUrl, 'origin', window.location.origin);
 
     newIframe.onload = function() {
         initYouTubePlayer();

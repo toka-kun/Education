@@ -646,7 +646,12 @@
   function extractListId(input) {
     if (!input) return null;
     const m = input.match(/[?&](?:list|playlist)=([a-zA-Z0-9_-]+)/);
-    return m ? m[1] : null;
+    if (m) return m[1];
+    
+    // "PL" などから始まる文字列単体が入力された場合もリストIDとして扱う
+    if (/^(?:PL|RD|LL|UU|FL|OLAK5uy_)[a-zA-Z0-9_-]+$/.test(input)) return input;
+    
+    return null;
   }
 
   function convertToSeconds(input) {
@@ -940,22 +945,34 @@
     const videoId = extractVideoId(input);
     const listId = extractListId(input);
 
-    if (!videoId) {
-      alert("正しいURLまたは動画IDを入力してください。");
+    // ▼変更点: videoId がなくても listId があれば進める
+    if (!videoId && !listId) {
+      alert("正しいURL、動画ID、または再生リストIDを入力してください。");
       resetButtons();
       return;
     }
 
-    // --- 修正: 同じ動画IDの場合はコメントを再取得しない ---
-    if (currentLoadedVideoId !== videoId) {
-        currentLoadedVideoId = videoId;
-        fetchComments(videoId);
+    // ▼変更点: videoId がある場合のみコメント取得。ない場合はクリア。
+    if (videoId) {
+      if (currentLoadedVideoId !== videoId) {
+          currentLoadedVideoId = videoId;
+          fetchComments(videoId);
+      }
+    } else {
+      currentLoadedVideoId = null;
+      document.getElementById("commentsContainer").innerHTML = '<p style="text-align:center; color:#888;">再生リスト単体のため、コメントは表示されません。</p>';
+      document.getElementById("commentCountBadge").innerText = '';
     }
-    // ------------------------------------------------
 
+    // ▼変更点: サムネイルは動画IDがないと表示できないのでエラーを出す
     if (source.startsWith("Thumbnail-")) {
       if (isLoop) {
         alert("サムネイル（画像）はループ再生できません。");
+        resetButtons();
+        return;
+      }
+      if (!videoId) {
+        alert("再生リストのみではサムネイルを取得できません。");
         resetButtons();
         return;
       }
@@ -986,11 +1003,13 @@
     const startSeconds = convertToSeconds(startInput);
     const endSeconds = convertToSeconds(endInput);
 
+    // ▼変更点: 動画IDがない場合は 'videoseries' を embedのIDとして使う
+    const embedId = videoId || 'videoseries';
     let finalUrl = "";
 
     try {
         if (source === "Nocookie") {
-          finalUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&amp;mute=0`;
+          finalUrl = `https://www.youtube-nocookie.com/embed/${embedId}?autoplay=1&amp;mute=0`;
         } else {
             const r = await fetch(URLS[source], { cache: "no-store" });
             if (!r.ok) throw new Error("取得失敗");
@@ -1021,7 +1040,7 @@
               params = await r.text();
             }
             
-            finalUrl = `https://www.youtubeeducation.com/embed/${videoId}${params}`;
+            finalUrl = `https://www.youtubeeducation.com/embed/${embedId}${params}`;
         }
     } catch (e) {
         console.error(e);
@@ -1036,7 +1055,7 @@
       } else {
         finalUrl = updateUrlParam(finalUrl, 'list', listId);
       }
-    } else {
+    } else if (videoId) {
       finalUrl = updateUrlParam(finalUrl, 'playlist', videoId);
     }
 
@@ -1048,7 +1067,9 @@
     if (endSeconds !== null) finalUrl = updateUrlParam(finalUrl, 'end', endSeconds);
 
     finalUrl = updateUrlParam(finalUrl, 'enablejsapi', '1');
-    finalUrl = updateUrlParam(finalUrl, 'origin', window.location.origin);
+    if (!source.startsWith("Education")) {
+        finalUrl = updateUrlParam(finalUrl, 'origin', window.location.origin);
+    }
 
     newIframe.onload = function() {
         initYouTubePlayer();
@@ -1059,21 +1080,18 @@
     // ブラウザのURLを更新する処理
     try {
       const hashParams = new URLSearchParams();
-      hashParams.set('v', videoId);
+      // ▼変更点: パラメータが存在する時だけセットする
+      if (videoId) hashParams.set('v', videoId);
 
-      // リストIDがある場合
       if (listId && listId !== videoId) {
         hashParams.set('list', listId);
-      } else {
-        // 単体動画の場合も playlist=videoID を付ける（ご要望の形式）
+      } else if (videoId) {
         hashParams.set('playlist', videoId);
       }
 
-      // 時間指定がある場合 (入力された値をそのまま保存)
       if (startInput) hashParams.set('start', startInput);
       if (endInput) hashParams.set('end', endInput);
 
-      // #?v=... の形式でURLを更新 (履歴に残さず書き換えたい場合は replaceState)
       const newHash = "#?" + hashParams.toString();
       history.replaceState(null, '', newHash);
     } catch (e) {
@@ -1083,11 +1101,9 @@
 
   // ▼▼▼ 追加: ページ読み込み時にURLパラメータから入力欄を復元する処理 ▼▼▼
   function restoreStateFromUrl() {
-    // URLのハッシュ部分 (#?v=... または #v=...) を取得
     const hash = window.location.hash;
     if (!hash || hash.length < 2) return;
 
-    // 先頭の # や #? を取り除く
     const queryString = hash.replace(/^#\??/, '');
     const params = new URLSearchParams(queryString);
 
@@ -1096,28 +1112,28 @@
     const start = params.get('start');
     const end = params.get('end');
 
-    // 動画IDがあればURL欄を復元
+    // ▼変更点: listのみが存在する場合の復元処理を追加
     if (v) {
       let urlValue = `https://www.youtube.com/watch?v=${v}`;
-      // リストIDがあれば、YouTubeの標準的なURL形式で復元してあげる
       if (list) {
         urlValue = `https://www.youtube.com/watch?v=${v}&list=${list}`;
       }
-      
       const urlInput = document.getElementById("videoUrlInput");
       urlInput.value = urlValue;
-      // ×ボタンなどを表示させるためにinputイベントを発火
+      urlInput.dispatchEvent(new Event('input'));
+    } else if (list) {
+      // リストIDのみの場合
+      const urlInput = document.getElementById("videoUrlInput");
+      urlInput.value = `https://www.youtube.com/playlist?list=${list}`;
       urlInput.dispatchEvent(new Event('input'));
     }
 
-    // 開始時間の復元
     if (start) {
       const sInput = document.getElementById("startTimeInput");
       sInput.value = start;
       sInput.dispatchEvent(new Event('input'));
     }
 
-    // 終了時間の復元
     if (end) {
       const eInput = document.getElementById("endTimeInput");
       eInput.value = end;

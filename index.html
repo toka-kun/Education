@@ -746,14 +746,40 @@
   }
 
   function onPlayerStateChange(event) {
-    if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
-        if (event.target && event.target.getVideoData) {
-            const data = event.target.getVideoData();
-            if (data && data.video_id) {
-                // プレイヤー内で動画が変わった場合(自動遷移など)のみ更新
-                if (currentLoadedVideoId && data.video_id !== currentLoadedVideoId) {
-                    currentLoadedVideoId = data.video_id;
-                    fetchComments(currentLoadedVideoId);
+    // 未開始(-1)、バッファリング中(3)、再生中(1)のタイミングで検知
+    if (event.data === YT.PlayerState.UNSTARTED || event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
+        if (event.target) {
+            let newVideoId = null;
+
+            // 方法1: getVideoUrl から取得
+            if (typeof event.target.getVideoUrl === 'function') {
+                const url = event.target.getVideoUrl();
+                newVideoId = extractVideoId(url);
+            }
+
+            // 方法2: 従来の getVideoData から取得（念のため）
+            if (!newVideoId && typeof event.target.getVideoData === 'function') {
+                const data = event.target.getVideoData();
+                if (data && data.video_id) {
+                    newVideoId = data.video_id;
+                }
+            }
+
+            // 新しいIDが取得でき、かつ表示中のIDと違う場合のみ処理
+            if (newVideoId && currentLoadedVideoId !== newVideoId) {
+                currentLoadedVideoId = newVideoId;
+                fetchComments(currentLoadedVideoId); // コメントを取得
+                
+                // 再生リスト単体で開始した場合に備え、URL(アドレスバー)にも動画IDを追加しておく
+                try {
+                  const hashParams = new URLSearchParams(window.location.hash.replace(/^#\??/, ''));
+                  if (!hashParams.has('v') || hashParams.get('v') !== newVideoId) {
+                      hashParams.set('v', newVideoId);
+                      const newHash = "#?" + hashParams.toString();
+                      history.replaceState(null, '', newHash);
+                  }
+                } catch (e) {
+                  console.error("URL update failed", e);
                 }
             }
         }
@@ -960,7 +986,8 @@
       }
     } else {
       currentLoadedVideoId = null;
-      document.getElementById("commentsContainer").innerHTML = '<p style="text-align:center; color:#888;">再生リスト単体のため、コメントは表示されません。</p>';
+      // 文言を変更
+      document.getElementById("commentsContainer").innerHTML = '<p style="text-align:center; color:#888;">動画の読み込みを待機しています...<br>（再生が始まるとコメントが表示されます）</p>';
       document.getElementById("commentCountBadge").innerText = '';
     }
 

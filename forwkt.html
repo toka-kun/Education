@@ -402,7 +402,7 @@
             <option value="Education - woolisbest4520-5">Education - woolisbest4520-5</option>
         </optgroup>
         
-        <optgroup label="サムネイル">
+        <optgroup label="サムネイル - /wkt/back">
             <option value="Thumbnail-maxresdefault">maxresdefault</option>
             <option value="Thumbnail-sddefault">sddefault</option>
             <option value="Thumbnail-hqdefault">hqdefault</option>
@@ -598,17 +598,17 @@
 
   const URLS = {
     "Nocookie": null,
-    "Education - wakame": "/wkt/yt/edurl_wakame",
-    "Education - siawaseok": "/wkt/yt/edurl_sia",
-    "Education - Toka_Kun_-1": "/wkt/yt/edurl_toka1",
-    "Education - Toka_Kun_-2": "/wkt/yt/edurl_toka2",
-    "Education - Toka_Kun_-3": "/wkt/yt/edurl_toka3",
-    "Education - Toka_Kun_-4": "/wkt/yt/edurl_toka4",
-    "Education - woolisbest4520-1": "/wkt/yt/edurl_wool1",
-    "Education - woolisbest4520-2": "/wkt/yt/edurl_wool2",
-    "Education - woolisbest4520-3": "/wkt/yt/edurl_wool3",
-    "Education - woolisbest4520-4": "/wkt/yt/edurl_wool4",
-    "Education - woolisbest4520-5": "/wkt/yt/edurl_wool5"
+    "Education - wakame": "https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/edu.text",
+    "Education - siawaseok": "https://raw.githubusercontent.com/siawaseok3/wakame/master/video_config.json",
+    "Education - Toka_Kun_-1": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key1.json",
+    "Education - Toka_Kun_-2": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key2.json",
+    "Education - Toka_Kun_-3": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key3.json",
+    "Education - Toka_Kun_-4": "https://raw.githubusercontent.com/toka-kun/Education/refs/heads/main/keys/key4.json",
+    "Education - woolisbest4520-1": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.txt",
+    "Education - woolisbest4520-2": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.txt",
+    "Education - woolisbest4520-3": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/ep.txt",
+    "Education - woolisbest4520-4": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key1.txt",
+    "Education - woolisbest4520-5": "https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key2.txt"
   };
 
   function extractVideoId(input) {
@@ -637,8 +637,33 @@
 
   function extractListId(input) {
     if (!input) return null;
-    const m = input.match(/[?&](?:list|playlist)=([a-zA-Z0-9_-]+)/);
-    return m ? m[1] : null;
+
+    // 1. URLパラメータからのリストID抽出 (?list= または &playlist=)
+    const mList = input.match(/[?&](?:list|playlist)=([a-zA-Z0-9_-]+)/);
+    if (mList) return mList[1];
+    
+    // 2. チャンネルURLからの抽出 (/channel/ID または /wkt/c/ID)
+    const mChannel = input.match(/\/(?:channel|wkt\/c)\/([a-zA-Z0-9_-]+)/);
+    if (mChannel) {
+        const cid = mChannel[1];
+        // UCから始まるチャンネルIDなら、UUに変換してアップロード動画リストとして返す
+        if (cid.startsWith('UC')) {
+            return 'UU' + cid.substring(2);
+        }
+        return cid;
+    }
+    
+    // 3. ID単体での入力
+    // PL, UC などのプレフィックスから始まり、かつ「11文字ではない」場合（11文字は動画IDとして扱うため）
+    if (/^(?:PL|RD|LL|UU|FL|UC|OLAK5uy_)[a-zA-Z0-9_-]+$/.test(input) && input.length !== 11) {
+        // UCから始まる場合はUUに変換して返す
+        if (input.startsWith('UC')) {
+            return 'UU' + input.substring(2);
+        }
+        return input;
+    }
+    
+    return null;
   }
 
   function convertToSeconds(input) {
@@ -733,14 +758,40 @@
   }
 
   function onPlayerStateChange(event) {
-    if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
-        if (event.target && event.target.getVideoData) {
-            const data = event.target.getVideoData();
-            if (data && data.video_id) {
-                // プレイヤー内で動画が変わった場合(自動遷移など)のみ更新
-                if (currentLoadedVideoId && data.video_id !== currentLoadedVideoId) {
-                    currentLoadedVideoId = data.video_id;
-                    fetchComments(currentLoadedVideoId);
+    // 未開始(-1)、バッファリング中(3)、再生中(1)のタイミングで検知
+    if (event.data === YT.PlayerState.UNSTARTED || event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.BUFFERING) {
+        if (event.target) {
+            let newVideoId = null;
+
+            // 方法1: getVideoUrl から取得
+            if (typeof event.target.getVideoUrl === 'function') {
+                const url = event.target.getVideoUrl();
+                newVideoId = extractVideoId(url);
+            }
+
+            // 方法2: 従来の getVideoData から取得（念のため）
+            if (!newVideoId && typeof event.target.getVideoData === 'function') {
+                const data = event.target.getVideoData();
+                if (data && data.video_id) {
+                    newVideoId = data.video_id;
+                }
+            }
+
+            // 新しいIDが取得でき、かつ表示中のIDと違う場合のみ処理
+            if (newVideoId && currentLoadedVideoId !== newVideoId) {
+                currentLoadedVideoId = newVideoId;
+                fetchComments(currentLoadedVideoId); // コメントを取得
+                
+                // 再生リスト単体で開始した場合に備え、URL(アドレスバー)にも動画IDを追加しておく
+                try {
+                  const hashParams = new URLSearchParams(window.location.hash.replace(/^#\??/, ''));
+                  if (!hashParams.has('v') || hashParams.get('v') !== newVideoId) {
+                      hashParams.set('v', newVideoId);
+                      const newHash = "#?" + hashParams.toString();
+                      history.replaceState(null, '', newHash);
+                  }
+                } catch (e) {
+                  console.error("URL update failed", e);
                 }
             }
         }
@@ -777,8 +828,6 @@
     
     container.innerHTML = '<p style="text-align:center;">読み込み中...</p>';
     countBadge.innerText = '';
-
-    try {
 
     // 1. APIリストの取得（キャッシュがなければ取得する）
       if (!cachedApiUrls) {
@@ -874,13 +923,13 @@
         html += `
           <div class="comment-item">
             <div class="comment-avatar">
-              <a href="https://www.youtube.com${c.authorUrl}" target="_blank">
+              <a href="${c.authorUrl}" target="_blank">
                 <img src="${iconUrl}" alt="${c.author}">
               </a>
             </div>
             <div class="comment-content">
               <div class="comment-header">
-                <a href="https://www.youtube.com${c.authorUrl}" target="_blank" class="author-name">${c.author}</a>
+                <a href="${c.authorUrl}" target="_blank" class="author-name">${c.author}</a>
                 ${badges}
                 <span class="published-date">${c.publishedText}</span>
                 ${editedHtml}
@@ -940,22 +989,35 @@
     const videoId = extractVideoId(input);
     const listId = extractListId(input);
 
-    if (!videoId) {
-      alert("正しいURLまたは動画IDを入力してください。");
+    // ▼変更点: videoId がなくても listId があれば進める
+    if (!videoId && !listId) {
+      alert("正しいURL、動画ID、または再生リストIDを入力してください。");
       resetButtons();
       return;
     }
 
-    // --- 修正: 同じ動画IDの場合はコメントを再取得しない ---
-    if (currentLoadedVideoId !== videoId) {
-        currentLoadedVideoId = videoId;
-        fetchComments(videoId);
+    // ▼変更点: videoId がある場合のみコメント取得。ない場合はクリア。
+    if (videoId) {
+      if (currentLoadedVideoId !== videoId) {
+          currentLoadedVideoId = videoId;
+          fetchComments(videoId);
+      }
+    } else {
+      currentLoadedVideoId = null;
+      // 文言を変更
+      document.getElementById("commentsContainer").innerHTML = '<p style="text-align:center; color:#888;">動画の読み込みを待機しています...<br>（再生が始まるとコメントが表示されます）</p>';
+      document.getElementById("commentCountBadge").innerText = '';
     }
-    // ------------------------------------------------
 
+    // ▼変更点: サムネイルは動画IDがないと表示できないのでエラーを出す
     if (source.startsWith("Thumbnail-")) {
       if (isLoop) {
         alert("サムネイル（画像）はループ再生できません。");
+        resetButtons();
+        return;
+      }
+      if (!videoId) {
+        alert("再生リストのみではサムネイルを取得できません。");
         resetButtons();
         return;
       }
@@ -985,11 +1047,13 @@
     const startSeconds = convertToSeconds(startInput);
     const endSeconds = convertToSeconds(endInput);
 
+    // ▼変更点: 動画IDがない場合は 'videoseries' を embedのIDとして使う
+    const embedId = videoId || 'videoseries';
     let finalUrl = "";
 
     try {
         if (source === "Nocookie") {
-          finalUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&amp;mute=0`;
+          finalUrl = `https://www.youtube-nocookie.com/embed/${embedId}?autoplay=1&amp;mute=0`;
         } else {
             const r = await fetch(URLS[source], { cache: "no-store" });
             if (!r.ok) throw new Error("取得失敗");
@@ -1020,7 +1084,7 @@
               params = await r.text();
             }
             
-            finalUrl = `https://www.youtubeeducation.com/embed/${videoId}${params}`;
+            finalUrl = `https://www.youtubeeducation.com/embed/${embedId}${params}`;
         }
     } catch (e) {
         console.error(e);
@@ -1035,7 +1099,7 @@
       } else {
         finalUrl = updateUrlParam(finalUrl, 'list', listId);
       }
-    } else {
+    } else if (videoId) {
       finalUrl = updateUrlParam(finalUrl, 'playlist', videoId);
     }
 
@@ -1047,6 +1111,7 @@
     if (endSeconds !== null) finalUrl = updateUrlParam(finalUrl, 'end', endSeconds);
 
     finalUrl = updateUrlParam(finalUrl, 'enablejsapi', '1');
+    // if文による条件分岐を削除し、常にoriginを上書きするように変更
     finalUrl = updateUrlParam(finalUrl, 'origin', window.location.origin);
 
     newIframe.onload = function() {
@@ -1054,7 +1119,73 @@
     };
     
     newIframe.src = finalUrl;
+
+    // ブラウザのURLを更新する処理
+    try {
+      const hashParams = new URLSearchParams();
+      // ▼変更点: パラメータが存在する時だけセットする
+      if (videoId) hashParams.set('v', videoId);
+
+      if (listId && listId !== videoId) {
+        hashParams.set('list', listId);
+      } else if (videoId) {
+        hashParams.set('playlist', videoId);
+      }
+
+      if (startInput) hashParams.set('start', startInput);
+      if (endInput) hashParams.set('end', endInput);
+
+      const newHash = "#?" + hashParams.toString();
+      history.replaceState(null, '', newHash);
+    } catch (e) {
+      console.error("URL update failed", e);
+    }
   }
+
+  // ▼▼▼ 追加: ページ読み込み時にURLパラメータから入力欄を復元する処理 ▼▼▼
+  function restoreStateFromUrl() {
+    const hash = window.location.hash;
+    if (!hash || hash.length < 2) return;
+
+    const queryString = hash.replace(/^#\??/, '');
+    const params = new URLSearchParams(queryString);
+
+    const v = params.get('v');
+    const list = params.get('list');
+    const start = params.get('start');
+    const end = params.get('end');
+
+    // ▼変更点: listのみが存在する場合の復元処理を追加
+    if (v) {
+      let urlValue = `https://www.youtube.com/watch?v=${v}`;
+      if (list) {
+        urlValue = `https://www.youtube.com/watch?v=${v}&list=${list}`;
+      }
+      const urlInput = document.getElementById("videoUrlInput");
+      urlInput.value = urlValue;
+      urlInput.dispatchEvent(new Event('input'));
+    } else if (list) {
+      // リストIDのみの場合
+      const urlInput = document.getElementById("videoUrlInput");
+      urlInput.value = `https://www.youtube.com/playlist?list=${list}`;
+      urlInput.dispatchEvent(new Event('input'));
+    }
+
+    if (start) {
+      const sInput = document.getElementById("startTimeInput");
+      sInput.value = start;
+      sInput.dispatchEvent(new Event('input'));
+    }
+
+    if (end) {
+      const eInput = document.getElementById("endTimeInput");
+      eInput.value = end;
+      eInput.dispatchEvent(new Event('input'));
+    }
+  }
+
+  // ページ読み込み完了時に実行
+  window.addEventListener('DOMContentLoaded', restoreStateFromUrl);
 </script>
 
 </body>

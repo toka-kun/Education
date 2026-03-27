@@ -9,6 +9,8 @@
 - 1: タイムアウトするやつ
 - 2: `nadeko.net`、`poketube.fun`のバックエンドごとのURL
 - 3: 503 Service Unavailable
-- 4: 
-- 5: 
-- 6: つい最近まで使えてたやつ
+- 4: 502 Bad Gateway
+- 5:
+- 6: 
+- 7: つい最近まで使えてたやつ
+- 8: 

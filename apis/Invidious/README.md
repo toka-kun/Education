@@ -6,11 +6,11 @@
 
 ### `no.json`
 
-- 1: タイムアウトするやつ
-- 2: `nadeko.net`、`poketube.fun`のバックエンドごとのURL
-- 3: 503 Service Unavailable
-- 4: 502 Bad Gateway
-- 5:
-- 6: 
-- 7: つい最近まで使えてたやつ
-- 8: 
+1. タイムアウトするやつ
+2. `nadeko.net`、`poketube.fun`のバックエンドごとのURL
+3. 503 Service Unavailable
+4. 502 Bad Gateway
+5. 応答がないやつ
+6. ログインが必要なやつ
+7. 証明書が切れてるやつ
+8. つい最近まで使えてたのにいきなり消えたやつ

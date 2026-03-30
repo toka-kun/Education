@@ -19,3 +19,5 @@
 
 - 前半: Invidiousのインスタンスとは別
 - 後半: Invidiousのインスタンスと一緒
+
+`${INVIDIOUS_COMPANION}(streamingurlの中身)&cpn=&host=(streamingurlのdomain)`

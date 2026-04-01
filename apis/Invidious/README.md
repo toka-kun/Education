@@ -21,3 +21,10 @@
 - 後半: Invidiousのインスタンスと一緒
 
 `${INVIDIOUS_COMPANION}(streamingurlの中身)&cpn=&host=(streamingurlのdomain)`
+
+### 他の人のやつ
+
+- わかめtube https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/inv.json
+- 多分MIN-Tube2 APIの中身 https://raw.githubusercontent.com/Minotaur-ZAOU/test/refs/heads/main/min.json
+- ゆずのわかめtube https://raw.githubusercontent.com/yuzubb/service/refs/heads/main/inv.json
+

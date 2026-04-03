@@ -46,6 +46,7 @@
 - **利用しているサイトの例**  
   - わかめtube Plus → https://github.com/toka-kun/wkt-Plus
   - しあtube → https://github.com/siawaseoktest/youtube https://github.com/ajgpw/youtube
+  - MIN-Tube-Pro → https://github.com/mino-hobby-pro/MIN-Tube-Pro
   - Yuki YouTube+ → https://github.com/myproxy0107-hash/new-yu-yu
   - YuZuTube → https://github.com/yuzubb/yuzutube1
   - XeroxYT → https://github.com/Xerox-Pro?tab=repositories&q=XeroxYT-NT&type=&language=&sort=
@@ -88,6 +89,7 @@
 
 - **利用しているサイトの例**  
   - わかめtube Plus → https://github.com/toka-kun/wkt-Plus
+  - MIN-Tube-Pro → https://github.com/mino-hobby-pro/MIN-Tube-Pro
   - Wool-Tube Education版 → https://github.com/woolisbest-4520/wooltube-education
 
 ---

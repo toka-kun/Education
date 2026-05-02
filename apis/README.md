@@ -11,3 +11,9 @@ https://docs.piped.video/docs/api-documentation/
 ## SiaTube API
 
 https://siawaseok.f5.si/
+
+## その他
+
+- https://api.aijimy.com/get?code=get-youtube-videodata&text=(videoid)
+- https://noembed.com/embed?url=https://www.youtube.com/watch?v=(videoid)
+- https://returnyoutubedislikeapi.com/votes?videoId=(videoid)

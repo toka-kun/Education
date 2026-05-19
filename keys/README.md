@@ -50,6 +50,7 @@
   - Yuki YouTube+ → https://github.com/myproxy0107-hash/new-yu-yu
   - YuZuTube → https://github.com/yuzubb/yuzutube1
   - XeroxYT → https://github.com/Xerox-Pro?tab=repositories&q=XeroxYT-NT&type=&language=&sort=
+  - かつおtube → https://github.com/youtubekosub/Katuotube-1
 
 ---
 
@@ -69,6 +70,7 @@
 
 - **利用しているサイトの例**  
   - わかめtube Plus → https://github.com/toka-kun/wkt-Plus
+  - 最新版仙人tube → https://github.com/xianrendesu-max/sennintubeyobi
 
 ---
 
@@ -81,11 +83,12 @@
 ### URL
 
 - **ここから取得したものをそのまま使えます**  
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/parameter.txt`
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/edu.txt`
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/ep.txt`
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key1.txt`
-  `https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/edu/key2.txt`
+  `https://raw.githubusercontent.com/wista-api-project/auto/refs/heads/main/edu/1.txt`
+  `https://raw.githubusercontent.com/wista-api-project/auto/refs/heads/main/edu/2.txt`
+  `https://raw.githubusercontent.com/wista-api-project/auto/refs/heads/main/edu/3.txt`
+  `https://raw.githubusercontent.com/wista-api-project/auto/refs/heads/main/edu/4.txt`
+  `https://raw.githubusercontent.com/wista-api-project/auto/refs/heads/main/edu/5.txt`
+  `https://raw.githubusercontent.com/wista-api-project/auto/refs/heads/main/edu/6.txt`
 
 - **利用しているサイトの例**  
   - わかめtube Plus → https://github.com/toka-kun/wkt-Plus

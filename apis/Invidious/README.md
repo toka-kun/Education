@@ -26,6 +26,6 @@
 - woolisbest-yes https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/stream/inv.json
 - woolisbest-no https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/stream/inv-no.txt
 - わかめtube https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/inv.json
-- 多分MIN-Tube2 APIの中身 https://raw.githubusercontent.com/Minotaur-ZAOU/test/refs/heads/main/min.json
+- MIN-Tube2 API https://raw.githubusercontent.com/Minotaur-ZAOU/test/refs/heads/main/min.json
 - YouTube Plus+ https://raw.githubusercontent.com/yuto1106110/invidious-instance-plus-plus/refs/heads/main/data/valid.json
-- ゆずのわかめtube https://raw.githubusercontent.com/yuzubb/service/refs/heads/main/inv.json
+- 多分昔のYuZuTube https://raw.githubusercontent.com/yuzubb/service/refs/heads/main/inv.json

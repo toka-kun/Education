@@ -1051,7 +1051,7 @@
 
     try {
         if (source === "Nocookie") {
-          finalUrl = `https://www.youtube-nocookie.com/embed/${embedId}?autoplay=1&amp;mute=0&rel=0&amp;origin=https%3A%2F%2Fwww.youtube.com`;
+          finalUrl = `https://www.youtube-nocookie.com/embed/${embedId}?autoplay=1&amp;mute=0&rel=0&amp;origin=https%3A%2F%2Fwww.youtube.com&amp;widget_referrer=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D${embedId}`;
         } else {
             const r = await fetch(URLS[source], { cache: "no-store" });
             if (!r.ok) throw new Error("取得失敗");

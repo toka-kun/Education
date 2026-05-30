@@ -16,5 +16,5 @@ https://siawaseok.f5.si/
 
 - https://api.aijimy.com/get?code=get-youtube-videodata&text=(videoid)
 - https://api.aijimy.com/get?code=get-youtube-channeldata&text=(channelid)
-- https://noembed.com/embed?url=https://www.youtube.com/watch?v=(videoid)
+- https://noembed.com/embed?url=https://youtube.com/watch?v=(videoid)
 - https://returnyoutubedislikeapi.com/votes?videoId=(videoid)

@@ -23,6 +23,7 @@
 
 ### 他の人のやつ
 
+- 公式 https://api.invidious.io/instances.json
 - woolisbest-yes https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/stream/inv.json
 - woolisbest-no https://raw.githubusercontent.com/woolisbest-4520/about-youtube/refs/heads/main/stream/inv-no.txt
 - わかめtube https://raw.githubusercontent.com/wakame02/wktopu/refs/heads/main/inv.json

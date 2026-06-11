@@ -1,9 +1,14 @@
-- https://img.youtube.com
-- https://i.ytimg.com
-- https://i1.ytimg.com
-- https://i2.ytimg.com
-- https://i3.ytimg.com
-- https://i4.ytimg.com
-- https://i9.ytimg.com
-- https://s.ytimg.com
-- https://image-proxy.poketube.fun/proxy?url=https://i.ytimg.com
+[
+  "https://img.youtube.com",
+  "https://i.ytimg.com",
+  "https://i1.ytimg.com",
+  "https://i2.ytimg.com",
+  "https://i3.ytimg.com",
+  "https://i4.ytimg.com",
+  "https://i9.ytimg.com",
+  "https://s.ytimg.com",
+  "https://ytimg.googleusercontent.com",
+  "https://wsrv.nl/?url=https://i.ytimg.com",
+  "https://image-proxy.poketube.fun/proxy?url=https://i.ytimg.com"
+  
+]

@@ -18,3 +18,5 @@ https://siawaseok.f5.si/
 - https://api.aijimy.com/get?code=get-youtube-channeldata&text=(channelid)
 - https://noembed.com/embed?url=https://youtube.com/watch?v=(videoid)
 - https://returnyoutubedislikeapi.com/votes?videoId=(videoid)
+
+https://raw.githubusercontent.com/Minotaur-ZAOU/test/refs/heads/main/min-tube-api.json

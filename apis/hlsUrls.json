@@ -386,7 +386,7 @@
   "asia/nhk-world": {
     "name": "NHK World Japan",
     "genre": "optional",
-    "hlsUrl": "https://media-tyo.hls.nhkworld.jp/hls/w/live/1/sig/e52230f79050aa333c4ac6430f40a08f0898e6ec1c43d5cb9bcb82f9573797c4/v2.m3u8",
+    "hlsUrl": "https://media-tyo.hls.nhkworld.jp/hls/w/live/master.m3u8",
     "fallbackVideoId": "f0lYfG_vY_U"
   },
   "asia/arirang-news": {

@@ -2,7 +2,7 @@
   "na/bloomberg": {
     "name": "Bloomberg",
     "genre": "full",
-    "hlsUrl": "https://bloomberg.com/media-manifest/streams/us.m3u8",
+    "hlsUrl": "https://proxy-siawaseok.duckdns.org/proxy/m3u8?url=https://www.bloomberg.com/media-manifest/streams/us.m3u8",
     "fallbackVideoId": "iEpJwprxDdk"
   },
   "na/cnbc": {
@@ -32,7 +32,7 @@
   "na/fox-news": {
     "name": "Fox News",
     "genre": "optional",
-    "hlsUrl": "https://247.foxnews.com/hls/live/2003586-b/FNCHLSv3/backup_2692.m3u8",
+    "hlsUrl": "https://247preview.foxnews.com/hls/live/2020027/fncv3preview/primary.m3u8",
     "fallbackVideoId": "QaftgYkG-ek"
   },
   "na/newsmax": {

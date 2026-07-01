@@ -2,7 +2,7 @@
   "na/bloomberg": {
     "name": "Bloomberg",
     "genre": "full",
-    "hlsUrl": "https://proxy-siawaseok.duckdns.org/proxy/m3u8?url=https://www.bloomberg.com/media-manifest/streams/us.m3u8",
+    "hlsUrl": "https://proxy-siawaseok.duckdns.org/proxy/m3u8?url=https%3A%2F%2Fbloomberg.com%2Fmedia-manifest%2Fstreams%2Fus.m3u8",
     "fallbackVideoId": "iEpJwprxDdk"
   },
   "na/cnbc": {

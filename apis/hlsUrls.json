@@ -8,7 +8,7 @@
   "na/cnbc": {
     "name": "CNBC",
     "genre": "full",
-    "hlsUrl": "https://cdn-ca2-na.lncnetworks.host/hls/cnbc_live/index.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": "9NyxcX3rhQs"
   },
   "na/cnn": {

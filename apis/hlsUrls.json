@@ -38,14 +38,14 @@
   "na/newsmax": {
     "name": "Newsmax",
     "genre": "optional",
-    "hlsUrl": "",
+    "hlsUrl": "https://nmxlive.akamaized.net/hls/live/529965/Live_1/4.m3u8",
     "fallbackVideoId": "S-lFBzloL2Y"
   },
   "na/abc-news": {
     "name": "ABC News",
     "genre": "optional",
-    "hlsUrl": "https://lnc-abc-news.tubi.video/index.m3u8",
-    "fallbackVideoId": ""
+    "hlsUrl": "",
+    "fallbackVideoId": "iipR5yUp36o"
   },
   "na/cbs-news": {
     "name": "CBS News",
@@ -62,8 +62,8 @@
   "na/cbc-news": {
     "name": "CBC News",
     "genre": "optional",
-    "hlsUrl": "https://cbcnewshd-f.akamaihd.net/i/cbcnews_1@8981/index_2500_av-p.m3u8",
-    "fallbackVideoId": "jxP_h3V-Dv8"
+    "hlsUrl": "",
+    "fallbackVideoId": "5vfaDsMhCF4"
   },
   "na/ctv-news": {
     "name": "CTV News",
@@ -554,7 +554,7 @@
   "oc/abc-news-au": {
     "name": "ABC News Australia",
     "genre": "optional",
-    "hlsUrl": "https://abc-iview-mediapackagestreams-2.akamaized.net/out/v1/6e1cc6d25ec0480ea099a5399d73bc4b/index.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": "vOTiJkg1voo"
   }
 }

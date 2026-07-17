@@ -38,8 +38,8 @@
   "na/newsmax": {
     "name": "Newsmax",
     "genre": "optional",
-    "hlsUrl": "https://nmxlive.akamaized.net/hls/live/529965/Live_1/4.m3u8",
-    "fallbackVideoId": "S-lFBzloL2Y"
+    "hlsUrl": "",
+    "fallbackVideoId": "oJvKPXZILT0"
   },
   "na/abc-news": {
     "name": "ABC News",

@@ -3,7 +3,7 @@
     "name": "Bloomberg",
     "genre": "full",
     "hlsUrl": "https://channel-surfer.lovable.app/bloomberg.m3u8",
-    "fallbackVideoId": "iEpJwprxDdk"
+    "fallbackVideoId": "QB5BNdBFujE"
   },
   "na/cnbc": {
     "name": "CNBC",
@@ -357,13 +357,13 @@
     "name": "CTI News (Taiwan)",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "vr3XyVCR4T0"
   },
   "asia/wion": {
     "name": "WION",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "vfszY1JYbMc"
   },
   "asia/ndtv": {
     "name": "NDTV 24x7",
@@ -404,8 +404,8 @@
   "asia/abp-news": {
     "name": "ABP News",
     "genre": "optional",
-    "hlsUrl": "https://abplivetv.pc.cdn.bitgravity.com/httppush/abp_livetv/abp_abpnews/master.m3u8",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://d2l4ar6y3mrs4k.cloudfront.net/live-streaming/abpnews-livetv/master.m3u8",
+    "fallbackVideoId": "nyd-xznCpJc"
   },
   "me/alarabiya": {
     "name": "AlArabiya",
@@ -435,7 +435,7 @@
     "name": "TRT World",
     "genre": "optional",
     "hlsUrl": "https://tv-trtworld.medya.trt.com.tr/master.m3u8",
-    "fallbackVideoId": "ABfFhWzWs0s"
+    "fallbackVideoId": "b8lPrtjmnmw"
   },
   "me/iran-intl": {
     "name": "Iran International",
@@ -458,7 +458,7 @@
   "me/i24-news": {
     "name": "i24NEWS (Israel)",
     "genre": "optional",
-    "hlsUrl": "https://bcovlive-a.akamaihd.net/6e3dd61ac4c34d6f8fb9698b565b9f50/eu-central-1/5377161796001/playlist-all_dvr.m3u8",
+    "hlsUrl": "https://i24newsenglish-cdn.encoders.immergo.tv/master.m3u8",
     "fallbackVideoId": "myKybZUK0IA"
   },
   "me/asharq-news": {

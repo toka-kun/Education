@@ -1,5 +1,4 @@
 [
-  // Sakana AI モデル
   {
     apiName: 'sakana/sakana-namazu',
     displayName: 'Sakana Namazu',
@@ -11,7 +10,6 @@
     shortName: 'Fugu Ultra'
   },
 
-  // OpenAI モデル
   {
     apiName: 'openai/gpt-oss-120b',
     displayName: 'GPT-OSS 120B',
@@ -33,7 +31,6 @@
     shortName: '5.6 Sol'
   },
 
-  // Anthropic モデル
   {
     apiName: 'anthropic/claude-haiku-4-5',
     displayName: 'Claude Haiku 4.5',
@@ -55,7 +52,6 @@
     shortName: 'Fable 5'
   },
 
-  // Google モデル
   {
     apiName: 'google/gemma-4-31b-it',
     displayName: 'Gemma 4 31B IT',
@@ -77,14 +73,12 @@
     shortName: '3.1 Pro'
   },
 
-  // Meta モデル
   {
     apiName: 'meta/muse-spark-1.2',
     displayName: 'Muse Spark 1.2',
     shortName: 'Muse Spark 1.2'
   },
 
-  // xAI モデル
   {
     apiName: 'x-ai/grok-4.6',
     displayName: 'Grok 4.6',

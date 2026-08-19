@@ -1,87 +1,93 @@
 [
+  // Sakana AI モデル
   {
-    apiName: 'sakana/sakana-namazu',
-    displayName: 'Sakana Namazu',
-    shortName: 'Sakana Namazu'
+    "apiName": "sakana/sakana-namazu",
+    "displayName": "Sakana Namazu",
+    "shortName": "Sakana Namazu"
   },
   {
-    apiName: 'sakana/fugu-ultra',
-    displayName: 'Fugu Ultra',
-    shortName: 'Fugu Ultra'
-  },
-
-  {
-    apiName: 'openai/gpt-oss-120b',
-    displayName: 'GPT-OSS 120B',
-    shortName: 'OSS 120B'
-  },
-  {
-    apiName: 'openai/gpt-5.6-luna',
-    displayName: 'GPT-5.6 Luna',
-    shortName: '5.6 Luna'
-  },
-  {
-    apiName: 'openai/gpt-5.6-terra',
-    displayName: 'GPT-5.6 Terra',
-    shortName: '5.6 Terra'
-  },
-  {
-    apiName: 'openai/gpt-5.6-sol',
-    displayName: 'GPT-5.6 Sol',
-    shortName: '5.6 Sol'
+    "apiName": "sakana/fugu-ultra",
+    "displayName": "Fugu Ultra",
+    "shortName": "Fugu Ultra"
   },
 
+  // OpenAI モデル
   {
-    apiName: 'anthropic/claude-haiku-4-5',
-    displayName: 'Claude Haiku 4.5',
-    shortName: 'Haiku 4.5'
+    "apiName": "openai/gpt-oss-120b",
+    "displayName": "GPT-OSS 120B",
+    "shortName": "OSS 120B"
   },
   {
-    apiName: 'anthropic/claude-sonnet-5',
-    displayName: 'Claude Sonnet 5',
-    shortName: 'Sonnet 5'
+    "apiName": "openai/gpt-5.6-luna",
+    "displayName": "GPT-5.6 Luna",
+    "shortName": "5.6 Luna"
   },
   {
-    apiName: 'anthropic/claude-opus-5',
-    displayName: 'Claude Opus 5',
-    shortName: 'Opus 5'
+    "apiName": "openai/gpt-5.6-terra",
+    "displayName": "GPT-5.6 Terra",
+    "shortName": "5.6 Terra"
   },
   {
-    apiName: 'anthropic/claude-fable-5',
-    displayName: 'Claude Fable 5',
-    shortName: 'Fable 5'
-  },
-
-  {
-    apiName: 'google/gemma-4-31b-it',
-    displayName: 'Gemma 4 31B IT',
-    shortName: 'Gemma 4 31B'
-  },
-  {
-    apiName: 'google/gemini-3.5-flash-lite',
-    displayName: 'Gemini 3.5 Flash-Lite',
-    shortName: '3.5 Flash-Lite'
-  },
-  {
-    apiName: 'google/gemini-3.7-flash',
-    displayName: 'Gemini 3.7 Flash',
-    shortName: '3.7 Flash'
-  },
-  {
-    apiName: 'google/gemini-3.1-pro-preview',
-    displayName: 'Gemini 3.1 Pro',
-    shortName: '3.1 Pro'
+    "apiName": "openai/gpt-5.6-sol",
+    "displayName": "GPT-5.6 Sol",
+    "shortName": "5.6 Sol"
   },
 
+  // Anthropic モデル
   {
-    apiName: 'meta/muse-spark-1.2',
-    displayName: 'Muse Spark 1.2',
-    shortName: 'Muse Spark 1.2'
+    "apiName": "anthropic/claude-haiku-4-5",
+    "displayName": "Claude Haiku 4.5",
+    "shortName": "Haiku 4.5"
+  },
+  {
+    "apiName": "anthropic/claude-sonnet-5",
+    "displayName": "Claude Sonnet 5",
+    "shortName": "Sonnet 5"
+  },
+  {
+    "apiName": "anthropic/claude-opus-5",
+    "displayName": "Claude Opus 5",
+    "shortName": "Opus 5"
+  },
+  {
+    "apiName": "anthropic/claude-fable-5",
+    "displayName": "Claude Fable 5",
+    "shortName": "Fable 5"
   },
 
+  // Google モデル
   {
-    apiName: 'x-ai/grok-4.6',
-    displayName: 'Grok 4.6',
-    shortName: 'Grok 4.6'
+    "apiName": "google/gemma-4-31b-it",
+    "displayName": "Gemma 4 31B IT",
+    "shortName": "Gemma 4 31B"
+  },
+  {
+    "apiName": "google/gemini-3.5-flash-lite",
+    "displayName": "Gemini 3.5 Flash-Lite",
+    "shortName": "3.5 Flash-Lite"
+  },
+  {
+    "apiName": "google/gemini-3.7-flash",
+    "displayName": "Gemini 3.7 Flash",
+    "shortName": "3.7 Flash"
+  },
+  {
+    "apiName": "google/gemini-3.1-pro-preview",
+    "displayName": "Gemini 3.1 Pro",
+    "shortName": "3.1 Pro"
+  },
+
+  // Meta モデル
+  {
+    "apiName": "meta/muse-spark-1.2",
+    "displayName": "Muse Spark 1.2",
+    "shortName": "Muse Spark 1.2"
+  },
+
+  // xAI モデル
+  {
+    "apiName": "x-ai/grok-4.6",
+    "displayName": "Grok 4.6",
+    "shortName": "Grok 4.6"
   }
 ]

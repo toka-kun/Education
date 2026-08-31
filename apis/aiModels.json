@@ -1,87 +1,155 @@
-[
-  {
-    "apiName": "sakana/sakana-namazu",
+{
+  "sakana/sakana-namazu": {
+    "provider": "🇯🇵 Sakana AI",
     "displayName": "Sakana Namazu",
-    "shortName": "Sakana Namazu"
+    "shortName": "Sakana Namazu",
+    "cost": "0.95/4.00"
   },
-  {
-    "apiName": "sakana/fugu-ultra",
+  "sakana/fugu-ultra": {
+    "provider": "🇯🇵 Sakana AI",
     "displayName": "Fugu Ultra",
-    "shortName": "Fugu Ultra"
+    "shortName": "Fugu Ultra",
+    "cost": "5.00/30.00"
   },
 
-  {
-    "apiName": "openai/gpt-oss-120b",
-    "displayName": "GPT-OSS 120B",
-    "shortName": "OSS 120B"
-  },
-  {
-    "apiName": "openai/gpt-5.6-luna",
-    "displayName": "GPT-5.6 Luna",
-    "shortName": "5.6 Luna"
-  },
-  {
-    "apiName": "openai/gpt-5.6-terra",
-    "displayName": "GPT-5.6 Terra",
-    "shortName": "5.6 Terra"
-  },
-  {
-    "apiName": "openai/gpt-5.6-sol",
-    "displayName": "GPT-5.6 Sol",
-    "shortName": "5.6 Sol"
-  },
-
-  {
-    "apiName": "anthropic/claude-haiku-4-5",
-    "displayName": "Claude Haiku 4.5",
-    "shortName": "Haiku 4.5"
-  },
-  {
-    "apiName": "anthropic/claude-sonnet-5",
-    "displayName": "Claude Sonnet 5",
-    "shortName": "Sonnet 5"
-  },
-  {
-    "apiName": "anthropic/claude-opus-5",
-    "displayName": "Claude Opus 5",
-    "shortName": "Opus 5"
-  },
-  {
-    "apiName": "anthropic/claude-fable-5",
-    "displayName": "Claude Fable 5",
-    "shortName": "Fable 5"
-  },
-
-  {
-    "apiName": "google/gemma-4-31b-it",
+  "google/gemma-4-31b-it": {
+    "provider": "🇺🇸 Google",
     "displayName": "Gemma 4 31B IT",
-    "shortName": "Gemma 4 31B"
+    "shortName": "Gemma 4 31B",
+    "cost": "0.13/0.38"
   },
-  {
-    "apiName": "google/gemini-3.5-flash-lite",
+  "google/gemini-3.5-flash-lite": {
+    "provider": "🇺🇸 Google",
     "displayName": "Gemini 3.5 Flash-Lite",
-    "shortName": "3.5 Flash-Lite"
+    "shortName": "Gemini 3.5 Flash-Lite",
+    "cost": "0.30/2.50"
   },
-  {
-    "apiName": "google/gemini-3.7-flash",
+  "google/gemini-3.7-flash": {
+    "provider": "🇺🇸 Google",
     "displayName": "Gemini 3.7 Flash",
-    "shortName": "3.7 Flash"
+    "shortName": "Gemini 3.7 Flash",
+    "cost": "0.75/3.75"
   },
-  {
-    "apiName": "google/gemini-3.1-pro-preview",
+  "google/gemini-3.1-pro-preview": {
+    "provider": "🇺🇸 Google",
     "displayName": "Gemini 3.1 Pro",
-    "shortName": "3.1 Pro"
+    "shortName": "Gemini 3.1 Pro",
+    "cost": "2.00/12.00"
   },
 
-  {
-    "apiName": "meta/muse-spark-1.2",
+  "openai/gpt-oss-120b": {
+    "provider": "🇺🇸 OpenAI",
+    "displayName": "GPT-OSS 120B",
+    "shortName": "OSS 120B",
+    "cost": "0.04/0.17"
+  },
+  "openai/gpt-5.6-luna": {
+    "provider": "🇺🇸 OpenAI",
+    "displayName": "GPT-5.6 Luna",
+    "shortName": "5.6 Luna",
+    "cost": "0.20/1.20"
+  },
+  "openai/gpt-5.6-terra": {
+    "provider": "🇺🇸 OpenAI",
+    "displayName": "GPT-5.6 Terra",
+    "shortName": "5.6 Terra",
+    "cost": "2.00/12.00"
+  },
+  "openai/gpt-5.6-sol": {
+    "provider": "🇺🇸 OpenAI",
+    "displayName": "GPT-5.6 Sol",
+    "shortName": "5.6 Sol",
+    "cost": "4.00/20.00"
+  },
+
+  "anthropic/claude-haiku-4-5": {
+    "provider": "🇺🇸 Anthropic",
+    "displayName": "Claude Haiku 4.5",
+    "shortName": "Haiku 4.5",
+    "cost": "1.00/5.00"
+  },
+  "anthropic/claude-sonnet-5": {
+    "provider": "🇺🇸 Anthropic",
+    "displayName": "Claude Sonnet 5",
+    "shortName": "Sonnet 5",
+    "cost": "2.00/10.00"
+  },
+  "anthropic/claude-opus-5": {
+    "provider": "🇺🇸 Anthropic",
+    "displayName": "Claude Opus 5",
+    "shortName": "Opus 5",
+    "cost": "5.00/25.00"
+  },
+  "anthropic/claude-fable-5": {
+    "provider": "🇺🇸 Anthropic",
+    "displayName": "Claude Fable 5",
+    "shortName": "Fable 5",
+    "cost": "10.00/50.00"
+  },
+
+  "meta/muse-glimmer-30b": {
+    "provider": "🇺🇸 Meta",
+    "displayName": "Muse Glimmer 30B",
+    "shortName": "Muse Glimmer 30B",
+    "cost": "0.35/1.50"
+  },
+  "meta/muse-spark-1.2": {
+    "provider": "🇺🇸 Meta",
     "displayName": "Muse Spark 1.2",
-    "shortName": "Muse Spark 1.2"
+    "shortName": "Muse Spark 1.2",
+    "cost": "1.25/4.25"
   },
 
-  {
-    "apiName": "x-ai/grok-4.6",
+  "x-ai/grok-4.6": {
+    "provider": "🇺🇸 xAI",
     "displayName": "Grok 4.6",
-    "shortName": "Grok 4.6"
+    "shortName": "Grok 4.6",
+    "cost": "2.00/6.00"
+  },
+
+  "deepseek-ai/deepseek-v4-flash-0731": {
+    "provider": "🇨🇳 DeepSeek",
+    "displayName": "DeepSeek V4 Flash",
+    "shortName": "V4 Flash",
+    "cost": "0.22/0.66"
+  },
+  "deepseek/deepseek-v4-pro-0813": {
+    "provider": "🇨🇳 DeepSeek",
+    "displayName": "DeepSeek V4 Pro",
+    "shortName": "V4 Pro",
+    "cost": "0.66/1.98"
+  },
+
+  "qwen/qwen3.8-flash": {
+    "provider": "🇨🇳 Qwen",
+    "displayName": "Qwen3.8 Flash",
+    "shortName": "Qwen3.8 Flash",
+    "cost": "0.15/0.47"
+  },
+  "qwen/qwen3.8-max": {
+    "provider": "🇨🇳 Qwen",
+    "displayName": "Qwen3.8 Max",
+    "shortName": "Qwen3.8 Max",
+    "cost": "2.00/6.00"
+  },
+
+  "z-ai/glm-5.3-flash": {
+    "provider": "🇨🇳 Z.AI",
+    "displayName": "GLM 5.3 Flash",
+    "shortName": "GLM 5.3 Flash",
+    "cost": "0.075/0.25"
+  },
+  "z-ai/glm-5.3": {
+    "provider": "🇨🇳 Z.AI",
+    "displayName": "GLM 5.3",
+    "shortName": "GLM 5.3",
+    "cost": "1.40/4.40"
+  },
+
+  "moonshotai/kimi-k3": {
+    "provider": "🇨🇳 Moonshot AI",
+    "displayName": "Kimi K3",
+    "shortName": "Kimi K3",
+    "cost": "3.00/15.00"
   }
-]
+}

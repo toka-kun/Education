@@ -4,14 +4,14 @@
     "displayName": "Gemma 4 26B A4B IT",
     "shortName": "Gemma 4 26B A4B",
     "cost": "0.00/0.00",
-    "tags": []
+    "tags": ["free"]
   },
   "google/gemma-4-31b-it": {
     "provider": "🇺🇸 Google",
     "displayName": "Gemma 4 31B IT",
     "shortName": "Gemma 4 31B",
     "cost": "0.00/0.00",
-    "tags": []
+    "tags": ["free"]
   },
   "google/gemini-3.5-flash-lite": {
     "provider": "🇺🇸 Google",
@@ -102,7 +102,7 @@
     "displayName": "Muse Spark 1.1",
     "shortName": "Muse Spark 1.1",
     "cost": "1.25/4.25",
-    "tags": [high]
+    "tags": ["high"]
   },
   "x-ai/grok-4.6": {
     "provider": "🇺🇸 xAI",
@@ -165,7 +165,7 @@
     "displayName": "GLM 5.3",
     "shortName": "GLM 5.3",
     "cost": "1.40/4.40",
-    "tags": []
+    "tags": ["high"]
   },
   "moonshotai/kimi-k3": {
     "provider": "🇨🇳 Moonshot AI",

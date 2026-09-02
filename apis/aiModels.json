@@ -1,5 +1,5 @@
 {
-  "google/gemma-4-26b-a4b-it:free": {
+  "google/gemma-4-26b-a4b-it": {
     "provider": "🇺🇸 Google",
     "displayName": "Gemma 4 26B A4B IT",
     "shortName": "Gemma 4 26B A4B",
@@ -8,7 +8,7 @@
     "isRecommended": false,
     "isDefault": false
   },
-  "google/gemma-4-31b-it:free": {
+  "google/gemma-4-31b-it": {
     "provider": "🇺🇸 Google",
     "displayName": "Gemma 4 31B IT",
     "shortName": "Gemma 4 31B",

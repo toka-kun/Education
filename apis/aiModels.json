@@ -83,10 +83,10 @@
     "cost": "5.00/25.00",
     "tags": ["high"]
   },
-  "anthropic/claude-fable-5": {
+  "anthropic/claude-fable-5-1": {
     "provider": "🇺🇸 Anthropic",
-    "displayName": "Claude Fable 5",
-    "shortName": "Fable 5",
+    "displayName": "Claude Fable 5.1",
+    "shortName": "Fable 5.1",
     "cost": "10.00/50.00",
     "tags": ["high"]
   },

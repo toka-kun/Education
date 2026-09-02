@@ -1,5 +1,14 @@
 {
-  "google/gemma-4-31b-it": {
+  "google/gemma-4-26b-a4b-it:free": {
+    "provider": "🇺🇸 Google",
+    "displayName": "Gemma 4 26B A4B IT",
+    "shortName": "Gemma 4 26B A4B",
+    "cost": "0.00/0.00",
+    "isExpensive": false,
+    "isRecommended": false,
+    "isDefault": false
+  },
+  "google/gemma-4-31b-it:free": {
     "provider": "🇺🇸 Google",
     "displayName": "Gemma 4 31B IT",
     "shortName": "Gemma 4 31B",

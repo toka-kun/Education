@@ -114,13 +114,13 @@
   "sakana/sakana-namazu": {
     "provider": "🇯🇵 Sakana AI",
     "displayName": "Sakana Namazu",
-    "shortName": "Sakana Namazu",
+    "shortName": "Namazu",
     "cost": "0.95/4.00",
     "tags": ["recommended"]
   },
   "sakana/fugu-ultra": {
     "provider": "🇯🇵 Sakana AI",
-    "displayName": "Fugu Ultra",
+    "displayName": "Sakana Fugu Ultra",
     "shortName": "Fugu Ultra",
     "cost": "5.00/30.00",
     "tags": ["expensive"]

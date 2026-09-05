@@ -62,6 +62,13 @@
     "cost": "4.00/20.00",
     "tags": ["expensive"]
   },
+  "openai/gpt-6-astra": {
+    "provider": "🇺🇸 OpenAI",
+    "displayName": "GPT-6 Astra",
+    "shortName": "6 Astra",
+    "cost": "10.00/50.00",
+    "tags": ["expensive"]
+  },
   "anthropic/claude-haiku-4-5": {
     "provider": "🇺🇸 Anthropic",
     "displayName": "Claude Haiku 4.5",

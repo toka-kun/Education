@@ -33,11 +33,11 @@
   },
   "google/gemini-3.1-pro-preview": {
     "provider": "🇺🇸 Google",
-    "displayName": "Gemini 3.1 Pro",
+    "displayName": "Gemini 3.1 Pro Preview",
     "shortName": "Gemini 3.1 Pro",
     "cost": "2.00/12.00",
     "tags": ["expensive"],
-    "desc": ""
+    "desc": "2026年2月からずっと更新されておらず、性能も3.8 Flashに追い抜かれているので非推奨"
   },
   "openai/gpt-oss-120b": {
     "provider": "🇺🇸 OpenAI",
@@ -53,7 +53,7 @@
     "shortName": "5.6 Luna",
     "cost": "0.20/1.20",
     "tags": ["recommended", "default"],
-    "desc": ""
+    "desc": "2026年7月末の値下げで80%安くなったのでおすすめ。ちなみにChatGPTではこれがデフォルトで使われています。"
   },
   "openai/gpt-5.6-terra": {
     "provider": "🇺🇸 OpenAI",
@@ -61,7 +61,7 @@
     "shortName": "5.6 Terra",
     "cost": "2.00/12.00",
     "tags": ["expensive"],
-    "desc": ""
+    "desc": "2026年7月末の値下げで20%安くなった"
   },
   "openai/gpt-5.6-sol": {
     "provider": "🇺🇸 OpenAI",
@@ -69,7 +69,7 @@
     "shortName": "5.6 Sol",
     "cost": "4.00/20.00",
     "tags": ["very-expensive"],
-    "desc": ""
+    "desc": "少なくとも2026年11月21日まではこの20%引きの料金"
   },
   "openai/gpt-6-astra": {
     "provider": "🇺🇸 OpenAI",
@@ -125,7 +125,7 @@
     "shortName": "Muse Spark 1.1",
     "cost": "1.25/4.25",
     "tags": ["expensive"],
-    "desc": ""
+    "desc": "1.2と1.3がなかったので1.1で代用"
   },
   "x-ai/grok-4.6": {
     "provider": "🇺🇸 SpaceXAI (xAI)",

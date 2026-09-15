@@ -131,7 +131,7 @@
     "models": {
       "meta/muse-glimmer-30b": {
         "displayName": "Muse Glimmer 30B",
-        "shortName": "Muse Glimmer 30B",
+        "shortName": "Muse Glimmer",
         "cost": "0.30/1.10",
         "tags": [],
         "effort": ["none"],
@@ -193,20 +193,20 @@
     "desc": "",
     "models": {
       "deepseek/deepseek-v4.1-flash": {
-        "displayName": "DeepSeek V4.1 Flash",
-        "shortName": "V4.1 Flash",
+        "displayName": "DeepSeek V4.1-Flash",
+        "shortName": "V4.1-Flash",
         "cost": "0.15/0.60",
         "tags": [],
         "effort": ["none"],
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {
-        "displayName": "DeepSeek V4 Pro 0813",
-        "shortName": "V4 Pro 0813",
+        "displayName": "DeepSeek V4-Pro 0813",
+        "shortName": "V4-Pro 0813",
         "cost": "0.66/1.98",
         "tags": [],
         "effort": ["none"],
-        "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
+        "desc": "9月14日からV4.1-Proの提供開始まで、すべてのリクエストはV4.1-Flashにルーティングされ、V4.1-Flashの料金が適用される。日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       }
     }
   },

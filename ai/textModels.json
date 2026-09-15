@@ -98,7 +98,7 @@
         "cost": "1.00/5.00",
         "tags": [],
         "effort": ["none"],
-        "desc": "2025年10月からずっこ更新されていないので非推奨"
+        "desc": "2025年10月からずっと更新されていないので非推奨"
       },
       "anthropic/claude-sonnet-5": {
         "displayName": "Claude Sonnet 5",
@@ -171,9 +171,17 @@
         "effort": ["none"],
         "desc": ""
       },
-      "sakana/fugu-ultra": {
-        "displayName": "Sakana Fugu Ultra",
-        "shortName": "Fugu Ultra",
+      "sakana/fugu-max": {
+        "displayName": "Sakana Fugu Max",
+        "shortName": "Fugu Max",
+        "cost": "2.00/6.00",
+        "tags": ["expensive"],
+        "effort": ["none"],
+        "desc": ""
+      },
+      "sakana/fugu-ultra-v2": {
+        "displayName": "Sakana Fugu Ultra v2",
+        "shortName": "Fugu Ultra v2",
         "cost": "5.00/30.00",
         "tags": ["very-expensive"],
         "effort": ["none"],

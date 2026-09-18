@@ -33,7 +33,7 @@
     "name": "Fox News",
     "genre": "optional",
     "hlsUrl": "https://247preview.foxnews.com/hls/live/2020027/fncv3preview/primary.m3u8",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "C96oohpWBGw"
   },
   "na/newsmax": {
     "name": "Newsmax",
@@ -51,13 +51,13 @@
     "name": "CBS News",
     "genre": "optional",
     "hlsUrl": "https://cbsn-us.cbsnstream.cbsnews.com/out/v1/55a8648e8f134e82a470f83d562deeca/master.m3u8",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "tcr5BPl3hEE"
   },
   "na/nbc-news": {
     "name": "NBC News",
     "genre": "optional",
     "hlsUrl": "https://dai2.xumo.com/amagi_hls_data_xumo1212A-xumo-nbcnewsnow/CDN/master.m3u8",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "LedJI24EZ8c"
   },
   "na/cbc-news": {
     "name": "CBC News",
@@ -231,7 +231,7 @@
     "name": "France Info",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "NG7ZX42nZKc"
   },
   "eu/bfmtv": {
     "name": "BFMTV",
@@ -291,7 +291,7 @@
     "name": "C5N",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "j6oh4Kqz3UM"
   },
   "latam/milenio": {
     "name": "MILENIO",
@@ -423,13 +423,13 @@
     "name": "Al Hadath",
     "genre": "optional",
     "hlsUrl": "https://av.alarabiya.net/alarabiapublish/alhadath.smil/playlist.m3u8",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "au8t81S0tag"
   },
   "me/sky-news-arabia": {
     "name": "Sky News Arabia",
     "genre": "optional",
     "hlsUrl": "https://live-stream.skynewsarabia.com/c-horizontal-channel/horizontal-stream/index.m3u8",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "ppgTP8xQQsM"
   },
   "me/trt-world": {
     "name": "TRT World",
@@ -549,7 +549,7 @@
     "name": "Arise News",
     "genre": "optional",
     "hlsUrl": "https://liveedge-arisenews.visioncdn.com/live-hls/arisenews/arisenews/arisenews_web/master.m3u8",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "Fy_03Aorpq8"
   },
   "oc/abc-news-au": {
     "name": "ABC News Australia",

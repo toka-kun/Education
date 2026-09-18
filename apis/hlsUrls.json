@@ -5,6 +5,12 @@
     "hlsUrl": "",
     "fallbackVideoId": "f39oHo6vFLg"
   },
+  "na/cnbc": {
+    "name": "CNBC",
+    "genre": "full",
+    "hlsUrl": "",
+    "fallbackVideoId": "9NyxcX3rhQs"
+  },
   "na/cnn": {
     "name": "CNN",
     "genre": "full",
@@ -70,12 +76,6 @@
     "genre": "optional",
     "hlsUrl": "https://reuters-reutersnow-1-eu.rakuten.wurl.tv/playlist.m3u8",
     "fallbackVideoId": ""
-  },
-  "na/cnbc": {
-    "name": "CNBC",
-    "genre": "full",
-    "hlsUrl": "",
-    "fallbackVideoId": "9NyxcX3rhQs"
   },
   "eu/sky": {
     "name": "SkyNews",

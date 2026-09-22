@@ -15,24 +15,24 @@
     "name": "CNN",
     "genre": "full",
     "hlsUrl": "",
-    "fallbackVideoId": "GotlA1KKWoo"
+    "fallbackVideoId": ""
   },
   "na/yahoo": {
     "name": "Yahoo Finance",
     "genre": "tech",
     "hlsUrl": "",
-    "fallbackVideoId": "KQp-e_XQnDE"
+    "fallbackVideoId": ""
   },
   "na/nasa": {
     "name": "Sen Space Live",
     "genre": "tech",
     "hlsUrl": "",
-    "fallbackVideoId": "fO9e9jnhYK8"
+    "fallbackVideoId": ""
   },
   "na/fox-news": {
     "name": "Fox News",
     "genre": "optional",
-    "hlsUrl": "https://247preview.foxnews.com/hls/live/2020027/fncv3preview/primary.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": "C96oohpWBGw"
   },
   "na/newsmax": {
@@ -50,13 +50,13 @@
   "na/cbs-news": {
     "name": "CBS News",
     "genre": "optional",
-    "hlsUrl": "https://cbsn-us.cbsnstream.cbsnews.com/out/v1/55a8648e8f134e82a470f83d562deeca/master.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": "tcr5BPl3hEE"
   },
   "na/nbc-news": {
     "name": "NBC News",
     "genre": "optional",
-    "hlsUrl": "https://dai2.xumo.com/amagi_hls_data_xumo1212A-xumo-nbcnewsnow/CDN/master.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": "LedJI24EZ8c"
   },
   "na/cbc-news": {
@@ -68,62 +68,62 @@
   "na/ctv-news": {
     "name": "CTV News",
     "genre": "optional",
-    "hlsUrl": "https://pe-fa-lp02a.9c9media.com/live/News1Digi/p/hls/00000201/38ef78f479b07aa0/index/0c6a10a2/live/stream/h264/v1/3500000/manifest.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "na/reuters-tv": {
     "name": "Reuters TV",
     "genre": "optional",
-    "hlsUrl": "https://reuters-reutersnow-1-eu.rakuten.wurl.tv/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/sky": {
     "name": "SkyNews",
     "genre": "full",
-    "hlsUrl": "https://linear901-oo-hls0-prd-gtm.delivery.skycdp.com/17501/sde-fast-skynews/master.m3u8",
-    "fallbackVideoId": "xDWQ3LkccY8"
+    "hlsUrl": "",
+    "fallbackVideoId": ""
   },
   "eu/euronews": {
     "name": "Euronews",
     "genre": "full",
-    "hlsUrl": "https://dash4.antik.sk/live/test_euronews/playlist.m3u8",
-    "fallbackVideoId": "pykpO5kQJ98"
+    "hlsUrl": "",
+    "fallbackVideoId": ""
   },
   "eu/dw": {
     "name": "DW",
     "genre": "full",
-    "hlsUrl": "https://dwamdstream103.akamaized.net/hls/live/2015526/dwstream103/master.m3u8",
-    "fallbackVideoId": "LuKwFajn37U"
+    "hlsUrl": "",
+    "fallbackVideoId": ""
   },
   "eu/france24": {
     "name": "France 24",
     "genre": "full",
-    "hlsUrl": "https://amg00106-france24-france24-samsunguk-qvpp8.amagi.tv/playlist/amg00106-france24-france24-samsunguk/playlist.m3u8",
-    "fallbackVideoId": "HvZt-nh9sGg"
+    "hlsUrl": "",
+    "fallbackVideoId": ""
   },
   "eu/bbc-news": {
     "name": "BBC News",
     "genre": "optional",
-    "hlsUrl": "https://vs-hls-push-uk.live.fastly.md.bbci.co.uk/x=4/i=urn:bbc:pips:service:bbc_news_channel_hd/iptv_hd_abr_v1.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/gb-news": {
     "name": "GB News",
     "genre": "optional",
-    "hlsUrl": "https://live-gbnews.simplestreamcdn.com/live5/gbnews/bitrate1.isml/manifest.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/the-guardian": {
     "name": "The Guardian",
     "genre": "optional",
-    "hlsUrl": "https://rakuten-guardian-1-ie.samsung.wurl.tv/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/france24-en": {
     "name": "France 24 English",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "HvZt-nh9sGg"
+    "fallbackVideoId": ""
   },
   "eu/rtve": {
     "name": "RTVE 24H",
@@ -134,13 +134,13 @@
   "eu/phoenix": {
     "name": "Phoenix",
     "genre": "optional",
-    "hlsUrl": "https://zdf-hls-19.akamaized.net/hls/live/2016502/de/veryhigh/master.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/rtp3": {
     "name": "RTP3",
     "genre": "optional",
-    "hlsUrl": "https://streaming-live.rtp.pt/livetvhlsDVR/rtpnHDdvr.smil/playlist.m3u8?DVR=",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/trt-haber": {
@@ -153,7 +153,7 @@
     "name": "NTV",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "pqq5c6k70kk"
+    "fallbackVideoId": ""
   },
   "eu/cnn-turk": {
     "name": "CNN TURK",
@@ -170,20 +170,20 @@
   "eu/rt": {
     "name": "RT",
     "genre": "optional",
-    "hlsUrl": "https://rt-glb.rttv.com/dvr/rtnews/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/tvp-info": {
     "name": "TVP Info",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "3jKb-uThfrg"
+    "fallbackVideoId": ""
   },
   "eu/telewizja-republika": {
     "name": "Telewizja Republika",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "dzntyCTgJMQ"
+    "fallbackVideoId": ""
   },
   "eu/welt": {
     "name": "WELT",
@@ -194,14 +194,14 @@
   "eu/tagesschau24": {
     "name": "Tagesschau24",
     "genre": "optional",
-    "hlsUrl": "https://tagesschau.akamaized.net/hls/live/2020115/tagesschau/tagesschau_1/master.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/euronews-fr": {
     "name": "Euronews FR",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "NiRIbKwAejk"
+    "fallbackVideoId": ""
   },
   "eu/euronews-gr": {
     "name": "Euronews GR",
@@ -218,14 +218,14 @@
   "eu/ert-news": {
     "name": "ERT News",
     "genre": "optional",
-    "hlsUrl": "https://ertflix.ascdn.broadpeak.io/ertlive/ertnews/default/index.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/france24-fr": {
     "name": "France 24 FR",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "a47ckXKZjxI"
+    "fallbackVideoId": ""
   },
   "eu/france-info": {
     "name": "France Info",
@@ -242,19 +242,19 @@
   "eu/tv5monde-info": {
     "name": "TV5 Monde Info",
     "genre": "optional",
-    "hlsUrl": "https://ott.tv5monde.com/Content/HLS/Live/channel(info)/index.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/nrk1": {
     "name": "NRK1",
     "genre": "optional",
-    "hlsUrl": "https://nrk-nrk1.akamaized.net/21/0/hls/nrk_1/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "eu/aljazeera-balkans": {
     "name": "Al Jazeera Balkans",
     "genre": "optional",
-    "hlsUrl": "https://live-hls-web-ajb.getaj.net/AJB/index.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "latam/cnn-brasil": {
@@ -272,7 +272,7 @@
   "latam/record-news": {
     "name": "Record News",
     "genre": "optional",
-    "hlsUrl": "https://stream.ads.ottera.tv/playlist.m3u8?network_id=2116",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "latam/band-jornalismo": {
@@ -285,7 +285,7 @@
     "name": "TN (Todo Noticias)",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "cb12KmMMDJA"
+    "fallbackVideoId": ""
   },
   "latam/c5n": {
     "name": "C5N",
@@ -320,19 +320,19 @@
   "latam/dw-espanol": {
     "name": "DW Español",
     "genre": "optional",
-    "hlsUrl": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/stream04/streamPlaylist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "latam/rt-espanol": {
     "name": "RT Español",
     "genre": "optional",
-    "hlsUrl": "https://rt-esp.rttv.com/dvr/rtesp/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "latam/cgtn-espanol": {
     "name": "CGTN Español",
     "genre": "optional",
-    "hlsUrl": "https://news.cgtn.com/resource/live/espanol/cgtn-e.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "asia/tbs-news": {
@@ -368,20 +368,20 @@
   "asia/ndtv": {
     "name": "NDTV 24x7",
     "genre": "optional",
-    "hlsUrl": "https://ndtvindiaelemarchana.akamaized.net/hls/live/2003679/ndtvindia/master.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "asia/cgtn": {
     "name": "CGTN",
     "genre": "optional",
-    "hlsUrl": "https://news.cgtn.com/resource/live/english/cgtn-news.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "asia/cna-asia": {
     "name": "CNA (NewsAsia)",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "XWq5kBlakcQ"
+    "fallbackVideoId": ""
   },
   "asia/nhk-world": {
     "name": "NHK World Japan",
@@ -392,14 +392,14 @@
   "asia/arirang-news": {
     "name": "Arirang News",
     "genre": "optional",
-    "hlsUrl": "https://amdlive-ch01-ctnd-com.akamaized.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "asia/india-today": {
     "name": "India Today",
     "genre": "optional",
-    "hlsUrl": "https://indiatodaylive.akamaized.net/hls/live/2014320/indiatoday/indiatodaylive/playlist.m3u8",
-    "fallbackVideoId": "sYZtOFzM78M"
+    "hlsUrl": "",
+    "fallbackVideoId": ""
   },
   "asia/abp-news": {
     "name": "ABP News",
@@ -410,31 +410,31 @@
   "me/alarabiya": {
     "name": "AlArabiya",
     "genre": "full",
-    "hlsUrl": "https://live.alarabiya.net/alarabiapublish/alarabiya.smil/playlist.m3u8",
-    "fallbackVideoId": "n7eQejkXbnM"
+    "hlsUrl": "",
+    "fallbackVideoId": ""
   },
   "me/aljazeera": {
     "name": "AlJazeera",
     "genre": "full",
-    "hlsUrl": "https://live-hls-apps-aje-fa.getaj.net/AJE/index.m3u8",
-    "fallbackVideoId": "gCNeDWCI0vo"
+    "hlsUrl": "",
+    "fallbackVideoId": ""
   },
   "me/al-hadath": {
     "name": "Al Hadath",
     "genre": "optional",
-    "hlsUrl": "https://av.alarabiya.net/alarabiapublish/alhadath.smil/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": "au8t81S0tag"
   },
   "me/sky-news-arabia": {
     "name": "Sky News Arabia",
     "genre": "optional",
-    "hlsUrl": "https://live-stream.skynewsarabia.com/c-horizontal-channel/horizontal-stream/index.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": "ppgTP8xQQsM"
   },
   "me/trt-world": {
     "name": "TRT World",
     "genre": "optional",
-    "hlsUrl": "https://tv-trtworld.medya.trt.com.tr/master.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": "b8lPrtjmnmw"
   },
   "me/iran-intl": {
@@ -446,13 +446,13 @@
   "me/cgtn-arabic": {
     "name": "CGTN Arabic",
     "genre": "optional",
-    "hlsUrl": "https://news.cgtn.com/resource/live/arabic/cgtn-a.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "me/kan-11": {
     "name": "Kan 11",
     "genre": "optional",
-    "hlsUrl": "https://kan11.media.kan.org.il/hls/live/2024514/2024514/master.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "me/i24-news": {
@@ -465,54 +465,54 @@
     "name": "Asharq News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "f6VpkfV7m4Y"
+    "fallbackVideoId": ""
   },
   "me/aljazeera-arabic": {
     "name": "AlJazeera Arabic",
     "genre": "optional",
-    "hlsUrl": "https://live-hls-web-aja.getaj.net/AJA/index.m3u8",
-    "fallbackVideoId": "bNyUyrR0PHo"
+    "hlsUrl": "",
+    "fallbackVideoId": ""
   },
   "me/aljazeera-mubasher": {
     "name": "Al Jazeera Mubasher",
     "genre": "optional",
-    "hlsUrl": "https://live-hls-web-ajm.getaj.net/AJM/index.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "me/alarabiya-business": {
     "name": "Al Arabiya Business",
     "genre": "optional",
-    "hlsUrl": "https://live.alarabiya.net/alarabiapublish/aswaaq.smil/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "me/al-qahera-news": {
     "name": "Al Qahera News",
     "genre": "optional",
-    "hlsUrl": "https://bcovlive-a.akamaihd.net/d30cbb3350af4cb7a6e05b9eb1bfd850/eu-west-1/6057955906001/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "me/press-tv": {
     "name": "Press TV",
     "genre": "optional",
-    "hlsUrl": "https://cdnlive.presstv.ir/cdnlive/smil:cdnlive.smil/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "me/dw-arabic": {
     "name": "DW Arabic",
     "genre": "optional",
-    "hlsUrl": "https://dwamdstream103.akamaized.net/hls/live/2015526/dwstream103/index.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "me/rt-arabic": {
     "name": "RT Arabic",
     "genre": "optional",
-    "hlsUrl": "https://rt-arb.rttv.com/dvr/rtarab/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "me/rudaw": {
     "name": "Rudaw",
     "genre": "optional",
-    "hlsUrl": "https://svs.itworkscdn.net/rudawlive/rudawlive.smil/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "africa/africanews": {
@@ -542,19 +542,19 @@
   "africa/sabc-news": {
     "name": "SABC News",
     "genre": "optional",
-    "hlsUrl": "https://sabconetanw.cdn.mangomolo.com/news/smil:news.stream.smil/playlist.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": ""
   },
   "africa/arise-news": {
     "name": "Arise News",
     "genre": "optional",
-    "hlsUrl": "https://liveedge-arisenews.visioncdn.com/live-hls/arisenews/arisenews/arisenews_web/master.m3u8",
+    "hlsUrl": "",
     "fallbackVideoId": "Fy_03Aorpq8"
   },
   "oc/abc-news-au": {
     "name": "ABC News Australia",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "vOTiJkg1voo"
+    "fallbackVideoId": ""
   }
 }

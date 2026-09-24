@@ -7,7 +7,7 @@
         "shortName": "Gemma 4 26B A4B",
         "cost": "0.00/0.00",
         "tags": ["free"],
-        "effort": ["none"],
+        "effort": [],
         "desc": ""
       },
       "google/gemma-4-31b-it": {
@@ -15,7 +15,7 @@
         "shortName": "Gemma 4 31B",
         "cost": "0.00/0.00",
         "tags": ["free"],
-        "effort": ["none"],
+        "effort": [],
         "desc": ""
       },
       "google/gemini-3.5-flash-lite": {
@@ -23,7 +23,7 @@
         "shortName": "Gemini 3.5 Flash-Lite",
         "cost": "0.30/2.50",
         "tags": ["recommended"],
-        "effort": ["none"],
+        "effort": ["minimal", "low", "medium", "high"],
         "desc": ""
       },
       "google/gemini-3.8-flash": {
@@ -31,7 +31,7 @@
         "shortName": "Gemini 3.8 Flash",
         "cost": "0.75/3.75",
         "tags": ["recommended"],
-        "effort": ["none"],
+        "effort": ["low", "medium", "high"],
         "desc": "2027年1月からは2倍の通常価格"
       },
       "google/gemini-3.1-pro-preview": {
@@ -39,7 +39,7 @@
         "shortName": "Gemini 3.1 Pro",
         "cost": "2.00/12.00",
         "tags": ["expensive"],
-        "effort": ["none"],
+        "effort": ["low", "medium", "high"],
         "desc": "2026年2月からずっと更新されておらず、性能も3.8 Flashに追い抜かれているので非推奨"
       }
     }
@@ -52,7 +52,7 @@
         "shortName": "OSS 120B",
         "cost": "0.04/0.17",
         "tags": [],
-        "effort": ["none"],
+        "effort": ["low", "medium", "high"],
         "desc": ""
       },
       "openai/gpt-5.6-luna": {
@@ -60,15 +60,15 @@
         "shortName": "5.6 Luna",
         "cost": "0.20/1.20",
         "tags": ["recommended", "default"],
-        "effort": ["none", "minimal", "low", "medium", "high", "xhigh"],
-        "desc": "2026年7月末の値下げで80%安くなったのでおすすめ。ちなみにChatGPTではこれがデフォルトで使われています。"
+        "effort": ["none", "low", "medium", "high", "xhigh", "max"],
+        "desc": "2026年7月末の値下げで80%安くなったのでおすすめ。ちなみにChatGPTではこれがデフォルト"
       },
       "openai/gpt-5.6-terra": {
         "displayName": "GPT-5.6 Terra",
         "shortName": "5.6 Terra",
         "cost": "2.00/12.00",
         "tags": ["expensive"],
-        "effort": ["none", "minimal", "low", "medium", "high", "xhigh"],
+        "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "desc": "2026年7月末の値下げで20%安くなった"
       },
       "openai/gpt-5.6-sol": {
@@ -76,15 +76,31 @@
         "shortName": "5.6 Sol",
         "cost": "4.00/20.00",
         "tags": ["very-expensive"],
-        "effort": ["none", "minimal", "low", "medium", "high", "xhigh"],
+        "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "desc": "少なくとも2026年11月21日まではこの料金"
+      },
+      "openai/gpt-6-luna": {
+        "displayName": "GPT-6 Luna",
+        "shortName": "6 Luna",
+        "cost": "0.10/0.50",
+        "tags": ["recommended"],
+        "effort": ["none", "low", "medium", "high", "xhigh", "max"],
+        "desc": ""
+      },
+      "openai/gpt-6-sol": {
+        "displayName": "GPT-6 Sol",
+        "shortName": "6 Sol",
+        "cost": "2.00/10.00",
+        "tags": ["expensive"],
+        "effort": ["none", "low", "medium", "high", "xhigh", "max"],
+        "desc": ""
       },
       "openai/gpt-6-astra": {
         "displayName": "GPT-6 Astra",
         "shortName": "6 Astra",
         "cost": "10.00/50.00",
         "tags": ["very-expensive"],
-        "effort": ["none", "minimal", "low", "medium", "high", "xhigh"],
+        "effort": ["low", "medium", "high", "xhigh", "max"],
         "desc": ""
       }
     }
@@ -97,7 +113,7 @@
         "shortName": "Haiku 4.5",
         "cost": "1.00/5.00",
         "tags": [],
-        "effort": ["none"],
+        "effort": [],
         "desc": "2025年10月からずっと更新されていないので非推奨"
       },
       "anthropic/claude-sonnet-5": {
@@ -105,15 +121,15 @@
         "shortName": "Sonnet 5",
         "cost": "2.00/10.00",
         "tags": ["expensive"],
-        "effort": ["none"],
+        "effort": ["low", "medium", "high", "xhigh", "max"],
         "desc": ""
       },
-      "anthropic/claude-opus-5": {
-        "displayName": "Claude Opus 5",
-        "shortName": "Opus 5",
-        "cost": "5.00/25.00",
+      "anthropic/claude-opus-5-5": {
+        "displayName": "Claude Opus 5.5",
+        "shortName": "Opus 5.5",
+        "cost": "4.00/20.00",
         "tags": ["very-expensive"],
-        "effort": ["none"],
+        "effort": ["low", "medium", "high", "xhigh", "max"],
         "desc": ""
       },
       "anthropic/claude-fable-5-1": {
@@ -121,7 +137,7 @@
         "shortName": "Fable 5.1",
         "cost": "10.00/50.00",
         "tags": ["very-expensive"],
-        "effort": ["none"],
+        "effort": ["low", "medium", "high", "xhigh", "max"],
         "desc": ""
       }
     }
@@ -134,7 +150,7 @@
         "shortName": "Muse Glimmer",
         "cost": "0.30/1.10",
         "tags": [],
-        "effort": ["none"],
+        "effort": ["low", "medium", "high", "xhigh"],
         "desc": ""
       },
       "meta/muse-spark-1.1": {
@@ -142,7 +158,7 @@
         "shortName": "Muse Spark 1.1",
         "cost": "1.25/4.25",
         "tags": ["expensive"],
-        "effort": ["minimal", "low", "medium", "high", "xhigh"],
+        "effort": ["minimal", "low", "medium", "high", "xhigh", "max"],
         "desc": "1.2と1.3がなかったので1.1で代用"
       }
     }
@@ -155,7 +171,15 @@
         "shortName": "Grok 4.6",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
-        "effort": ["none"],
+        "effort": ["low", "medium", "high", "xhigh"],
+        "desc": ""
+      },
+      "x-ai/grok-4.7": {
+        "displayName": "Grok 4.7",
+        "shortName": "Grok 4.7",
+        "cost": "2.00/6.00",
+        "tags": ["expensive"],
+        "effort": ["low", "medium", "high", "xhigh"],
         "desc": ""
       }
     }
@@ -168,7 +192,7 @@
         "shortName": "Namazu",
         "cost": "0.95/4.00",
         "tags": ["recommended"],
-        "effort": ["none"],
+        "effort": ["none", "high"],
         "desc": ""
       },
       "sakana/fugu-max": {
@@ -176,7 +200,7 @@
         "shortName": "Fugu Max",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
-        "effort": ["none"],
+        "effort": ["high", "xhigh", "max"],
         "desc": ""
       },
       "sakana/fugu-ultra-v2": {
@@ -184,7 +208,7 @@
         "shortName": "Fugu Ultra v2",
         "cost": "5.00/30.00",
         "tags": ["very-expensive"],
-        "effort": ["none"],
+        "effort": ["high", "xhigh", "max"],
         "desc": ""
       }
     }
@@ -193,19 +217,19 @@
     "desc": "",
     "models": {
       "deepseek/deepseek-v4.1-flash": {
-        "displayName": "DeepSeek V4.1-Flash",
-        "shortName": "V4.1-Flash",
+        "displayName": "DeepSeek V4.1 Flash",
+        "shortName": "V4.1 Flash",
         "cost": "0.15/0.60",
         "tags": [],
-        "effort": ["none"],
+        "effort": ["low", "high", "max"],
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {
-        "displayName": "DeepSeek V4-Pro 0813",
-        "shortName": "V4-Pro 0813",
+        "displayName": "DeepSeek V4 Pro 0813",
+        "shortName": "V4 Pro 0813",
         "cost": "0.66/1.98",
         "tags": [],
-        "effort": ["none"],
+        "effort": ["low", "high", "max"],
         "desc": "9月14日からV4.1-Proの提供開始まで、すべてのリクエストはV4.1-Flashにルーティングされ、V4.1-Flashの料金が適用される。日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       }
     }
@@ -218,7 +242,7 @@
         "shortName": "Qwen3.8 Flash",
         "cost": "0.15/0.47",
         "tags": [],
-        "effort": ["none"],
+        "effort": [],
         "desc": ""
       },
       "qwen/qwen3.8-max-0902": {
@@ -226,12 +250,12 @@
         "shortName": "Qwen3.8 Max 0902",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
-        "effort": ["none"],
+        "effort": ["minimal", "low", "medium", "high", "xhigh"],
         "desc": ""
       }
     }
   },
-  "🇨🇳 Z.AI (Zhipu AI)": {
+  "🇨🇳 Z.ai (Zhipu AI)": {
     "desc": "",
     "models": {
       "z-ai/glm-5.3-flash": {
@@ -239,7 +263,7 @@
         "shortName": "GLM 5.3 Flash",
         "cost": "0.15/0.50",
         "tags": [],
-        "effort": ["none"],
+        "effort": ["low", "high", "max"],
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -247,7 +271,7 @@
         "shortName": "GLM 5.3",
         "cost": "1.40/4.40",
         "tags": ["expensive"],
-        "effort": ["none"],
+        "effort": ["low", "high", "max"],
         "desc": ""
       }
     }
@@ -260,7 +284,7 @@
         "shortName": "Kimi K3",
         "cost": "3.00/15.00",
         "tags": ["expensive"],
-        "effort": ["none"],
+        "effort": ["low", "high", "max"],
         "desc": ""
       }
     }

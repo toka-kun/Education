@@ -251,12 +251,6 @@
     "hlsUrl": "",
     "fallbackVideoId": ""
   },
-  "eu/aljazeera-balkans": {
-    "name": "Al Jazeera Balkans",
-    "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
-  },
   "latam/cnn-brasil": {
     "name": "CNN Brasil",
     "genre": "optional",

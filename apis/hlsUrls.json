@@ -3,552 +3,644 @@
     "name": "Bloomberg",
     "genre": "full",
     "hlsUrl": "",
-    "fallbackVideoId": "f39oHo6vFLg"
+    "fallbackVideoId": "f39oHo6vFLg",
+    "channelId": "UCIALMKvObZNtJ6AmdCLP7Lg"
   },
   "na/cnbc": {
     "name": "CNBC",
     "genre": "full",
     "hlsUrl": "",
-    "fallbackVideoId": "9NyxcX3rhQs"
+    "fallbackVideoId": "9NyxcX3rhQs",
+    "channelId": ""
   },
   "na/cnn": {
     "name": "CNN",
     "genre": "full",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "GotlA1KKWoo",
+    "channelId": ""
   },
   "na/yahoo": {
     "name": "Yahoo Finance",
     "genre": "tech",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "KQp-e_XQnDE",
+    "channelId": ""
   },
   "na/nasa": {
     "name": "Sen Space Live",
     "genre": "tech",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "fO9e9jnhYK8",
+    "channelId": ""
   },
   "na/fox-news": {
     "name": "Fox News",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": "C96oohpWBGw"
+    "hlsUrl": "https://247preview.foxnews.com/hls/live/2020027/fncv3preview/primary.m3u8",
+    "fallbackVideoId": "C96oohpWBGw",
+    "channelId": ""
   },
   "na/newsmax": {
     "name": "Newsmax",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": "oJvKPXZILT0"
+    "hlsUrl": "https://n1ctsota.akamaized.net/hls/live/2113880/Live_1/index.m3u8",
+    "fallbackVideoId": "oJvKPXZILT0",
+    "channelId": ""
   },
   "na/abc-news": {
     "name": "ABC News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "iipR5yUp36o"
+    "fallbackVideoId": "iipR5yUp36o",
+    "channelId": "UCBi2mrWuNuyYy4gbM6fU18Q"
   },
   "na/cbs-news": {
     "name": "CBS News",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": "tcr5BPl3hEE"
+    "hlsUrl": "https://cbsn-us.cbsnstream.cbsnews.com/out/v1/55a8648e8f134e82a470f83d562deeca/master.m3u8",
+    "fallbackVideoId": "tcr5BPl3hEE",
+    "channelId": ""
   },
   "na/nbc-news": {
     "name": "NBC News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "LedJI24EZ8c"
+    "fallbackVideoId": "LedJI24EZ8c",
+    "channelId": "UCeY0bbntWzzVIaj2z3QigXg"
   },
   "na/cbc-news": {
     "name": "CBC News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "5vfaDsMhCF4"
+    "fallbackVideoId": "5vfaDsMhCF4",
+    "channelId": "UCuFFtHWoLl5fauMMD5Ww2jA"
   },
   "na/ctv-news": {
     "name": "CTV News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "na/reuters-tv": {
     "name": "Reuters TV",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/sky": {
     "name": "SkyNews",
     "genre": "full",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://linear901-oo-hls0-prd-gtm.delivery.skycdp.com/17501/sde-fast-skynews/master.m3u8",
+    "fallbackVideoId": "xDWQ3LkccY8",
+    "channelId": ""
   },
   "eu/euronews": {
     "name": "Euronews",
     "genre": "full",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://dash4.antik.sk/live/test_euronews/playlist.m3u8",
+    "fallbackVideoId": "pykpO5kQJ98",
+    "channelId": ""
   },
   "eu/dw": {
     "name": "DW",
     "genre": "full",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://dwamdstream103.akamaized.net/hls/live/2015526/dwstream103/master.m3u8",
+    "fallbackVideoId": "LuKwFajn37U",
+    "channelId": "UCknLrEdhRCp1aegoMqRaCZg"
   },
   "eu/france24": {
     "name": "France 24",
     "genre": "full",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://amg00106-france24-france24-samsunguk-qvpp8.amagi.tv/playlist/amg00106-france24-france24-samsunguk/playlist.m3u8",
+    "fallbackVideoId": "HvZt-nh9sGg",
+    "channelId": ""
   },
   "eu/bbc-news": {
     "name": "BBC News",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://vs-hls-push-uk.live.fastly.md.bbci.co.uk/x=4/i=urn:bbc:pips:service:bbc_news_channel_hd/iptv_hd_abr_v1.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/gb-news": {
     "name": "GB News",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live-gbnews.simplestreamcdn.com/live5/gbnews/bitrate1.isml/manifest.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/the-guardian": {
     "name": "The Guardian",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/france24-en": {
     "name": "France 24 English",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "HvZt-nh9sGg",
+    "channelId": ""
   },
   "eu/rtve": {
     "name": "RTVE 24H",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://rtvelivestream.rtve.es/rtvesec/24h/24h_main_dvr.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/phoenix": {
     "name": "Phoenix",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://zdf-hls-19.akamaized.net/hls/live/2016502/de/veryhigh/master.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/rtp3": {
     "name": "RTP3",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://streaming-live.rtp.pt/livetvhlsDVR/rtpnHDdvr.smil/playlist.m3u8?DVR=",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/trt-haber": {
     "name": "TRT Haber",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://tv-trthaber.medya.trt.com.tr/master.m3u8",
+    "fallbackVideoId": "",
+    "channelId": "UCBgTP2LOFVPmq15W-RH-WXA"
   },
   "eu/ntv-turkey": {
     "name": "NTV",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "pqq5c6k70kk",
+    "channelId": ""
   },
   "eu/cnn-turk": {
     "name": "CNN TURK",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCV6zcRug6Hqp1UX_FdyUeBg"
   },
   "eu/tv-rain": {
     "name": "TV Rain",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/rt": {
     "name": "RT",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://rt-glb.rttv.com/dvr/rtnews/playlist.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/tvp-info": {
     "name": "TVP Info",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "3jKb-uThfrg",
+    "channelId": ""
   },
   "eu/telewizja-republika": {
     "name": "Telewizja Republika",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "dzntyCTgJMQ",
+    "channelId": ""
   },
   "eu/welt": {
     "name": "WELT",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCZMsvbAhhRblVGXmEXW8TSA"
   },
   "eu/tagesschau24": {
     "name": "Tagesschau24",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://tagesschau.akamaized.net/hls/live/2020115/tagesschau/tagesschau_1/master.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/euronews-fr": {
     "name": "Euronews FR",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "NiRIbKwAejk",
+    "channelId": ""
   },
   "eu/euronews-gr": {
     "name": "Euronews GR",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UC8HJZNfDPoySgW9DN3YGNaA"
   },
   "eu/skai-tv": {
     "name": "SKAI TV",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://skai-live.siliconweb.com/media/cambria4/index.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/ert-news": {
     "name": "ERT News",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://ert-ucdn.broadpeak-aas.com/bpk-tv/ERTNews/default/index.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/france24-fr": {
     "name": "France 24 FR",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "a47ckXKZjxI",
+    "channelId": ""
   },
   "eu/france-info": {
     "name": "France Info",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "NG7ZX42nZKc"
+    "fallbackVideoId": "NG7ZX42nZKc",
+    "channelId": "UCO6K_kkdP-lnSCiO3tPx7WA"
   },
   "eu/bfmtv": {
     "name": "BFMTV",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live-cdn-stream-euw1.bfmtv.bct.nextradiotv.com/master.m3u8",
+    "fallbackVideoId": "",
+    "channelId": "UCXwDLMDV86ldKoFVc_g8P0g"
   },
   "eu/tv5monde-info": {
     "name": "TV5 Monde Info",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://ott.tv5monde.com/Content/HLS/Live/channel(info)/index.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "eu/nrk1": {
     "name": "NRK1",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://nrk-nrk1.akamaized.net/21/0/hls/nrk_1/playlist.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "latam/cnn-brasil": {
     "name": "CNN Brasil",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCvdwhh_fDyWccR42-rReZLw"
   },
   "latam/jovem-pan": {
     "name": "Jovem Pan News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "latam/record-news": {
     "name": "Record News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCuiLR4p6wQ3xLEm15pEn1Xw"
   },
   "latam/band-jornalismo": {
     "name": "Band Jornalismo",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "latam/tn-argentina": {
     "name": "TN (Todo Noticias)",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "cb12KmMMDJA",
+    "channelId": ""
   },
   "latam/c5n": {
     "name": "C5N",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "j6oh4Kqz3UM"
+    "fallbackVideoId": "j6oh4Kqz3UM",
+    "channelId": "UCFgk2Q2mVO1BklRQhSv6p0w"
   },
   "latam/milenio": {
     "name": "MILENIO",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "oPy8a-TCjzA",
+    "channelId": ""
   },
   "latam/noticias-caracol": {
     "name": "Noticias Caracol",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UC2Xq2PK-got3Rtz9ZJ32hLQ"
   },
   "latam/ntn24": {
     "name": "NTN24",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCEJs1fTF3KszRJGxJY14VrA"
   },
   "latam/t13": {
     "name": "T13",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCsRnhjcUCR78Q3Ud6OXCTNg"
   },
   "latam/dw-espanol": {
     "name": "DW Español",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/stream04/streamPlaylist.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "latam/rt-espanol": {
     "name": "RT Español",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://rt-esp.rttv.com/dvr/rtesp/playlist.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "latam/cgtn-espanol": {
     "name": "CGTN Español",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCd94YCD7yp6d-YZSRYWyeFA"
   },
   "asia/tbs-news": {
     "name": "TBS NEWS DIG",
     "genre": "optional",
     "hlsUrl": "https://dp57jmgi8kb6i.cloudfront.net/out/v1/197c216d82a449f89c55f451d995daed/index_7.m3u8",
-    "fallbackVideoId": "Anr15FA9OCI"
+    "fallbackVideoId": "Anr15FA9OCI",
+    "channelId": ""
   },
   "asia/ann-news": {
     "name": "ANN News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "coYw-eVU0Ks"
+    "fallbackVideoId": "coYw-eVU0Ks",
+    "channelId": ""
   },
   "asia/ntv-news": {
     "name": "NTV News (Japan)",
     "genre": "optional",
     "hlsUrl": "https://dpg5xwfcfl8qq.cloudfront.net/out/v1/d5e0a776979146a0a300aa8b251c62db/index_7.m3u8",
-    "fallbackVideoId": "t9kwjZBLI-A"
+    "fallbackVideoId": "t9kwjZBLI-A",
+    "channelId": ""
   },
   "asia/cti-news": {
     "name": "CTI News (Taiwan)",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "vr3XyVCR4T0"
+    "fallbackVideoId": "vr3XyVCR4T0",
+    "channelId": ""
   },
   "asia/wion": {
     "name": "WION",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "vfszY1JYbMc"
+    "fallbackVideoId": "vfszY1JYbMc",
+    "channelId": ""
   },
   "asia/ndtv": {
     "name": "NDTV 24x7",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://ndtvindiaelemarchana.akamaized.net/hls/live/2003679/ndtvindia/master.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "asia/cgtn": {
     "name": "CGTN",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://english-livebkali.cgtn.com/live/encgtn.m3u8",
+    "fallbackVideoId": "0i7n3r01L2U",
+    "channelId": ""
   },
   "asia/cna-asia": {
     "name": "CNA (NewsAsia)",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "XWq5kBlakcQ",
+    "channelId": ""
   },
   "asia/nhk-world": {
     "name": "NHK World Japan",
     "genre": "optional",
     "hlsUrl": "https://media-tyo.hls.nhkworld.jp/hls/w/live/master.m3u8",
-    "fallbackVideoId": "f0lYkdA-Gtw"
+    "fallbackVideoId": "f0lYkdA-Gtw",
+    "channelId": "UCSPEjw8F2nQDtmUKPFNF7_A"
   },
   "asia/arirang-news": {
     "name": "Arirang News",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://amdlive-ch01-ctnd-com.akamaized.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "asia/india-today": {
     "name": "India Today",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://indiatodaylive.akamaized.net/hls/live/2014320/indiatoday/indiatodaylive/playlist.m3u8",
+    "fallbackVideoId": "sYZtOFzM78M",
+    "channelId": ""
   },
   "asia/abp-news": {
     "name": "ABP News",
     "genre": "optional",
     "hlsUrl": "https://d2l4ar6y3mrs4k.cloudfront.net/live-streaming/abpnews-livetv/master.m3u8",
-    "fallbackVideoId": "nyd-xznCpJc"
+    "fallbackVideoId": "nyd-xznCpJc",
+    "channelId": "UCRWFSbif-RFENbBrSiez1DA"
   },
   "me/alarabiya": {
     "name": "AlArabiya",
     "genre": "full",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live.alarabiya.net/alarabiapublish/alarabiya.smil/playlist.m3u8",
+    "fallbackVideoId": "n7eQejkXbnM",
+    "channelId": ""
   },
   "me/aljazeera": {
     "name": "AlJazeera",
     "genre": "full",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live-hls-apps-aje-fa.getaj.net/AJE/index.m3u8",
+    "fallbackVideoId": "gCNeDWCI0vo",
+    "channelId": "UCNye-wNBqNL5ZzHSJj3l8Bg"
   },
   "me/al-hadath": {
     "name": "Al Hadath",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": "au8t81S0tag"
+    "hlsUrl": "https://av.alarabiya.net/alarabiapublish/alhadath.smil/playlist.m3u8",
+    "fallbackVideoId": "au8t81S0tag",
+    "channelId": ""
   },
   "me/sky-news-arabia": {
     "name": "Sky News Arabia",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": "ppgTP8xQQsM"
+    "hlsUrl": "https://live-stream.skynewsarabia.com/c-horizontal-channel/horizontal-stream/index.m3u8",
+    "fallbackVideoId": "ppgTP8xQQsM",
+    "channelId": ""
   },
   "me/trt-world": {
     "name": "TRT World",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": "b8lPrtjmnmw"
+    "hlsUrl": "https://tv-trtworld.medya.trt.com.tr/master.m3u8",
+    "fallbackVideoId": "b8lPrtjmnmw",
+    "channelId": ""
   },
   "me/iran-intl": {
     "name": "Iran International",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live.livetvstream.co.uk/LS-63503-4/index.m3u8",
+    "fallbackVideoId": "5JDxjsAVaGk",
+    "channelId": ""
   },
   "me/cgtn-arabic": {
     "name": "CGTN Arabic",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCQmJk0ErE_FiorcLBsDKORA"
   },
   "me/kan-11": {
     "name": "Kan 11",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://kancdn.medonecdn.net/livehls/oil/kancdn-live/live/kan11/live.livx/playlist.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "me/i24-news": {
     "name": "i24NEWS (Israel)",
     "genre": "optional",
     "hlsUrl": "https://i24newsenglish-cdn.encoders.immergo.tv/master.m3u8",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "me/asharq-news": {
     "name": "Asharq News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "f6VpkfV7m4Y",
+    "channelId": ""
   },
   "me/aljazeera-arabic": {
     "name": "AlJazeera Arabic",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live-hls-web-aja.getaj.net/AJA/index.m3u8",
+    "fallbackVideoId": "bNyUyrR0PHo",
+    "channelId": ""
   },
   "me/aljazeera-mubasher": {
     "name": "Al Jazeera Mubasher",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live-hls-web-ajm.getaj.net/AJM/index.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "me/alarabiya-business": {
     "name": "Al Arabiya Business",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live.alarabiya.net/alarabiapublish/aswaaq.smil/playlist.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "me/al-qahera-news": {
     "name": "Al Qahera News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCktyejXTxWaKfrgp1Oq7CMQ"
   },
   "me/press-tv": {
     "name": "Press TV",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live.presstv.co.uk/hls/presstv.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "me/dw-arabic": {
     "name": "DW Arabic",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://dwamdstream103.akamaized.net/hls/live/2015526/dwstream103/index.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "me/rt-arabic": {
     "name": "RT Arabic",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://rt-arb.rttv.com/dvr/rtarab/playlist.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "me/rudaw": {
     "name": "Rudaw",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://live.rudaw.net/hls/rudaw-tv/master.m3u8",
+    "fallbackVideoId": "",
+    "channelId": "UCAUHoE2Ykw0sguyi5AjhrjQ"
   },
   "africa/africanews": {
     "name": "Africanews",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UC1_E8NeF5QHY2dtdLRBCCLA"
   },
   "africa/channels-tv": {
     "name": "Channels TV",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCEXGDNclvmg6RW0vipJYsTQ"
   },
   "africa/ktn-news": {
     "name": "KTN News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCKVsdeoHExltrWMuK0hOWmg"
   },
   "africa/enca": {
     "name": "eNCA",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "africa/sabc-news": {
     "name": "SABC News",
     "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": ""
+    "hlsUrl": "https://sabconetanw.cdn.mangomolo.com/news/smil:news.stream.smil/chunklist_b250000_t64MjQwcA==.m3u8",
+    "fallbackVideoId": "",
+    "channelId": ""
   },
   "africa/arise-news": {
     "name": "Arise News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "Fy_03Aorpq8"
+    "fallbackVideoId": "Fy_03Aorpq8",
+    "channelId": "UCyEJX-kSj0kOOCS7Qlq2G7g"
   },
   "oc/abc-news-au": {
     "name": "ABC News Australia",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": ""
+    "fallbackVideoId": "vOTiJkg1voo",
+    "channelId": ""
   }
 }

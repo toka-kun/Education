@@ -365,7 +365,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 393216,
+        "maxOutputTokens": 943718,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {
@@ -515,7 +515,7 @@
         "intelligenceIndex": 46.3,
         "inputModalities": ["text", "image", "video", "audio"],
         "outputModalities": ["text"],
-        "contextWindow": 1048576,
+        "contextWindow": 1050000,
         "maxOutputTokens": 131072,
         "desc": ""
       }

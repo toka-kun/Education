@@ -264,7 +264,7 @@
     "models": {
       "deepseek/deepseek-v4.1-flash": {
         "displayName": "DeepSeek V4.1 Flash",
-        "shortName": "V4.1 Flash",
+        "shortName": "DeepSeek V4.1 Flash",
         "cost": "0.15/0.60",
         "tags": [],
         "effort": ["low", "high", "max"],
@@ -274,7 +274,7 @@
       },
       "deepseek/deepseek-v4-pro-0813": {
         "displayName": "DeepSeek V4 Pro 0813",
-        "shortName": "V4 Pro 0813",
+        "shortName": "DeepSeek V4 Pro 0813",
         "cost": "0.66/1.98",
         "tags": [],
         "effort": ["low", "high", "max"],
@@ -345,6 +345,46 @@
         "effort": ["low", "high", "max"],
         "defaultEffort": "max",
         "intelligenceIndex": 43.6,
+        "desc": ""
+      }
+    }
+  },
+  "🇨🇳 Tencent": {
+    "desc": "",
+    "models": {
+      "tencent/hy4-preview": {
+        "displayName": "Hy4 Preview",
+        "shortName": "Hy4 Preview",
+        "cost": "0.83/2.50",
+        "tags": [],
+        "effort": ["none", "low", "high"],
+        "defaultEffort": "high",
+        "intelligenceIndex": null,
+        "desc": ""
+      }
+    }
+  },
+  "🇨🇳 Xiaomi": {
+    "desc": "",
+    "models": {
+      "xiaomi/mimo-v2.6-flash": {
+        "displayName": "MiMo-V2.6-Flash",
+        "shortName": "MiMo-V2.6-Flash",
+        "cost": "0.14/0.28",
+        "tags": [],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": null,
+        "desc": ""
+      },
+      "xiaomi/mimo-v2.6-pro": {
+        "displayName": "MiMo-V2.6-Pro",
+        "shortName": "MiMo-V2.6-Pro",
+        "cost": "0.435/0.87",
+        "tags": [],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": 46.3,
         "desc": ""
       }
     }

@@ -10,6 +10,10 @@
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": null,
+        "inputModalities": ["image", "text", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 262144,
+        "maxOutputTokens": 235929,
         "desc": ""
       },
       "google/gemma-4-31b-it": {
@@ -20,6 +24,10 @@
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": null,
+        "inputModalities": ["image", "text", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 262144,
+        "maxOutputTokens": 16384,
         "desc": ""
       },
       "google/gemini-3.5-flash-lite": {
@@ -30,6 +38,10 @@
         "effort": ["minimal", "low", "medium", "high"],
         "defaultEffort": "minimal",
         "intelligenceIndex": 22.2,
+        "inputModalities": ["text", "image", "video", "file", "audio"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 65536,
         "desc": ""
       },
       "google/gemini-3.8-flash": {
@@ -40,6 +52,10 @@
         "effort": ["low", "medium", "high"],
         "defaultEffort": "medium",
         "intelligenceIndex": 40.9,
+        "inputModalities": ["text", "image", "video", "file", "audio"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 65536,
         "desc": "2027年1月からは2倍の通常価格"
       },
       "google/gemini-3.1-pro-preview": {
@@ -50,6 +66,10 @@
         "effort": ["low", "medium", "high"],
         "defaultEffort": "medium",
         "intelligenceIndex": 29.7,
+        "inputModalities": ["audio", "file", "image", "text", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 65536,
         "desc": "2026年2月からずっと更新されておらず、性能も3.8 Flashに追い抜かれているので非推奨"
       }
     }
@@ -65,6 +85,10 @@
         "effort": ["low", "medium", "high"],
         "defaultEffort": "medium",
         "intelligenceIndex": 11.6,
+        "inputModalities": ["text"],
+        "outputModalities": ["text"],
+        "contextWindow": 131072,
+        "maxOutputTokens": 65536,
         "desc": ""
       },
       "openai/gpt-5.6-luna": {
@@ -75,6 +99,10 @@
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 37.3,
+        "inputModalities": ["file", "image", "text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1050000,
+        "maxOutputTokens": 128000,
         "desc": "2026年7月末の値下げで80%安くなったのでおすすめ。ちなみにChatGPTではこれがデフォルト"
       },
       "openai/gpt-5.6-terra": {
@@ -85,6 +113,10 @@
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 42.1,
+        "inputModalities": ["file", "image", "text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1050000,
+        "maxOutputTokens": 128000,
         "desc": "2026年7月末の値下げで20%安くなった"
       },
       "openai/gpt-5.6-sol": {
@@ -95,6 +127,10 @@
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 47,
+        "inputModalities": ["file", "image", "text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1050000,
+        "maxOutputTokens": 128000,
         "desc": "少なくとも2026年11月21日まではこの料金"
       },
       "openai/gpt-6-luna": {
@@ -105,6 +141,10 @@
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 37.3,
+        "inputModalities": ["file", "image", "text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1050000,
+        "maxOutputTokens": 128000,
         "desc": ""
       },
       "openai/gpt-6-sol": {
@@ -115,6 +155,10 @@
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 47.5,
+        "inputModalities": ["file", "image", "text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1050000,
+        "maxOutputTokens": 128000,
         "desc": ""
       },
       "openai/gpt-6-astra": {
@@ -125,6 +169,10 @@
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 52.7,
+        "inputModalities": ["file", "image", "text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1050000,
+        "maxOutputTokens": 128000,
         "desc": ""
       }
     }
@@ -140,6 +188,10 @@
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": 16.9,
+        "inputModalities": ["text", "image", "file"],
+        "outputModalities": ["text"],
+        "contextWindow": 200000,
+        "maxOutputTokens": 64000,
         "desc": "2025年10月からずっと更新されていないので非推奨"
       },
       "anthropic/claude-sonnet-5": {
@@ -150,6 +202,10 @@
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 38.2,
+        "inputModalities": ["text", "image", "file"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
         "desc": ""
       },
       "anthropic/claude-opus-5-5": {
@@ -160,6 +216,10 @@
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 57.6,
+        "inputModalities": ["text", "image", "file"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
         "desc": ""
       },
       "anthropic/claude-fable-5-1": {
@@ -170,6 +230,10 @@
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 53.4,
+        "inputModalities": ["text", "image", "file"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
         "desc": ""
       }
     }
@@ -185,6 +249,10 @@
         "effort": ["low", "medium", "high", "xhigh"],
         "defaultEffort": "medium",
         "intelligenceIndex": null,
+        "inputModalities": ["text", "image"],
+        "outputModalities": ["text"],
+        "contextWindow": 131072,
+        "maxOutputTokens": 16384,
         "desc": ""
       },
       "meta/muse-spark-1.1": {
@@ -195,6 +263,10 @@
         "effort": ["minimal", "low", "medium", "high", "xhigh"],
         "defaultEffort": "medium",
         "intelligenceIndex": 33.7,
+        "inputModalities": ["text", "image", "video", "file", "audio"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 943718,
         "desc": "1.2と1.3がなかったので1.1で代用"
       }
     }
@@ -210,6 +282,10 @@
         "effort": ["low", "medium", "high", "xhigh"],
         "defaultEffort": "high",
         "intelligenceIndex": 44.3,
+        "inputModalities": ["text", "image", "file"],
+        "outputModalities": ["text"],
+        "contextWindow": 500000,
+        "maxOutputTokens": 450000,
         "desc": ""
       },
       "x-ai/grok-4.7": {
@@ -220,6 +296,10 @@
         "effort": ["low", "medium", "high", "xhigh"],
         "defaultEffort": "high",
         "intelligenceIndex": 46.4,
+        "inputModalities": ["text", "image", "file"],
+        "outputModalities": ["text"],
+        "contextWindow": 500000,
+        "maxOutputTokens": 450000,
         "desc": ""
       }
     }
@@ -235,6 +315,10 @@
         "effort": ["none", "high"],
         "defaultEffort": "high",
         "intelligenceIndex": null,
+        "inputModalities": ["text", "image", "file"],
+        "outputModalities": ["text"],
+        "contextWindow": 262144,
+        "maxOutputTokens": 65536,
         "desc": ""
       },
       "sakana/fugu-max": {
@@ -245,6 +329,10 @@
         "effort": ["high", "xhigh", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": null,
+        "inputModalities": ["text", "image", "file"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
         "desc": ""
       },
       "sakana/fugu-ultra-v2": {
@@ -255,6 +343,10 @@
         "effort": ["high", "xhigh", "max"],
         "defaultEffort": "xhigh",
         "intelligenceIndex": null,
+        "inputModalities": ["text", "image", "file"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
         "desc": ""
       }
     }
@@ -270,6 +362,10 @@
         "effort": ["low", "high", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 39.5,
+        "inputModalities": ["text", "image"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 393216,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {
@@ -280,6 +376,10 @@
         "effort": ["low", "high", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 36,
+        "inputModalities": ["text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 384000,
         "desc": "9月14日からV4.1 Proの提供開始まで、すべてのリクエストはV4.1 Flashにルーティングされ、V4.1 Flashの料金が適用される。日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       }
     }
@@ -295,6 +395,10 @@
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": null,
+        "inputModalities": ["text", "image", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 131072,
         "desc": ""
       },
       "qwen/qwen3.8-max-0902": {
@@ -305,6 +409,10 @@
         "effort": ["minimal", "low", "medium", "high", "xhigh"],
         "defaultEffort": "xhigh",
         "intelligenceIndex": 45.4,
+        "inputModalities": ["text", "image", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 131072,
         "desc": ""
       }
     }
@@ -320,6 +428,10 @@
         "effort": ["low", "high", "max"],
         "defaultEffort": "max",
         "intelligenceIndex": 41.8,
+        "inputModalities": ["text", "image", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1310720,
+        "maxOutputTokens": 128000,
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -330,6 +442,10 @@
         "effort": ["low", "high", "max"],
         "defaultEffort": "max",
         "intelligenceIndex": 44.8,
+        "inputModalities": ["text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1310720,
+        "maxOutputTokens": 943717,
         "desc": ""
       }
     }
@@ -345,6 +461,10 @@
         "effort": ["low", "high", "max"],
         "defaultEffort": "max",
         "intelligenceIndex": 43.6,
+        "inputModalities": ["text", "image", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 943718,
         "desc": ""
       }
     }
@@ -360,6 +480,10 @@
         "effort": ["none", "low", "high"],
         "defaultEffort": "high",
         "intelligenceIndex": null,
+        "inputModalities": ["text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 64000,
         "desc": ""
       }
     }
@@ -375,6 +499,10 @@
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": null,
+        "inputModalities": ["text", "image", "video", "audio"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 131072,
         "desc": ""
       },
       "xiaomi/mimo-v2.6-pro": {
@@ -385,6 +513,10 @@
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": 46.3,
+        "inputModalities": ["text", "image", "video", "audio"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 131072,
         "desc": ""
       }
     }

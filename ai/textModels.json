@@ -263,7 +263,7 @@
         "effort": ["minimal", "low", "medium", "high", "xhigh"],
         "defaultEffort": "medium",
         "intelligenceIndex": 33.7,
-        "inputModalities": ["text", "image", "video", "file", "audio"],
+        "inputModalities": ["text", "image", "video", "file"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
         "maxOutputTokens": 943718,
@@ -365,7 +365,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 384000,
+        "maxOutputTokens": 943718,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {
@@ -431,7 +431,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1310720,
-        "maxOutputTokens": 128000,
+        "maxOutputTokens": 943717,
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -498,7 +498,7 @@
         "tags": [],
         "effort": [],
         "defaultEffort": null,
-        "intelligenceIndex": null,
+        "intelligenceIndex": 37.9,
         "inputModalities": ["text", "image", "video", "audio"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,

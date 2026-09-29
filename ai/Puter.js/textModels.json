@@ -152,14 +152,14 @@
         "maxOutputTokens": 64000,
         "desc": "2025年10月からずっと更新されていないので非推奨"
       },
-      "anthropic/claude-sonnet-5": {
-        "displayName": "Claude Sonnet 5",
-        "shortName": "Sonnet 5",
+      "anthropic/claude-sonnet-5-5": {
+        "displayName": "Claude Sonnet 5.5",
+        "shortName": "Sonnet 5.5",
         "cost": "2.00/10.00",
         "tags": ["expensive"],
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "high",
-        "intelligenceIndex": 38.2,
+        "intelligenceIndex": 56,
         "inputModalities": ["text", "file", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1000000,

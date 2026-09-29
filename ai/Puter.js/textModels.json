@@ -3,10 +3,10 @@
     "desc": "",
     "models": {
       "google/gemma-4-26b-a4b-it": {
+        "displayName": "Gemma 4 26B A4B IT",
+        "shortName": "Gemma 4 26B A4B",
         "cost": "0.00/0.00",
         "tags": ["free"],
-        "displayName": "Google: Gemma 4 26B A4B",
-        "shortName": "Google: Gemma 4 26B A4B",
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": null,
@@ -17,10 +17,10 @@
         "desc": ""
       },
       "google/gemma-4-31b-it": {
+        "displayName": "Gemma 4 31B IT",
+        "shortName": "Gemma 4 31B",
         "cost": "0.00/0.00",
         "tags": ["free"],
-        "displayName": "Google: Gemma 4 31B",
-        "shortName": "Google: Gemma 4 31B",
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": null,
@@ -31,10 +31,10 @@
         "desc": ""
       },
       "google/gemini-3.5-flash-lite": {
+        "displayName": "Gemini 3.5 Flash-Lite",
+        "shortName": "Gemini 3.5 Flash-Lite",
         "cost": "0.30/2.50",
         "tags": ["recommended"],
-        "displayName": "Google: Gemini 3.5 Flash Lite",
-        "shortName": "Google: Gemini 3.5 Flash Lite",
         "effort": ["minimal", "low", "medium", "high"],
         "defaultEffort": "minimal",
         "intelligenceIndex": 22.2,
@@ -45,10 +45,10 @@
         "desc": ""
       },
       "google/gemini-3.8-flash": {
+        "displayName": "Gemini 3.8 Flash",
+        "shortName": "Gemini 3.8 Flash",
         "cost": "0.75/3.75",
         "tags": ["recommended"],
-        "displayName": "Google: Gemini 3.8 Flash",
-        "shortName": "Google: Gemini 3.8 Flash",
         "effort": ["low", "medium", "high"],
         "defaultEffort": "medium",
         "intelligenceIndex": 40.9,
@@ -59,10 +59,10 @@
         "desc": "2027年1月からは2倍の通常価格"
       },
       "google/gemini-3.1-pro-preview": {
+        "displayName": "Gemini 3.1 Pro Preview",
+        "shortName": "Gemini 3.1 Pro",
         "cost": "2.00/12.00",
         "tags": ["expensive"],
-        "displayName": "Google: Gemini 3.1 Pro Preview",
-        "shortName": "Google: Gemini 3.1 Pro",
         "effort": ["low", "medium", "high"],
         "defaultEffort": "medium",
         "intelligenceIndex": 29.7,
@@ -78,10 +78,10 @@
     "desc": "",
     "models": {
       "openai/gpt-oss-120b": {
+        "displayName": "GPT-OSS 120B",
+        "shortName": "OSS 120B",
         "cost": "0.04/0.17",
         "tags": [],
-        "displayName": "OpenAI: gpt-oss-120b",
-        "shortName": "OpenAI: gpt-oss-120b",
         "effort": ["low", "medium", "high"],
         "defaultEffort": "medium",
         "intelligenceIndex": 11.6,
@@ -92,10 +92,10 @@
         "desc": ""
       },
       "openai/gpt-6-luna": {
+        "displayName": "GPT-6 Luna",
+        "shortName": "6 Luna",
         "cost": "0.10/0.50",
         "tags": ["recommended", "default"],
-        "displayName": "OpenAI: GPT-6 Luna",
-        "shortName": "OpenAI: 6 Luna",
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 37.3,
@@ -106,10 +106,10 @@
         "desc": ""
       },
       "openai/gpt-6-sol": {
+        "displayName": "GPT-6 Sol",
+        "shortName": "6 Sol",
         "cost": "2.00/10.00",
         "tags": ["expensive"],
-        "displayName": "OpenAI: GPT-6 Sol",
-        "shortName": "OpenAI: 6 Sol",
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 47.5,
@@ -120,10 +120,10 @@
         "desc": ""
       },
       "openai/gpt-6-astra": {
+        "displayName": "GPT-6 Astra",
+        "shortName": "6 Astra",
         "cost": "10.00/50.00",
         "tags": ["very-expensive"],
-        "displayName": "OpenAI: GPT-6 Astra",
-        "shortName": "OpenAI: 6 Astra",
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 52.7,
@@ -139,10 +139,10 @@
     "desc": "",
     "models": {
       "anthropic/claude-haiku-4-5": {
+        "displayName": "Claude Haiku 4.5",
+        "shortName": "Haiku 4.5",
         "cost": "1.00/5.00",
         "tags": [],
-        "displayName": "Anthropic: Claude Haiku 4.5",
-        "shortName": "Anthropic: Haiku 4.5",
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": 16.9,
@@ -153,10 +153,10 @@
         "desc": "2025年10月からずっと更新されていないので非推奨"
       },
       "anthropic/claude-sonnet-5-5": {
+        "displayName": "Claude Sonnet 5.5",
+        "shortName": "Sonnet 5.5",
         "cost": "2.00/10.00",
         "tags": ["expensive"],
-        "displayName": "Anthropic: Claude Sonnet 5.5",
-        "shortName": "Anthropic: Sonnet 5.5",
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 56,
@@ -167,10 +167,10 @@
         "desc": ""
       },
       "anthropic/claude-opus-5-5": {
+        "displayName": "Claude Opus 5.5",
+        "shortName": "Opus 5.5",
         "cost": "4.00/20.00",
         "tags": ["very-expensive"],
-        "displayName": "Anthropic: Claude Opus 5.5",
-        "shortName": "Anthropic: Opus 5.5",
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 57.6,
@@ -181,10 +181,10 @@
         "desc": ""
       },
       "anthropic/claude-fable-5-1": {
+        "displayName": "Claude Fable 5.1",
+        "shortName": "Fable 5.1",
         "cost": "10.00/50.00",
         "tags": ["very-expensive"],
-        "displayName": "Anthropic: Claude Fable 5.1",
-        "shortName": "Anthropic: Fable 5.1",
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 53.4,
@@ -200,10 +200,10 @@
     "desc": "",
     "models": {
       "meta/muse-glimmer-30b": {
+        "displayName": "Muse Glimmer 30B",
+        "shortName": "Muse Glimmer",
         "cost": "0.30/1.10",
         "tags": [],
-        "displayName": "Meta: Muse Glimmer 30B",
-        "shortName": "Meta: Muse Glimmer 30B",
         "effort": ["low", "medium", "high", "xhigh"],
         "defaultEffort": "medium",
         "intelligenceIndex": null,
@@ -214,10 +214,10 @@
         "desc": ""
       },
       "meta/muse-spark-1.1": {
+        "displayName": "Muse Spark 1.1",
+        "shortName": "Muse Spark 1.1",
         "cost": "1.25/4.25",
         "tags": ["expensive"],
-        "displayName": "Meta: Muse Spark 1.1",
-        "shortName": "Meta: Muse Spark 1.1",
         "effort": ["minimal", "low", "medium", "high", "xhigh"],
         "defaultEffort": "medium",
         "intelligenceIndex": 33.7,
@@ -233,10 +233,10 @@
     "desc": "",
     "models": {
       "x-ai/grok-4.6": {
+        "displayName": "Grok 4.6",
+        "shortName": "Grok 4.6",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
-        "displayName": "SpaceXAI: Grok 4.6",
-        "shortName": "SpaceXAI: Grok 4.6",
         "effort": ["low", "medium", "high", "xhigh"],
         "defaultEffort": "high",
         "intelligenceIndex": 44.3,
@@ -247,10 +247,10 @@
         "desc": ""
       },
       "x-ai/grok-4.7": {
+        "displayName": "Grok 4.7",
+        "shortName": "Grok 4.7",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
-        "displayName": "SpaceXAI: Grok 4.7",
-        "shortName": "SpaceXAI: Grok 4.7",
         "effort": ["low", "medium", "high", "xhigh"],
         "defaultEffort": "high",
         "intelligenceIndex": 46.4,
@@ -266,10 +266,10 @@
     "desc": "",
     "models": {
       "sakana/sakana-namazu": {
+        "displayName": "Sakana Namazu",
+        "shortName": "Namazu",
         "cost": "0.95/4.00",
         "tags": ["recommended"],
-        "displayName": "Sakana: Sakana Namazu",
-        "shortName": "Sakana: Sakana Namazu",
         "effort": ["none", "high"],
         "defaultEffort": "high",
         "intelligenceIndex": null,
@@ -280,10 +280,10 @@
         "desc": ""
       },
       "sakana/fugu-max": {
+        "displayName": "Sakana Fugu Max",
+        "shortName": "Fugu Max",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
-        "displayName": "Sakana: Fugu Max",
-        "shortName": "Sakana: Fugu Max",
         "effort": ["high", "xhigh", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": null,
@@ -294,10 +294,10 @@
         "desc": ""
       },
       "sakana/fugu-ultra-v2": {
+        "displayName": "Sakana Fugu Ultra v2",
+        "shortName": "Fugu Ultra v2",
         "cost": "5.00/30.00",
         "tags": ["very-expensive"],
-        "displayName": "Sakana: Fugu Ultra v2",
-        "shortName": "Sakana: Fugu Ultra v2",
         "effort": ["high", "xhigh", "max"],
         "defaultEffort": "xhigh",
         "intelligenceIndex": null,
@@ -313,10 +313,10 @@
     "desc": "",
     "models": {
       "deepseek/deepseek-v4.1-flash": {
+        "displayName": "DeepSeek V4.1 Flash",
+        "shortName": "DeepSeek V4.1 Flash",
         "cost": "0.15/0.60",
         "tags": [],
-        "displayName": "DeepSeek: DeepSeek V4.1 Flash",
-        "shortName": "DeepSeek: DeepSeek V4.1 Flash",
         "effort": ["low", "high", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 39.5,
@@ -327,10 +327,10 @@
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {
+        "displayName": "DeepSeek V4 Pro 0813",
+        "shortName": "DeepSeek V4 Pro 0813",
         "cost": "0.66/1.98",
         "tags": [],
-        "displayName": "DeepSeek: DeepSeek V4 Pro 0813",
-        "shortName": "DeepSeek: DeepSeek V4 Pro 0813",
         "effort": ["low", "high", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 36,
@@ -346,10 +346,10 @@
     "desc": "",
     "models": {
       "qwen/qwen3.8-flash": {
+        "displayName": "Qwen3.8 Flash",
+        "shortName": "Qwen3.8 Flash",
         "cost": "0.15/0.47",
         "tags": [],
-        "displayName": "Qwen: Qwen3.8 Flash",
-        "shortName": "Qwen: Qwen3.8 Flash",
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": null,
@@ -360,10 +360,10 @@
         "desc": ""
       },
       "qwen/qwen3.8-max-0902": {
+        "displayName": "Qwen3.8 Max 0902",
+        "shortName": "Qwen3.8 Max 0902",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
-        "displayName": "Qwen: Qwen3.8 Max (0902)",
-        "shortName": "Qwen: Qwen3.8 Max (0902)",
         "effort": ["minimal", "low", "medium", "high", "xhigh"],
         "defaultEffort": "xhigh",
         "intelligenceIndex": 45.4,
@@ -379,10 +379,10 @@
     "desc": "",
     "models": {
       "z-ai/glm-5.3-flash": {
+        "displayName": "GLM 5.3 Flash",
+        "shortName": "GLM 5.3 Flash",
         "cost": "0.15/0.50",
         "tags": [],
-        "displayName": "Z.ai: GLM 5.3 Flash",
-        "shortName": "Z.ai: GLM 5.3 Flash",
         "effort": ["low", "high", "max"],
         "defaultEffort": "max",
         "intelligenceIndex": 41.8,
@@ -393,10 +393,10 @@
         "desc": ""
       },
       "z-ai/glm-5.3": {
+        "displayName": "GLM 5.3",
+        "shortName": "GLM 5.3",
         "cost": "1.40/4.40",
         "tags": ["expensive"],
-        "displayName": "Z.ai: GLM 5.3",
-        "shortName": "Z.ai: GLM 5.3",
         "effort": ["low", "high", "max"],
         "defaultEffort": "max",
         "intelligenceIndex": 44.8,
@@ -412,10 +412,10 @@
     "desc": "",
     "models": {
       "moonshotai/kimi-k3": {
+        "displayName": "Kimi K3",
+        "shortName": "Kimi K3",
         "cost": "3.00/15.00",
         "tags": ["expensive"],
-        "displayName": "MoonshotAI: Kimi K3",
-        "shortName": "MoonshotAI: Kimi K3",
         "effort": ["low", "high", "max"],
         "defaultEffort": "max",
         "intelligenceIndex": 43.6,
@@ -431,10 +431,10 @@
     "desc": "",
     "models": {
       "tencent/hy4-preview": {
+        "displayName": "Hy4 Preview",
+        "shortName": "Hy4 Preview",
         "cost": "0.83/2.50",
         "tags": [],
-        "displayName": "Tencent: Hy4 preview",
-        "shortName": "Tencent: Hy4",
         "effort": ["none", "low", "high"],
         "defaultEffort": "high",
         "intelligenceIndex": null,
@@ -450,10 +450,10 @@
     "desc": "",
     "models": {
       "xiaomi/mimo-v2.6-flash": {
+        "displayName": "MiMo-V2.6-Flash",
+        "shortName": "MiMo-V2.6-Flash",
         "cost": "0.14/0.28",
         "tags": [],
-        "displayName": "Xiaomi: MiMo-V2.6-Flash",
-        "shortName": "Xiaomi: MiMo-V2.6-Flash",
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": 37.9,
@@ -464,10 +464,10 @@
         "desc": ""
       },
       "xiaomi/mimo-v2.6-pro": {
+        "displayName": "MiMo-V2.6-Pro",
+        "shortName": "MiMo-V2.6-Pro",
         "cost": "0.435/0.87",
         "tags": [],
-        "displayName": "Xiaomi: MiMo-V2.6-Pro",
-        "shortName": "Xiaomi: MiMo-V2.6-Pro",
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": 46.3,

@@ -3,7 +3,7 @@
     "desc": "",
     "models": {
       "google/gemma-4-26b-a4b-it": {
-        "displayName": "Gemma 4 26B A4B IT",
+        "displayName": "Gemma 4 26B A4B",
         "shortName": "Gemma 4 26B A4B",
         "cost": "0.00/0.00",
         "tags": ["free"],
@@ -17,7 +17,7 @@
         "desc": ""
       },
       "google/gemma-4-31b-it": {
-        "displayName": "Gemma 4 31B IT",
+        "displayName": "Gemma 4 31B",
         "shortName": "Gemma 4 31B",
         "cost": "0.00/0.00",
         "tags": ["free"],
@@ -31,8 +31,8 @@
         "desc": ""
       },
       "google/gemini-3.5-flash-lite": {
-        "displayName": "Gemini 3.5 Flash-Lite",
-        "shortName": "Gemini 3.5 Flash-Lite",
+        "displayName": "Gemini 3.5 Flash Lite",
+        "shortName": "Gemini 3.5 Flash Lite",
         "cost": "0.30/2.50",
         "tags": ["recommended"],
         "effort": ["minimal", "low", "medium", "high"],
@@ -78,8 +78,8 @@
     "desc": "",
     "models": {
       "openai/gpt-oss-120b": {
-        "displayName": "GPT-OSS 120B",
-        "shortName": "OSS 120B",
+        "displayName": "gpt-oss-120b",
+        "shortName": "gpt-oss-120b",
         "cost": "0.04/0.17",
         "tags": [],
         "effort": ["low", "medium", "high"],
@@ -93,7 +93,7 @@
       },
       "openai/gpt-6-luna": {
         "displayName": "GPT-6 Luna",
-        "shortName": "6 Luna",
+        "shortName": "GPT-6 Luna",
         "cost": "0.10/0.50",
         "tags": ["recommended", "default"],
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
@@ -107,7 +107,7 @@
       },
       "openai/gpt-6-sol": {
         "displayName": "GPT-6 Sol",
-        "shortName": "6 Sol",
+        "shortName": "GPT-6 Sol",
         "cost": "2.00/10.00",
         "tags": ["expensive"],
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
@@ -121,7 +121,7 @@
       },
       "openai/gpt-6-astra": {
         "displayName": "GPT-6 Astra",
-        "shortName": "6 Astra",
+        "shortName": "GPT-6 Astra",
         "cost": "10.00/50.00",
         "tags": ["very-expensive"],
         "effort": ["low", "medium", "high", "xhigh", "max"],
@@ -201,7 +201,7 @@
     "models": {
       "meta/muse-glimmer-30b": {
         "displayName": "Muse Glimmer 30B",
-        "shortName": "Muse Glimmer",
+        "shortName": "Muse Glimmer 30B",
         "cost": "0.30/1.10",
         "tags": [],
         "effort": ["low", "medium", "high", "xhigh"],
@@ -267,7 +267,7 @@
     "models": {
       "sakana/sakana-namazu": {
         "displayName": "Sakana Namazu",
-        "shortName": "Namazu",
+        "shortName": "Sakana Namazu",
         "cost": "0.95/4.00",
         "tags": ["recommended"],
         "effort": ["none", "high"],
@@ -280,7 +280,7 @@
         "desc": ""
       },
       "sakana/fugu-max": {
-        "displayName": "Sakana Fugu Max",
+        "displayName": "Fugu Max",
         "shortName": "Fugu Max",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
@@ -294,7 +294,7 @@
         "desc": ""
       },
       "sakana/fugu-ultra-v2": {
-        "displayName": "Sakana Fugu Ultra v2",
+        "displayName": "Fugu Ultra v2",
         "shortName": "Fugu Ultra v2",
         "cost": "5.00/30.00",
         "tags": ["very-expensive"],
@@ -360,8 +360,8 @@
         "desc": ""
       },
       "qwen/qwen3.8-max-0902": {
-        "displayName": "Qwen3.8 Max 0902",
-        "shortName": "Qwen3.8 Max 0902",
+        "displayName": "Qwen3.8 Max (0902)",
+        "shortName": "Qwen3.8 Max (0902)",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
         "effort": ["minimal", "low", "medium", "high", "xhigh"],
@@ -431,8 +431,8 @@
     "desc": "",
     "models": {
       "tencent/hy4-preview": {
-        "displayName": "Hy4 Preview",
-        "shortName": "Hy4 Preview",
+        "displayName": "Hy4 preview",
+        "shortName": "Hy4 preview",
         "cost": "0.83/2.50",
         "tags": [],
         "effort": ["none", "low", "high"],

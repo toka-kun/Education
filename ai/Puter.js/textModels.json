@@ -88,7 +88,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 131072,
-        "maxOutputTokens": 65536,
+        "maxOutputTokens": 117964,
         "desc": ""
       },
       "openai/gpt-6-luna": {

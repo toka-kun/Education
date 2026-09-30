@@ -1,0 +1,2759 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat Interface - Fully Functional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://js.puter.com/v2/"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#F2794A',
+                            hover: '#DC6435',
+                        },
+                        neutral: {
+                            50: '#F8F5EF',
+                            100: '#F0EADF',
+                            200: '#ECE4D6',
+                            300: '#CFC3AC',
+                            400: '#B4A78F',
+                            500: '#9C8E77',
+                            600: '#5C5343',
+                            700: '#3D352B',
+                            800: '#262019',
+                            900: '#1C1815',
+                            950: '#120F0C',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Kaku Gothic New"', '"Hiragino Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', '"SFMono-Regular"', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Things Tailwind utility classes can't express cleanly */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #221D18; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #5C5343; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #766A56; }
+        * { scrollbar-width: thin; scrollbar-color: #5C5343 #221D18; }
+
+        textarea { resize: none; }
+
+        @keyframes typingBounce {
+            0%, 80%, 100% { transform: scale(1); opacity: .5; }
+            40% { transform: scale(1.2); opacity: 1; }
+        }
+        .typing-dot { animation: typingBounce 1.4s infinite ease-in-out; }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes fadeScaleIn {
+            from { opacity: 0; transform: translateY(-4px) scale(.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .dropdown-enter { animation: fadeScaleIn .12s ease-out; }
+
+        /* One orchestrated entrance for the welcome screen only - each direct
+           child rises in with a short stagger. Not used elsewhere. */
+        @keyframes heroRise {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-rise > * {
+            animation: heroRise .5s cubic-bezier(.16,.8,.3,1) both;
+        }
+        .hero-rise > *:nth-child(1) { animation-delay: .02s; }
+        .hero-rise > *:nth-child(2) { animation-delay: .09s; }
+        .hero-rise > *:nth-child(3) { animation-delay: .16s; }
+        .hero-rise > *:nth-child(4) { animation-delay: .23s; }
+        .hero-rise > *:nth-child(5) { animation-delay: .30s; }
+        .hero-rise > *:nth-child(6) { animation-delay: .37s; }
+        .hero-rise > *:nth-child(7) { animation-delay: .44s; }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-rise > * { animation: none; }
+            .typing-dot { animation: none; opacity: .8; }
+            .dropdown-enter { animation: none; }
+        }
+
+        /* A single warm ambient glow behind the welcome hero icon - the one
+           place this design spends its boldness. */
+        .hero-glow {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            background: radial-gradient(circle, rgba(242,121,74,.16) 0%, rgba(242,121,74,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Warm glow used sparingly on primary actions, echoing the ambient
+           hero light rather than a generic drop shadow. */
+        .glow-brand {
+            box-shadow: 0 4px 20px -4px rgba(242,121,74,.45);
+        }
+        .glow-brand:hover {
+            box-shadow: 0 6px 24px -4px rgba(242,121,74,.6);
+        }
+
+        /* A raised panel treatment - a soft ambient shadow plus a faint inner
+           top highlight, used instead of one identical shadow on every card. */
+        .surface-raised {
+            box-shadow: 0 1px 0 0 rgba(255,255,255,.03) inset, 0 8px 24px -8px rgba(0,0,0,.5);
+        }
+
+        /* Collapse toggles on the "各モデルの説明" page (provider groups and
+           per-model detail panels). The chevron points down when collapsed
+           and flips up when expanded, driven by aria-expanded so the visual
+           state can never drift from what assistive tech is told. */
+        .info-chevron { transition: transform .15s ease-out; }
+        .info-toggle[aria-expanded="true"] .info-chevron { transform: rotate(180deg); }
+        @media (prefers-reduced-motion: reduce) {
+            .info-chevron { transition: none; }
+        }
+
+        /* Shared base for the small pill controls next to the composer -
+           Web search toggle, reasoning-effort select, and model selector -
+           so all three read as one consistent family of chips. */
+        .control-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .375rem;
+            font-size: .75rem;
+            line-height: 1rem;
+            padding: .375rem .75rem;
+            border-radius: 9999px;
+            border: 1px solid #3D352B;
+            background: #262019;
+            color: #B4A78F;
+            transition: color .15s ease-out, border-color .15s ease-out, background-color .15s ease-out;
+            flex-shrink: 0;
+        }
+        .control-chip:hover {
+            color: #ECE4D6;
+            border-color: #5C5343;
+        }
+        /* Native <select> chrome renders at a different height than buttons
+           even with identical padding - strip it and draw our own chevron
+           so the effort selector lines up exactly with its neighbors. */
+        select.control-chip {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 1.75rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238F8371'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right .55rem center;
+            background-size: 14px 14px;
+            cursor: pointer;
+        }
+
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+
+        html, body {
+            overscroll-behavior: none;
+        }
+
+        #sidebar {
+            background: linear-gradient(180deg, #2C2620 0%, #201B16 100%);
+            transition: width .2s ease-out, border-color .2s ease-out;
+            overflow: hidden;
+        }
+        #topBar {
+            transition: opacity .15s ease-out;
+        }
+        #sidebarBackdrop {
+            transition: opacity .2s ease-out;
+        }
+
+        /* Modern browsers: track the real visible viewport (dvh) so rotating
+           the device, or the mobile browser's address bar showing/hiding,
+           never leaves content clipped or overflowing the screen. Browsers
+           that don't understand dvh simply keep the vh fallback above. */
+        .app-height {
+            height: 100vh;
+            height: 100dvh;
+        }
+
+        /* Touch devices (phones/tablets) get an overlay sidebar that slides
+           in over the content instead of pushing it. This is driven by a JS
+           class (not a width media query) based on input type, so rotating
+           the device between portrait/landscape never flips the sidebar
+           between overlay and push mode mid-use. */
+        #sidebar.overlay-mode {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            height: 100dvh;
+            width: 260px;
+            max-width: 80vw;
+            z-index: 50;
+            border-right-width: 1px;
+            transform: translateX(-100%);
+            transition: transform .25s ease-out;
+        }
+        #sidebar.overlay-mode.sidebar-open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="app-height overflow-hidden bg-neutral-900 text-neutral-200 font-sans">
+    <div class="flex app-height">
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-[260px] shrink-0 border-r border-neutral-700 flex flex-col">
+            <div class="p-4 border-b border-neutral-700">
+                <div class="flex items-center justify-between gap-2 mb-4">
+                    <div class="flex items-center gap-2 text-lg font-bold tracking-tight text-white whitespace-nowrap">
+                        AI Chat by Puter.js
+                    </div>
+                    <button class="p-1.5 text-neutral-400 hover:text-white hover:bg-neutral-700 rounded-md transition-colors shrink-0" id="sidebarCollapseBtn" title="サイドバーを折りたたむ" aria-label="サイドバーを折りたたむ">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                    </button>
+                </div>
+                <button class="w-full flex items-center gap-3 py-2 px-2 -mx-2 rounded-lg text-sm text-neutral-300 hover:text-white hover:bg-neutral-700/60 transition-colors" id="newChatBtn">
+                    <svg class="w-4 h-4 opacity-70" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                    新しいチャット
+                </button>
+            </div>
+
+            <div class="p-4 border-b border-neutral-700">
+                <button class="w-full flex items-center gap-3 py-2 px-2 -mx-2 rounded-lg text-sm text-neutral-300 hover:text-white hover:bg-neutral-700/60 transition-colors" id="usageNavBtn">
+                    <svg class="w-4 h-4 opacity-70" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 3h2v18H3V3zm4 10h2v8H7v-8zm4-6h2v14h-2V7zm4 3h2v11h-2V10zm4-7h2v18h-2V3z"/>
+                    </svg>
+                    月間利用状況
+                </button>
+                <button class="w-full flex items-center gap-3 py-2 px-2 -mx-2 rounded-lg text-sm text-neutral-300 hover:text-white hover:bg-neutral-700/60 transition-colors" id="modelInfoNavBtn">
+                    <svg class="w-4 h-4 opacity-70" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    </svg>
+                    各モデルの説明
+                </button>
+            </div>
+
+            <div class="flex-1 p-4 overflow-y-auto">
+                <div class="text-xs text-neutral-500 uppercase tracking-wide mb-3">最近の会話</div>
+                <div id="recentItems" class="min-h-[20px]">
+                    <div class="text-center" id="emptyState">
+                        <span class="text-neutral-500 text-[13px] italic">最近の会話はありません</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-neutral-700">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-brand text-white text-xs font-semibold flex items-center justify-center ring-1 ring-white/10">H</div>
+                    <div class="flex-1">
+                        <div class="text-sm text-white font-medium">Hassan</div>
+                        <div class="text-xs text-neutral-500">Proプラン</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sidebarBackdrop" class="hidden fixed inset-0 bg-black/50 z-40"></div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col bg-neutral-900 min-w-0">
+            <div id="topBar" class="hidden fixed top-3 left-3 z-30 items-center gap-2">
+                <button class="p-2 bg-neutral-800 text-neutral-300 hover:text-white hover:bg-neutral-700 rounded-md shadow-lg transition-colors shrink-0" id="sidebarExpandBtn" title="サイドバーを開く" aria-label="サイドバーを開く">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                </button>
+                <div id="effortSelectSlotTop" class="flex items-center"></div>
+                <div id="chatModelSelectorSlotTop" class="flex items-center"></div>
+            </div>
+
+            <!-- Welcome Screen -->
+            <div class="flex-1 flex flex-col overflow-y-auto min-h-0" id="welcomeScreen">
+            <div class="flex-1 flex flex-col items-center justify-center max-w-3xl mx-auto w-full px-10 pt-16 pb-10 relative">
+                    <div class="hero-glow"></div>
+                    <div class="hero-rise w-full flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-brand" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+                        </svg>
+                    </div>
+                    <div class="mb-10 text-4xl font-bold tracking-tight text-white text-center">
+                        おはようございます、Hassanさん
+                    </div>
+
+                    <div class="w-full max-w-xl relative mb-3">
+                        <textarea class="w-full pl-4 pr-14 py-4 bg-neutral-800 border border-neutral-700 focus:border-brand focus:ring-1 focus:ring-brand/30 rounded-xl text-white text-base outline-none min-h-[50px] max-h-[150px] placeholder-neutral-500 transition-colors" id="welcomeInput" placeholder="今日は何をお手伝いしましょうか?" rows="1"></textarea>
+                        <div class="absolute right-2 top-1/2 -translate-y-1/2">
+                            <button class="glow-brand p-2 bg-brand hover:bg-brand-hover text-white rounded-md transition-colors flex items-center justify-center disabled:bg-neutral-700 disabled:text-neutral-400 disabled:cursor-not-allowed disabled:shadow-none" id="sendBtn" aria-label="送信">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="w-full max-w-xl flex items-center justify-end gap-2 mb-6">
+                        <select id="effortSelectWelcome" class="control-chip hidden outline-none focus:border-brand" title="推論の強さ"></select>
+                        <button class="control-chip" id="modelSelector">
+                            <span id="currentModel">モデルを読み込み中…</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="surface-raised max-w-xl w-full mb-8 p-3 bg-neutral-800 rounded-lg border border-neutral-700">
+                        <div class="text-[13px] text-neutral-400 text-center mb-2">
+                            💡 <strong>はじめてご利用の方へ</strong> 認証用の小さなポップアップが表示されます。Puter.js経由の無料AIアクセスを有効にするため、許可してください。
+                        </div>
+                        <div class="text-xs text-center mb-2" id="protocolNotice"></div>
+                        <div class="text-center">
+                            <button id="authButton" class="glow-brand bg-brand hover:bg-brand-hover text-white border-none px-4 py-2 rounded-md cursor-pointer text-xs font-medium transition-colors">
+                                🔐 Puterで認証する
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="flex gap-3 flex-wrap justify-center">
+                        <button class="flex items-center gap-2 py-3 px-5 bg-neutral-800 border border-neutral-700 rounded-lg text-neutral-200 text-sm hover:bg-neutral-700 hover:border-neutral-600 hover:-translate-y-0.5 transition-all action-btn" data-prompt="文章を書くのを手伝って">
+                            <svg class="w-4 h-4 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                            文章作成
+                        </button>
+                        <button class="flex items-center gap-2 py-3 px-5 bg-neutral-800 border border-neutral-700 rounded-lg text-neutral-200 text-sm hover:bg-neutral-700 hover:border-neutral-600 hover:-translate-y-0.5 transition-all action-btn" data-prompt="次のことについて教えて: ">
+                            <svg class="w-4 h-4 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6L23 9l-11-6zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                            学ぶ
+                        </button>
+                        <button class="flex items-center gap-2 py-3 px-5 bg-neutral-800 border border-neutral-700 rounded-lg text-neutral-200 text-sm hover:bg-neutral-700 hover:border-neutral-600 hover:-translate-y-0.5 transition-all action-btn" data-prompt="コーディングを手伝って">
+                            <svg class="w-4 h-4 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+                            コード
+                        </button>
+                        <button class="flex items-center gap-2 py-3 px-5 bg-neutral-800 border border-neutral-700 rounded-lg text-neutral-200 text-sm hover:bg-neutral-700 hover:border-neutral-600 hover:-translate-y-0.5 transition-all action-btn" data-prompt="日々のタスクを手伝って">
+                            <svg class="w-4 h-4 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            日常のこと
+                        </button>
+                        <button class="flex items-center gap-2 py-3 px-5 bg-neutral-800 border border-neutral-700 rounded-lg text-neutral-200 text-sm hover:bg-neutral-700 hover:border-neutral-600 hover:-translate-y-0.5 transition-all action-btn" data-prompt="アプリの連携を手伝って">
+                            <svg class="w-4 h-4 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H6.99C4.79 7 3 8.79 3 11s1.79 4 4 4H11v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1H13V17h4.01c2.2 0 4-1.79 4-4s-1.8-4-4.01-4z"/></svg>
+                            アプリを連携
+                        </button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Chat Container -->
+                <div class="hidden flex-col flex-1 min-h-0" id="chatContainer">
+                    <div class="flex-1 overflow-y-auto overflow-x-hidden min-h-0" id="chatMessages">
+                        <div class="max-w-3xl mx-auto w-full px-5 pt-16" id="chatMessagesInner"></div>
+                    </div>
+
+                    <div class="shrink-0 bg-neutral-900">
+                        <div class="max-w-3xl mx-auto w-full p-5 pt-4 pb-1">
+                        <div class="relative">
+                        <textarea class="w-full pl-4 pr-14 py-4 bg-neutral-800 border border-neutral-700 focus:border-brand focus:ring-1 focus:ring-brand/30 rounded-xl text-white text-base outline-none min-h-[50px] max-h-[150px] placeholder-neutral-500 transition-colors" id="chatInput" placeholder="AIにメッセージを送る..." rows="1"></textarea>
+                        <div class="absolute right-2 top-1/2 -translate-y-1/2">
+                            <button class="p-2 bg-brand hover:bg-brand-hover text-white rounded-md transition-colors flex items-center justify-center disabled:bg-neutral-700 disabled:text-neutral-400 disabled:cursor-not-allowed" id="chatSendBtn" aria-label="送信">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        </div>
+                        <div class="flex items-center justify-end gap-2 mt-2 mb-1">
+                            <div id="effortSelectSlotBottom" class="flex items-center">
+                                <select id="effortSelectChat" class="control-chip hidden outline-none focus:border-brand" title="推論の強さ"></select>
+                            </div>
+                            <div id="chatModelSelectorSlotBottom" class="flex items-center">
+                                <button class="control-chip max-w-[170px]" id="chatModelSelector">
+                                    <span id="chatCurrentModel" class="truncate">…</span>
+                                    <svg class="w-3 h-3 shrink-0 opacity-70" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usage View -->
+                <div class="hidden flex-col flex-1 overflow-y-auto min-h-0" id="usageContainer">
+                    <div class="max-w-3xl mx-auto w-full px-5 pt-16 pb-5">
+                    <button id="usageBackBtn" class="flex items-center gap-1.5 text-sm font-medium text-neutral-300 hover:text-white mb-4 transition-colors">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"/></svg>
+                        チャットに戻る
+                    </button>
+                    <div class="flex items-center justify-between mb-6">
+                        <h1 id="usageHeading" tabindex="-1" class="text-2xl font-bold tracking-tight text-white outline-none">月間利用状況</h1>
+                        <button id="refreshUsageBtn" class="flex items-center gap-2 text-sm font-medium text-neutral-100 hover:text-white border border-neutral-600 hover:border-neutral-400 rounded-md px-3 py-1.5 transition-colors">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                            更新
+                        </button>
+                    </div>
+                    <div id="usageContent">
+                        <div class="text-neutral-300 text-sm font-medium">利用状況を読み込み中…</div>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Model Info View -->
+                <div class="hidden flex-col flex-1 overflow-y-auto min-h-0" id="modelInfoContainer">
+                    <div class="max-w-3xl mx-auto w-full px-5 pt-16 pb-5">
+                    <button id="modelInfoBackBtn" class="flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white mb-4 transition-colors">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"/></svg>
+                        チャットに戻る
+                    </button>
+                    <div class="mb-6">
+                        <h1 id="modelInfoHeading" tabindex="-1" class="text-2xl font-bold tracking-tight text-white outline-none">各モデルの説明</h1>
+                    </div>
+                    <div class="surface-raised bg-amber-950/30 border border-amber-900 rounded-xl p-5">
+                        <h2 class="text-base font-semibold text-white mb-3">中国製AIモデルをご利用の方へ</h2>
+                        <p class="text-sm text-neutral-300 leading-relaxed mb-4">
+                            本アプリでは複数のAIモデルを選択できますが、DeepSeek・Qwenなど中国企業が提供するモデルには以下の特性があります。
+                        </p>
+                        <ul class="space-y-3 text-sm text-neutral-300 leading-relaxed mb-4">
+                            <li class="flex gap-2">
+                                <span class="text-amber-500 shrink-0">・</span>
+                                <span><strong class="text-white font-medium">データの取り扱い: </strong>入力内容が中国国内のサーバーで処理・保存される可能性があります。機密情報、個人を特定できる情報、業務上重要なデータの入力は避けることを推奨します。</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-amber-500 shrink-0">・</span>
+                                <span><strong class="text-white font-medium">回答内容の制限: </strong>特定の政治的・歴史的トピックについて、回答が制限されたり、偏った内容が返される場合があります。</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-amber-500 shrink-0">・</span>
+                                <span><strong class="text-white font-medium">免責事項: </strong>本アプリは各モデル提供元のポリシーに関与しておらず、モデル選択の結果生じた損害について責任を負いかねます。</span>
+                            </li>
+                        </ul>
+                        <p class="text-sm text-amber-400 font-medium">ご利用は自己責任にてお願いいたします。</p>
+                    </div>
+
+                    <div class="mt-6">
+                        <div class="mb-4 space-y-3">
+                            <div class="flex items-center justify-between gap-3 flex-wrap">
+                                <div class="flex items-baseline gap-2">
+                                    <h2 class="text-base font-semibold text-white">モデル一覧</h2>
+                                    <span id="modelInfoCount" role="status" class="text-xs text-neutral-400 tabular-nums"></span>
+                                </div>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <button type="button" id="modelInfoResetView" class="min-h-[44px] px-3 rounded-lg text-xs border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand text-neutral-300 border-neutral-700 hover:text-white hover:border-neutral-500">デフォルトに戻す</button>
+                                    <button type="button" id="modelInfoExpandAll" class="min-h-[44px] px-3 rounded-lg text-xs border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand text-neutral-300 border-neutral-700 hover:text-white hover:border-neutral-500">すべて展開</button>
+                                    <button type="button" id="modelInfoCollapseAll" class="min-h-[44px] px-3 rounded-lg text-xs border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand text-neutral-300 border-neutral-700 hover:text-white hover:border-neutral-500">すべて折りたたむ</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-2">
+                                <label for="modelInfoSearch" class="sr-only">モデルを検索</label>
+                                <input id="modelInfoSearch" type="search" autocomplete="off" placeholder="モデル名・提供元で検索" class="min-h-[44px] flex-1 min-w-0 px-3 rounded-lg bg-neutral-800 border border-neutral-700 text-sm text-neutral-100 placeholder-neutral-500 outline-none focus-visible:ring-2 focus-visible:ring-brand">
+                                <div class="flex items-center gap-2" role="group" aria-label="絞り込み">
+                                    <button type="button" data-model-filter="all" aria-pressed="true" class="min-h-[44px] px-3 rounded-lg text-xs border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand bg-brand/20 text-brand border-brand/50">すべて</button>
+                                    <button type="button" data-model-filter="recommended" aria-pressed="false" class="min-h-[44px] px-3 rounded-lg text-xs border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand text-neutral-300 border-neutral-700">おすすめ</button>
+                                    <button type="button" data-model-filter="free" aria-pressed="false" class="min-h-[44px] px-3 rounded-lg text-xs border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand text-neutral-300 border-neutral-700">無料</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modelInfoList" class="space-y-6">
+                            <div class="text-neutral-500 text-sm">モデル情報を読み込み中…</div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <!-- Shared model dropdown panel -->
+    <div id="modelDropdown" class="hidden fixed z-50 w-80 max-h-[420px] overflow-y-auto surface-raised bg-neutral-800 border border-neutral-700 rounded-xl shadow-2xl dropdown-enter">
+        <div class="p-2 sticky top-0 bg-neutral-800 border-b border-neutral-700">
+            <input id="modelSearchInput" type="text" placeholder="モデルを検索…" class="w-full px-3 py-2 bg-neutral-900 border border-neutral-700 focus:border-brand focus:ring-1 focus:ring-brand/30 rounded-md text-sm text-white outline-none placeholder-neutral-500 transition-colors">
+        </div>
+        <div id="modelDropdownList" class="py-1"></div>
+    </div>
+
+    <script>
+        // ---------------------------------------------------------------
+        // Global state
+        // ---------------------------------------------------------------
+        const MODELS_URL = 'https://cdn.jsdelivr.net/gh/toka-kun/Education@refs/heads/main/ai/Puter.js/textModels.json';
+        const LS_MODELS_KEY = 'aiChat_models_v2'; // v2: added contextWindow/maxOutputTokens/intelligenceIndex/modalities/defaultEffort - bumped to drop stale v1 cache entries missing these fields
+        const LS_SELECTED_MODEL_KEY = 'aiChat_selectedModel_v1';
+
+        // Exa MCP (remote Model Context Protocol server) - the AI always has
+        // these tools available and decides itself whether to use them.
+        // See setupExaMcp() below.
+        const EXA_MCP_URL = 'https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,web_search_advanced_exa';
+        const EXA_TOOL_NAMES = ['web_search_exa', 'web_fetch_exa', 'web_search_advanced_exa'];
+        // Descriptions shown to the AI so it can pick the right tool itself -
+        // never used by our own code to decide anything.
+        const EXA_TOOL_DESCRIPTIONS = {
+            web_search_exa: '通常のWeb検索。最新ニュース、現在の情報、複数サイトの情報収集など。',
+            web_fetch_exa: '具体的なURLのページ本文・内容を取得する。特定ページを読みたい場合に使用。',
+            web_search_advanced_exa: 'ドメイン、日付、カテゴリなどの条件を指定した高度なWeb検索に使用。'
+        };
+        const MAX_TOOL_ROUNDS = 5;
+        // Best-effort fallback parameter schemas, used only if a given tool
+        // is missing from the live tools/list response (e.g. a transient
+        // issue) - tools/list is always tried first.
+        const EXA_FALLBACK_SCHEMAS = {
+            web_search_exa: {
+                type: 'object',
+                properties: {
+                    query: { type: 'string', description: 'The search query.' },
+                    numResults: { type: 'number', description: 'Number of results to return.' }
+                },
+                required: ['query']
+            },
+            web_fetch_exa: {
+                type: 'object',
+                properties: {
+                    url: { type: 'string', description: 'The URL of the page to fetch.' }
+                },
+                required: ['url']
+            },
+            web_search_advanced_exa: {
+                type: 'object',
+                properties: {
+                    query: { type: 'string', description: 'The search query.' },
+                    numResults: { type: 'number', description: 'Number of results to return.' },
+                    includeDomains: { type: 'array', items: { type: 'string' }, description: 'Only include results from these domains.' },
+                    excludeDomains: { type: 'array', items: { type: 'string' }, description: 'Exclude results from these domains.' },
+                    startPublishedDate: { type: 'string', description: 'Only include results published on or after this ISO 8601 date.' },
+                    endPublishedDate: { type: 'string', description: 'Only include results published on or before this ISO 8601 date.' },
+                    category: { type: 'string', description: 'Restrict results to a content category (e.g. news, company, research paper).' }
+                },
+                required: ['query']
+            }
+        };
+
+        // Fallback catalog, in the same nested shape as the remote JSON
+        // (provider -> {desc, models: {apiName -> {...}}}). Used only if the
+        // remote model catalog can't be fetched and nothing is cached in
+        // localStorage yet.
+        const FALLBACK_MODELS_RAW = {
+            '🇺🇸 Anthropic': {
+                desc: '',
+                models: {
+                    'anthropic/claude-haiku-4-5': { displayName: 'Claude Haiku 4.5', shortName: 'Haiku 4.5', cost: '1.00/5.00', tags: ['default'], effort: ['none'], desc: '' },
+                    'anthropic/claude-sonnet-5': { displayName: 'Claude Sonnet 5', shortName: 'Sonnet 5', cost: '2.00/10.00', tags: ['expensive'], effort: ['none'], desc: '' }
+                }
+            }
+        };
+
+        // Human-readable labels for the reasoning_effort values Puter.js
+        // supports (see puter.ai.chat() docs): none, minimal, low, medium,
+        // high, xhigh, max.
+        const EFFORT_LABELS = {
+            none: 'なし none',
+            minimal: '最小 minimal',
+            low: '低 low',
+            medium: '中 medium',
+            high: '高 high',
+            xhigh: '超高 xhigh',
+            max: '最大 max'
+        };
+
+        // Human-readable labels for the modality strings used in
+        // inputModalities / outputModalities in the catalog JSON.
+        const MODALITY_LABELS = {
+            text: 'テキスト',
+            file: 'ファイル',
+            image: '画像',
+            audio: '音声',
+            video: '動画'
+        };
+
+        // Converts one raw model entry (remote JSON shape or fallback shape)
+        // into the normalized shape used throughout the UI. providerName
+        // comes from the outer key in the new nested JSON shape.
+        function normalizeModel(apiName, providerName, m) {
+            const tags = Array.isArray(m.tags) ? m.tags : [];
+            const effort = Array.isArray(m.effort) && m.effort.length ? m.effort : ['none'];
+            return {
+                apiName,
+                provider: providerName || m.provider || 'その他',
+                displayName: m.displayName || apiName,
+                shortName: m.shortName || m.displayName || apiName,
+                cost: m.cost || '',
+                desc: m.desc || '',
+                effort,
+                // false when the catalog entry has no effort list at all, so the
+                // model info page can say "不明" instead of implying "no effort
+                // options" (effort itself falls back to ['none'] above).
+                effortKnown: Array.isArray(m.effort) && m.effort.length > 0,
+                defaultEffort: m.defaultEffort || null,
+                intelligenceIndex: typeof m.intelligenceIndex === 'number' ? m.intelligenceIndex : null,
+                inputModalities: Array.isArray(m.inputModalities) ? m.inputModalities : [],
+                outputModalities: Array.isArray(m.outputModalities) ? m.outputModalities : [],
+                contextWindow: typeof m.contextWindow === 'number' ? m.contextWindow : null,
+                maxOutputTokens: typeof m.maxOutputTokens === 'number' ? m.maxOutputTokens : null,
+                isExpensive: tags.includes('expensive') || !!m.isExpensive,
+                isVeryExpensive: tags.includes('very-expensive') || !!m.isVeryExpensive,
+                isRecommended: tags.includes('recommended') || !!m.isRecommended,
+                isDefault: tags.includes('default') || !!m.isDefault,
+                isFree: tags.includes('free') || !!m.isFree
+            };
+        }
+
+        // Parses the full nested {provider: {desc, models}} catalog into a
+        // flat list of normalized models plus a provider -> desc map.
+        function parseModelsCatalog(data) {
+            const models = [];
+            const providerDescriptions = {};
+            Object.entries(data || {}).forEach(([providerName, providerData]) => {
+                if (providerData && typeof providerData.desc === 'string' && providerData.desc) {
+                    providerDescriptions[providerName] = providerData.desc;
+                }
+                const providerModels = (providerData && providerData.models) || {};
+                Object.entries(providerModels).forEach(([apiName, m]) => {
+                    models.push(normalizeModel(apiName, providerName, m));
+                });
+            });
+            return { models, providerDescriptions };
+        }
+
+        let { models: initialModels, providerDescriptions: initialProviderDescriptions } = parseModelsCatalog(FALLBACK_MODELS_RAW);
+        let availableModels = initialModels;
+        let providerDescriptions = initialProviderDescriptions;
+        let currentModel = availableModels[0].apiName;
+        // The reasoning_effort selected for the current model, or 'none' to
+        // omit it entirely (see sendMessage). Kept per-conversation, like the
+        // model itself - see conversation.effort.
+        let currentEffort = 'none';
+        // Streaming state lives per-conversation, not globally: each entry is
+        // conversationId -> { text, bubbleEl, status, toolUses }. This is how
+        // a response keeps generating in the background when the user
+        // navigates to a different conversation or a different page, and
+        // picks up right where it is when they come back. `status` is one of
+        // 'thinking' (waiting on the AI), 'tool' (a tool call is in flight),
+        // or 'streaming' (text is actively arriving - the growing bubble
+        // itself is the indicator at that point).
+        const activeStreams = new Map();
+        let recentConversations = [];
+        let currentConversationId = null;
+        let modelDropdownAnchor = null;
+        let isSidebarCollapsed = false;
+        let currentView = 'welcome';
+
+        // Exa MCP connection state - session id / negotiated protocol version
+        // are only ever populated once we actually talk to the Exa server
+        // (i.e. only while web search is on and a search is actually made).
+        let exaMcpState = {
+            sessionId: null,
+            protocolVersion: null,
+            initialized: false,
+            initPromise: null,
+            toolDefinitions: null,
+        };
+        let exaRequestIdCounter = 1;
+
+        // ---------------------------------------------------------------
+        // localStorage helpers (model catalog cache + selected model)
+        // ---------------------------------------------------------------
+        function loadCachedModels() {
+            try {
+                const raw = localStorage.getItem(LS_MODELS_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                // Backward-compat: older cache versions stored a bare array.
+                if (Array.isArray(parsed)) {
+                    return parsed.length ? { models: parsed, providerDescriptions: {} } : null;
+                }
+                if (parsed && Array.isArray(parsed.models) && parsed.models.length) {
+                    return { models: parsed.models, providerDescriptions: parsed.providerDescriptions || {} };
+                }
+                return null;
+            } catch (e) {
+                console.warn('⚠️ Failed to read cached model list:', e);
+                return null;
+            }
+        }
+
+        function saveModelsToCache(models, providerDescs) {
+            try {
+                localStorage.setItem(LS_MODELS_KEY, JSON.stringify({ models, providerDescriptions: providerDescs || {} }));
+            } catch (e) {
+                console.warn('⚠️ Failed to cache model list:', e);
+            }
+        }
+
+        function loadSavedSelectedModel() {
+            try {
+                return localStorage.getItem(LS_SELECTED_MODEL_KEY);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function saveSelectedModel(apiName) {
+            try {
+                localStorage.setItem(LS_SELECTED_MODEL_KEY, apiName);
+            } catch (e) {
+                console.warn('⚠️ Failed to save selected model:', e);
+            }
+        }
+
+        function getDefaultModelApiName() {
+            const def = availableModels.find(m => m.isDefault);
+            if (def) return def.apiName;
+            return availableModels.length ? availableModels[0].apiName : null;
+        }
+
+        function applySavedModelSelection() {
+            const saved = loadSavedSelectedModel();
+            if (saved && availableModels.some(m => m.apiName === saved)) {
+                currentModel = saved;
+                return;
+            }
+            currentModel = getDefaultModelApiName();
+        }
+
+        // ---------------------------------------------------------------
+        // Init
+        // ---------------------------------------------------------------
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Initializing AI chat interface...');
+            initializeInterface();
+            updateProtocolNotice();
+            syncAuthButtonWithSession();
+            loadModels();
+        });
+
+        async function loadModels() {
+            // Show cached models immediately (if any) while we refresh in the background.
+            const cached = loadCachedModels();
+            if (cached) {
+                availableModels = cached.models;
+                providerDescriptions = cached.providerDescriptions;
+                applySavedModelSelection();
+                updateModelDisplay();
+                console.log('📦 Loaded', availableModels.length, 'models from local cache (refreshing in background)');
+            }
+
+            try {
+                const res = await fetch(MODELS_URL, { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                const { models: parsed, providerDescriptions: parsedProviderDescriptions } = parseModelsCatalog(data);
+                if (parsed.length) {
+                    availableModels = parsed;
+                    providerDescriptions = parsedProviderDescriptions;
+                    saveModelsToCache(availableModels, providerDescriptions);
+                    applySavedModelSelection();
+                }
+                console.log('✅ Loaded', availableModels.length, 'models from remote catalog');
+            } catch (err) {
+                console.error('⚠️ Failed to load remote model catalog, using ' + (cached ? 'cached' : 'fallback') + ' list:', err);
+                if (!cached) applySavedModelSelection();
+            }
+            updateModelDisplay();
+        }
+
+        function updateProtocolNotice() {
+            const protocolNotice = document.getElementById('protocolNotice');
+            if (!protocolNotice) return;
+            if (window.location.protocol === 'file:') {
+                protocolNotice.innerHTML = '✅ <strong>ファイルモード:</strong> ここでは認証が問題なく機能するはずです！';
+                protocolNotice.className = 'text-xs text-center mb-2 text-green-500';
+            } else if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                protocolNotice.innerHTML = '⚠️ <strong>サーバーモード:</strong> 認証に失敗する場合、ブラウザのプロファイル設定が原因の可能性があります。下記のガイドをご覧ください。';
+                protocolNotice.className = 'text-xs text-center mb-2 text-amber-500';
+            } else {
+                protocolNotice.innerHTML = '🌐 <strong>Webモード:</strong> このドメインでポップアップが許可されていることを確認してください。';
+                protocolNotice.className = 'text-xs text-center mb-2 text-blue-500';
+            }
+        }
+
+        // The home-screen auth button in its "signed in" state. Used after a
+        // successful manual auth and on load when Puter already has a session,
+        // so both paths look identical (and a retry after a red failure state
+        // clears that colour too). The button stays clickable: pressing it asks
+        // whether to re-authenticate (see handleAuthButtonClick).
+        function setAuthButtonAuthenticated(authButton) {
+            if (!authButton) return;
+            authButton.textContent = '✅ 認証済み';
+            authButton.disabled = false;
+            authButton.dataset.authenticated = 'true';
+            authButton.title = 'クリックすると再認証できます';
+            authButton.classList.remove('bg-brand', 'hover:bg-brand-hover', 'bg-red-600', 'glow-brand');
+            authButton.classList.add('bg-green-700', 'hover:bg-green-800');
+        }
+
+        // Back to the plain orange "authenticate" look, used when a
+        // (re-)authentication starts so no green/red state is left behind.
+        function resetAuthButtonStyle(authButton) {
+            if (!authButton) return;
+            delete authButton.dataset.authenticated;
+            authButton.removeAttribute('title');
+            authButton.classList.remove('bg-green-700', 'hover:bg-green-800', 'bg-red-600');
+            authButton.classList.add('bg-brand', 'hover:bg-brand-hover', 'glow-brand');
+        }
+
+        // Click handler for the auth button. When already signed in it asks
+        // first; handleManualAuth only opens the sign-in popup when there is
+        // no session, so a confirmed re-auth ends the current session before
+        // running the normal flow.
+        function handleAuthButtonClick() {
+            const authButton = document.getElementById('authButton');
+            if (authButton && authButton.dataset.authenticated === 'true') {
+                if (!window.confirm('再認証しますか？いったんログアウトして、認証をやり直すことができます。')) return;
+                try {
+                    puter.auth.signOut();
+                } catch (error) {
+                    console.warn('Could not sign out before re-authenticating:', error);
+                }
+            }
+            handleManualAuth();
+        }
+
+        // If the user is already signed in to Puter, show that on the button
+        // right away instead of asking them to authenticate again.
+        function syncAuthButtonWithSession() {
+            try {
+                if (typeof puter !== 'undefined' && puter.auth && puter.auth.isSignedIn()) {
+                    setAuthButtonAuthenticated(document.getElementById('authButton'));
+                }
+            } catch (error) {
+                console.warn('Could not read the Puter sign-in state:', error);
+            }
+        }
+
+        async function handleManualAuth() {
+            const authButton = document.getElementById('authButton');
+            try {
+                if (authButton) { resetAuthButtonStyle(authButton); authButton.textContent = '🔄 認証中...'; authButton.disabled = true; }
+                console.log('🔐 Manually triggering Puter authentication...');
+                const authResponse = await puter.ai.chat("test", { model: currentModel });
+                console.log('✅ Raw auth response:', authResponse);
+                if (authResponse && (authResponse.message?.content || authResponse.success !== false)) {
+                    console.log('✅ Authentication successful!');
+                    if (authButton) {
+                        setAuthButtonAuthenticated(authButton);
+                    }
+                } else {
+                    throw new Error('認証レスポンスが失敗を示しています。');
+                }
+            } catch (error) {
+                console.error('❌ Manual authentication failed:', error);
+                if (authButton) {
+                    authButton.textContent = '❌ 認証失敗 - 再度試す';
+                    authButton.disabled = false;
+                    authButton.classList.remove('bg-brand', 'hover:bg-brand-hover');
+                    authButton.classList.add('bg-red-600');
+                }
+                const troubleshootGuide = `
+⚠️ 認証に失敗しました！
+
+これは多くの場合、コード自体の不具合ではなく、お使いのブラウザのプロファイル設定(拡張機能やキャッシュなど)が原因です。
+
+ゲストモードやシークレットモードでは動作することが確認できているかもしれません。以下の手順で、通常使っているプロファイルでも動作するようにできます:
+
+--- トラブルシューティングガイド ---
+
+✅ 最も早い対処法（まずはこれを試してください）:
+1.  🥷 シークレット/プライベートモードを使う:
+    ・ Ctrl+Shift+N (Chrome/Edge) または Ctrl+Shift+P (Firefox) を押します。
+    ・ このHTMLファイルをそこで開いてください。これが最も早い解決策です。
+
+🔧 通常のプロファイルで直す場合:
+2.  🔌 拡張機能を無効にする:
+    ・ ブラウザの拡張機能ページ(例: chrome://extensions)を開きます。
+    ・ 特に広告ブロッカー(uBlockやAdBlockなど)やプライバシー系の拡張機能を一時的にすべて無効にします。
+    ・ このページを再読み込みして、もう一度認証を試してください。
+
+3.  🧹 Puterのサイトデータを削除する:
+    ・ puter.com にアクセスし、アドレスバーの🔒アイコン → サイトの設定/Cookieとサイトデータ → データを削除、を実行します。
+    ・ このページを再読み込みして、もう一度試してください。
+
+4.  🍪 サードパーティCookieを許可する:
+    ・ ブラウザのCookie設定(例: chrome://settings/cookies)を開きます。
+    ・「サードパーティCookieをブロックする」が有効になっていないか確認するか、"[*.]puter.com" を許可リストに追加してください。
+
+ローカルサーバー(localhostなど)で実行している場合、原因のほとんどは拡張機能かCookieの設定です。
+`;
+                alert(troubleshootGuide);
+            }
+        }
+
+        function initializeInterface() {
+            const welcomeInput = document.getElementById('welcomeInput');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const chatSendBtn = document.getElementById('chatSendBtn');
+            const newChatBtn = document.getElementById('newChatBtn');
+            const usageNavBtn = document.getElementById('usageNavBtn');
+            const modelInfoNavBtn = document.getElementById('modelInfoNavBtn');
+            const refreshUsageBtn = document.getElementById('refreshUsageBtn');
+            const actionBtns = document.querySelectorAll('.action-btn');
+            const modelSelectors = document.querySelectorAll('#modelSelector, #chatModelSelector');
+            const authButton = document.getElementById('authButton');
+            const modelSearchInput = document.getElementById('modelSearchInput');
+            const sidebarCollapseBtn = document.getElementById('sidebarCollapseBtn');
+            const sidebarExpandBtn = document.getElementById('sidebarExpandBtn');
+            const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+            if (authButton) authButton.addEventListener('click', handleAuthButtonClick);
+            if (sidebarCollapseBtn) sidebarCollapseBtn.addEventListener('click', () => setSidebarCollapsed(true));
+            if (sidebarExpandBtn) sidebarExpandBtn.addEventListener('click', () => setSidebarCollapsed(false));
+            if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', () => setSidebarCollapsed(true));
+
+            // Default to a collapsed sidebar on mobile-sized viewports.
+            setSidebarCollapsed(isMobileViewport());
+
+            // Re-apply the correct sidebar mode (overlay vs push) if the
+            // viewport crosses the mobile breakpoint, e.g. on rotation or
+            // when resizing a browser window.
+            window.addEventListener('resize', () => setSidebarCollapsed(isSidebarCollapsed));
+            window.addEventListener('orientationchange', () => setSidebarCollapsed(isSidebarCollapsed));
+
+            [welcomeInput, chatInput].forEach(textarea => {
+                if (textarea) {
+                    textarea.addEventListener('input', () => autoResize(textarea));
+                    textarea.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            if (textarea === welcomeInput) handleWelcomeMessage();
+                            else handleChatMessage();
+                        }
+                    });
+                }
+            });
+
+            if (sendBtn) sendBtn.addEventListener('click', handleWelcomeMessage);
+            if (chatSendBtn) chatSendBtn.addEventListener('click', handleChatMessage);
+            if (newChatBtn) newChatBtn.addEventListener('click', startNewChat);
+            if (usageNavBtn) usageNavBtn.addEventListener('click', switchToUsageView);
+            if (modelInfoNavBtn) modelInfoNavBtn.addEventListener('click', switchToModelInfoView);
+            if (refreshUsageBtn) refreshUsageBtn.addEventListener('click', loadUsageData);
+            const usageBackBtn = document.getElementById('usageBackBtn');
+            const modelInfoBackBtn = document.getElementById('modelInfoBackBtn');
+            if (usageBackBtn) usageBackBtn.addEventListener('click', goBackToChat);
+            if (modelInfoBackBtn) modelInfoBackBtn.addEventListener('click', goBackToChat);
+            const modelInfoExpandAll = document.getElementById('modelInfoExpandAll');
+            const modelInfoCollapseAll = document.getElementById('modelInfoCollapseAll');
+            if (modelInfoExpandAll) modelInfoExpandAll.addEventListener('click', () => setAllModelInfoExpanded(true));
+            if (modelInfoCollapseAll) modelInfoCollapseAll.addEventListener('click', () => setAllModelInfoExpanded(false));
+            const modelInfoResetView = document.getElementById('modelInfoResetView');
+            if (modelInfoResetView) modelInfoResetView.addEventListener('click', resetModelInfoExpansion);
+            const modelInfoSearch = document.getElementById('modelInfoSearch');
+            if (modelInfoSearch) modelInfoSearch.addEventListener('input', () => { modelInfoQuery = modelInfoSearch.value; renderModelInfoList(); });
+            document.querySelectorAll('[data-model-filter]').forEach(btn => btn.addEventListener('click', () => {
+                modelInfoFilter = btn.dataset.modelFilter;
+                syncModelInfoToolbar();
+                renderModelInfoList();
+            }));
+
+            [document.getElementById('effortSelectWelcome'), document.getElementById('effortSelectChat')].forEach(select => {
+                if (select) select.addEventListener('change', (e) => handleEffortChange(e.target.value));
+            });
+
+            actionBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const prompt = this.getAttribute('data-prompt');
+                    if (prompt && welcomeInput) {
+                        welcomeInput.value = prompt;
+                        welcomeInput.focus();
+                        autoResize(welcomeInput);
+                    }
+                });
+            });
+
+            modelSelectors.forEach(selector => {
+                if (selector) selector.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openModelDropdown(selector);
+                });
+            });
+
+            if (modelSearchInput) {
+                modelSearchInput.addEventListener('input', () => renderModelDropdownList(modelSearchInput.value));
+                modelSearchInput.addEventListener('click', (e) => e.stopPropagation());
+            }
+
+            document.addEventListener('click', (e) => {
+                const dropdown = document.getElementById('modelDropdown');
+                if (dropdown && !dropdown.classList.contains('hidden') && !dropdown.contains(e.target)) {
+                    closeModelDropdown();
+                }
+            });
+            window.addEventListener('resize', closeModelDropdown);
+
+            focusIfNotMobile(welcomeInput);
+            console.log('✅ Interface initialized');
+        }
+
+        // ---------------------------------------------------------------
+        // Model selector dropdown
+        // ---------------------------------------------------------------
+        function formatCost(cost) {
+            if (!cost) return '';
+            const parts = String(cost).split('/');
+            if (parts.length === 2) return `入力 $${parts[0]}・出力 $${parts[1]} (100万トークンあたり)`;
+            return cost;
+        }
+
+        function groupModelsByProvider(models) {
+            const groups = {};
+            models.forEach(m => {
+                if (!groups[m.provider]) groups[m.provider] = [];
+                groups[m.provider].push(m);
+            });
+            return groups;
+        }
+
+        function renderModelDropdownList(filterText) {
+            const listEl = document.getElementById('modelDropdownList');
+            if (!listEl) return;
+            const filter = (filterText || '').trim().toLowerCase();
+            const filtered = availableModels.filter(m =>
+                !filter ||
+                m.displayName.toLowerCase().includes(filter) ||
+                m.provider.toLowerCase().includes(filter) ||
+                m.apiName.toLowerCase().includes(filter)
+            );
+
+            listEl.innerHTML = '';
+
+            if (filtered.length === 0) {
+                listEl.innerHTML = '<div class="px-4 py-6 text-center text-sm text-neutral-500">条件に一致するモデルが見つかりません</div>';
+                return;
+            }
+
+            const groups = groupModelsByProvider(filtered);
+            Object.keys(groups).forEach(provider => {
+                const groupHeader = document.createElement('div');
+                groupHeader.className = 'px-3 pt-3 pb-1 text-xs font-semibold uppercase tracking-wide text-neutral-400';
+                groupHeader.textContent = provider;
+                listEl.appendChild(groupHeader);
+
+                groups[provider].forEach(model => {
+                    const isActive = model.apiName === currentModel;
+                    const item = document.createElement('button');
+                    item.className = 'w-full text-left px-3 py-2 flex items-center justify-between gap-3 hover:bg-neutral-700 transition-colors rounded-md ' + (isActive ? 'bg-neutral-700/70' : '');
+                    const badges = `
+                        ${model.isRecommended ? '<span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-emerald-500/15 text-emerald-400 shrink-0">おすすめ</span>' : ''}
+                        ${model.isFree ? '<span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-sky-500/15 text-sky-400 shrink-0">無料</span>' : ''}
+                        ${model.isExpensive ? '<span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-amber-500/15 text-amber-400 shrink-0">高コスト</span>' : ''}
+                        ${model.isVeryExpensive ? '<span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-red-500/15 text-red-400 shrink-0">非常に高コスト</span>' : ''}
+                    `;
+                    item.innerHTML = `
+                        <span class="flex flex-col min-w-0 gap-0.5">
+                            <span class="flex items-center gap-1.5 min-w-0">
+                                <span class="text-sm text-white truncate">${escapeHtml(model.displayName)}</span>
+                                ${badges}
+                            </span>
+                            <span class="text-xs text-neutral-500 font-mono tabular-nums">${model.isFree ? '無料' : escapeHtml(formatCost(model.cost))}</span>
+                        </span>
+                        ${isActive ? '<svg class="w-4 h-4 text-brand shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>' : ''}
+                    `;
+                    item.addEventListener('click', () => {
+                        currentModel = model.apiName;
+                        // Reset to this model's default effort rather than
+                        // carrying over the previous model's effort, even
+                        // when that value happens to still be valid here.
+                        currentEffort = getDefaultEffortForModel(model);
+                        saveSelectedModel(currentModel);
+                        updateModelDisplay();
+                        syncSelectionToCurrentConversation();
+                        closeModelDropdown();
+                    });
+                    listEl.appendChild(item);
+                });
+            });
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function openModelDropdown(anchorEl) {
+            const dropdown = document.getElementById('modelDropdown');
+            const searchInput = document.getElementById('modelSearchInput');
+            if (!dropdown || !anchorEl) return;
+
+            modelDropdownAnchor = anchorEl;
+            const rect = anchorEl.getBoundingClientRect();
+            const margin = 12;
+
+            // Cap the actual box size to the viewport first, then position it -
+            // this way the size used for clamping always matches what's rendered.
+            const dropdownWidth = Math.min(320, window.innerWidth - margin * 2);
+            const maxHeight = Math.min(420, window.innerHeight - margin * 2);
+
+            let left = rect.left;
+            if (left + dropdownWidth > window.innerWidth - margin) {
+                left = window.innerWidth - dropdownWidth - margin;
+            }
+            left = Math.max(margin, left);
+
+            let top = rect.bottom + 6;
+            if (top + maxHeight > window.innerHeight - margin) {
+                top = rect.top - maxHeight - 6;
+            }
+            top = Math.max(margin, Math.min(top, window.innerHeight - maxHeight - margin));
+
+            dropdown.style.left = `${left}px`;
+            dropdown.style.top = `${top}px`;
+            dropdown.style.width = `${dropdownWidth}px`;
+            dropdown.style.maxHeight = `${maxHeight}px`;
+            dropdown.classList.remove('hidden');
+            dropdown.classList.add('flex', 'flex-col');
+
+            if (searchInput) { searchInput.value = ''; }
+            renderModelDropdownList('');
+        }
+
+        function closeModelDropdown() {
+            const dropdown = document.getElementById('modelDropdown');
+            if (dropdown) {
+                dropdown.classList.add('hidden');
+                dropdown.classList.remove('flex', 'flex-col');
+            }
+            modelDropdownAnchor = null;
+        }
+
+        function updateModelDisplay() {
+            const model = availableModels.find(m => m.apiName === currentModel) || availableModels[0];
+            if (!model) return;
+            currentModel = model.apiName;
+            document.getElementById('currentModel').textContent = model.displayName;
+            document.getElementById('chatCurrentModel').textContent = model.shortName;
+
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) chatInput.placeholder = `${model.shortName} にメッセージを送る...`;
+
+            updateEffortSelectors(model);
+            renderModelInfoList();
+        }
+
+        // The reasoning_effort a freshly-selected model should start on:
+        // its defaultEffort from the catalog when that's actually one of
+        // the options it supports, otherwise just the first option.
+        function getDefaultEffortForModel(model) {
+            const options = (model && model.effort && model.effort.length) ? model.effort : ['none'];
+            if (model && model.defaultEffort && options.includes(model.defaultEffort)) {
+                return model.defaultEffort;
+            }
+            return options[0];
+        }
+
+        // Shows/hides and populates the reasoning-effort <select> elements
+        // for whichever model is current. Hidden entirely for models that
+        // only support 'none' (i.e. no real choice to make).
+        function updateEffortSelectors(model) {
+            const options = (model && model.effort && model.effort.length) ? model.effort : [];
+            const selects = [document.getElementById('effortSelectWelcome'), document.getElementById('effortSelectChat')];
+
+            if (options.length <= 1) {
+                // No real choice to make - hide the selector and don't send
+                // reasoning_effort at all for this model.
+                currentEffort = 'none';
+                selects.forEach(select => {
+                    if (!select) return;
+                    select.classList.add('hidden');
+                    select.innerHTML = '';
+                });
+                return;
+            }
+
+            if (!options.includes(currentEffort)) {
+                currentEffort = getDefaultEffortForModel(model);
+            }
+
+            selects.forEach(select => {
+                if (!select) return;
+                select.classList.remove('hidden');
+                select.innerHTML = options.map(opt =>
+                    `<option value="${escapeHtml(opt)}"${opt === currentEffort ? ' selected' : ''}>${escapeHtml(EFFORT_LABELS[opt] || opt)}</option>`
+                ).join('');
+            });
+        }
+
+        function handleEffortChange(newEffort) {
+            currentEffort = newEffort;
+            [document.getElementById('effortSelectWelcome'), document.getElementById('effortSelectChat')].forEach(select => {
+                if (select) select.value = newEffort;
+            });
+            syncSelectionToCurrentConversation();
+        }
+
+        // Keeps the currently-displayed conversation's stored model/effort in
+        // sync when the user changes either mid-conversation, so the next
+        // message in that conversation actually uses the new selection.
+        function syncSelectionToCurrentConversation() {
+            if (!currentConversationId) return;
+            const conversation = recentConversations.find(c => c.id === currentConversationId);
+            if (conversation) {
+                conversation.model = currentModel;
+                conversation.effort = currentEffort;
+            }
+        }
+
+        // Small pill used for both capability values (input/output
+        // modalities, reasoning-effort options) and the model badges
+        // (おすすめ/無料/高コスト/非常に高コスト etc. - see modelBadgesHtml). Kept as one
+        // shared shape so every pill on this page looks the same.
+        function chipHtml(label, extraClass) {
+            return `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium ${extraClass} shrink-0">${escapeHtml(label)}</span>`;
+        }
+
+        // Placeholder shown wherever the catalog JSON has no value for a
+        // field. Deliberately rendered (in a muted tone) instead of dropping
+        // the row, so every model card has the same shape and a missing
+        // field reads as "not provided" rather than "not supported".
+        const UNKNOWN_LABEL = '不明';
+        const unknownHtml = () => `<span class="text-neutral-500 font-medium">${UNKNOWN_LABEL}</span>`;
+
+        // Builds the detail section (context window, max output tokens,
+        // intelligence index as a compact stat grid; supported input/output
+        // modalities and reasoning-effort options as wrapping chip rows, the
+        // model's default effort highlighted) shown under each model on the
+        // "各モデルの説明" page. Every field is always listed: when the
+        // catalog has no data for it (e.g. models loaded from
+        // FALLBACK_MODELS_RAW), it shows "不明" instead of disappearing.
+        function renderModelDetails(model) {
+            const numberOrNull = (v) => typeof v === 'number' ? v : null;
+            const tokens = (v) => v === null ? null : `${v.toLocaleString('ja-JP')} トークン`;
+            const specRows = [
+                ['コンテキスト', tokens(numberOrNull(model.contextWindow))],
+                ['最大出力', tokens(numberOrNull(model.maxOutputTokens))],
+                ['知能指数', numberOrNull(model.intelligenceIndex) === null ? null : String(model.intelligenceIndex)]
+            ];
+
+            const inputChips = Array.isArray(model.inputModalities) ? model.inputModalities : [];
+            const outputChips = Array.isArray(model.outputModalities) ? model.outputModalities : [];
+            const effortOptions = Array.isArray(model.effort) ? model.effort : [];
+            const effortKnown = model.effortKnown !== false;
+
+            const mutedChip = () => chipHtml(UNKNOWN_LABEL, 'bg-neutral-800 text-neutral-500 ring-1 ring-inset ring-neutral-700');
+            const chipGroup = (label, chips) => `
+                <div>
+                    <div class="text-xs text-neutral-500 uppercase tracking-wide mb-1">${escapeHtml(label)}</div>
+                    <div class="flex flex-wrap gap-1">${chips || mutedChip()}</div>
+                </div>
+            `;
+            const modalityChips = (list) => list.map(x => chipHtml(MODALITY_LABELS[x] || x, 'bg-neutral-700/70 text-neutral-300')).join('');
+            const effortChips = effortKnown ? effortOptions.map(opt => {
+                const isDefault = opt === model.defaultEffort;
+                const label = (EFFORT_LABELS[opt] || opt) + (isDefault ? ' (既定)' : '');
+                return chipHtml(label, isDefault ? 'bg-brand/20 text-brand ring-1 ring-inset ring-brand/40' : 'bg-neutral-700/70 text-neutral-300');
+            }).join('') : '';
+
+            return `
+                <div class="space-y-2.5">
+                    <dl class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 text-xs">
+                        ${specRows.map(([label, value]) => `
+                            <div class="min-w-0">
+                                <dt class="text-xs text-neutral-500 uppercase tracking-wide">${escapeHtml(label)}</dt>
+                                <dd class="text-neutral-200 font-medium break-words mt-0.5">${value === null ? unknownHtml() : escapeHtml(value)}</dd>
+                            </div>
+                        `).join('')}
+                    </dl>
+                    ${chipGroup('対応入力', modalityChips(inputChips))}
+                    ${chipGroup('対応出力', modalityChips(outputChips))}
+                    ${chipGroup('エフォート', effortChips)}
+                </div>
+            `;
+        }
+
+        // The same おすすめ/無料/高コスト/非常に高コスト badges shown in the
+        // model dropdown (see renderModelDropdownList), reused here so a
+        // model's key traits are visible at a glance without opening the
+        // dropdown.
+        function modelBadgesHtml(model) {
+            return [
+                model.isRecommended ? chipHtml('おすすめ', 'bg-emerald-500/15 text-emerald-400') : '',
+                model.isFree ? chipHtml('無料', 'bg-sky-500/15 text-sky-400') : '',
+                model.isExpensive ? chipHtml('高コスト', 'bg-amber-500/15 text-amber-400') : '',
+                model.isVeryExpensive ? chipHtml('非常に高コスト', 'bg-red-500/15 text-red-400') : ''
+            ].join('');
+        }
+
+        // Which parts of the "各モデルの説明" list the user has toggled.
+        // Kept outside the render function because the list is rebuilt
+        // whenever the model selection changes or the page is re-entered;
+        // without this, every rebuild would snap all panels back to their
+        // defaults. Provider groups default to open, model detail panels to
+        // collapsed (the list is long - names, badges and cost stay visible
+        // on every card, and the notice text in `desc` is never hidden).
+        const collapsedProviders = new Set();
+        const expandedModels = new Set();
+
+        const CHEVRON_SVG = '<svg class="info-chevron w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>';
+
+        // Search text and quick filter for the list. Like the toggles above,
+        // they live outside the render function so a rebuild keeps them.
+        let modelInfoQuery = '';
+        let modelInfoFilter = 'all'; // 'all' | 'recommended' | 'free'
+
+        function modelInfoMatches(model) {
+            if (modelInfoFilter === 'recommended' && !model.isRecommended) return false;
+            if (modelInfoFilter === 'free' && !model.isFree) return false;
+            const q = modelInfoQuery.trim().toLowerCase();
+            if (!q) return true;
+            return [model.displayName, model.shortName, model.apiName, model.provider]
+                .some(v => String(v || '').toLowerCase().includes(q));
+        }
+
+        // Keeps the search box and filter buttons in step with the state above
+        // (needed when the state is reset from the empty-result message).
+        function syncModelInfoToolbar() {
+            const input = document.getElementById('modelInfoSearch');
+            if (input && input.value !== modelInfoQuery) input.value = modelInfoQuery;
+            document.querySelectorAll('[data-model-filter]').forEach(btn => {
+                const on = btn.dataset.modelFilter === modelInfoFilter;
+                btn.setAttribute('aria-pressed', String(on));
+                btn.classList.toggle('bg-brand/20', on);
+                btn.classList.toggle('text-brand', on);
+                btn.classList.toggle('border-brand/50', on);
+                btn.classList.toggle('text-neutral-300', !on);
+                btn.classList.toggle('border-neutral-700', !on);
+            });
+        }
+
+        // Short token counts for the one-line spec summary on each card header
+        // (the detail panel keeps the full comma-separated figure): always 3
+        // significant digits, trailing zeros kept so every value lines up.
+        // 1048576 -> "1.05M", 200000 -> "200K", 8192 -> "8.19K",
+        // 65536 -> "65.5K", 1000000 -> "1.00M"; null when unknown.
+        function compactTokens(n) {
+            if (typeof n !== 'number') return null;
+            if (n < 1000) return String(n);
+            // Choose the unit after rounding, so 999,900 reads "1.00M" rather than "1000K".
+            const unit = Number((n / 1000).toPrecision(3)) >= 1000 ? 'M' : 'K';
+            const scaled = unit === 'M' ? n / 1000000 : n / 1000;
+            return `${scaled.toPrecision(3)}${unit}`;
+        }
+
+        // One line of key specs on every card header, so models can be
+        // compared at a glance without opening each detail panel.
+        function modelSummaryHtml(model) {
+            const stat = (label, value) => `<span class="whitespace-nowrap"><span class="text-neutral-400">${label}</span> ${value === null
+                ? `<span class="text-neutral-500">${UNKNOWN_LABEL}</span>`
+                : `<span class="text-neutral-100 font-medium">${escapeHtml(value)}</span>`}</span>`;
+            const ii = typeof model.intelligenceIndex === 'number' ? String(model.intelligenceIndex) : null;
+            return `<span class="flex flex-wrap gap-x-4 gap-y-0.5 mt-2 text-xs tabular-nums">
+                ${stat('コンテキスト', compactTokens(model.contextWindow))}
+                ${stat('最大出力', compactTokens(model.maxOutputTokens))}
+                ${stat('知能指数', ii)}
+            </span>`;
+        }
+
+        function resetModelInfoFilter() {
+            modelInfoQuery = '';
+            modelInfoFilter = 'all';
+            syncModelInfoToolbar();
+            renderModelInfoList();
+        }
+
+        // Renders the model list on the "各モデルの説明" page: filtered by the
+        // search/quick-filter state, grouped by provider (each group
+        // collapsible). Each card header always shows the name, badges, cost,
+        // key specs and (when present) the catalog desc note (e.g. peak-time or
+        // price-change notices); the full detail grid (see renderModelDetails)
+        // sits in a per-model collapsible panel. The model currently in use
+        // is marked "使用中".
+        function renderModelInfoList() {
+            const container = document.getElementById('modelInfoList');
+            if (!container) return;
+
+            if (!availableModels.length) {
+                container.innerHTML = '<div class="text-neutral-500 text-sm">モデル情報を読み込み中…</div>';
+                return;
+            }
+
+            // One delegated listener for the lifetime of the container.
+            // Toggles update the DOM in place (rather than re-rendering) so
+            // keyboard focus stays on the button that was activated.
+            if (!container.dataset.toggleBound) {
+                container.dataset.toggleBound = '1';
+                container.addEventListener('click', (e) => {
+                    if (e.target.closest('[data-reset-model-filter]')) { resetModelInfoFilter(); return; }
+                    const providerBtn = e.target.closest('[data-toggle-provider]');
+                    if (providerBtn) {
+                        const key = providerBtn.dataset.toggleProvider;
+                        const open = providerBtn.getAttribute('aria-expanded') !== 'true';
+                        if (open) collapsedProviders.delete(key); else collapsedProviders.add(key);
+                        providerBtn.setAttribute('aria-expanded', String(open));
+                        const panel = document.getElementById(providerBtn.getAttribute('aria-controls'));
+                        if (panel) panel.hidden = !open;
+                        return;
+                    }
+                    const modelBtn = e.target.closest('[data-toggle-model]');
+                    if (modelBtn) {
+                        const key = modelBtn.dataset.toggleModel;
+                        const open = modelBtn.getAttribute('aria-expanded') !== 'true';
+                        if (open) expandedModels.add(key); else expandedModels.delete(key);
+                        modelBtn.setAttribute('aria-expanded', String(open));
+                        const panel = document.getElementById(modelBtn.getAttribute('aria-controls'));
+                        if (panel) panel.hidden = !open;
+                    }
+                });
+            }
+
+            const filtering = modelInfoFilter !== 'all' || modelInfoQuery.trim() !== '';
+            const visible = availableModels.filter(modelInfoMatches);
+            const countEl = document.getElementById('modelInfoCount');
+            if (countEl) countEl.textContent = filtering ? `${visible.length} / ${availableModels.length} 件` : `${availableModels.length} 件`;
+
+            if (!visible.length) {
+                container.innerHTML = `
+                    <div class="surface-raised bg-neutral-800 border border-neutral-700 rounded-lg p-5 text-sm text-neutral-300 leading-relaxed">
+                        条件に一致するモデルがありません。検索語を短くするか、絞り込みを「すべて」に戻してください。
+                        <div class="mt-3"><button type="button" data-reset-model-filter class="min-h-[44px] px-3 rounded-lg text-xs text-neutral-200 border border-neutral-600 hover:text-white hover:border-neutral-400 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand">条件をクリア</button></div>
+                    </div>`;
+                return;
+            }
+
+            const groups = groupModelsByProvider(visible);
+            let idCounter = 0;
+            container.innerHTML = Object.keys(groups).map(provider => {
+                // While searching/filtering every match stays visible, even in a group collapsed earlier.
+                const providerOpen = filtering || !collapsedProviders.has(provider);
+                const providerPanelId = `modelInfoGroup${idCounter++}`;
+                return `
+                <section>
+                    <button type="button" class="info-toggle w-full min-h-[44px] flex items-center justify-between gap-2 text-left mb-2 pb-1 border-b border-neutral-700/60 outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                        data-toggle-provider="${escapeHtml(provider)}" aria-expanded="${providerOpen}" aria-controls="${providerPanelId}">
+                        <span class="text-sm font-semibold text-neutral-100">${escapeHtml(provider)}<span class="ml-2 text-xs font-normal text-neutral-400">${groups[provider].length}件</span></span>
+                        <span class="text-neutral-400">${CHEVRON_SVG}</span>
+                    </button>
+                    <div id="${providerPanelId}" ${providerOpen ? '' : 'hidden'}>
+                        ${providerDescriptions[provider] ? `<div class="surface-raised bg-amber-950/20 border border-amber-900/60 rounded-lg px-3.5 py-2.5 mb-3 text-sm text-amber-300 leading-relaxed">${escapeHtml(providerDescriptions[provider])}</div>` : ''}
+                        <div class="space-y-2">
+                            ${groups[provider].map(model => {
+                                const modelOpen = expandedModels.has(model.apiName);
+                                const isCurrent = model.apiName === currentModel;
+                                const panelId = `modelInfoDetail${idCounter++}`;
+                                const hasCost = !!formatCost(model.cost);
+                                const costText = model.isFree ? '無料' : (hasCost ? formatCost(model.cost) : '料金 不明');
+                                return `
+                                <div class="surface-raised bg-neutral-800 border ${isCurrent ? 'border-brand/60' : 'border-neutral-700'} rounded-lg">
+                                    <button type="button" class="info-toggle w-full min-h-[44px] flex items-start justify-between gap-3 text-left p-4 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                                        data-toggle-model="${escapeHtml(model.apiName)}" aria-expanded="${modelOpen}" aria-controls="${panelId}">
+                                        <span class="min-w-0">
+                                            <span class="flex items-center gap-1.5 flex-wrap">
+                                                <span class="text-base font-semibold text-white break-words">${escapeHtml(model.displayName)}</span>
+                                                ${isCurrent ? chipHtml('使用中', 'bg-brand/20 text-brand ring-1 ring-inset ring-brand/40') : ''}
+                                                ${modelBadgesHtml(model)}
+                                            </span>
+                                            <span class="block text-xs ${model.isFree || hasCost ? 'text-neutral-300' : 'text-neutral-500'} mt-1">${escapeHtml(costText)}</span>
+                                            ${modelSummaryHtml(model)}
+                                        </span>
+                                        <span class="text-neutral-400 mt-1">${CHEVRON_SVG}</span>
+                                    </button>
+                                    ${model.desc ? `<div class="text-xs text-amber-400 leading-relaxed px-4 pb-3 -mt-1">${escapeHtml(model.desc)}</div>` : ''}
+                                    <div id="${panelId}" class="px-4 pb-4" ${modelOpen ? '' : 'hidden'}>
+                                        <div class="pt-3 border-t border-neutral-700/60">
+                                            ${renderModelDetails(model)}
+                                        </div>
+                                    </div>
+                                </div>
+                            `;}).join('')}
+                        </div>
+                    </div>
+                </section>
+            `;}).join('');
+        }
+
+        // "すべて展開 / すべて折りたたむ" for the list above. Expanding opens
+        // every provider group and every model's detail panel; collapsing
+        // closes both, so re-opening a group later shows its models collapsed.
+        function setAllModelInfoExpanded(expanded) {
+            collapsedProviders.clear();
+            expandedModels.clear();
+            if (expanded) {
+                availableModels.forEach(m => expandedModels.add(m.apiName));
+            } else {
+                Object.keys(groupModelsByProvider(availableModels)).forEach(p => collapsedProviders.add(p));
+            }
+            renderModelInfoList();
+        }
+
+        // "デフォルトに戻す": back to the initial layout - every provider group
+        // open, every model's detail panel closed. The search box and quick
+        // filter are left as they are.
+        function resetModelInfoExpansion() {
+            collapsedProviders.clear();
+            expandedModels.clear();
+            renderModelInfoList();
+        }
+
+        // ---------------------------------------------------------------
+        // Sidebar collapse / expand
+        // ---------------------------------------------------------------
+        // Touch devices (phones/tablets) keep the same "coarse pointer" all
+        // the time, whether held upright or sideways - unlike window width,
+        // which changes on rotation and can cross the old breakpoint. Using
+        // pointer type as the primary signal keeps the sidebar in overlay
+        // mode consistently across rotation; width is only a fallback for
+        // narrow mouse-driven windows.
+        function isMobileViewport() {
+            if (window.matchMedia('(pointer: coarse)').matches) return true;
+            return window.matchMedia('(max-width: 767px)').matches;
+        }
+
+        // Focusing a text input opens the on-screen keyboard on touch
+        // devices. Used for the auto-focus conveniences below (page load,
+        // starting a new chat, returning to a conversation) so they only
+        // fire on non-touch/mouse-driven viewports, never yanking the
+        // keyboard open on mobile without the user tapping the field.
+        function focusIfNotMobile(el) {
+            if (el && !isMobileViewport()) el.focus({ preventScroll: true });
+        }
+
+        // Also used to move focus for assistive tech when a "page" (Usage /
+        // Model Info) becomes visible without a real navigation - since
+        // showView() only toggles CSS, focus otherwise stays wherever it
+        // was (e.g. the sidebar nav button), and screen reader / keyboard
+        // users get no cue that the content changed.
+        function focusHeading(id) {
+            const el = document.getElementById(id);
+            if (el) el.focus({ preventScroll: true });
+        }
+
+        // Sidebar nav actions (new chat, usage, model info, picking a past
+        // conversation) hand control to a destination view. On mobile the
+        // sidebar is a full overlay, so leaving it open after one of these
+        // would just hide that destination behind it until the user taps
+        // the backdrop separately - so close it first.
+        function closeOverlaySidebarOnNav() {
+            if (isMobileViewport()) setSidebarCollapsed(true);
+        }
+
+        function setSidebarCollapsed(collapsed) {
+            isSidebarCollapsed = collapsed;
+            const sidebar = document.getElementById('sidebar');
+            const topBar = document.getElementById('topBar');
+            const backdrop = document.getElementById('sidebarBackdrop');
+            const mobile = isMobileViewport();
+
+            if (sidebar) {
+                sidebar.classList.toggle('overlay-mode', mobile);
+                if (mobile) {
+                    // Overlay mode: slide in over the content instead of pushing it.
+                    sidebar.classList.toggle('sidebar-open', !collapsed);
+                    sidebar.style.width = '';
+                    sidebar.style.borderRightWidth = '';
+                } else {
+                    // Desktop mode: shrink/push the layout width.
+                    sidebar.classList.remove('sidebar-open');
+                    sidebar.style.width = collapsed ? '0px' : '260px';
+                    sidebar.style.borderRightWidth = collapsed ? '0px' : '';
+                }
+            }
+
+            if (backdrop) {
+                backdrop.classList.toggle('hidden', !(mobile && !collapsed));
+            }
+
+            if (topBar) {
+                topBar.classList.toggle('hidden', !collapsed);
+                topBar.classList.toggle('flex', collapsed);
+            }
+
+            positionChatModelSelector();
+        }
+
+        // Moves a control node between its two possible homes: top-left
+        // (when the sidebar is collapsed, during a chat) or its original
+        // spot next to the chat input.
+        function moveControlToSlot(elementId, topSlotId, bottomSlotId, shouldBeTop) {
+            const el = document.getElementById(elementId);
+            const topSlot = document.getElementById(topSlotId);
+            const bottomSlot = document.getElementById(bottomSlotId);
+            if (!el || !topSlot || !bottomSlot) return;
+
+            const targetSlot = shouldBeTop ? topSlot : bottomSlot;
+            if (el.parentElement !== targetSlot) {
+                targetSlot.appendChild(el);
+            }
+        }
+
+        // Keeps #chatModelSelector and #effortSelectChat anchored bottom-right
+        // next to the chat input at all times, regardless of whether the
+        // sidebar is open or collapsed.
+        function positionChatModelSelector() {
+            const shouldBeTop = false;
+            moveControlToSlot('chatModelSelector', 'chatModelSelectorSlotTop', 'chatModelSelectorSlotBottom', shouldBeTop);
+            moveControlToSlot('effortSelectChat', 'effortSelectSlotTop', 'effortSelectSlotBottom', shouldBeTop);
+        }
+
+        // ---------------------------------------------------------------
+        // View switching
+        // ---------------------------------------------------------------
+        function showView(view) {
+            currentView = view;
+            const welcomeScreen = document.getElementById('welcomeScreen');
+            const chatContainer = document.getElementById('chatContainer');
+            const usageContainer = document.getElementById('usageContainer');
+            const modelInfoContainer = document.getElementById('modelInfoContainer');
+
+            welcomeScreen.style.display = view === 'welcome' ? 'flex' : 'none';
+
+            chatContainer.classList.toggle('hidden', view !== 'chat');
+            chatContainer.classList.toggle('flex', view === 'chat');
+
+            usageContainer.classList.toggle('hidden', view !== 'usage');
+            usageContainer.classList.toggle('flex', view === 'usage');
+
+            modelInfoContainer.classList.toggle('hidden', view !== 'modelInfo');
+            modelInfoContainer.classList.toggle('flex', view === 'modelInfo');
+
+            positionChatModelSelector();
+        }
+
+        function switchToChatView() {
+            showView('chat');
+            console.log('🔄 Switched to chat view');
+        }
+
+        // Used by the "チャットに戻る" buttons on the Usage / Model Info
+        // pages: returns to the conversation that was on screen before the
+        // user navigated away, or the welcome screen if there wasn't one.
+        function goBackToChat() {
+            if (currentConversationId && recentConversations.some(conv => conv.id === currentConversationId)) {
+                switchToChatView();
+            } else {
+                showView('welcome');
+            }
+        }
+
+        function switchToUsageView() {
+            closeOverlaySidebarOnNav();
+            showView('usage');
+            loadUsageData();
+            focusHeading('usageHeading');
+            console.log('🔄 Switched to usage view');
+        }
+
+        function switchToModelInfoView() {
+            closeOverlaySidebarOnNav();
+            showView('modelInfo');
+            renderModelInfoList();
+            focusHeading('modelInfoHeading');
+            console.log('🔄 Switched to model info view');
+        }
+
+        // ---------------------------------------------------------------
+        // Monthly usage
+        // ---------------------------------------------------------------
+        async function loadUsageData() {
+            const content = document.getElementById('usageContent');
+            content.innerHTML = '<div class="text-neutral-300 text-sm font-medium">利用状況を読み込み中…</div>';
+            try {
+                if (typeof puter === 'undefined') throw new Error('Puter.jsが利用できません。');
+                const usage = await puter.auth.getMonthlyUsage();
+                renderUsage(usage);
+            } catch (error) {
+                console.error('❌ Failed to load usage data:', error);
+                content.innerHTML = `
+                    <div class="text-sm text-red-400 bg-red-950/30 border border-red-900 rounded-lg p-4">
+                        利用状況を読み込めませんでした: ${escapeHtml(error.message || '不明なエラー')}。
+                        Puterで認証済みであることを確認してから、更新ボタンを押してください。
+                    </div>`;
+            }
+        }
+
+        function renderUsage(usage) {
+            const content = document.getElementById('usageContent');
+            if (!usage || !usage.usage) {
+                content.innerHTML = '<div class="text-neutral-300 text-sm font-medium">利用状況データがありません。</div>';
+                return;
+            }
+
+            const raw = usage.usage;
+            const allowanceInfo = usage.allowanceInfo || {};
+            const appTotals = usage.appTotals || {};
+
+            // Group per-metric entries into per-model totals: "provider:model:metric" -> cost
+            const modelTotals = {};
+            let grandTotal = 0;
+
+            Object.entries(raw).forEach(([key, val]) => {
+                if (!val || typeof val !== 'object' || typeof val.cost !== 'number') return;
+                const parts = key.split(':');
+                const provider = parts[0] || 'other';
+                const model = parts.length > 2 ? parts.slice(1, -1).join(':') : (parts[1] || 'unknown');
+                const groupKey = `${provider}:${model}`;
+                if (!modelTotals[groupKey]) {
+                    modelTotals[groupKey] = { provider, model, cost: 0, units: 0, count: 0 };
+                }
+                modelTotals[groupKey].cost += val.cost;
+                modelTotals[groupKey].units += (val.units || 0);
+                modelTotals[groupKey].count += (val.count || 0);
+                grandTotal += val.cost;
+            });
+
+            const totalFromApi = typeof raw.total === 'number' ? raw.total : grandTotal;
+            const sortedModels = Object.values(modelTotals).sort((a, b) => b.cost - a.cost);
+            const maxModelCost = sortedModels.length ? sortedModels[0].cost : 1;
+
+            const remaining = allowanceInfo.remaining ?? null;
+            const allowance = allowanceInfo.monthUsageAllowance ?? null;
+            const unit = allowanceInfo.unit || 'クレジット';
+            const usedPct = (allowance && allowance > 0)
+                ? Math.min(100, Math.max(0, ((allowance - remaining) / allowance) * 100))
+                : null;
+
+            let html = '';
+
+            // Allowance summary card
+            html += `
+                <div class="surface-raised bg-neutral-800 border border-neutral-700 rounded-xl p-5 mb-6">
+                    <div class="flex items-baseline justify-between mb-1">
+                        <span class="text-sm font-medium text-neutral-200">今月の利用量</span>
+                        <span class="text-sm font-medium text-neutral-200 font-mono tabular-nums">${allowance !== null ? `${(allowance - remaining).toFixed(2)} / ${allowance.toFixed(2)} ${unit}` : ''}</span>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-3 font-mono tabular-nums">${totalFromApi.toFixed(2)} <span class="text-base font-medium font-sans text-neutral-300">${unit}</span></div>
+                    ${usedPct !== null ? `
+                        <div class="w-full h-2 bg-neutral-900 rounded-full overflow-hidden">
+                            <div class="h-full ${usedPct > 90 ? 'bg-red-500' : usedPct > 70 ? 'bg-amber-500' : 'bg-brand'} transition-all" style="width: ${usedPct}%"></div>
+                        </div>
+                        <div class="text-sm font-medium text-neutral-300 mt-2 font-mono tabular-nums">残り ${remaining.toFixed(2)} ${unit}</div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Per-model breakdown
+            html += `<h2 class="text-base font-semibold text-neutral-100 mb-3">モデル別の利用状況</h2>`;
+            if (sortedModels.length === 0) {
+                html += `<div class="text-sm font-medium text-neutral-300 mb-6">モデル別の利用記録はまだありません。</div>`;
+            } else {
+                html += `<div class="space-y-3 mb-6">`;
+                sortedModels.forEach(m => {
+                    const barPct = maxModelCost > 0 ? (m.cost / maxModelCost) * 100 : 0;
+                    html += `
+                        <div class="surface-raised bg-neutral-800 border border-neutral-700 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2 gap-3">
+                                <div class="min-w-0">
+                                    <div class="text-sm font-semibold text-white truncate">${escapeHtml(m.model)}</div>
+                                    <div class="text-sm text-neutral-300">${escapeHtml(m.provider)} ・ ${m.count}回の呼び出し</div>
+                                </div>
+                                <div class="text-sm font-semibold text-white shrink-0 font-mono tabular-nums">${m.cost.toFixed(2)} ${unit}</div>
+                            </div>
+                            <div class="w-full h-1.5 bg-neutral-900 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand" style="width: ${barPct}%"></div>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            // Per-app breakdown
+            const appEntries = Object.entries(appTotals);
+            if (appEntries.length) {
+                html += `<h2 class="text-base font-semibold text-neutral-100 mb-3">アプリ別の利用状況</h2>`;
+                html += `<div class="space-y-2">`;
+                appEntries
+                    .sort((a, b) => (b[1].total || 0) - (a[1].total || 0))
+                    .forEach(([appId, data]) => {
+                        html += `
+                            <div class="surface-raised flex items-center justify-between bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3">
+                                <span class="text-sm font-medium text-neutral-100 truncate mr-3">${escapeHtml(appId)}</span>
+                                <span class="text-sm font-semibold text-white shrink-0 font-mono tabular-nums">${(data.total || 0).toFixed(2)} ${unit} <span class="font-medium text-neutral-300">・ ${data.count || 0}回</span></span>
+                            </div>
+                        `;
+                    });
+                html += `</div>`;
+            }
+
+            content.innerHTML = html;
+        }
+
+        // ---------------------------------------------------------------
+        // Exa MCP client (web search tool)
+        //
+        // The AI always has these tools available and decides itself
+        // whether/when to call them - nothing here pre-searches based on the
+        // user's message. Speaks the MCP Streamable HTTP transport: an
+        // "initialize" handshake (session id + protocol version come back
+        // from the server, not hardcoded here), then "tools/call". The tool
+        // definition passed to the AI is fetched live via "tools/list"
+        // rather than a hardcoded schema, so it stays correct even if Exa's
+        // schema changes.
+        // ---------------------------------------------------------------
+        function nextExaRequestId() {
+            return exaRequestIdCounter++;
+        }
+
+        // Low-level JSON-RPC request to the Exa MCP endpoint. Handles both
+        // possible response modes (a single JSON body, or a text/event-stream
+        // response) since the server chooses which one to use.
+        async function exaMcpRequest(method, params, { notification = false } = {}) {
+            const headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json, text/event-stream'
+            };
+            if (exaMcpState.sessionId) headers['Mcp-Session-Id'] = exaMcpState.sessionId;
+            if (exaMcpState.protocolVersion) headers['MCP-Protocol-Version'] = exaMcpState.protocolVersion;
+
+            const body = notification
+                ? { jsonrpc: '2.0', method, params }
+                : { jsonrpc: '2.0', id: nextExaRequestId(), method, params };
+
+            const res = await fetch(EXA_MCP_URL, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify(body)
+            });
+
+            const sid = res.headers.get('Mcp-Session-Id') || res.headers.get('mcp-session-id');
+            if (sid) exaMcpState.sessionId = sid;
+
+            if (notification) return null;
+
+            if (!res.ok) {
+                let errText = '';
+                try { errText = await res.text(); } catch (e) { /* ignore */ }
+                throw new Error(`Exa MCPへの接続に失敗しました (HTTP ${res.status})${errText ? ': ' + errText : ''}`);
+            }
+
+            const contentType = res.headers.get('content-type') || '';
+            if (contentType.includes('text/event-stream')) {
+                return await readExaSseResponse(res);
+            }
+            return await res.json();
+        }
+
+        // Parses a text/event-stream response body and returns the JSON-RPC
+        // message that carries a response id (as opposed to a bare server
+        // notification, which has no id).
+        async function readExaSseResponse(res) {
+            const reader = res.body.getReader();
+            const decoder = new TextDecoder();
+            let buffer = '';
+            let lastMessage = null;
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                buffer += decoder.decode(value, { stream: true });
+                const lines = buffer.split('\n');
+                buffer = lines.pop();
+                for (const line of lines) {
+                    const trimmed = line.trim();
+                    if (!trimmed.startsWith('data:')) continue;
+                    const jsonStr = trimmed.slice(5).trim();
+                    if (!jsonStr) continue;
+                    try {
+                        const parsed = JSON.parse(jsonStr);
+                        lastMessage = parsed;
+                        if (parsed && Object.prototype.hasOwnProperty.call(parsed, 'id')) {
+                            return parsed;
+                        }
+                    } catch (e) { /* ignore partial/non-JSON lines */ }
+                }
+            }
+            return lastMessage;
+        }
+
+        // Performs the MCP handshake once (idempotent - safe to call before
+        // every use). Session id / protocol version come back from the
+        // server rather than being assumed.
+        async function ensureExaMcpInitialized() {
+            if (exaMcpState.initialized) return;
+            if (exaMcpState.initPromise) return exaMcpState.initPromise;
+
+            exaMcpState.initPromise = (async () => {
+                const initResponse = await exaMcpRequest('initialize', {
+                    protocolVersion: '2025-06-18',
+                    capabilities: {},
+                    clientInfo: { name: 'ai-chat-by-puter-js', version: '1.0.0' }
+                });
+
+                if (initResponse && initResponse.error) {
+                    throw new Error('Exa MCPの初期化に失敗しました: ' + (initResponse.error.message || JSON.stringify(initResponse.error)));
+                }
+
+                const serverVersion = initResponse && initResponse.result && initResponse.result.protocolVersion;
+                if (serverVersion) exaMcpState.protocolVersion = serverVersion;
+
+                try {
+                    await exaMcpRequest('notifications/initialized', {}, { notification: true });
+                } catch (e) {
+                    console.warn('⚠️ Exa MCP notifications/initialized failed (continuing anyway):', e);
+                }
+
+                exaMcpState.initialized = true;
+            })();
+
+            try {
+                await exaMcpState.initPromise;
+            } finally {
+                exaMcpState.initPromise = null;
+            }
+        }
+
+        // Resets session state so the next call re-initializes from scratch
+        // (used when a call fails, in case the session expired).
+        function resetExaMcpSession() {
+            exaMcpState.sessionId = null;
+            exaMcpState.initialized = false;
+        }
+
+        // Fetches (and caches) all 3 Exa tool definitions, converted from
+        // MCP's {name, description, inputSchema} shape into the
+        // {type:"function", function:{name, description, parameters}} shape
+        // puter.ai.chat() expects. Schemas are fetched live from tools/list
+        // rather than hardcoded, so they stay correct if Exa changes them;
+        // descriptions are the ones specified for this app, so the AI picks
+        // the right tool consistently regardless of what Exa's own text says.
+        async function getExaToolDefinitions() {
+            if (exaMcpState.toolDefinitions) return exaMcpState.toolDefinitions;
+
+            await ensureExaMcpInitialized();
+
+            const listResponse = await exaMcpRequest('tools/list', {});
+            if (listResponse && listResponse.error) {
+                throw new Error('Exa MCPのツール一覧取得に失敗しました: ' + (listResponse.error.message || JSON.stringify(listResponse.error)));
+            }
+
+            const liveTools = (listResponse && listResponse.result && listResponse.result.tools) || [];
+
+            exaMcpState.toolDefinitions = EXA_TOOL_NAMES.map(name => {
+                const match = liveTools.find(t => t.name === name);
+                if (!match) {
+                    console.warn(`⚠️ Exa MCP tools/list did not include ${name}; using a fallback schema.`);
+                }
+                return {
+                    type: 'function',
+                    function: {
+                        name,
+                        description: EXA_TOOL_DESCRIPTIONS[name],
+                        parameters: (match && match.inputSchema) || EXA_FALLBACK_SCHEMAS[name]
+                    }
+                };
+            });
+
+            return exaMcpState.toolDefinitions;
+        }
+
+        // Executes one Exa tool call (any of the 3) and returns its text
+        // content as a string. Throws on failure rather than fabricating a
+        // result - the caller is responsible for turning that into a tool
+        // error message.
+        async function callExaTool(name, args) {
+            await ensureExaMcpInitialized();
+
+            const result = await exaMcpRequest('tools/call', {
+                name,
+                arguments: args || {}
+            });
+
+            if (result && result.error) {
+                throw new Error(result.error.message || 'Exa MCPでエラーが発生しました。');
+            }
+
+            const toolResult = result && result.result;
+            if (!toolResult) {
+                throw new Error('Exa MCPから空の応答が返されました。');
+            }
+
+            const textParts = (toolResult.content || [])
+                .filter(c => c && c.type === 'text' && typeof c.text === 'string')
+                .map(c => c.text);
+            const combinedText = textParts.length ? textParts.join('\n\n') : JSON.stringify(toolResult.content || toolResult);
+
+            if (toolResult.isError) {
+                throw new Error(combinedText || 'Exa MCPでエラーが発生しました。');
+            }
+
+            return combinedText;
+        }
+
+        // One retry on failure (e.g. an expired session), since Exa MCP is a
+        // remote, session-based connection that can occasionally need a
+        // fresh handshake. Still throws (never fabricates results) if the
+        // retry also fails.
+        async function callExaToolWithRetry(name, args) {
+            try {
+                return await callExaTool(name, args);
+            } catch (err) {
+                console.warn('⚠️ Exa MCP call failed, retrying once with a fresh session:', err.message);
+                resetExaMcpSession();
+                return await callExaTool(name, args);
+            }
+        }
+
+        // ---------------------------------------------------------------
+        // Local tools (no network call required)
+        // ---------------------------------------------------------------
+        const CURRENT_TIME_TOOL_NAME = 'get_current_time';
+        const CURRENT_TIME_TOOL_DEFINITION = {
+            type: 'function',
+            function: {
+                name: CURRENT_TIME_TOOL_NAME,
+                description: '現在の日時を詳細情報(年月日・時刻・曜日・タイムゾーン・UTCオフセット・UNIXタイムスタンプ)付きで取得。',
+                parameters: {
+                    type: 'object',
+                    properties: {
+                        timezone: {
+                            type: 'string',
+                            description: 'IANAタイムゾーン名 (例: "Asia/Tokyo", "America/New_York")。省略時は端末のローカルタイムゾーン。'
+                        }
+                    },
+                    required: []
+                }
+            }
+        };
+
+        // Purely local - just formats `new Date()`, no fetch involved.
+        // Returns a JSON string so the model gets structured fields (not
+        // just a formatted sentence) to reason about.
+        function getCurrentTimeToolResult(args) {
+            const timezone = (args && args.timezone) || undefined;
+            const now = new Date();
+            try {
+                const formatter = new Intl.DateTimeFormat('ja-JP', {
+                    timeZone: timezone,
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    weekday: 'long', hour12: false, timeZoneName: 'shortOffset'
+                });
+                const parts = formatter.formatToParts(now).reduce((acc, p) => {
+                    if (p.type !== 'literal') acc[p.type] = p.value;
+                    return acc;
+                }, {});
+
+                return JSON.stringify({
+                    iso8601: now.toISOString(),
+                    unix_timestamp_ms: now.getTime(),
+                    timezone: formatter.resolvedOptions().timeZone,
+                    utc_offset: parts.timeZoneName || null,
+                    year: parts.year, month: parts.month, day: parts.day,
+                    hour: parts.hour, minute: parts.minute, second: parts.second,
+                    weekday: parts.weekday,
+                    formatted: `${parts.year}年${parts.month}月${parts.day}日(${parts.weekday}) ${parts.hour}:${parts.minute}:${parts.second}`
+                });
+            } catch (err) {
+                return JSON.stringify({
+                    error: `無効なタイムゾーンです: ${timezone}`,
+                    iso8601: now.toISOString(),
+                    unix_timestamp_ms: now.getTime()
+                });
+            }
+        }
+
+        // ---------------------------------------------------------------
+        // Chat
+        // ---------------------------------------------------------------
+        async function handleWelcomeMessage() {
+            const welcomeInput = document.getElementById('welcomeInput');
+            const message = welcomeInput.value.trim();
+            if (!message || activeStreams.has(currentConversationId)) return;
+            console.log('📤 Sending welcome message:', message);
+            createNewConversation(message);
+            switchToChatView();
+            await sendMessage(message);
+        }
+
+        async function handleChatMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            if (!message || activeStreams.has(currentConversationId)) return;
+            console.log('📤 Sending chat message:', message);
+            chatInput.value = '';
+            autoResize(chatInput);
+            await sendMessage(message);
+        }
+
+        function createNewConversation(firstMessage) {
+            currentConversationId = 'conv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            const title = firstMessage.length > 50 ? firstMessage.substring(0, 50) + '...' : firstMessage;
+            const conversation = {
+                id: currentConversationId,
+                title: title,
+                messages: [],
+                timestamp: new Date(),
+                model: currentModel,
+                effort: currentEffort
+            };
+            recentConversations.unshift(conversation);
+            if (recentConversations.length > 10) {
+                // Keep the 10 most recent, but never evict one that's still
+                // streaming in the background just because it's older.
+                recentConversations = recentConversations.filter((conv, idx) => idx < 10 || activeStreams.has(conv.id));
+            }
+            updateRecentItems();
+            console.log('📝 Created new conversation:', title);
+        }
+
+        function updateRecentItems() {
+            const recentItemsContainer = document.getElementById('recentItems');
+            recentItemsContainer.innerHTML = '';
+            if (recentConversations.length === 0) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'text-center';
+                emptyDiv.innerHTML = '<span class="text-neutral-500 text-[13px] italic">最近の会話はありません</span>';
+                recentItemsContainer.appendChild(emptyDiv);
+            } else {
+                recentConversations.forEach(conversation => {
+                    const isActive = conversation.id === currentConversationId;
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'py-2 px-2 -mx-2 rounded-lg text-[13px] cursor-pointer transition-colors leading-tight flex items-center gap-1.5 ' +
+                        (isActive ? 'bg-neutral-700/60 text-white' : 'text-neutral-400 hover:text-white hover:bg-neutral-700/40');
+                    if (activeStreams.has(conversation.id)) {
+                        const dot = document.createElement('span');
+                        dot.className = 'inline-block w-1.5 h-1.5 rounded-full bg-brand shrink-0 animate-pulse';
+                        dot.title = '生成中…';
+                        itemDiv.appendChild(dot);
+                    }
+                    const titleSpan = document.createElement('span');
+                    titleSpan.className = 'truncate';
+                    titleSpan.textContent = conversation.title;
+                    itemDiv.appendChild(titleSpan);
+                    itemDiv.addEventListener('click', () => loadConversation(conversation.id));
+                    recentItemsContainer.appendChild(itemDiv);
+                });
+            }
+        }
+
+        function loadConversation(conversationId) {
+            const conversation = recentConversations.find(conv => conv.id === conversationId);
+            if (!conversation) return;
+
+            currentConversationId = conversationId;
+            currentModel = conversation.model;
+            currentEffort = conversation.effort || 'none';
+            updateModelDisplay();
+            closeOverlaySidebarOnNav();
+            switchToChatView();
+            updateRecentItems();
+
+            const chatMessagesInner = document.getElementById('chatMessagesInner');
+            chatMessagesInner.innerHTML = '';
+            conversation.messages.forEach(msg => addMessage(msg.content, msg.role, !!msg.isError));
+
+            // If a response is still generating in the background for this
+            // conversation, re-attach to it: show its progress so far and
+            // keep updating this new bubble as further chunks arrive.
+            const session = activeStreams.get(conversationId);
+            if (session) {
+                if (session.text) {
+                    const created = addMessage('', 'assistant');
+                    session.bubbleEl = created.messageContent;
+                    renderFormattedMessage(session.text, session.bubbleEl);
+                } else {
+                    session.bubbleEl = null;
+                }
+            }
+
+            refreshUIForConversation(conversationId);
+            focusIfNotMobile(document.getElementById('chatInput'));
+            console.log('📂 Loaded conversation:', conversation.title);
+        }
+
+        function startNewChat() {
+            // Deliberately does not touch activeStreams: if the conversation
+            // being left still has a response generating, it keeps running
+            // in the background and picks up where it is if the user comes
+            // back to it.
+            currentConversationId = null;
+            applySavedModelSelection();
+            updateModelDisplay();
+            updateRecentItems();
+            closeOverlaySidebarOnNav();
+
+            showView('welcome');
+            const chatMessagesInner = document.getElementById('chatMessagesInner');
+            const welcomeInput = document.getElementById('welcomeInput');
+
+            if (chatMessagesInner) chatMessagesInner.innerHTML = '';
+            if (welcomeInput) {
+                welcomeInput.value = '';
+                autoResize(welcomeInput);
+                focusIfNotMobile(welcomeInput);
+            }
+            autoResize(document.getElementById('chatInput'));
+
+            refreshUIForConversation(currentConversationId);
+            console.log('🆕 Started new chat, keeping saved model preference.');
+        }
+
+        // Applies input-enabled state and the typing/searching indicator for
+        // whichever conversation is passed in, but only if it's the one
+        // currently on screen - a no-op for background conversations.
+        function refreshUIForConversation(conversationId) {
+            if (conversationId !== currentConversationId) return;
+            setInputState(!activeStreams.has(currentConversationId));
+            refreshIndicatorForConversation(currentConversationId);
+        }
+
+        function refreshIndicatorForConversation(conversationId) {
+            if (conversationId !== currentConversationId) return;
+            const session = activeStreams.get(conversationId);
+            if (!session || session.status === 'streaming') {
+                hideTypingIndicator();
+                hideSearchingIndicator();
+            } else if (session.status === 'tool') {
+                hideTypingIndicator();
+                showSearchingIndicator(session.toolUses);
+            } else {
+                hideSearchingIndicator();
+                showTypingIndicator();
+            }
+        }
+
+        async function sendMessage(message) {
+            const targetConversationId = currentConversationId;
+            if (!targetConversationId || activeStreams.has(targetConversationId)) return;
+
+            const conversation = recentConversations.find(c => c.id === targetConversationId);
+            if (!conversation) return;
+
+            console.log('🚀 Starting to send message...');
+
+            // The conversation was just created or selected, so it's the one
+            // on screen right now - safe to render directly.
+            addMessage(message, 'user');
+            conversation.messages.push({ role: 'user', content: message });
+            conversation.timestamp = new Date();
+            bumpConversationToTop(conversation);
+
+            const session = { text: '', bubbleEl: null, status: 'thinking', toolUses: null };
+            activeStreams.set(targetConversationId, session);
+            updateRecentItems();
+            refreshUIForConversation(targetConversationId);
+
+            const modelForThisMessage = conversation.model;
+            const effortForThisMessage = conversation.effort || 'none';
+
+            try {
+                if (typeof puter === 'undefined') throw new Error('Puter.jsが利用できません。');
+                console.log('📡 Calling Puter AI with model:', modelForThisMessage, 'effort:', effortForThisMessage);
+
+                // Working copy for this exchange's tool-calling loop. Tool
+                // call / tool result turns stay local to this loop - only
+                // the final assistant text is persisted into the
+                // conversation's own message list once the loop finishes.
+                const messages = conversation.messages.map(msg => ({
+                    role: msg.role || 'user',
+                    content: msg.content || ''
+                }));
+
+                let toolRounds = 0;
+
+                while (true) {
+                    // Same tool, same code path, for every model vendor. Only
+                    // included at all when the toggle is on; only omitted
+                    // once we've hit the round limit, to force a final answer.
+                    const includeTools = toolRounds < MAX_TOOL_ROUNDS;
+                    const chatOptions = { model: modelForThisMessage, stream: true };
+                    if (effortForThisMessage && effortForThisMessage !== 'none') {
+                        chatOptions.reasoning_effort = effortForThisMessage;
+                    }
+                    if (includeTools) {
+                        chatOptions.tools = [CURRENT_TIME_TOOL_DEFINITION, ...(await getExaToolDefinitions())];
+                    }
+
+                    const response = await puter.ai.chat(messages, chatOptions);
+
+                    if (response && response.success === false) {
+                        throw new Error('認証が必要です。認証ボタンをクリックしてポップアップを許可してください。');
+                    }
+
+                    let roundText = '';
+                    const toolUses = [];
+
+                    for await (const part of response) {
+                        if (part?.type === 'text' || (part?.text && !part.type)) {
+                            session.status = 'streaming';
+                            roundText += part.text;
+                            session.text += part.text;
+                            renderStreamChunk(targetConversationId, session);
+                        } else if (part?.type === 'tool_use') {
+                            toolUses.push({ id: part.id, name: part.name, input: part.input || {} });
+                        } else if (part?.type === 'error') {
+                            throw new Error(part.message || 'AIの応答中にエラーが発生しました。');
+                        }
+                    }
+
+                    if (toolUses.length === 0) {
+                        // No tool call requested - this is the final answer.
+                        break;
+                    }
+
+                    console.log(`🔧 Tool call round ${toolRounds + 1}:`, toolUses.map(t => t.name));
+
+                    // Record the assistant's tool call turn.
+                    const assistantToolMsg = {
+                        role: 'assistant',
+                        tool_calls: toolUses.map(tu => ({
+                            id: tu.id,
+                            type: 'function',
+                            function: { name: tu.name, arguments: JSON.stringify(tu.input) }
+                        }))
+                    };
+                    if (roundText) assistantToolMsg.content = roundText;
+                    messages.push(assistantToolMsg);
+
+                    session.status = 'tool';
+                    session.toolUses = toolUses;
+                    refreshIndicatorForConversation(targetConversationId);
+
+                    // Execute every requested tool call and feed each result
+                    // back as its own proper tool message - never fabricated,
+                    // errors are reported to the AI as-is.
+                    for (const tu of toolUses) {
+                        let resultText;
+                        try {
+                            if (tu.name === CURRENT_TIME_TOOL_NAME) {
+                                resultText = getCurrentTimeToolResult(tu.input);
+                            } else if (EXA_TOOL_NAMES.includes(tu.name)) {
+                                resultText = await callExaToolWithRetry(tu.name, tu.input);
+                            } else {
+                                resultText = `エラー: 未対応のツールです (${tu.name})`;
+                            }
+                        } catch (err) {
+                            console.error('❌ Exa tool call failed:', err);
+                            resultText = `検索エラー: ${err.message || '不明なエラーです。'}`;
+                        }
+                        messages.push({ role: 'tool', tool_call_id: tu.id, content: resultText });
+                    }
+
+                    session.status = 'thinking';
+                    session.toolUses = null;
+                    refreshIndicatorForConversation(targetConversationId);
+                    toolRounds++;
+                }
+
+                console.log('✅ Streaming complete.');
+
+                if (targetConversationId === currentConversationId && session.bubbleEl) {
+                    renderFormattedMessage(session.text, session.bubbleEl);
+                }
+
+                conversation.messages.push({ role: 'assistant', content: session.text });
+                conversation.timestamp = new Date();
+                bumpConversationToTop(conversation);
+
+            } catch (error) {
+                console.error('❌ Error in sendMessage:', error);
+                const errorText = 'エラーが発生しました: ' + (error.message || '不明なエラーです。');
+
+                const lastMsg = conversation.messages[conversation.messages.length - 1];
+                if (lastMsg && lastMsg.role === 'user') {
+                    conversation.messages.pop();
+                }
+                conversation.messages.push({ role: 'assistant', content: errorText, isError: true });
+
+                if (targetConversationId === currentConversationId) {
+                    hideTypingIndicator();
+                    hideSearchingIndicator();
+                    addMessage(errorText, 'assistant', true);
+                }
+            } finally {
+                activeStreams.delete(targetConversationId);
+                updateRecentItems();
+                refreshUIForConversation(targetConversationId);
+                if (targetConversationId === currentConversationId) {
+                    document.getElementById('chatInput')?.focus();
+                }
+            }
+        }
+
+        // Renders one streamed chunk for `conversationId`'s response. Always
+        // updates the underlying accumulated text (via `session.text`,
+        // already appended by the caller); only touches the DOM if that
+        // conversation happens to be the one on screen right now.
+        function renderStreamChunk(conversationId, session) {
+            if (conversationId !== currentConversationId) return;
+            if (!session.bubbleEl) {
+                hideTypingIndicator();
+                hideSearchingIndicator();
+                const created = addMessage('', 'assistant');
+                session.bubbleEl = created.messageContent;
+            }
+            const stickToBottom = isNearBottom();
+            renderFormattedMessage(session.text, session.bubbleEl);
+            if (stickToBottom) scrollToBottom();
+        }
+
+        // Moves a conversation to the top of the recent list if it isn't
+        // already there (same behavior the old updateCurrentConversation had).
+        function bumpConversationToTop(conversation) {
+            const index = recentConversations.indexOf(conversation);
+            if (index > 0) {
+                recentConversations.splice(index, 1);
+                recentConversations.unshift(conversation);
+                updateRecentItems();
+            }
+        }
+
+        function addMessage(content, role, isError = false) {
+            const chatMessagesInner = document.getElementById('chatMessagesInner');
+            const messageId = 'msg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex gap-3 mb-6' + (role === 'user' ? ' flex-row-reverse' : '');
+            messageDiv.setAttribute('data-message-id', messageId);
+
+            const avatar = document.createElement('div');
+            avatar.className = 'w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold shrink-0 ring-1 ' +
+                (role === 'user' ? 'bg-brand text-white ring-white/10' : 'bg-neutral-700 text-brand ring-brand/20');
+            avatar.innerHTML = role === 'user' ? 'H' : `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 9V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S9 3.34 9 5H6c-1.1 0-2 .9-2 2v2c-1.66 0-3 1.34-3 3s1.34 3 3 3v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4c1.66 0 3-1.34 3-3s-1.34-3-3-3zM7.5 11.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5S9.83 13 9 13s-1.5-.67-1.5-1.5zm9 5c0 .55-.45 1-1 1h-7c-.55 0-1-.45-1-1v-1h9v1zm-1.5-3.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>`;
+
+            const messageContent = document.createElement('div');
+            messageContent.className = 'max-w-[70%] rounded-xl leading-relaxed break-words whitespace-pre-wrap ' +
+                (role === 'user'
+                    ? 'bg-gradient-to-br from-brand to-brand-hover text-white p-4 shadow-lg shadow-brand/15'
+                    : 'surface-raised bg-neutral-800 border border-neutral-700/60 text-neutral-200');
+
+            if (role === 'assistant') renderFormattedMessage(content, messageContent);
+            else messageContent.textContent = content;
+
+            if (isError) messageContent.classList.add('text-red-400');
+
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            chatMessagesInner.appendChild(messageDiv);
+
+            scrollToBottom();
+            return { messageId, messageContent };
+        }
+
+        // Applies inline markdown (bold/italic/strikethrough/inline-code/links)
+        // to a single already-HTML-escaped line. Code spans are pulled out
+        // first and restored at the end so markers inside them (e.g. `a**b`)
+        // are never misread as bold/italic syntax.
+        function formatInlineMarkdown(escapedText) {
+            const codeSpans = [];
+            let text = escapedText.replace(/`([^`]+)`/g, (m, code) => {
+                codeSpans.push(code);
+                return `\u0000${codeSpans.length - 1}\u0000`;
+            });
+
+            text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)"]+)\)/g,
+                '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-brand underline hover:text-brand-hover">$1</a>');
+            text = text.replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
+            text = text.replace(/__([^_]+)__/g, '<strong class="font-semibold text-white">$1</strong>');
+            text = text.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+            text = text.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
+            text = text.replace(/(^|[^A-Za-z0-9_])_([^_\n]+)_(?![A-Za-z0-9_])/g, '$1<em>$2</em>');
+
+            text = text.replace(/\u0000(\d+)\u0000/g, (m, idx) =>
+                `<code class="bg-neutral-900 border border-neutral-700 rounded px-1.5 py-0.5 text-[13px] font-mono text-brand">${codeSpans[idx]}</code>`);
+            return text;
+        }
+
+        // Turns a plain-text block (no fenced code - that's handled by the
+        // caller) into formatted HTML: headers, lists, blockquotes, hr, and
+        // paragraphs with single line breaks preserved as <br>.
+        function formatMarkdownBlock(rawText) {
+            const lines = escapeHtml(rawText).split('\n');
+            const headerSizes = {
+                1: 'text-xl font-bold mt-4 mb-2',
+                2: 'text-lg font-bold mt-4 mb-2',
+                3: 'text-base font-semibold mt-3 mb-2',
+                4: 'text-sm font-semibold mt-3 mb-1',
+                5: 'text-sm font-semibold mt-2 mb-1',
+                6: 'text-sm font-semibold mt-2 mb-1'
+            };
+            let html = '';
+            let paragraph = [];
+            const flushParagraph = () => {
+                if (paragraph.length) {
+                    html += `<p class="mb-3 last:mb-0">${paragraph.join('<br>')}</p>`;
+                    paragraph = [];
+                }
+            };
+
+            let i = 0;
+            while (i < lines.length) {
+                const trimmed = lines[i].trim();
+
+                if (trimmed === '') { flushParagraph(); i++; continue; }
+
+                const headerMatch = trimmed.match(/^(#{1,6})\s+(.+)$/);
+                if (headerMatch) {
+                    flushParagraph();
+                    const level = headerMatch[1].length;
+                    html += `<h${level} class="${headerSizes[level]} text-white first:mt-0">${formatInlineMarkdown(headerMatch[2])}</h${level}>`;
+                    i++; continue;
+                }
+
+                if (/^(-{3,}|\*{3,}|_{3,})$/.test(trimmed)) {
+                    flushParagraph();
+                    html += '<hr class="my-3 border-neutral-700">';
+                    i++; continue;
+                }
+
+                if (/^&gt;\s?/.test(trimmed)) {
+                    flushParagraph();
+                    const quote = [];
+                    while (i < lines.length && /^&gt;\s?/.test(lines[i].trim())) {
+                        quote.push(formatInlineMarkdown(lines[i].trim().replace(/^&gt;\s?/, '')));
+                        i++;
+                    }
+                    html += `<blockquote class="border-l-2 border-neutral-600 pl-3 my-2 text-neutral-400 italic">${quote.join('<br>')}</blockquote>`;
+                    continue;
+                }
+
+                if (/^[-*+]\s+/.test(trimmed)) {
+                    flushParagraph();
+                    const items = [];
+                    while (i < lines.length && /^[-*+]\s+/.test(lines[i].trim())) {
+                        items.push(`<li class="mb-1">${formatInlineMarkdown(lines[i].trim().replace(/^[-*+]\s+/, ''))}</li>`);
+                        i++;
+                    }
+                    html += `<ul class="list-disc list-outside pl-5 mb-3 space-y-0.5">${items.join('')}</ul>`;
+                    continue;
+                }
+
+                if (/^\d+\.\s+/.test(trimmed)) {
+                    flushParagraph();
+                    const items = [];
+                    while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+                        items.push(`<li class="mb-1">${formatInlineMarkdown(lines[i].trim().replace(/^\d+\.\s+/, ''))}</li>`);
+                        i++;
+                    }
+                    html += `<ol class="list-decimal list-outside pl-5 mb-3 space-y-0.5">${items.join('')}</ol>`;
+                    continue;
+                }
+
+                paragraph.push(formatInlineMarkdown(trimmed));
+                i++;
+            }
+            flushParagraph();
+            return html;
+        }
+
+        function renderFormattedMessage(content, container) {
+            container.innerHTML = '';
+            const codeBlockRegex = /```(\w*)\n([\s\S]*?)```/g;
+            let lastIndex = 0;
+            let match;
+
+            while ((match = codeBlockRegex.exec(content)) !== null) {
+                if (match.index > lastIndex) {
+                    const textPart = document.createElement('div');
+                    textPart.className = 'p-4 whitespace-normal';
+                    textPart.innerHTML = formatMarkdownBlock(content.substring(lastIndex, match.index));
+                    container.appendChild(textPart);
+                }
+
+                const [fullMatch, language, code] = match;
+                container.appendChild(createArtifactCanvas(code.trim(), language || 'text'));
+                lastIndex = match.index + fullMatch.length;
+            }
+
+            if (lastIndex < content.length) {
+                const textPart = document.createElement('div');
+                textPart.className = 'p-4 whitespace-normal';
+                textPart.innerHTML = formatMarkdownBlock(content.substring(lastIndex));
+                container.appendChild(textPart);
+            }
+
+            if (container.children.length === 0 && content) {
+                const textPart = document.createElement('div');
+                textPart.className = 'p-4 whitespace-normal';
+                textPart.innerHTML = formatMarkdownBlock(content);
+                container.appendChild(textPart);
+            }
+        }
+
+        function createArtifactCanvas(code, language) {
+            const canvas = document.createElement('div');
+            canvas.className = 'bg-neutral-950 border border-neutral-700 rounded-lg m-4 overflow-hidden';
+
+            const header = document.createElement('div');
+            header.className = 'flex justify-between items-center bg-neutral-800 px-3 py-2 border-b border-neutral-700';
+
+            const title = document.createElement('div');
+            title.className = 'text-[13px] font-medium text-neutral-400';
+            title.textContent = language ? `${language} コード` : 'コードアーティファクト';
+
+            const actions = document.createElement('div');
+            actions.className = 'flex gap-2';
+
+            if (language.toLowerCase() === 'html') {
+                const viewBtn = document.createElement('button');
+                viewBtn.className = 'border border-brand text-brand hover:bg-brand hover:text-white px-2 py-1 rounded text-xs flex items-center gap-1 transition-colors';
+                viewBtn.innerHTML = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5C21.27 7.61 17 4.5 12 4.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg> 表示`;
+                viewBtn.onclick = () => {
+                    const blob = new Blob([code], { type: 'text/html' });
+                    window.open(URL.createObjectURL(blob), '_blank');
+                };
+                actions.appendChild(viewBtn);
+            }
+
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'border border-neutral-600 text-neutral-400 hover:bg-neutral-700 hover:text-white px-2 py-1 rounded text-xs flex items-center gap-1 transition-colors';
+            const copyIcon = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> コピー`;
+            copyBtn.innerHTML = copyIcon;
+            copyBtn.onclick = () => {
+                navigator.clipboard.writeText(code).then(() => {
+                    copyBtn.textContent = 'コピーしました!';
+                    setTimeout(() => { copyBtn.innerHTML = copyIcon; }, 2000);
+                });
+            };
+
+            const downloadBtn = document.createElement('button');
+            downloadBtn.className = 'border border-neutral-600 text-neutral-400 hover:bg-neutral-700 hover:text-white px-2 py-1 rounded text-xs flex items-center gap-1 transition-colors';
+            downloadBtn.innerHTML = `<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> ダウンロード`;
+            downloadBtn.onclick = () => {
+                const extensionMap = { javascript: 'js', python: 'py', html: 'html', css: 'css', json: 'json', java: 'java', csharp: 'cs', cpp: 'cpp', ruby: 'rb', go: 'go', rust: 'rs', shell: 'sh', bash: 'sh' };
+                const extension = extensionMap[language.toLowerCase()] || 'txt';
+                const filename = `ai-code.${extension}`;
+                const blob = new Blob([code], { type: 'text/plain' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = filename;
+                a.click();
+                a.remove();
+            };
+
+            actions.appendChild(copyBtn);
+            actions.appendChild(downloadBtn);
+            header.appendChild(title);
+            header.appendChild(actions);
+
+            const codeArea = document.createElement('div');
+            codeArea.className = 'p-3 max-h-[400px] overflow-auto';
+            const pre = document.createElement('pre');
+            pre.className = 'm-0';
+            const codeEl = document.createElement('code');
+            codeEl.className = 'font-mono text-[13px] text-neutral-200 whitespace-pre';
+            codeEl.textContent = code;
+            pre.appendChild(codeEl);
+            codeArea.appendChild(pre);
+
+            canvas.appendChild(header);
+            canvas.appendChild(codeArea);
+
+            return canvas;
+        }
+
+        function showTypingIndicator() {
+            hideTypingIndicator();
+            const chatMessagesInner = document.getElementById('chatMessagesInner');
+            if (!chatMessagesInner) return;
+            const model = availableModels.find(m => m.apiName === currentModel) || availableModels[0];
+            const label = model ? `${model.shortName} が入力中` : 'AIが入力中';
+
+            const row = document.createElement('div');
+            row.id = 'typingIndicatorRow';
+            row.className = 'flex gap-3 mb-6 items-center';
+            row.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-neutral-700 text-brand ring-1 ring-brand/20 flex items-center justify-center text-sm shrink-0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 9V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S9 3.34 9 5H6c-1.1 0-2 .9-2 2v2c-1.66 0-3 1.34-3 3s1.34 3 3 3v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4c1.66 0 3-1.34 3-3s-1.34-3-3-3zM7.5 11.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5S9.83 13 9 13s-1.5-.67-1.5-1.5zm9 5c0 .55-.45 1-1 1h-7c-.55 0-1-.45-1-1v-1h9v1zm-1.5-3.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                </div>
+                <div class="flex items-center gap-2 text-neutral-500 italic bg-neutral-800 rounded-xl px-4 py-3">
+                    <span>${escapeHtml(label)}</span>
+                    <div class="flex gap-1">
+                        <div class="w-1.5 h-1.5 bg-brand rounded-full typing-dot"></div>
+                        <div class="w-1.5 h-1.5 bg-brand rounded-full typing-dot"></div>
+                        <div class="w-1.5 h-1.5 bg-brand rounded-full typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatMessagesInner.appendChild(row);
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            const row = document.getElementById('typingIndicatorRow');
+            if (row) row.remove();
+        }
+
+        // Shown while a web_search_exa tool call is actually in flight
+        // (between the AI requesting it and the search result coming back).
+        // Friendly per-tool status labels. Falls back to a generic label for
+        // anything unrecognized or when multiple tools run in one round.
+        function buildToolStatusLabel(toolUses) {
+            if (!toolUses || toolUses.length === 0) return 'Webを検索しています…';
+            if (toolUses.length > 1) return `${toolUses.length}件のWebツールを実行しています…`;
+            const tu = toolUses[0];
+            const input = tu.input || {};
+            if (tu.name === 'web_search_exa') return `🔍「${input.query || ''}」を検索しています…`;
+            if (tu.name === 'web_search_advanced_exa') return `🔍「${input.query || ''}」を詳細検索しています…`;
+            if (tu.name === 'web_fetch_exa') return `📄 ページを取得しています${input.url ? ': ' + input.url : ''}…`;
+            return 'Webを検索しています…';
+        }
+
+        function showSearchingIndicator(toolUses) {
+            hideSearchingIndicator();
+            const chatMessagesInner = document.getElementById('chatMessagesInner');
+            if (!chatMessagesInner) return;
+
+            const label = buildToolStatusLabel(toolUses);
+            const row = document.createElement('div');
+            row.id = 'searchingIndicatorRow';
+            row.className = 'flex gap-3 mb-6 items-center';
+            row.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-neutral-700 text-brand ring-1 ring-brand/20 flex items-center justify-center text-sm shrink-0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <div class="flex items-center gap-2 text-neutral-500 italic bg-neutral-800 rounded-xl px-4 py-3">
+                    <span>${escapeHtml(label)}</span>
+                    <div class="flex gap-1">
+                        <div class="w-1.5 h-1.5 bg-brand rounded-full typing-dot"></div>
+                        <div class="w-1.5 h-1.5 bg-brand rounded-full typing-dot"></div>
+                        <div class="w-1.5 h-1.5 bg-brand rounded-full typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatMessagesInner.appendChild(row);
+            scrollToBottom();
+        }
+
+        function hideSearchingIndicator() {
+            const row = document.getElementById('searchingIndicatorRow');
+            if (row) row.remove();
+        }
+
+        function setInputState(enabled) {
+            const inputs = [
+                document.getElementById('welcomeInput'),
+                document.getElementById('chatInput'),
+                document.getElementById('sendBtn'),
+                document.getElementById('chatSendBtn')
+            ];
+            inputs.forEach(input => {
+                if (input) {
+                    input.disabled = !enabled;
+                    input.style.opacity = enabled ? '1' : '0.6';
+                }
+            });
+        }
+
+        function scrollToBottom() {
+            const chatMessages = document.getElementById('chatMessages');
+            if (chatMessages) {
+                requestAnimationFrame(() => { chatMessages.scrollTop = chatMessages.scrollHeight; });
+            }
+        }
+
+        // True if the user hasn't scrolled away from the bottom (within a small
+        // threshold). Used so streaming output only auto-follows when the user
+        // is already reading the latest message, instead of yanking them back
+        // down every time they try to scroll up.
+        function isNearBottom(threshold = 80) {
+            const chatMessages = document.getElementById('chatMessages');
+            if (!chatMessages) return true;
+            return (chatMessages.scrollHeight - chatMessages.scrollTop - chatMessages.clientHeight) <= threshold;
+        }
+
+        function autoResize(textarea) {
+            if (!textarea) return;
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 150) + 'px';
+        }
+    </script>
+</body>
+</html>

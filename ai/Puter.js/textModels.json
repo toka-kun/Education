@@ -23,7 +23,7 @@
         "tags": ["free"],
         "effort": [],
         "defaultEffort": null,
-        "intelligenceIndex": null,
+        "intelligenceIndex": 14.7,
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 262144,
@@ -459,7 +459,7 @@
         "intelligenceIndex": 37.9,
         "inputModalities": ["text", "image", "audio", "video"],
         "outputModalities": ["text"],
-        "contextWindow": 1048576,
+        "contextWindow": 1050000,
         "maxOutputTokens": 131072,
         "desc": ""
       },

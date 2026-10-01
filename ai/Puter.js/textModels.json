@@ -98,7 +98,7 @@
         "tags": ["recommended", "default"],
         "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
-        "intelligenceIndex": 37.3,
+        "intelligenceIndex": 38.1,
         "inputModalities": ["text", "file", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1050000,

@@ -105,14 +105,14 @@
         "maxOutputTokens": 128000,
         "desc": ""
       },
-      "openai/gpt-6-sol": {
-        "displayName": "GPT-6 Sol",
-        "shortName": "6 Sol",
+      "openai/gpt-6.1-sol": {
+        "displayName": "GPT-6.1 Sol",
+        "shortName": "6.1 Sol",
         "cost": "2.00/10.00",
         "tags": ["expensive"],
-        "effort": ["none", "low", "medium", "high", "xhigh", "max"],
+        "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
-        "intelligenceIndex": 47.5,
+        "intelligenceIndex": 51.8,
         "inputModalities": ["text", "file", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1050000,
@@ -164,7 +164,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1000000,
         "maxOutputTokens": 128000,
-        "desc": ""
+        "desc": "フォールバック時はSonnet 5で実行されます。"
       },
       "anthropic/claude-opus-5-5": {
         "displayName": "Claude Opus 5.5",
@@ -178,7 +178,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1000000,
         "maxOutputTokens": 128000,
-        "desc": ""
+        "desc": "フォールバック時はOpus 5またはOpus 4.8で実行されます。"
       },
       "anthropic/claude-fable-5-1": {
         "displayName": "Claude Fable 5.1",
@@ -192,7 +192,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1000000,
         "maxOutputTokens": 128000,
-        "desc": ""
+        "desc": "フォールバック時はOpus 5またはOpus 4.8で実行されます。"
       }
     }
   },
@@ -403,7 +403,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943717,
+        "maxOutputTokens": 943718,
         "desc": ""
       }
     }
@@ -411,6 +411,20 @@
   "🇨🇳 Moonshot AI": {
     "desc": "",
     "models": {
+      "moonshotai/kimi-k2.7-code": {
+        "displayName": "Kimi K2.7 Code",
+        "shortName": "Kimi K2.7 Code",
+        "cost": "0.95/4.00",
+        "tags": [],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": 25.8,
+        "inputModalities": ["text", "image"],
+        "outputModalities": ["text"],
+        "contextWindow": 262144,
+        "maxOutputTokens": 235929,
+        "desc": ""
+      },
       "moonshotai/kimi-k3": {
         "displayName": "Kimi K3",
         "shortName": "Kimi K3",

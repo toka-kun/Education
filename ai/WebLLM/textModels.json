@@ -12,7 +12,6 @@
         },
         "displayName": "Llama 3.2 1B Instruct (q4f32_1)",
         "shortName": "Llama 3.2 1B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Llama-3.2-1B-Instruct-q4f16_1-MLC": {
@@ -25,7 +24,6 @@
         },
         "displayName": "Llama 3.2 1B Instruct (q4f16_1)",
         "shortName": "Llama 3.2 1B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Llama-3.2-1B-Instruct-q0f32-MLC": {
@@ -38,7 +36,6 @@
         },
         "displayName": "Llama 3.2 1B Instruct (q0f32)",
         "shortName": "Llama 3.2 1B (q0f32)",
-        "tags": [],
         "desc": ""
       },
       "Llama-3.2-1B-Instruct-q0f16-MLC": {
@@ -51,7 +48,6 @@
         },
         "displayName": "Llama 3.2 1B Instruct (q0f16)",
         "shortName": "Llama 3.2 1B (q0f16)",
-        "tags": [],
         "desc": ""
       },
       "Llama-3.2-3B-Instruct-q4f32_1-MLC": {
@@ -64,7 +60,6 @@
         },
         "displayName": "Llama 3.2 3B Instruct (q4f32_1)",
         "shortName": "Llama 3.2 3B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Llama-3.2-3B-Instruct-q4f16_1-MLC": {
@@ -77,7 +72,6 @@
         },
         "displayName": "Llama 3.2 3B Instruct (q4f16_1)",
         "shortName": "Llama 3.2 3B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Llama-3.1-8B-Instruct-q4f32_1-MLC-1k": {
@@ -90,9 +84,6 @@
         },
         "displayName": "Llama 3.1 8B Instruct (q4f32_1, 1k ctx)",
         "shortName": "Llama 3.1 8B (q4f32, 1k)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-3.1-8B-Instruct-q4f16_1-MLC-1k": {
@@ -105,9 +96,6 @@
         },
         "displayName": "Llama 3.1 8B Instruct (q4f16_1, 1k ctx)",
         "shortName": "Llama 3.1 8B (q4f16, 1k)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-3.1-8B-Instruct-q4f32_1-MLC": {
@@ -119,9 +107,6 @@
         },
         "displayName": "Llama 3.1 8B Instruct (q4f32_1)",
         "shortName": "Llama 3.1 8B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-3.1-8B-Instruct-q4f16_1-MLC": {
@@ -133,9 +118,6 @@
         },
         "displayName": "Llama 3.1 8B Instruct (q4f16_1)",
         "shortName": "Llama 3.1 8B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-3.1-70B-Instruct-q3f16_1-MLC": {
@@ -147,9 +129,6 @@
         },
         "displayName": "Llama 3.1 70B Instruct (q3f16_1)",
         "shortName": "Llama 3.1 70B (q3f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-3-8B-Instruct-q4f32_1-MLC-1k": {
@@ -162,9 +141,6 @@
         },
         "displayName": "Llama 3 8B Instruct (q4f32_1, 1k ctx)",
         "shortName": "Llama 3 8B (q4f32, 1k)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-3-8B-Instruct-q4f16_1-MLC-1k": {
@@ -177,9 +153,6 @@
         },
         "displayName": "Llama 3 8B Instruct (q4f16_1, 1k ctx)",
         "shortName": "Llama 3 8B (q4f16, 1k)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-3-8B-Instruct-q4f32_1-MLC": {
@@ -191,9 +164,6 @@
         },
         "displayName": "Llama 3 8B Instruct (q4f32_1)",
         "shortName": "Llama 3 8B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-3-8B-Instruct-q4f16_1-MLC": {
@@ -205,9 +175,6 @@
         },
         "displayName": "Llama 3 8B Instruct (q4f16_1)",
         "shortName": "Llama 3 8B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-3-70B-Instruct-q3f16_1-MLC": {
@@ -219,9 +186,6 @@
         },
         "displayName": "Llama 3 70B Instruct (q3f16_1)",
         "shortName": "Llama 3 70B (q3f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-2-7b-chat-hf-q4f32_1-MLC-1k": {
@@ -233,9 +197,6 @@
         },
         "displayName": "Llama 2 7B Chat HF (q4f32_1, 1k ctx)",
         "shortName": "Llama 2 7B (q4f32, 1k)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-2-7b-chat-hf-q4f16_1-MLC-1k": {
@@ -250,9 +211,6 @@
         ],
         "displayName": "Llama 2 7B Chat HF (q4f16_1, 1k ctx)",
         "shortName": "Llama 2 7B (q4f16, 1k)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-2-7b-chat-hf-q4f32_1-MLC": {
@@ -264,9 +222,6 @@
         },
         "displayName": "Llama 2 7B Chat HF (q4f32_1)",
         "shortName": "Llama 2 7B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-2-7b-chat-hf-q4f16_1-MLC": {
@@ -281,9 +236,6 @@
         ],
         "displayName": "Llama 2 7B Chat HF (q4f16_1)",
         "shortName": "Llama 2 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Llama-2-13b-chat-hf-q4f16_1-MLC": {
@@ -298,9 +250,6 @@
         ],
         "displayName": "Llama 2 13B Chat HF (q4f16_1)",
         "shortName": "Llama 2 13B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       }
     }
@@ -318,7 +267,6 @@
         },
         "displayName": "Qwen3 0.6B (q4f16_1)",
         "shortName": "Qwen3 0.6B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3-0.6B-q4f32_1-MLC": {
@@ -331,7 +279,6 @@
         },
         "displayName": "Qwen3 0.6B (q4f32_1)",
         "shortName": "Qwen3 0.6B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3-0.6B-q0f16-MLC": {
@@ -344,7 +291,6 @@
         },
         "displayName": "Qwen3 0.6B (q0f16)",
         "shortName": "Qwen3 0.6B (q0f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3-0.6B-q0f32-MLC": {
@@ -357,7 +303,6 @@
         },
         "displayName": "Qwen3 0.6B (q0f32)",
         "shortName": "Qwen3 0.6B (q0f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3-1.7B-q4f16_1-MLC": {
@@ -370,7 +315,6 @@
         },
         "displayName": "Qwen3 1.7B (q4f16_1)",
         "shortName": "Qwen3 1.7B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3-1.7B-q4f32_1-MLC": {
@@ -383,7 +327,6 @@
         },
         "displayName": "Qwen3 1.7B (q4f32_1)",
         "shortName": "Qwen3 1.7B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3-4B-q4f16_1-MLC": {
@@ -396,7 +339,6 @@
         },
         "displayName": "Qwen3 4B (q4f16_1)",
         "shortName": "Qwen3 4B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3-4B-q4f32_1-MLC": {
@@ -409,7 +351,6 @@
         },
         "displayName": "Qwen3 4B (q4f32_1)",
         "shortName": "Qwen3 4B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3-8B-q4f16_1-MLC": {
@@ -421,9 +362,6 @@
         },
         "displayName": "Qwen3 8B (q4f16_1)",
         "shortName": "Qwen3 8B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen3-8B-q4f32_1-MLC": {
@@ -435,9 +373,6 @@
         },
         "displayName": "Qwen3 8B (q4f32_1)",
         "shortName": "Qwen3 8B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen3.5-0.8B-q4f16_1-MLC": {
@@ -451,7 +386,6 @@
         },
         "displayName": "Qwen3.5 0.8B (q4f16_1)",
         "shortName": "Qwen3.5 0.8B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3.5-0.8B-q4f32_1-MLC": {
@@ -465,7 +399,6 @@
         },
         "displayName": "Qwen3.5 0.8B (q4f32_1)",
         "shortName": "Qwen3.5 0.8B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3.5-0.8B-q0f16-MLC": {
@@ -479,7 +412,6 @@
         },
         "displayName": "Qwen3.5 0.8B (q0f16)",
         "shortName": "Qwen3.5 0.8B (q0f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3.5-2B-q4f16_1-MLC": {
@@ -492,7 +424,6 @@
         },
         "displayName": "Qwen3.5 2B (q4f16_1)",
         "shortName": "Qwen3.5 2B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3.5-2B-q4f32_1-MLC": {
@@ -505,7 +436,6 @@
         },
         "displayName": "Qwen3.5 2B (q4f32_1)",
         "shortName": "Qwen3.5 2B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3.5-4B-q4f16_1-MLC": {
@@ -518,7 +448,6 @@
         },
         "displayName": "Qwen3.5 4B (q4f16_1)",
         "shortName": "Qwen3.5 4B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3.5-4B-q4f32_1-MLC": {
@@ -531,7 +460,6 @@
         },
         "displayName": "Qwen3.5 4B (q4f32_1)",
         "shortName": "Qwen3.5 4B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen3.5-9B-q4f16_1-MLC": {
@@ -544,9 +472,6 @@
         },
         "displayName": "Qwen3.5 9B (q4f16_1)",
         "shortName": "Qwen3.5 9B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen3.5-9B-q4f32_1-MLC": {
@@ -559,9 +484,6 @@
         },
         "displayName": "Qwen3.5 9B (q4f32_1)",
         "shortName": "Qwen3.5 9B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen2.5-0.5B-Instruct-q4f16_1-MLC": {
@@ -574,7 +496,6 @@
         },
         "displayName": "Qwen2.5 0.5B Instruct (q4f16_1)",
         "shortName": "Qwen2.5 0.5B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-0.5B-Instruct-q4f32_1-MLC": {
@@ -587,7 +508,6 @@
         },
         "displayName": "Qwen2.5 0.5B Instruct (q4f32_1)",
         "shortName": "Qwen2.5 0.5B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-0.5B-Instruct-q0f16-MLC": {
@@ -600,7 +520,6 @@
         },
         "displayName": "Qwen2.5 0.5B Instruct (q0f16)",
         "shortName": "Qwen2.5 0.5B (q0f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-0.5B-Instruct-q0f32-MLC": {
@@ -613,7 +532,6 @@
         },
         "displayName": "Qwen2.5 0.5B Instruct (q0f32)",
         "shortName": "Qwen2.5 0.5B (q0f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-1.5B-Instruct-q4f16_1-MLC": {
@@ -626,10 +544,6 @@
         },
         "displayName": "Qwen2.5 1.5B Instruct (q4f16_1)",
         "shortName": "Qwen2.5 1.5B (q4f16)",
-        "tags": [
-          "default",
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen2.5-1.5B-Instruct-q4f32_1-MLC": {
@@ -642,7 +556,6 @@
         },
         "displayName": "Qwen2.5 1.5B Instruct (q4f32_1)",
         "shortName": "Qwen2.5 1.5B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-3B-Instruct-q4f16_1-MLC": {
@@ -655,7 +568,6 @@
         },
         "displayName": "Qwen2.5 3B Instruct (q4f16_1)",
         "shortName": "Qwen2.5 3B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-3B-Instruct-q4f32_1-MLC": {
@@ -668,7 +580,6 @@
         },
         "displayName": "Qwen2.5 3B Instruct (q4f32_1)",
         "shortName": "Qwen2.5 3B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-7B-Instruct-q4f16_1-MLC": {
@@ -680,9 +591,6 @@
         },
         "displayName": "Qwen2.5 7B Instruct (q4f16_1)",
         "shortName": "Qwen2.5 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen2.5-7B-Instruct-q4f32_1-MLC": {
@@ -694,9 +602,6 @@
         },
         "displayName": "Qwen2.5 7B Instruct (q4f32_1)",
         "shortName": "Qwen2.5 7B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC": {
@@ -709,7 +614,6 @@
         },
         "displayName": "Qwen2.5 Coder 0.5B Instruct (q4f16_1)",
         "shortName": "Qwen2.5 Coder 0.5B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-Coder-0.5B-Instruct-q4f32_1-MLC": {
@@ -722,7 +626,6 @@
         },
         "displayName": "Qwen2.5 Coder 0.5B Instruct (q4f32_1)",
         "shortName": "Qwen2.5 Coder 0.5B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-Coder-0.5B-Instruct-q0f16-MLC": {
@@ -735,7 +638,6 @@
         },
         "displayName": "Qwen2.5 Coder 0.5B Instruct (q0f16)",
         "shortName": "Qwen2.5 Coder 0.5B (q0f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-Coder-0.5B-Instruct-q0f32-MLC": {
@@ -748,7 +650,6 @@
         },
         "displayName": "Qwen2.5 Coder 0.5B Instruct (q0f32)",
         "shortName": "Qwen2.5 Coder 0.5B (q0f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-Coder-1.5B-Instruct-q4f16_1-MLC": {
@@ -760,7 +661,6 @@
         },
         "displayName": "Qwen2.5 Coder 1.5B Instruct (q4f16_1)",
         "shortName": "Qwen2.5 Coder 1.5B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-Coder-1.5B-Instruct-q4f32_1-MLC": {
@@ -772,7 +672,6 @@
         },
         "displayName": "Qwen2.5 Coder 1.5B Instruct (q4f32_1)",
         "shortName": "Qwen2.5 Coder 1.5B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC": {
@@ -785,7 +684,6 @@
         },
         "displayName": "Qwen2.5 Coder 3B Instruct (q4f16_1)",
         "shortName": "Qwen2.5 Coder 3B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-Coder-3B-Instruct-q4f32_1-MLC": {
@@ -798,7 +696,6 @@
         },
         "displayName": "Qwen2.5 Coder 3B Instruct (q4f32_1)",
         "shortName": "Qwen2.5 Coder 3B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC": {
@@ -810,9 +707,6 @@
         },
         "displayName": "Qwen2.5 Coder 7B Instruct (q4f16_1)",
         "shortName": "Qwen2.5 Coder 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen2.5-Coder-7B-Instruct-q4f32_1-MLC": {
@@ -824,9 +718,6 @@
         },
         "displayName": "Qwen2.5 Coder 7B Instruct (q4f32_1)",
         "shortName": "Qwen2.5 Coder 7B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen2.5-Math-1.5B-Instruct-q4f16_1-MLC": {
@@ -839,7 +730,6 @@
         },
         "displayName": "Qwen2.5 Math 1.5B Instruct (q4f16_1)",
         "shortName": "Qwen2.5 Math 1.5B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2.5-Math-1.5B-Instruct-q4f32_1-MLC": {
@@ -852,7 +742,6 @@
         },
         "displayName": "Qwen2.5 Math 1.5B Instruct (q4f32_1)",
         "shortName": "Qwen2.5 Math 1.5B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2-0.5B-Instruct-q4f16_1-MLC": {
@@ -865,7 +754,6 @@
         },
         "displayName": "Qwen2 0.5B Instruct (q4f16_1)",
         "shortName": "Qwen2 0.5B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2-0.5B-Instruct-q0f16-MLC": {
@@ -878,7 +766,6 @@
         },
         "displayName": "Qwen2 0.5B Instruct (q0f16)",
         "shortName": "Qwen2 0.5B (q0f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2-0.5B-Instruct-q0f32-MLC": {
@@ -891,7 +778,6 @@
         },
         "displayName": "Qwen2 0.5B Instruct (q0f32)",
         "shortName": "Qwen2 0.5B (q0f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2-1.5B-Instruct-q4f16_1-MLC": {
@@ -904,7 +790,6 @@
         },
         "displayName": "Qwen2 1.5B Instruct (q4f16_1)",
         "shortName": "Qwen2 1.5B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2-1.5B-Instruct-q4f32_1-MLC": {
@@ -917,7 +802,6 @@
         },
         "displayName": "Qwen2 1.5B Instruct (q4f32_1)",
         "shortName": "Qwen2 1.5B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2-7B-Instruct-q4f16_1-MLC": {
@@ -929,9 +813,6 @@
         },
         "displayName": "Qwen2 7B Instruct (q4f16_1)",
         "shortName": "Qwen2 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen2-7B-Instruct-q4f32_1-MLC": {
@@ -943,9 +824,6 @@
         },
         "displayName": "Qwen2 7B Instruct (q4f32_1)",
         "shortName": "Qwen2 7B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen2-Math-1.5B-Instruct-q4f16_1-MLC": {
@@ -958,7 +836,6 @@
         },
         "displayName": "Qwen2 Math 1.5B Instruct (q4f16_1)",
         "shortName": "Qwen2 Math 1.5B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2-Math-1.5B-Instruct-q4f32_1-MLC": {
@@ -971,7 +848,6 @@
         },
         "displayName": "Qwen2 Math 1.5B Instruct (q4f32_1)",
         "shortName": "Qwen2 Math 1.5B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Qwen2-Math-7B-Instruct-q4f16_1-MLC": {
@@ -983,9 +859,6 @@
         },
         "displayName": "Qwen2 Math 7B Instruct (q4f16_1)",
         "shortName": "Qwen2 Math 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Qwen2-Math-7B-Instruct-q4f32_1-MLC": {
@@ -997,9 +870,6 @@
         },
         "displayName": "Qwen2 Math 7B Instruct (q4f32_1)",
         "shortName": "Qwen2 Math 7B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       }
     }
@@ -1019,7 +889,6 @@
         ],
         "displayName": "Gemma 2 2B IT (q4f16_1)",
         "shortName": "Gemma 2 2B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "gemma-2-2b-it-q4f32_1-MLC": {
@@ -1031,7 +900,6 @@
         },
         "displayName": "Gemma 2 2B IT (q4f32_1)",
         "shortName": "Gemma 2 2B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "gemma-2-2b-it-q4f16_1-MLC-1k": {
@@ -1047,7 +915,6 @@
         ],
         "displayName": "Gemma 2 2B IT (q4f16_1, 1k ctx)",
         "shortName": "Gemma 2 2B (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "gemma-2-2b-it-q4f32_1-MLC-1k": {
@@ -1060,7 +927,6 @@
         },
         "displayName": "Gemma 2 2B IT (q4f32_1, 1k ctx)",
         "shortName": "Gemma 2 2B (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       },
       "gemma-2-9b-it-q4f16_1-MLC": {
@@ -1075,9 +941,6 @@
         ],
         "displayName": "Gemma 2 9B IT (q4f16_1)",
         "shortName": "Gemma 2 9B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "gemma-2-9b-it-q4f32_1-MLC": {
@@ -1089,9 +952,6 @@
         },
         "displayName": "Gemma 2 9B IT (q4f32_1)",
         "shortName": "Gemma 2 9B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "gemma-2-2b-jpn-it-q4f16_1-MLC": {
@@ -1107,7 +967,6 @@
         ],
         "displayName": "Gemma 2 2B JPN IT (q4f16_1)",
         "shortName": "Gemma 2 2B JPN (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "gemma-2-2b-jpn-it-q4f32_1-MLC": {
@@ -1120,7 +979,6 @@
         },
         "displayName": "Gemma 2 2B JPN IT (q4f32_1)",
         "shortName": "Gemma 2 2B JPN (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "gemma3-1b-it-q4f16_1-MLC": {
@@ -1133,7 +991,6 @@
         },
         "displayName": "Gemma 3 1B IT (q4f16_1)",
         "shortName": "Gemma 3 1B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "gemma-2b-it-q4f16_1-MLC": {
@@ -1149,7 +1006,6 @@
         "buffer_size_required_bytes": 262144000,
         "displayName": "Gemma 2B IT (q4f16_1)",
         "shortName": "Gemma 2B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "gemma-2b-it-q4f32_1-MLC": {
@@ -1162,7 +1018,6 @@
         "buffer_size_required_bytes": 262144000,
         "displayName": "Gemma 2B IT (q4f32_1)",
         "shortName": "Gemma 2B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "gemma-2b-it-q4f16_1-MLC-1k": {
@@ -1179,7 +1034,6 @@
         "buffer_size_required_bytes": 262144000,
         "displayName": "Gemma 2B IT (q4f16_1, 1k ctx)",
         "shortName": "Gemma 2B (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "gemma-2b-it-q4f32_1-MLC-1k": {
@@ -1193,7 +1047,6 @@
         "buffer_size_required_bytes": 262144000,
         "displayName": "Gemma 2B IT (q4f32_1, 1k ctx)",
         "shortName": "Gemma 2B (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       }
     }
@@ -1210,7 +1063,6 @@
         },
         "displayName": "Phi 3.5 Mini Instruct (q4f16_1)",
         "shortName": "Phi 3.5 Mini (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Phi-3.5-mini-instruct-q4f32_1-MLC": {
@@ -1222,7 +1074,6 @@
         },
         "displayName": "Phi 3.5 Mini Instruct (q4f32_1)",
         "shortName": "Phi 3.5 Mini (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Phi-3.5-mini-instruct-q4f16_1-MLC-1k": {
@@ -1235,7 +1086,6 @@
         },
         "displayName": "Phi 3.5 Mini Instruct (q4f16_1, 1k ctx)",
         "shortName": "Phi 3.5 Mini (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "Phi-3.5-mini-instruct-q4f32_1-MLC-1k": {
@@ -1248,7 +1098,6 @@
         },
         "displayName": "Phi 3.5 Mini Instruct (q4f32_1, 1k ctx)",
         "shortName": "Phi 3.5 Mini (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       },
       "Phi-3.5-vision-instruct-q4f16_1-MLC": {
@@ -1262,7 +1111,6 @@
         "model_type": 2,
         "displayName": "Phi 3.5 Vision Instruct (q4f16_1)",
         "shortName": "Phi 3.5 Vision (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Phi-3.5-vision-instruct-q4f32_1-MLC": {
@@ -1276,7 +1124,6 @@
         "model_type": 2,
         "displayName": "Phi 3.5 Vision Instruct (q4f32_1)",
         "shortName": "Phi 3.5 Vision (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Phi-4-mini-instruct-q4f16_1-MLC": {
@@ -1288,7 +1135,6 @@
         },
         "displayName": "Phi 4 Mini Instruct (q4f16_1)",
         "shortName": "Phi 4 Mini (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Phi-4-mini-instruct-q4f32_1-MLC": {
@@ -1300,7 +1146,6 @@
         },
         "displayName": "Phi 4 Mini Instruct (q4f32_1)",
         "shortName": "Phi 4 Mini (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Phi-3-mini-4k-instruct-q4f16_1-MLC": {
@@ -1312,7 +1157,6 @@
         },
         "displayName": "Phi 3 Mini 4K Instruct (q4f16_1)",
         "shortName": "Phi 3 Mini 4K (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Phi-3-mini-4k-instruct-q4f32_1-MLC": {
@@ -1324,7 +1168,6 @@
         },
         "displayName": "Phi 3 Mini 4K Instruct (q4f32_1)",
         "shortName": "Phi 3 Mini 4K (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Phi-3-mini-4k-instruct-q4f16_1-MLC-1k": {
@@ -1337,7 +1180,6 @@
         },
         "displayName": "Phi 3 Mini 4K Instruct (q4f16_1, 1k ctx)",
         "shortName": "Phi 3 Mini 4K (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "Phi-3-mini-4k-instruct-q4f32_1-MLC-1k": {
@@ -1350,7 +1192,6 @@
         },
         "displayName": "Phi 3 Mini 4K Instruct (q4f32_1, 1k ctx)",
         "shortName": "Phi 3 Mini 4K (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       },
       "phi-2-q4f16_1-MLC": {
@@ -1365,7 +1206,6 @@
         ],
         "displayName": "Phi 2 (q4f16_1)",
         "shortName": "Phi 2 (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "phi-2-q4f32_1-MLC": {
@@ -1377,7 +1217,6 @@
         },
         "displayName": "Phi 2 (q4f32_1)",
         "shortName": "Phi 2 (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "phi-2-q4f16_1-MLC-1k": {
@@ -1393,7 +1232,6 @@
         ],
         "displayName": "Phi 2 (q4f16_1, 1k ctx)",
         "shortName": "Phi 2 (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "phi-2-q4f32_1-MLC-1k": {
@@ -1406,7 +1244,6 @@
         },
         "displayName": "Phi 2 (q4f32_1, 1k ctx)",
         "shortName": "Phi 2 (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       },
       "phi-1_5-q4f16_1-MLC": {
@@ -1422,7 +1259,6 @@
         ],
         "displayName": "Phi 1.5 (q4f16_1)",
         "shortName": "Phi 1.5 (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "phi-1_5-q4f32_1-MLC": {
@@ -1435,7 +1271,6 @@
         },
         "displayName": "Phi 1.5 (q4f32_1)",
         "shortName": "Phi 1.5 (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "phi-1_5-q4f16_1-MLC-1k": {
@@ -1451,7 +1286,6 @@
         ],
         "displayName": "Phi 1.5 (q4f16_1, 1k ctx)",
         "shortName": "Phi 1.5 (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "phi-1_5-q4f32_1-MLC-1k": {
@@ -1464,7 +1298,6 @@
         },
         "displayName": "Phi 1.5 (q4f32_1, 1k ctx)",
         "shortName": "Phi 1.5 (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       }
     }
@@ -1485,9 +1318,6 @@
         ],
         "displayName": "Mistral 7B Instruct v0.3 (q4f16_1)",
         "shortName": "Mistral 7B v0.3 (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Mistral-7B-Instruct-v0.3-q4f32_1-MLC": {
@@ -1500,9 +1330,6 @@
         },
         "displayName": "Mistral 7B Instruct v0.3 (q4f32_1)",
         "shortName": "Mistral 7B v0.3 (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Mistral-7B-Instruct-v0.2-q4f16_1-MLC": {
@@ -1518,9 +1345,6 @@
         ],
         "displayName": "Mistral 7B Instruct v0.2 (q4f16_1)",
         "shortName": "Mistral 7B v0.2 (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Ministral-3-3B-Base-2512-q4f16_1-MLC": {
@@ -1533,7 +1357,6 @@
         },
         "displayName": "Ministral 3 3B Base 2512 (q4f16_1)",
         "shortName": "Ministral 3 3B Base 2512 (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Ministral-3-3B-Base-2512-q4f32_1-MLC": {
@@ -1546,7 +1369,6 @@
         },
         "displayName": "Ministral 3 3B Base 2512 (q4f32_1)",
         "shortName": "Ministral 3 3B Base 2512 (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Ministral-3-3B-Reasoning-2512-q4f16_1-MLC": {
@@ -1559,7 +1381,6 @@
         },
         "displayName": "Ministral 3 3B Reasoning 2512 (q4f16_1)",
         "shortName": "Ministral 3 3B Reasoning 2512 (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Ministral-3-3B-Reasoning-2512-q4f32_1-MLC": {
@@ -1572,7 +1393,6 @@
         },
         "displayName": "Ministral 3 3B Reasoning 2512 (q4f32_1)",
         "shortName": "Ministral 3 3B Reasoning 2512 (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Ministral-3-3B-Instruct-2512-BF16-q4f16_1-MLC": {
@@ -1585,7 +1405,6 @@
         },
         "displayName": "Ministral 3 3B Instruct 2512 BF16 (q4f16_1)",
         "shortName": "Ministral 3 3B 2512 BF16 (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Ministral-3-3B-Instruct-2512-BF16-q4f32_1-MLC": {
@@ -1598,7 +1417,6 @@
         },
         "displayName": "Ministral 3 3B Instruct 2512 BF16 (q4f32_1)",
         "shortName": "Ministral 3 3B 2512 BF16 (q4f32)",
-        "tags": [],
         "desc": ""
       }
     }
@@ -1615,9 +1433,6 @@
         },
         "displayName": "DeepSeek R1 Distill Qwen 7B (q4f16_1)",
         "shortName": "DeepSeek R1 Distill Qwen 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "DeepSeek-R1-Distill-Qwen-7B-q4f32_1-MLC": {
@@ -1629,9 +1444,6 @@
         },
         "displayName": "DeepSeek R1 Distill Qwen 7B (q4f32_1)",
         "shortName": "DeepSeek R1 Distill Qwen 7B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "DeepSeek-R1-Distill-Llama-8B-q4f32_1-MLC": {
@@ -1643,9 +1455,6 @@
         },
         "displayName": "DeepSeek R1 Distill Llama 8B (q4f32_1)",
         "shortName": "DeepSeek R1 Distill Llama 8B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC": {
@@ -1657,9 +1466,6 @@
         },
         "displayName": "DeepSeek R1 Distill Llama 8B (q4f16_1)",
         "shortName": "DeepSeek R1 Distill Llama 8B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       }
     }
@@ -1676,9 +1482,6 @@
         },
         "displayName": "Hermes 2 Theta Llama 3 8B (q4f16_1)",
         "shortName": "Hermes 2 Theta Llama 3 8B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Hermes-2-Theta-Llama-3-8B-q4f32_1-MLC": {
@@ -1690,9 +1493,6 @@
         },
         "displayName": "Hermes 2 Theta Llama 3 8B (q4f32_1)",
         "shortName": "Hermes 2 Theta Llama 3 8B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Hermes-2-Pro-Llama-3-8B-q4f16_1-MLC": {
@@ -1704,9 +1504,6 @@
         },
         "displayName": "Hermes 2 Pro Llama 3 8B (q4f16_1)",
         "shortName": "Hermes 2 Pro Llama 3 8B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Hermes-2-Pro-Llama-3-8B-q4f32_1-MLC": {
@@ -1718,9 +1515,6 @@
         },
         "displayName": "Hermes 2 Pro Llama 3 8B (q4f32_1)",
         "shortName": "Hermes 2 Pro Llama 3 8B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Hermes-3-Llama-3.2-3B-q4f32_1-MLC": {
@@ -1733,7 +1527,6 @@
         },
         "displayName": "Hermes 3 Llama 3.2 3B (q4f32_1)",
         "shortName": "Hermes 3 Llama 3.2 3B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "Hermes-3-Llama-3.2-3B-q4f16_1-MLC": {
@@ -1746,7 +1539,6 @@
         },
         "displayName": "Hermes 3 Llama 3.2 3B (q4f16_1)",
         "shortName": "Hermes 3 Llama 3.2 3B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "Hermes-3-Llama-3.1-8B-q4f32_1-MLC": {
@@ -1758,9 +1550,6 @@
         },
         "displayName": "Hermes 3 Llama 3.1 8B (q4f32_1)",
         "shortName": "Hermes 3 Llama 3.1 8B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Hermes-3-Llama-3.1-8B-q4f16_1-MLC": {
@@ -1772,9 +1561,6 @@
         },
         "displayName": "Hermes 3 Llama 3.1 8B (q4f16_1)",
         "shortName": "Hermes 3 Llama 3.1 8B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "Hermes-2-Pro-Mistral-7B-q4f16_1-MLC": {
@@ -1790,9 +1576,6 @@
         ],
         "displayName": "Hermes 2 Pro Mistral 7B (q4f16_1)",
         "shortName": "Hermes 2 Pro Mistral 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "OpenHermes-2.5-Mistral-7B-q4f16_1-MLC": {
@@ -1808,9 +1591,6 @@
         ],
         "displayName": "OpenHermes 2.5 Mistral 7B (q4f16_1)",
         "shortName": "OpenHermes 2.5 Mistral 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "NeuralHermes-2.5-Mistral-7B-q4f16_1-MLC": {
@@ -1826,9 +1606,6 @@
         ],
         "displayName": "NeuralHermes 2.5 Mistral 7B (q4f16_1)",
         "shortName": "NeuralHermes 2.5 Mistral 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       }
     }
@@ -1849,7 +1626,6 @@
         ],
         "displayName": "SmolLM2 1.7B Instruct (q4f16_1)",
         "shortName": "SmolLM2 1.7B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "SmolLM2-1.7B-Instruct-q4f32_1-MLC": {
@@ -1862,7 +1638,6 @@
         },
         "displayName": "SmolLM2 1.7B Instruct (q4f32_1)",
         "shortName": "SmolLM2 1.7B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "SmolLM2-360M-Instruct-q0f16-MLC": {
@@ -1878,7 +1653,6 @@
         ],
         "displayName": "SmolLM2 360M Instruct (q0f16)",
         "shortName": "SmolLM2 360M (q0f16)",
-        "tags": [],
         "desc": ""
       },
       "SmolLM2-360M-Instruct-q0f32-MLC": {
@@ -1891,7 +1665,6 @@
         },
         "displayName": "SmolLM2 360M Instruct (q0f32)",
         "shortName": "SmolLM2 360M (q0f32)",
-        "tags": [],
         "desc": ""
       },
       "SmolLM2-360M-Instruct-q4f16_1-MLC": {
@@ -1907,7 +1680,6 @@
         ],
         "displayName": "SmolLM2 360M Instruct (q4f16_1)",
         "shortName": "SmolLM2 360M (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "SmolLM2-360M-Instruct-q4f32_1-MLC": {
@@ -1920,7 +1692,6 @@
         },
         "displayName": "SmolLM2 360M Instruct (q4f32_1)",
         "shortName": "SmolLM2 360M (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "SmolLM2-135M-Instruct-q0f16-MLC": {
@@ -1936,7 +1707,6 @@
         ],
         "displayName": "SmolLM2 135M Instruct (q0f16)",
         "shortName": "SmolLM2 135M (q0f16)",
-        "tags": [],
         "desc": ""
       },
       "SmolLM2-135M-Instruct-q0f32-MLC": {
@@ -1949,7 +1719,6 @@
         },
         "displayName": "SmolLM2 135M Instruct (q0f32)",
         "shortName": "SmolLM2 135M (q0f32)",
-        "tags": [],
         "desc": ""
       }
     }
@@ -1966,9 +1735,6 @@
         },
         "displayName": "OLMo 2 1124 7B Instruct (q4f16_1)",
         "shortName": "OLMo 2 1124 7B (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "OLMo-2-1124-7B-Instruct-q4f32_1-MLC": {
@@ -1980,9 +1746,6 @@
         },
         "displayName": "OLMo 2 1124 7B Instruct (q4f32_1)",
         "shortName": "OLMo 2 1124 7B (q4f32)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       },
       "OLMo-2-0425-1B-Instruct-q4f16_1-MLC": {
@@ -1995,7 +1758,6 @@
         },
         "displayName": "OLMo 2 0425 1B Instruct (q4f16_1)",
         "shortName": "OLMo 2 0425 1B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "OLMo-2-0425-1B-Instruct-q4f32_1-MLC": {
@@ -2008,7 +1770,6 @@
         },
         "displayName": "OLMo 2 0425 1B Instruct (q4f32_1)",
         "shortName": "OLMo 2 0425 1B (q4f32)",
-        "tags": [],
         "desc": ""
       }
     }
@@ -2025,7 +1786,6 @@
         },
         "displayName": "StableLM 2 Zephyr 1.6B (q4f16_1)",
         "shortName": "StableLM 2 Zephyr 1.6B (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "stablelm-2-zephyr-1_6b-q4f32_1-MLC": {
@@ -2037,7 +1797,6 @@
         },
         "displayName": "StableLM 2 Zephyr 1.6B (q4f32_1)",
         "shortName": "StableLM 2 Zephyr 1.6B (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "stablelm-2-zephyr-1_6b-q4f16_1-MLC-1k": {
@@ -2050,7 +1809,6 @@
         },
         "displayName": "StableLM 2 Zephyr 1.6B (q4f16_1, 1k ctx)",
         "shortName": "StableLM 2 Zephyr 1.6B (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "stablelm-2-zephyr-1_6b-q4f32_1-MLC-1k": {
@@ -2063,7 +1821,6 @@
         },
         "displayName": "StableLM 2 Zephyr 1.6B (q4f32_1, 1k ctx)",
         "shortName": "StableLM 2 Zephyr 1.6B (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       }
     }
@@ -2083,7 +1840,6 @@
         ],
         "displayName": "RedPajama INCITE Chat 3B V1 (q4f16_1)",
         "shortName": "RedPajama INCITE 3B V1 (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "RedPajama-INCITE-Chat-3B-v1-q4f32_1-MLC": {
@@ -2095,7 +1851,6 @@
         },
         "displayName": "RedPajama INCITE Chat 3B V1 (q4f32_1)",
         "shortName": "RedPajama INCITE 3B V1 (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "RedPajama-INCITE-Chat-3B-v1-q4f16_1-MLC-1k": {
@@ -2111,7 +1866,6 @@
         ],
         "displayName": "RedPajama INCITE Chat 3B V1 (q4f16_1, 1k ctx)",
         "shortName": "RedPajama INCITE 3B V1 (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "RedPajama-INCITE-Chat-3B-v1-q4f32_1-MLC-1k": {
@@ -2124,7 +1878,6 @@
         },
         "displayName": "RedPajama INCITE Chat 3B V1 (q4f32_1, 1k ctx)",
         "shortName": "RedPajama INCITE 3B V1 (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       }
     }
@@ -2145,7 +1898,6 @@
         ],
         "displayName": "TinyLlama 1.1B Chat v1.0 (q4f16_1)",
         "shortName": "TinyLlama 1.1B v1.0 (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC": {
@@ -2158,7 +1910,6 @@
         },
         "displayName": "TinyLlama 1.1B Chat v1.0 (q4f32_1)",
         "shortName": "TinyLlama 1.1B v1.0 (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC-1k": {
@@ -2174,7 +1925,6 @@
         ],
         "displayName": "TinyLlama 1.1B Chat v1.0 (q4f16_1, 1k ctx)",
         "shortName": "TinyLlama 1.1B v1.0 (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC-1k": {
@@ -2187,7 +1937,6 @@
         },
         "displayName": "TinyLlama 1.1B Chat v1.0 (q4f32_1, 1k ctx)",
         "shortName": "TinyLlama 1.1B v1.0 (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       },
       "TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC": {
@@ -2203,7 +1952,6 @@
         ],
         "displayName": "TinyLlama 1.1B Chat v0.4 (q4f16_1)",
         "shortName": "TinyLlama 1.1B v0.4 (q4f16)",
-        "tags": [],
         "desc": ""
       },
       "TinyLlama-1.1B-Chat-v0.4-q4f32_1-MLC": {
@@ -2216,7 +1964,6 @@
         },
         "displayName": "TinyLlama 1.1B Chat v0.4 (q4f32_1)",
         "shortName": "TinyLlama 1.1B v0.4 (q4f32)",
-        "tags": [],
         "desc": ""
       },
       "TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC-1k": {
@@ -2232,7 +1979,6 @@
         ],
         "displayName": "TinyLlama 1.1B Chat v0.4 (q4f16_1, 1k ctx)",
         "shortName": "TinyLlama 1.1B v0.4 (q4f16, 1k)",
-        "tags": [],
         "desc": ""
       },
       "TinyLlama-1.1B-Chat-v0.4-q4f32_1-MLC-1k": {
@@ -2245,7 +1991,6 @@
         },
         "displayName": "TinyLlama 1.1B Chat v0.4 (q4f32_1, 1k ctx)",
         "shortName": "TinyLlama 1.1B v0.4 (q4f32, 1k)",
-        "tags": [],
         "desc": ""
       }
     }
@@ -2266,9 +2011,6 @@
         ],
         "displayName": "WizardMath 7B v1.1 (q4f16_1)",
         "shortName": "WizardMath 7B v1.1 (q4f16)",
-        "tags": [
-          "recommended"
-        ],
         "desc": ""
       }
     }
@@ -2283,7 +2025,6 @@
         "model_type": 1,
         "displayName": "Snowflake Arctic Embed M (q0f32, batch 32)",
         "shortName": "Snowflake Arctic Embed M (q0f32, b32)",
-        "tags": [],
         "desc": ""
       },
       "snowflake-arctic-embed-m-q0f32-MLC-b4": {
@@ -2293,7 +2034,6 @@
         "model_type": 1,
         "displayName": "Snowflake Arctic Embed M (q0f32, batch 4)",
         "shortName": "Snowflake Arctic Embed M (q0f32, b4)",
-        "tags": [],
         "desc": ""
       },
       "snowflake-arctic-embed-s-q0f32-MLC-b32": {
@@ -2303,7 +2043,6 @@
         "model_type": 1,
         "displayName": "Snowflake Arctic Embed S (q0f32, batch 32)",
         "shortName": "Snowflake Arctic Embed S (q0f32, b32)",
-        "tags": [],
         "desc": ""
       },
       "snowflake-arctic-embed-s-q0f32-MLC-b4": {
@@ -2313,7 +2052,6 @@
         "model_type": 1,
         "displayName": "Snowflake Arctic Embed S (q0f32, batch 4)",
         "shortName": "Snowflake Arctic Embed S (q0f32, b4)",
-        "tags": [],
         "desc": ""
       }
     }

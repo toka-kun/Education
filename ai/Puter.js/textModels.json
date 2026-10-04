@@ -403,7 +403,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 131072,
         "desc": ""
       }
     }

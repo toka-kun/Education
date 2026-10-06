@@ -210,7 +210,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 131072,
-        "maxOutputTokens": 117964,
+        "maxOutputTokens": 16384,
         "desc": ""
       },
       "meta/muse-spark-1.1": {

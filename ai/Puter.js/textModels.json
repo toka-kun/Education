@@ -70,7 +70,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1048576,
         "maxOutputTokens": 65536,
-        "desc": "2026年2月からずっと更新されておらず、性能も3.8 Flashに追い抜かれているので非推奨"
+        "desc": "2026年2月からずっと更新されておらず、性能も3.8 Flashに追い抜かれているので非推奨。20万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
       }
     }
   },
@@ -103,7 +103,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1050000,
         "maxOutputTokens": 128000,
-        "desc": ""
+        "desc": "27.2万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
       },
       "openai/gpt-6.1-sol": {
         "displayName": "GPT-6.1 Sol",
@@ -117,7 +117,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1050000,
         "maxOutputTokens": 128000,
-        "desc": ""
+        "desc": "27.2万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
       },
       "openai/gpt-6-astra": {
         "displayName": "GPT-6 Astra",
@@ -131,7 +131,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1050000,
         "maxOutputTokens": 128000,
-        "desc": ""
+        "desc": "27.2万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
       }
     }
   },
@@ -142,7 +142,7 @@
         "displayName": "Claude Haiku 5.5",
         "shortName": "Haiku 5.5",
         "cost": "0.10/0.50",
-        "tags": [],
+        "tags": ["recommended"],
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 43.4,
@@ -244,7 +244,7 @@
         "outputModalities": ["text"],
         "contextWindow": 500000,
         "maxOutputTokens": 450000,
-        "desc": ""
+        "desc": "20万トークン以上のプロンプトの場合、価格は2倍になります。"
       },
       "x-ai/grok-4.7": {
         "displayName": "Grok 4.7",
@@ -258,7 +258,7 @@
         "outputModalities": ["text"],
         "contextWindow": 500000,
         "maxOutputTokens": 450000,
-        "desc": ""
+        "desc": "20万トークン以上のプロンプトの場合、価格は2倍になります。"
       }
     }
   },

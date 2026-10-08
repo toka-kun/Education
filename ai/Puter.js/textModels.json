@@ -138,19 +138,19 @@
   "🇺🇸 Anthropic": {
     "desc": "",
     "models": {
-      "anthropic/claude-haiku-4-5": {
-        "displayName": "Claude Haiku 4.5",
-        "shortName": "Haiku 4.5",
-        "cost": "1.00/5.00",
+      "anthropic/claude-haiku-5-5": {
+        "displayName": "Claude Haiku 5.5",
+        "shortName": "Haiku 5.5",
+        "cost": "0.10/0.50",
         "tags": [],
-        "effort": [],
-        "defaultEffort": null,
-        "intelligenceIndex": 16.9,
+        "effort": ["low", "medium", "high", "xhigh", "max"],
+        "defaultEffort": "medium",
+        "intelligenceIndex": 43.4,
         "inputModalities": ["text", "file", "image"],
         "outputModalities": ["text"],
-        "contextWindow": 200000,
-        "maxOutputTokens": 64000,
-        "desc": "2025年10月からずっと更新されていないので非推奨"
+        "contextWindow": 1000000,
+        "maxOutputTokens": 128000,
+        "desc": "10万トークンを超えるプロンプトの場合、価格は5倍になります。"
       },
       "anthropic/claude-sonnet-5-5": {
         "displayName": "Claude Sonnet 5.5",

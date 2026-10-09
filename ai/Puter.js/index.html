@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chat Interface - Fully Functional</title>
+    <title>AI Chat by Puter.js</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -40,6 +40,21 @@
             }
         }
     </script>
+    <script>
+        // Starts the welcome entrance once fonts and Tailwind's styles are in,
+        // so the layout doesn't shift while it plays. The timer is a safety net.
+        (function () {
+            var root = document.documentElement, done = false;
+            function ready() {
+                if (done) return;
+                done = true;
+                requestAnimationFrame(function () { root.classList.add('ready'); });
+            }
+            var fonts = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+            window.addEventListener('load', function () { fonts.then(ready, ready); });
+            setTimeout(ready, 1500);
+        })();
+    </script>
     <style>
         /* Things Tailwind utility classes can't express cleanly */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -64,24 +79,33 @@
         }
         .dropdown-enter { animation: fadeScaleIn .12s ease-out; }
 
-        /* One orchestrated entrance for the welcome screen only - each direct
-           child rises in with a short stagger. Not used elsewhere. */
+        /* Welcome entrance. It waits for fonts and Tailwind's styles (the `ready`
+           class is set by the script in <head>), so nothing shifts while it plays.
+           A short 40ms stagger, gentle deceleration and a small 6px rise keep it
+           calm; opacity finishes before the movement does, so text never looks
+           like it is drifting while half-visible. */
         @keyframes heroRise {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(6px); }
+            60%  { opacity: 1; }
+            to   { opacity: 1; transform: none; }
         }
-        .hero-rise > * {
-            animation: heroRise .5s cubic-bezier(.16,.8,.3,1) both;
+        @keyframes heroGlowIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
         }
-        .hero-rise > *:nth-child(1) { animation-delay: .02s; }
-        .hero-rise > *:nth-child(2) { animation-delay: .09s; }
-        .hero-rise > *:nth-child(3) { animation-delay: .16s; }
-        .hero-rise > *:nth-child(4) { animation-delay: .23s; }
-        .hero-rise > *:nth-child(5) { animation-delay: .30s; }
-        .hero-rise > *:nth-child(6) { animation-delay: .37s; }
-        .hero-rise > *:nth-child(7) { animation-delay: .44s; }
+        @media (prefers-reduced-motion: no-preference) {
+            html:not(.ready) .hero-rise > *,
+            html:not(.ready) .hero-glow { opacity: 0; }
+            html.ready .hero-rise > * { animation: heroRise .45s cubic-bezier(.22,1,.36,1) backwards; }
+            html.ready .hero-rise > *:nth-child(2) { animation-delay: .04s; }
+            html.ready .hero-rise > *:nth-child(3) { animation-delay: .08s; }
+            html.ready .hero-rise > *:nth-child(4) { animation-delay: .12s; }
+            html.ready .hero-rise > *:nth-child(5) { animation-delay: .16s; }
+            html.ready .hero-rise > *:nth-child(6) { animation-delay: .20s; }
+            html.ready .hero-rise > *:nth-child(n+7) { animation-delay: .24s; }
+            html.ready .hero-glow { animation: heroGlowIn .9s ease-out backwards; }
+        }
         @media (prefers-reduced-motion: reduce) {
-            .hero-rise > * { animation: none; }
             .typing-dot { animation: none; opacity: .8; }
             .dropdown-enter { animation: none; }
         }
@@ -211,7 +235,11 @@
         #sidebar.overlay-mode.sidebar-open {
             transform: translateX(0);
         }
+        /* Re-run would rewrite the history, so it waits for the reply */
+        .is-generating .msg-action[data-needs-idle] { opacity: .35; pointer-events: none; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 </head>
 <body class="app-height overflow-hidden bg-neutral-900 text-neutral-200 font-sans">
     <div class="flex app-height">
@@ -924,8 +952,8 @@
                     textarea.addEventListener('keydown', (e) => {
                         if (e.key === 'Enter' && !e.shiftKey) {
                             e.preventDefault();
-                            if (textarea === welcomeInput) handleWelcomeMessage();
-                            else handleChatMessage();
+                            if (textarea === welcomeInput) handleWelcomeMessage({ fromKeyboard: true });
+                            else handleChatMessage({ fromKeyboard: true });
                         }
                     });
                 }
@@ -1002,6 +1030,15 @@
             const parts = String(cost).split('/');
             if (parts.length === 2) return `入力 $${parts[0]}・出力 $${parts[1]} (100万トークンあたり)`;
             return cost;
+        }
+
+        // Price line for the "各モデルの説明" cards: the dollar amounts get the
+        // same emphasis as the values in the stat row below (context etc.).
+        function costHtml(cost) {
+            const val = (v) => `<span class="text-neutral-100 font-medium">${escapeHtml(v)}</span>`;
+            const parts = String(cost).split('/');
+            if (parts.length === 2) return `入力 ${val('$' + parts[0])}・出力 ${val('$' + parts[1])} (100万トークンあたり)`;
+            return escapeHtml(String(cost)).replace(/\$\d[\d,]*(?:\.\d+)?/g, m => val(m));
         }
 
         function groupModelsByProvider(models) {
@@ -1440,7 +1477,7 @@
                                 const isCurrent = model.apiName === currentModel;
                                 const panelId = `modelInfoDetail${idCounter++}`;
                                 const hasCost = !!formatCost(model.cost);
-                                const costText = model.isFree ? '無料' : (hasCost ? formatCost(model.cost) : '料金 不明');
+                                const costHtmlText = model.isFree ? '無料' : (hasCost ? costHtml(model.cost) : '料金 不明');
                                 return `
                                 <div class="surface-raised bg-neutral-800 border ${isCurrent ? 'border-brand/60' : 'border-neutral-700'} rounded-lg">
                                     <button type="button" class="info-toggle w-full min-h-[44px] flex items-start justify-between gap-3 text-left p-4 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-brand"
@@ -1451,7 +1488,7 @@
                                                 ${isCurrent ? chipHtml('使用中', 'bg-brand/20 text-brand ring-1 ring-inset ring-brand/40') : ''}
                                                 ${modelBadgesHtml(model)}
                                             </span>
-                                            <span class="block text-xs ${model.isFree || hasCost ? 'text-neutral-300' : 'text-neutral-500'} mt-1">${escapeHtml(costText)}</span>
+                                            <span class="block text-xs tabular-nums ${model.isFree ? 'text-neutral-300' : (hasCost ? 'text-neutral-400' : 'text-neutral-500')} mt-1">${costHtmlText}</span>
                                             ${modelSummaryHtml(model)}
                                         </span>
                                         <span class="text-neutral-400 mt-1">${CHEVRON_SVG}</span>
@@ -2053,20 +2090,22 @@
         // ---------------------------------------------------------------
         // Chat
         // ---------------------------------------------------------------
-        async function handleWelcomeMessage() {
+        async function handleWelcomeMessage(opts) {
             const welcomeInput = document.getElementById('welcomeInput');
             const message = welcomeInput.value.trim();
-            if (!message || activeStreams.has(currentConversationId)) return;
+            if (activeStreams.has(currentConversationId)) { if (!(opts && opts.fromKeyboard)) stopGeneration(currentConversationId); return; }
+            if (!message) return;
             console.log('📤 Sending welcome message:', message);
             createNewConversation(message);
             switchToChatView();
             await sendMessage(message);
         }
 
-        async function handleChatMessage() {
+        async function handleChatMessage(opts) {
             const chatInput = document.getElementById('chatInput');
             const message = chatInput.value.trim();
-            if (!message || activeStreams.has(currentConversationId)) return;
+            if (activeStreams.has(currentConversationId)) { if (!(opts && opts.fromKeyboard)) stopGeneration(currentConversationId); return; }
+            if (!message) return;
             console.log('📤 Sending chat message:', message);
             chatInput.value = '';
             autoResize(chatInput);
@@ -2136,9 +2175,7 @@
             switchToChatView();
             updateRecentItems();
 
-            const chatMessagesInner = document.getElementById('chatMessagesInner');
-            chatMessagesInner.innerHTML = '';
-            conversation.messages.forEach(msg => addMessage(msg.content, msg.role, !!msg.isError));
+            renderConversationMessages(conversation);
 
             // If a response is still generating in the background for this
             // conversation, re-attach to it: show its progress so far and
@@ -2210,7 +2247,7 @@
             }
         }
 
-        async function sendMessage(message) {
+        async function sendMessage(message, opts = {}) {
             const targetConversationId = currentConversationId;
             if (!targetConversationId || activeStreams.has(targetConversationId)) return;
 
@@ -2221,12 +2258,17 @@
 
             // The conversation was just created or selected, so it's the one
             // on screen right now - safe to render directly.
-            addMessage(message, 'user');
-            conversation.messages.push({ role: 'user', content: message });
+            if (!opts.resend) { // re-runs / edits keep the user message that is already there
+                const userMsg = { role: 'user', content: message };
+                addMessage(message, 'user', false, { msg: userMsg });
+                conversation.messages.push(userMsg);
+            }
             conversation.timestamp = new Date();
             bumpConversationToTop(conversation);
 
-            const session = { text: '', bubbleEl: null, status: 'thinking', toolUses: null };
+            const session = { text: '', bubbleEl: null, status: 'thinking', toolUses: null, aborted: false, generating: false, onStop: null, resolveAbort: null };
+            session.abortPromise = new Promise(resolve => { session.resolveAbort = resolve; });
+            session.finished = new Promise(resolve => { session.resolveFinished = resolve; });
             activeStreams.set(targetConversationId, session);
             updateRecentItems();
             refreshUIForConversation(targetConversationId);
@@ -2238,18 +2280,22 @@
                 if (typeof puter === 'undefined') throw new Error('Puter.jsが利用できません。');
                 console.log('📡 Calling Puter AI with model:', modelForThisMessage, 'effort:', effortForThisMessage);
 
+                const runGeneration = async () => {
                 // Working copy for this exchange's tool-calling loop. Tool
                 // call / tool result turns stay local to this loop - only
                 // the final assistant text is persisted into the
                 // conversation's own message list once the loop finishes.
                 const messages = conversation.messages.map(msg => ({
                     role: msg.role || 'user',
-                    content: msg.content || ''
+                    content: msg.role === 'assistant'
+                        ? (stripThink(stripStopNote(msg.content)) || '（回答は中断されました）')
+                        : stripThink(msg.content || '')
                 }));
 
                 let toolRounds = 0;
 
                 while (true) {
+                    if (session.aborted) return;
                     // Same tool, same code path, for every model vendor. Only
                     // included at all when the toggle is on; only omitted
                     // once we've hit the round limit, to force a final answer.
@@ -2272,18 +2318,27 @@
                     const toolUses = [];
 
                     for await (const part of response) {
-                        if (part?.type === 'text' || (part?.text && !part.type)) {
+                        if (session.aborted) break;
+                        if (part?.type === 'reasoning' || typeof part?.reasoning === 'string') {
                             session.status = 'streaming';
+                            if (!session.inReasoning) { session.text += '<think>'; session.inReasoning = true; }
+                            session.text += (typeof part.reasoning === 'string' ? part.reasoning : (part.text || ''));
+                            renderStreamChunk(targetConversationId, session);
+                        } else if (part?.type === 'text' || (part?.text && !part.type)) {
+                            session.status = 'streaming';
+                            if (session.inReasoning) { session.text += '</think>'; session.inReasoning = false; }
                             roundText += part.text;
                             session.text += part.text;
                             renderStreamChunk(targetConversationId, session);
                         } else if (part?.type === 'tool_use') {
+                            if (session.inReasoning) { session.text += '</think>'; session.inReasoning = false; }
                             toolUses.push({ id: part.id, name: part.name, input: part.input || {} });
                         } else if (part?.type === 'error') {
                             throw new Error(part.message || 'AIの応答中にエラーが発生しました。');
                         }
                     }
 
+                    if (session.aborted) return;
                     if (toolUses.length === 0) {
                         // No tool call requested - this is the final answer.
                         break;
@@ -2311,6 +2366,7 @@
                     // back as its own proper tool message - never fabricated,
                     // errors are reported to the AI as-is.
                     for (const tu of toolUses) {
+                        if (session.aborted) return;
                         let resultText;
                         try {
                             if (tu.name === CURRENT_TIME_TOOL_NAME) {
@@ -2327,19 +2383,40 @@
                         messages.push({ role: 'tool', tool_call_id: tu.id, content: resultText });
                     }
 
+                    if (session.aborted) return;
                     session.status = 'thinking';
                     session.toolUses = null;
                     refreshIndicatorForConversation(targetConversationId);
                     toolRounds++;
                 }
 
+                };
+                // Stopping resolves abortPromise, so the UI is released at once even
+                // if the model is still loading or a tool call is in flight; the
+                // task itself winds down in the background (it checks `aborted`).
+                await Promise.race([runGeneration(), session.abortPromise]);
+
                 console.log('✅ Streaming complete.');
+                session.text = finalizeThink(session.text);
+                if (session.aborted) {
+                    session.text = (session.text ? session.text + '\n\n' : '') + STOP_NOTE;
+                    if (targetConversationId === currentConversationId) {
+                        hideTypingIndicator();
+                        hideSearchingIndicator();
+                        if (!session.bubbleEl) session.bubbleEl = addMessage(session.text, 'assistant', false, { skipActions: true }).messageContent;
+                    }
+                }
 
                 if (targetConversationId === currentConversationId && session.bubbleEl) {
                     renderFormattedMessage(session.text, session.bubbleEl);
                 }
 
-                conversation.messages.push({ role: 'assistant', content: session.text });
+                const assistantMsg = { role: 'assistant', content: session.text };
+                conversation.messages.push(assistantMsg);
+                if (targetConversationId === currentConversationId && session.bubbleEl) {
+                    const row = session.bubbleEl.closest('[data-message-id]');
+                    if (row) attachMessageActions(row, assistantMsg);
+                }
                 conversation.timestamp = new Date();
                 bumpConversationToTop(conversation);
 
@@ -2351,18 +2428,21 @@
                 if (lastMsg && lastMsg.role === 'user') {
                     conversation.messages.pop();
                 }
-                conversation.messages.push({ role: 'assistant', content: errorText, isError: true });
+                const errorMsg = { role: 'assistant', content: errorText, isError: true };
+                conversation.messages.push(errorMsg);
 
                 if (targetConversationId === currentConversationId) {
                     hideTypingIndicator();
                     hideSearchingIndicator();
-                    addMessage(errorText, 'assistant', true);
+                    addMessage(errorText, 'assistant', true, { msg: errorMsg });
                 }
             } finally {
                 activeStreams.delete(targetConversationId);
+                session.resolveFinished();
                 updateRecentItems();
                 refreshUIForConversation(targetConversationId);
-                if (targetConversationId === currentConversationId) {
+                // Don't pull the cursor out of a message that is being edited.
+                if (targetConversationId === currentConversationId && !document.querySelector('#chatMessagesInner [data-editing]')) {
                     document.getElementById('chatInput')?.focus();
                 }
             }
@@ -2396,7 +2476,7 @@
             }
         }
 
-        function addMessage(content, role, isError = false) {
+        function addMessage(content, role, isError = false, opts = {}) {
             const chatMessagesInner = document.getElementById('chatMessagesInner');
             const messageId = 'msg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
             const messageDiv = document.createElement('div');
@@ -2409,7 +2489,7 @@
             avatar.innerHTML = role === 'user' ? 'H' : `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 9V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S9 3.34 9 5H6c-1.1 0-2 .9-2 2v2c-1.66 0-3 1.34-3 3s1.34 3 3 3v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4c1.66 0 3-1.34 3-3s-1.34-3-3-3zM7.5 11.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5S9.83 13 9 13s-1.5-.67-1.5-1.5zm9 5c0 .55-.45 1-1 1h-7c-.55 0-1-.45-1-1v-1h9v1zm-1.5-3.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>`;
 
             const messageContent = document.createElement('div');
-            messageContent.className = 'max-w-[70%] rounded-xl leading-relaxed break-words whitespace-pre-wrap ' +
+            messageContent.className = 'max-w-full rounded-xl leading-relaxed break-words whitespace-pre-wrap ' +
                 (role === 'user'
                     ? 'bg-gradient-to-br from-brand to-brand-hover text-white p-4 shadow-lg shadow-brand/15'
                     : 'surface-raised bg-neutral-800 border border-neutral-700/60 text-neutral-200');
@@ -2419,151 +2499,334 @@
 
             if (isError) messageContent.classList.add('text-red-400');
 
+            // The bubble and its action buttons share one column, so the
+            // buttons sit right underneath the bubble.
+            const column = document.createElement('div');
+            column.className = 'flex flex-col min-w-0 max-w-[70%] ' + (role === 'user' ? 'items-end' : 'items-start');
+            column.appendChild(messageContent);
+
             messageDiv.appendChild(avatar);
-            messageDiv.appendChild(messageContent);
+            messageDiv.appendChild(column);
             chatMessagesInner.appendChild(messageDiv);
+            // opts.msg is the stored message this bubble shows; bubbles that
+            // are still streaming get their buttons once they are complete.
+            if (opts.msg) attachMessageActions(messageDiv, opts.msg);
 
             scrollToBottom();
-            return { messageId, messageContent };
+            return { messageId, messageContent, messageDiv };
         }
 
-        // Applies inline markdown (bold/italic/strikethrough/inline-code/links)
-        // to a single already-HTML-escaped line. Code spans are pulled out
-        // first and restored at the end so markers inside them (e.g. `a**b`)
-        // are never misread as bold/italic syntax.
-        function formatInlineMarkdown(escapedText) {
-            const codeSpans = [];
-            let text = escapedText.replace(/`([^`]+)`/g, (m, code) => {
-                codeSpans.push(code);
-                return `\u0000${codeSpans.length - 1}\u0000`;
-            });
-
-            text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)"]+)\)/g,
-                '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-brand underline hover:text-brand-hover">$1</a>');
-            text = text.replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
-            text = text.replace(/__([^_]+)__/g, '<strong class="font-semibold text-white">$1</strong>');
-            text = text.replace(/~~([^~]+)~~/g, '<del>$1</del>');
-            text = text.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
-            text = text.replace(/(^|[^A-Za-z0-9_])_([^_\n]+)_(?![A-Za-z0-9_])/g, '$1<em>$2</em>');
-
-            text = text.replace(/\u0000(\d+)\u0000/g, (m, idx) =>
-                `<code class="bg-neutral-900 border border-neutral-700 rounded px-1.5 py-0.5 text-[13px] font-mono text-brand">${codeSpans[idx]}</code>`);
-            return text;
+        // ---------------------------------------------------------------
+        // Per-message action buttons: copy / edit (yours) / re-run (AI's)
+        // ---------------------------------------------------------------
+        const ACTION_ICONS = {
+            copy: '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+            check: '<path d="M20 6 9 17l-5-5"/>',
+            edit: '<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+            regen: '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>'
+        };
+        function actionIcon(name) {
+            return `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ACTION_ICONS[name]}</svg>`;
         }
 
-        // Turns a plain-text block (no fenced code - that's handled by the
-        // caller) into formatted HTML: headers, lists, blockquotes, hr, and
-        // paragraphs with single line breaks preserved as <br>.
-        function formatMarkdownBlock(rawText) {
-            const lines = escapeHtml(rawText).split('\n');
-            const headerSizes = {
-                1: 'text-xl font-bold mt-4 mb-2',
-                2: 'text-lg font-bold mt-4 mb-2',
-                3: 'text-base font-semibold mt-3 mb-2',
-                4: 'text-sm font-semibold mt-3 mb-1',
-                5: 'text-sm font-semibold mt-2 mb-1',
-                6: 'text-sm font-semibold mt-2 mb-1'
-            };
-            let html = '';
-            let paragraph = [];
-            const flushParagraph = () => {
-                if (paragraph.length) {
-                    html += `<p class="mb-3 last:mb-0">${paragraph.join('<br>')}</p>`;
-                    paragraph = [];
-                }
-            };
+        function getCurrentConversation() {
+            return recentConversations.find(c => c.id === currentConversationId) || null;
+        }
 
-            let i = 0;
-            while (i < lines.length) {
-                const trimmed = lines[i].trim();
+        // Replaces everything on screen with the conversation's stored messages.
+        function renderConversationMessages(conversation) {
+            const inner = document.getElementById('chatMessagesInner');
+            if (!inner) return;
+            inner.innerHTML = '';
+            conversation.messages.forEach(msg => addMessage(msg.content, msg.role, !!msg.isError, { msg }));
+        }
 
-                if (trimmed === '') { flushParagraph(); i++; continue; }
-
-                const headerMatch = trimmed.match(/^(#{1,6})\s+(.+)$/);
-                if (headerMatch) {
-                    flushParagraph();
-                    const level = headerMatch[1].length;
-                    html += `<h${level} class="${headerSizes[level]} text-white first:mt-0">${formatInlineMarkdown(headerMatch[2])}</h${level}>`;
-                    i++; continue;
-                }
-
-                if (/^(-{3,}|\*{3,}|_{3,})$/.test(trimmed)) {
-                    flushParagraph();
-                    html += '<hr class="my-3 border-neutral-700">';
-                    i++; continue;
-                }
-
-                if (/^&gt;\s?/.test(trimmed)) {
-                    flushParagraph();
-                    const quote = [];
-                    while (i < lines.length && /^&gt;\s?/.test(lines[i].trim())) {
-                        quote.push(formatInlineMarkdown(lines[i].trim().replace(/^&gt;\s?/, '')));
-                        i++;
-                    }
-                    html += `<blockquote class="border-l-2 border-neutral-600 pl-3 my-2 text-neutral-400 italic">${quote.join('<br>')}</blockquote>`;
-                    continue;
-                }
-
-                if (/^[-*+]\s+/.test(trimmed)) {
-                    flushParagraph();
-                    const items = [];
-                    while (i < lines.length && /^[-*+]\s+/.test(lines[i].trim())) {
-                        items.push(`<li class="mb-1">${formatInlineMarkdown(lines[i].trim().replace(/^[-*+]\s+/, ''))}</li>`);
-                        i++;
-                    }
-                    html += `<ul class="list-disc list-outside pl-5 mb-3 space-y-0.5">${items.join('')}</ul>`;
-                    continue;
-                }
-
-                if (/^\d+\.\s+/.test(trimmed)) {
-                    flushParagraph();
-                    const items = [];
-                    while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
-                        items.push(`<li class="mb-1">${formatInlineMarkdown(lines[i].trim().replace(/^\d+\.\s+/, ''))}</li>`);
-                        i++;
-                    }
-                    html += `<ol class="list-decimal list-outside pl-5 mb-3 space-y-0.5">${items.join('')}</ol>`;
-                    continue;
-                }
-
-                paragraph.push(formatInlineMarkdown(trimmed));
-                i++;
+        async function copyMessage(btn, msg) {
+            const raw = String(msg.content || '');
+            const text = msg.role === 'assistant' && !msg.isError ? (stripThink(stripStopNote(raw)) || raw) : raw;
+            let ok = false;
+            try {
+                await navigator.clipboard.writeText(text);
+                ok = true;
+            } catch (e) {
+                try { // clipboard API is unavailable on some non-secure pages
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    ok = document.execCommand('copy');
+                    ta.remove();
+                } catch (e2) { ok = false; }
             }
-            flushParagraph();
-            return html;
+            if (!ok) { alert('コピーできませんでした。'); return; }
+            btn.innerHTML = actionIcon('check');
+            btn.classList.add('text-green-500');
+            btn.setAttribute('aria-label', 'コピーしました');
+            setTimeout(() => {
+                btn.innerHTML = actionIcon('copy');
+                btn.classList.remove('text-green-500');
+                btn.setAttribute('aria-label', 'コピー');
+            }, 1500);
+        }
+
+        // Re-runs the AI's answer: everything from this answer on is dropped
+        // and the prompt that produced it is sent again.
+        async function regenerateMessage(msg) {
+            const conversation = getCurrentConversation();
+            if (!conversation || activeStreams.has(conversation.id)) return;
+            const idx = conversation.messages.indexOf(msg);
+            let userIdx = idx - 1;
+            while (userIdx >= 0 && conversation.messages[userIdx].role !== 'user') userIdx--;
+            if (idx < 0 || userIdx < 0) return;
+            if (idx < conversation.messages.length - 1 && !confirm('この回答より後のメッセージは削除されます。再実行しますか？')) return;
+            conversation.messages.length = userIdx + 1;
+            renderConversationMessages(conversation);
+            await sendMessage(conversation.messages[userIdx].content, { resend: true });
+        }
+
+        // Edits your message in place. Sending replaces it and drops every
+        // later message, then the AI answers the edited text.
+        function startEditMessage(messageDiv, msg) {
+            const conversation = getCurrentConversation();
+            if (!conversation || messageDiv.dataset.editing) return;
+            const column = messageDiv.lastElementChild;
+            const bubble = column.firstElementChild;
+            const bar = column.querySelector('.msg-actions');
+            messageDiv.dataset.editing = '1';
+            if (bar) bar.classList.add('hidden');
+            column.classList.add('w-full');
+            bubble.classList.add('w-full');
+            bubble.textContent = '';
+
+            const ta = document.createElement('textarea');
+            ta.value = msg.content;
+            ta.rows = 1;
+            ta.setAttribute('aria-label', 'メッセージを編集');
+            ta.className = 'w-full resize-none bg-black/20 text-white rounded-lg p-2 outline-none focus:ring-1 focus:ring-white/50 text-base leading-relaxed';
+            const autosize = () => { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 240) + 'px'; };
+            ta.addEventListener('input', autosize);
+
+            const buttons = document.createElement('div');
+            buttons.className = 'flex justify-end gap-2 mt-2';
+            const cancelBtn = document.createElement('button');
+            cancelBtn.type = 'button';
+            cancelBtn.textContent = 'キャンセル';
+            cancelBtn.className = 'text-sm px-3 py-1.5 rounded-md bg-black/20 hover:bg-black/30 text-white transition-colors';
+            const sendBtnEl = document.createElement('button');
+            sendBtnEl.type = 'button';
+            sendBtnEl.textContent = '送信';
+            sendBtnEl.className = 'text-sm px-3 py-1.5 rounded-md bg-white text-neutral-900 font-medium hover:bg-white/90 transition-colors';
+            buttons.append(cancelBtn, sendBtnEl);
+            bubble.append(ta, buttons);
+
+            const close = () => {
+                delete messageDiv.dataset.editing;
+                column.classList.remove('w-full');
+                bubble.classList.remove('w-full');
+                bubble.textContent = msg.content;
+                if (bar) bar.classList.remove('hidden');
+            };
+            cancelBtn.addEventListener('click', close);
+            sendBtnEl.addEventListener('click', async () => {
+                const text = ta.value.trim();
+                if (!text) return;
+                const idx = conversation.messages.indexOf(msg);
+                if (idx >= 0 && conversation.messages.length > idx + 2 && !confirm('これ以降のメッセージは削除されます。送信しますか？')) return;
+                ta.disabled = cancelBtn.disabled = sendBtnEl.disabled = true;
+                // The edit replaces the reply that is still being generated, so stop that first.
+                await stopAndWait(conversation.id);
+                if (activeStreams.has(conversation.id)) { // it didn't wind down in time
+                    ta.disabled = cancelBtn.disabled = sendBtnEl.disabled = false;
+                    return;
+                }
+                const at = conversation.messages.indexOf(msg);
+                if (at < 0) { // its turn was dropped after an error: just send it again
+                    close();
+                    await sendMessage(text);
+                    return;
+                }
+                msg.content = text;
+                if (at === 0) {
+                    conversation.title = text.length > 50 ? text.substring(0, 50) + '...' : text;
+                    updateRecentItems();
+                }
+                conversation.messages.length = at + 1;
+                renderConversationMessages(conversation);
+                await sendMessage(text, { resend: true });
+            });
+            ta.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') { e.preventDefault(); close(); }
+                else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && !e.isComposing) { e.preventDefault(); sendBtnEl.click(); }
+            });
+            autosize();
+            ta.focus();
+            ta.setSelectionRange(ta.value.length, ta.value.length);
+        }
+
+        function attachMessageActions(messageDiv, msg) {
+            const column = messageDiv.lastElementChild;
+            if (!column || column.querySelector('.msg-actions')) return;
+            const bar = document.createElement('div');
+            bar.className = 'msg-actions flex items-center gap-0.5 mt-1';
+            const make = (name, label, needsIdle, onClick) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'msg-action p-1.5 rounded-md text-neutral-500 hover:text-white hover:bg-neutral-700/60 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-brand/60';
+                btn.innerHTML = actionIcon(name);
+                btn.title = label;
+                btn.setAttribute('aria-label', label);
+                if (needsIdle) btn.setAttribute('data-needs-idle', '');
+                btn.addEventListener('click', () => onClick(btn));
+                return btn;
+            };
+            bar.appendChild(make('copy', 'コピー', false, btn => copyMessage(btn, msg)));
+            if (msg.role === 'user') bar.appendChild(make('edit', '編集', false, () => startEditMessage(messageDiv, msg)));
+            else if (!msg.isError) bar.appendChild(make('regen', '再実行', true, () => regenerateMessage(msg)));
+            column.appendChild(bar);
+        }
+
+        // ---------------------------------------------------------------
+        // Markdown (marked + DOMPurify) and collapsible <think> blocks
+        // ---------------------------------------------------------------
+        const THINK_RE = /<(think|thinking|thought|reasoning)>([\s\S]*?)(?:<\/\1>|$)/gi;
+        let mdCodeBlocks = [];
+        let mdInitialized = false;
+
+        function initMarkdown() {
+            if (mdInitialized) return true;
+            if (typeof marked === 'undefined' || typeof DOMPurify === 'undefined') return false;
+            const r = new marked.Renderer();
+            const headingClass = { 1: 'text-xl font-bold mt-4 mb-2', 2: 'text-lg font-bold mt-4 mb-2', 3: 'text-base font-semibold mt-3 mb-2' };
+            r.heading = (text, level) => `<h${level} class="${headingClass[level] || 'text-sm font-semibold mt-2 mb-1'} text-white first:mt-0">${text}</h${level}>`;
+            r.paragraph = (text) => `<p class="mb-3 last:mb-0">${text}</p>`;
+            r.list = (body, ordered, start) => ordered
+                ? `<ol class="list-decimal list-outside pl-5 mb-3 space-y-0.5"${start > 1 ? ` start="${start}"` : ''}>${body}</ol>`
+                : `<ul class="list-disc list-outside pl-5 mb-3 space-y-0.5">${body}</ul>`;
+            r.listitem = (text) => `<li class="mb-1">${text}</li>`;
+            r.blockquote = (quote) => `<blockquote class="border-l-2 border-neutral-600 pl-3 my-2 text-neutral-400 italic">${quote}</blockquote>`;
+            r.hr = () => '<hr class="my-3 border-neutral-700">';
+            r.strong = (text) => `<strong class="font-semibold text-white">${text}</strong>`;
+            r.link = (href, title, text) => `<a href="${escapeHtml(href || '')}" target="_blank" rel="noopener noreferrer" class="text-brand underline hover:text-brand-hover">${text}</a>`;
+            // Remote images would load (and leak data through the URL) as soon
+            // as the model writes them, so show them as plain links instead.
+            r.image = (href, title, text) => r.link(href, title, text || href);
+            r.codespan = (code) => `<code class="bg-neutral-900 border border-neutral-700 rounded px-1.5 py-0.5 text-[13px] font-mono text-brand">${code}</code>`;
+            r.table = (header, body) => `<div class="overflow-x-auto my-3"><table class="min-w-full text-sm border-collapse"><thead>${header}</thead><tbody>${body}</tbody></table></div>`;
+            r.tablecell = (content, flags) => {
+                const tag = flags.header ? 'th' : 'td';
+                return `<${tag} class="border border-neutral-700 px-3 py-1.5 text-left ${flags.header ? 'bg-neutral-900 font-semibold text-white' : ''}">${content}</${tag}>`;
+            };
+            // Fenced code becomes a placeholder; buildMarkdownElement swaps in
+            // the existing code canvas (copy / download / HTML preview).
+            r.code = (code, lang) => {
+                mdCodeBlocks.push({ code, lang: (lang || '').split(/\s+/)[0] });
+                return `<div data-code-idx="${mdCodeBlocks.length - 1}"></div>`;
+            };
+            marked.setOptions({ renderer: r, gfm: true, breaks: true });
+            mdInitialized = true;
+            return true;
+        }
+
+        function buildMarkdownElement(text, className) {
+            const el = document.createElement('div');
+            el.className = className;
+            if (!initMarkdown()) {
+                el.classList.add('whitespace-pre-wrap');
+                el.textContent = text;
+                return el;
+            }
+            mdCodeBlocks = [];
+            el.innerHTML = DOMPurify.sanitize(marked.parse(text), { ADD_ATTR: ['target'] });
+            el.querySelectorAll('[data-code-idx]').forEach(placeholder => {
+                const block = mdCodeBlocks[Number(placeholder.dataset.codeIdx)];
+                if (block) placeholder.replaceWith(createArtifactCanvas(block.code.trim(), block.lang || 'text'));
+            });
+            return el;
+        }
+
+        // Splits text into plain parts and <think>-style parts. A think part
+        // with no closing tag yet (still streaming) has closed === false.
+        function splitThinkBlocks(content) {
+            const parts = [];
+            let last = 0;
+            let m;
+            THINK_RE.lastIndex = 0;
+            while ((m = THINK_RE.exec(content)) !== null) {
+                if (m.index > last) parts.push({ type: 'text', text: content.slice(last, m.index) });
+                const tag = m[1];
+                parts.push({ type: 'think', tag, text: m[2], closed: m[0].toLowerCase().endsWith('</' + tag.toLowerCase() + '>') });
+                last = m.index + m[0].length;
+                if (m[0].length === 0) THINK_RE.lastIndex++;
+            }
+            if (last < content.length) parts.push({ type: 'text', text: content.slice(last) });
+            return parts;
+        }
+
+        // Reasoning is never sent back to the model as conversation history.
+        function stripThink(content) {
+            return String(content || '').replace(THINK_RE, '').trim();
+        }
+
+        // A response the user stopped keeps what was generated so far, ending
+        // with this note. The note is never sent back to the model.
+        const STOP_NOTE = '*（生成を停止しました）*';
+        function stripStopNote(content) {
+            return String(content || '').replace(/\n*\*（生成を停止しました）\*\s*$/, '');
+        }
+
+        // Stops the response being generated for `conversationId`. The partial
+        // text is kept; sendMessage() notices `aborted` and wraps things up.
+        function stopGeneration(conversationId) {
+            const session = activeStreams.get(conversationId);
+            if (!session || session.aborted) return;
+            session.aborted = true;
+            if (session.generating && typeof session.onStop === 'function') session.onStop();
+            session.resolveAbort();
+        }
+
+        // Stops the reply being generated for `conversationId` (if any) and
+        // waits until it has been wrapped up, so the history can be changed safely.
+        async function stopAndWait(conversationId) {
+            const session = activeStreams.get(conversationId);
+            if (!session) return;
+            stopGeneration(conversationId);
+            await Promise.race([session.finished, new Promise(resolve => setTimeout(resolve, 5000))]);
+        }
+
+        // Closes a think block the model never closed, so it stops reading
+        // "考え中…" once the response has finished.
+        function finalizeThink(content) {
+            const parts = splitThinkBlocks(content);
+            const lastPart = parts[parts.length - 1];
+            return lastPart && lastPart.type === 'think' && !lastPart.closed ? content + '</' + lastPart.tag + '>' : content;
+        }
+
+        function buildThinkBlock(part, open) {
+            const details = document.createElement('details');
+            details.className = 'think-block mx-4 mt-4 rounded-lg border border-neutral-700/60 bg-neutral-900/40 text-sm';
+            details.open = open;
+            const summary = document.createElement('summary');
+            summary.className = 'cursor-pointer select-none px-3 py-2 text-neutral-400 hover:text-neutral-200';
+            summary.textContent = part.closed ? '💭 思考過程' : '💭 考え中…';
+            details.appendChild(summary);
+            details.appendChild(buildMarkdownElement(part.text.trim(), 'px-3 pb-3 pt-2 whitespace-normal text-[13px] text-neutral-400 border-t border-neutral-700/40'));
+            return details;
         }
 
         function renderFormattedMessage(content, container) {
+            // Streaming re-renders the whole bubble on every chunk, so carry
+            // over which think blocks the user has opened.
+            const openStates = Array.from(container.querySelectorAll('details.think-block'), d => d.open);
             container.innerHTML = '';
-            const codeBlockRegex = /```(\w*)\n([\s\S]*?)```/g;
-            let lastIndex = 0;
-            let match;
-
-            while ((match = codeBlockRegex.exec(content)) !== null) {
-                if (match.index > lastIndex) {
-                    const textPart = document.createElement('div');
-                    textPart.className = 'p-4 whitespace-normal';
-                    textPart.innerHTML = formatMarkdownBlock(content.substring(lastIndex, match.index));
-                    container.appendChild(textPart);
+            let thinkIndex = 0;
+            for (const part of splitThinkBlocks(content || '')) {
+                if (part.type === 'think') {
+                    if (part.closed && !part.text.trim()) continue;
+                    container.appendChild(buildThinkBlock(part, openStates[thinkIndex++] === true));
+                } else if (part.text.trim()) {
+                    container.appendChild(buildMarkdownElement(part.text, 'p-4 whitespace-normal'));
                 }
-
-                const [fullMatch, language, code] = match;
-                container.appendChild(createArtifactCanvas(code.trim(), language || 'text'));
-                lastIndex = match.index + fullMatch.length;
-            }
-
-            if (lastIndex < content.length) {
-                const textPart = document.createElement('div');
-                textPart.className = 'p-4 whitespace-normal';
-                textPart.innerHTML = formatMarkdownBlock(content.substring(lastIndex));
-                container.appendChild(textPart);
-            }
-
-            if (container.children.length === 0 && content) {
-                const textPart = document.createElement('div');
-                textPart.className = 'p-4 whitespace-normal';
-                textPart.innerHTML = formatMarkdownBlock(content);
-                container.appendChild(textPart);
             }
         }
 
@@ -2717,18 +2980,33 @@
             if (row) row.remove();
         }
 
+        const SEND_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
+        const PAUSE_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+
         function setInputState(enabled) {
-            const inputs = [
-                document.getElementById('welcomeInput'),
-                document.getElementById('chatInput'),
-                document.getElementById('sendBtn'),
-                document.getElementById('chatSendBtn')
-            ];
-            inputs.forEach(input => {
-                if (input) {
-                    input.disabled = !enabled;
-                    input.style.opacity = enabled ? '1' : '0.6';
-                }
+            const chatInner = document.getElementById('chatMessagesInner');
+            if (chatInner) chatInner.classList.toggle('is-generating', !enabled);
+            // The text boxes stay usable while a reply is generated, so the next
+            // message can be written ahead; only sending waits for the reply.
+            ['welcomeInput', 'chatInput'].forEach(id => {
+                const input = document.getElementById(id);
+                if (!input) return;
+                input.disabled = false;
+                input.style.opacity = '1';
+                if (input.dataset.idlePlaceholder === undefined) input.dataset.idlePlaceholder = input.placeholder;
+                input.placeholder = enabled ? input.dataset.idlePlaceholder : '生成中です。次のメッセージを今のうちに入力できます';
+            });
+            // While a response is being generated the send buttons stay
+            // clickable and turn into a pause button that stops it.
+            ['sendBtn', 'chatSendBtn'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (!btn) return;
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.innerHTML = enabled ? SEND_ICON : PAUSE_ICON;
+                const label = enabled ? '送信' : '生成を一時停止';
+                btn.setAttribute('aria-label', label);
+                btn.title = enabled ? '' : label;
             });
         }
 

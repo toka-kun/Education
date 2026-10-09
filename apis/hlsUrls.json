@@ -387,7 +387,7 @@
   "asia/tbs-news": {
     "name": "TBS NEWS DIG",
     "genre": "optional",
-    "hlsUrl": "https://dp57jmgi8kb6i.cloudfront.net/out/v1/197c216d82a449f89c55f451d995daed/index_7.m3u8",
+    "hlsUrl": "https://dp57jmgi8kb6i.cloudfront.net/out/v1/197c216d82a449f89c55f451d995daed/index.m3u8",
     "fallbackVideoId": "Anr15FA9OCI",
     "channelId": ""
   },
@@ -401,7 +401,7 @@
   "asia/ntv-news": {
     "name": "NTV News (Japan)",
     "genre": "optional",
-    "hlsUrl": "https://dpg5xwfcfl8qq.cloudfront.net/out/v1/d5e0a776979146a0a300aa8b251c62db/index_7.m3u8",
+    "hlsUrl": "https://dpg5xwfcfl8qq.cloudfront.net/out/v1/d5e0a776979146a0a300aa8b251c62db/index.m3u8",
     "fallbackVideoId": "t9kwjZBLI-A",
     "channelId": ""
   },
@@ -444,7 +444,7 @@
     "name": "NHK World Japan",
     "genre": "optional",
     "hlsUrl": "https://media-tyo.hls.nhkworld.jp/hls/w/live/master.m3u8",
-    "fallbackVideoId": "f0lYkdA-Gtw",
+    "fallbackVideoId": "IimtbuqYIE8",
     "channelId": "UCSPEjw8F2nQDtmUKPFNF7_A"
   },
   "asia/arirang-news": {

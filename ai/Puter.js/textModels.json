@@ -338,7 +338,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1048576,
         "maxOutputTokens": 393216,
-        "desc": "9月14日からV4.1 Proの提供開始まで、すべてのリクエストはV4.1 Flashにルーティングされ、V4.1 Flashの料金が適用される。"
+        "desc": "9月14日からV4.1 Proの提供開始まで、すべてのリクエストはV4.1 Flashにルーティングされ、V4.1 Flashの料金が適用されます。"
       }
     }
   },
@@ -489,6 +489,44 @@
         "outputModalities": ["text"],
         "contextWindow": 1050000,
         "maxOutputTokens": 131072,
+        "desc": ""
+      }
+    }
+  },
+  "🇨🇳 StepFun": {
+    "desc": "",
+    "models": {
+      "stepfun/step-5-preview": {
+        "displayName": "Step 5 Preview",
+        "shortName": "Step 5 Preview",
+        "cost": "1.00/2.70",
+        "tags": [],
+        "effort": ["low", "medium", "high"],
+        "defaultEffort": "medium",
+        "intelligenceIndex": null,
+        "inputModalities": ["text", "image", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "desc": ""
+      }
+    }
+  },
+  "🇨🇳 InclusionAI": {
+    "desc": "",
+    "models": {
+      "inclusionai/ling-3.1-flash": {
+        "displayName": "Ling 3.1 Flash",
+        "shortName": "Ling 3.1 Flash",
+        "cost": "0.00/0.00",
+        "tags": ["free"],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": 41.1,
+        "inputModalities": ["text"],
+        "outputModalities": ["text"],
+        "contextWindow": 262144,
+        "maxOutputTokens": 32768,
         "desc": ""
       }
     }

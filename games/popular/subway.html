@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/">
+
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/patch/js/poki-sdk.js"></script>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, viewport-fit=cover" />
+    <meta name="description" content="">
+    
+    <link rel="manifest" href="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/subwaysurfers.webmanifest">
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/assets/images/app-icon-16.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/assets/images/app-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/assets/images/app-icon-72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/assets/images/app-icon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/assets/images/app-icon-57.png">
+
+    <title>Subway Surfers</title>
+    <style>
+        body, html { 
+            margin: 0;
+            height: 100%;
+            background-color: #0b316b;
+            overflow: hidden;
+            background-image: url('https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/assets/preload/splash.png');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #message {
+            text-align: center;
+            font-size: 8px;
+            z-index: 5;
+            font-family: "Verdana", sans-serif;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            z-index: 9999;
+        }
+
+        .dot {
+            display: inline;
+            margin-left: 0.2em;
+            margin-right: 0.2em;
+            position: relative;
+            top: -1em;
+            font-size: 3.5em;
+            opacity: 0;
+            animation: showHideDot 2.5s ease-in-out infinite;
+        }
+
+        .dot.one { animation-delay: 0.2s; }
+        .dot.two { animation-delay: 0.4s; }
+        .dot.three { animation-delay: 0.6s; }
+
+        @keyframes showHideDot {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            60% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        window.NOSW = true;
+        window.GAME_CONFIG = {
+            pokiSdkDebug: false,
+            leaderboard: 'mockup',
+            bundlesPath: 'https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/bundles',
+        }
+        // https://github.com/pixijs/pixijs/issues/9414
+        delete Array.prototype.group;
+    </script>
+    <div id="message">
+        <h1>Loading</h1>
+        <h1 class="dot one">.</h1><h1 class="dot two">.</h1><h1 class="dot three">.</h1>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/js/loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/js/boot.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/js/analytics_ubg_v1_4.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ubg98/SubwaySurfers@gh-pages/js/ubg235_client_v1_2.js"></script>
+</body>
+</html>

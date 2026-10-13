@@ -88,7 +88,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 131072,
-        "maxOutputTokens": 117964,
+        "maxOutputTokens": 65536,
         "desc": "2025年8月からずっと更新されていないので非推奨"
       },
       "openai/gpt-6-luna": {
@@ -323,7 +323,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 393216,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {
@@ -389,7 +389,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943717,
+        "maxOutputTokens": 943718,
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -526,7 +526,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 262144,
-        "maxOutputTokens": 32768,
+        "maxOutputTokens": 235929,
         "desc": ""
       }
     }

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <base href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/" />
+  <!-- Charset & Viewport -->
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- Robots -->
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <!-- Title and Primary SEO for Brawl Stars -->
+  <title>Brawl Stars</title>
+  <meta name="description" content="Play Brawl Stars unblocked in your browser on StaticQuasar931. Fast WebGL build, fullscreen, and school safe. Works on Chromebook, PC, and mobile." />
+  <meta name="keywords" content="Brawl Stars, brawl stars unblocked, browser game, school safe games, Chromebook games, StaticQuasar931, static 931, staticq931, unblocked game" />
+  <meta name="theme-color" content="#242424" />
+  <link rel="canonical" href="https://staticquasar931.github.io/Brawl-Stars/" />
+  <!-- Social -->
+  <meta property="og:title" content="Brawl Stars Unblocked - Play Online | StaticQuasar931" />
+  <meta property="og:description" content="Play Brawl Stars unblocked with fast loading and fullscreen. School safe hosting by StaticQuasar931." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://staticquasar931.github.io/Brawl-Stars/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/icon.png" />
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/icon.png" />
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"VideoGame",
+    "name":"Brawl Stars",
+    "url":"https://staticquasar931.github.io/Brawl-Stars/",
+    "genre":"Action",
+    "applicationCategory":"Game",
+    "operatingSystem":"Web",
+    "author":{"@type":"Organization","name":"StaticQuasar931 Unblocked Games"},
+    "publisher":{"@type":"Organization","name":"StaticQuasar931 Unblocked Games"}
+  }
+  </script>
+  <!-- Unity preload hints -->
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/Build/web.loader.js"/>
+  <link rel="preload" as="fetch" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/Build/web.framework.js.unityweb" crossorigin/>
+  <link rel="preload" as="fetch" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/Build/web.wasm.unityweb" crossorigin/>
+  <link rel="preload" as="fetch" href="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/Build/web.data.unityweb" crossorigin/>
+  <!-- Visual SEO (Rotating Icon) using your template -->
+  <style>
+    :root{
+      --brand:#5ee1ff;
+      --glow:0 0 12px rgba(94,225,255,.65), 0 0 32px rgba(155,255,183,.35);
+      --shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+    html, body{
+      margin:0; height:100%;
+      overflow:hidden;              /* スクロールを完全に無効化 */
+      overscroll-behavior:none;     /* モバイルのバウンス・引っ張り更新も防止 */
+      background:#242424; color:#eaf4ff;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    /* Unity base */
+    .fullscreen { width:100%; height:100%; position:absolute; top:0; left:0; box-sizing:border-box; }
+    #canvas { background:#242424; display:block; }
+    #banner-container { position:absolute; bottom:0; width:100%; height:90px; display:none !important; }
+    /* Loading overlay */
+    #loading-overlay {
+      font-size:20px; z-index:3; display:flex; flex-direction:column;
+      justify-content:center; align-items:center; color:#fff; text-align:center; padding:16px;
+    }
+    #loading-title {
+      margin-bottom:12px; font-weight:800; letter-spacing:.2px;
+      font-size:36px; line-height:1.15; color:#fff;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    #icon { max-width:300px; max-height:35vh; width:auto; height:auto; border-radius:10px; margin:10px 0 16px 0; }
+    #progress-bar { border-radius:5px; width:90%; max-width:280px; height:20px; background:#181818; padding:5px; }
+    #progress-bar-fill { border-radius:3px; width:0%; height:100%; background:#9747FF; transition:width .2s linear; }
+    /* Visual chrome only */
+    #staticSlideMenu{
+      position:fixed; bottom:24px; right:24px; z-index:9999;
+      width:100px; height:100px; pointer-events:none; opacity:0;
+      transform:translateX(140px) scale(.96);
+    }
+    #staticSlideMenu a{ display:block; width:100%; height:100% }
+    #staticSlideMenu img{
+      width:100%; height:100%; object-fit:contain; /* raw transparent image, no circle */
+      border-radius:0; background:transparent; border:0; box-shadow:none;
+      transition:opacity .25s ease;
+    }
+    .slide-in{ animation:slideIn 2s ease forwards }
+    .slide-out{ animation:slideOut 2s ease forwards }
+    @keyframes slideIn{ from{opacity:0; transform:translateX(140px) scale(.96)} to{opacity:1; transform:translateX(0) scale(1)} }
+    @keyframes slideOut{ from{opacity:1; transform:translateX(0) scale(1)} to{opacity:0; transform:translateX(140px) scale(.96)} }
+    .seo-hidden{
+      position:absolute; width:1px; height:1px; overflow:hidden;
+      clip:rect(1px,1px,1px,1px); white-space:nowrap;
+    }
+    /* Error banner for load issues */
+    .error-banner{
+      display:none; position:fixed; left:0; right:0; bottom:0;
+      padding:12px 16px; background:#2b2b2b; color:#fff;
+      font:14px/1.4 Arial,Helvetica,sans-serif; z-index:9999;
+    }
+    .error-banner.show{display:block}
+    .error-banner code{background:#000; padding:2px 4px; border-radius:4px}
+    @media (max-width:600px){
+      #staticSlideMenu{ width:88px; height:88px }
+    }
+  </style>
+</head>
+<body>
+  <!-- Visual SEO heading for bots and a11y -->
+  <h1 class="seo-hidden" aria-hidden="true">Brawl Stars unblocked online - StaticQuasar931</h1>
+  <!-- Unity canvas -->
+  <canvas id="canvas" class="fullscreen" aria-label="Brawl Stars game canvas"></canvas>
+  <div id="banner-container"></div>
+  <!-- Loading overlay -->
+  <div id="loading-overlay" class="fullscreen" role="status" aria-live="polite">
+    <div id="loading-title">
+      StaticQuasar931 Unblocked Games presents
+    </div>
+    <img id="icon" src="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/icon.png" alt="Brawl Stars icon"/>
+    <div id="progress-bar" aria-label="Loading progress"><div id="progress-bar-fill"></div></div>
+  </div>
+  <!-- Rotating quick link widget (bottom-right). Order: Discord → Instagram -->
+  <div id="staticSlideMenu" aria-live="polite">
+    <a id="staticSlideLink" href="https://discord.gg/DP2hM7RRhR" target="_blank" rel="noopener" aria-label="Join the StaticQuasar931 Discord">
+      <img id="staticSlideImg" src="https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Join_Our_DC_StaticQuassar931_lcplrf.png" alt="Join the StaticQuasar931 Discord">
+    </a>
+  </div>
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/add/howler.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/add/mo.js"></script>
+  <script>
+    // Leave warning
+    window.onbeforeunload = () => "Are you sure you want to leave? Your session may be interrupted.";
+    // Rotator: Discord → Instagram
+    (function(){
+      const wrap = document.getElementById("staticSlideMenu");
+      const a    = document.getElementById("staticSlideLink");
+      const img  = document.getElementById("staticSlideImg");
+      const DISCORD = {
+        src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Join_Our_DC_StaticQuassar931_lcplrf.png",
+        alt:  "Join the StaticQuasar931 Discord",
+        link: "https://discord.gg/DP2hM7RRhR"
+      };
+      const INSTA = {
+        src:  "https://cdn.jsdelivr.net/gh/StaticQuasar931/Images@main/Follow-us--IG",
+        alt:  "StaticQuasar931 Instagram",
+        link: "https://www.instagram.com/freeschoolgamepage/"
+      };
+      const ROTATION = [DISCORD, INSTA];
+      // Preload images
+      ROTATION.forEach(o => { const p = new Image(); p.src = o.src; });
+      const T_IN = 2000, T_SHOW = 5000, T_OUT = 2000, T_HIDDEN = 20000;
+      let idx = 0;
+      function apply(state){
+        a.href = state.link;
+        a.setAttribute("aria-label", state.alt);
+        img.alt = state.alt;
+        img.style.opacity = "0";
+        setTimeout(() => { img.src = state.src; }, 80);
+        img.onload = () => { img.style.opacity = "1"; };
+      }
+      function delay(ms){ return new Promise(r => setTimeout(r, ms)); }
+      (async function cycle(){
+        for(;;){
+          apply(ROTATION[idx]);
+          wrap.style.pointerEvents = "auto";
+          wrap.classList.remove("slide-out");
+          wrap.classList.add("slide-in");
+          await delay(T_IN + T_SHOW);
+          wrap.classList.remove("slide-in");
+          wrap.classList.add("slide-out");
+          await delay(T_OUT);
+          wrap.style.pointerEvents = "none";
+          await delay(T_HIDDEN);
+          idx = (idx + 1) % ROTATION.length;
+        }
+      })();
+    })();
+    // Secret toggle y u i
+    (function(){
+      const idsToToggle = ["staticSlideMenu"];
+      let seq = [];
+      const target = ["y","u","i"];
+      function toggle(){
+        idsToToggle.forEach(id=>{
+          const el = document.getElementById(id);
+          if(!el) return;
+          const isHidden = (el.style.display === "none" || getComputedStyle(el).display === "none");
+          el.style.display = isHidden ? "block" : "none";
+        });
+      }
+      window.addEventListener("keydown", (e)=>{
+        seq.push(e.key.toLowerCase());
+        if (seq.length > 3) seq.shift();
+        if (seq.join("") === target.join("")) toggle();
+      });
+    })();
+    /* ===== Unity + Howler glue (same working setup) ===== */
+    const canvas = document.getElementById('canvas');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+    window.unityInstance = null;
+    window.sounds = {};
+    window.sound = null;
+    window.isSound = 1;
+    let progressBarFillingInterval = null;
+    let progressBarCompleteFillingStarted = false;
+    function onUnityLoadingProgressChanged(progress) {
+      if (progress >= 1 && progressBarFillingInterval !== null) {
+        clearInterval(progressBarFillingInterval);
+        progressBarFillingInterval = null;
+        return;
+      }
+      if (progressBarCompleteFillingStarted) return;
+      if (progress >= 0.9) {
+        progressBarCompleteFillingStarted = true;
+        completeProgressBarFilling();
+        return;
+      }
+      progressBarFill.style.width = (progress * 100) + '%';
+    }
+    function completeProgressBarFilling() {
+      if (progressBarFillingInterval !== null) return;
+      let currentPercent = 90;
+      progressBarFill.style.width = currentPercent + '%';
+      progressBarFillingInterval = setInterval(() => {
+        currentPercent++;
+        if (currentPercent > 100) currentPercent = 100;
+        progressBarFill.style.width = currentPercent + '%';
+        if (currentPercent >= 100) {
+          clearInterval(progressBarFillingInterval);
+          progressBarFillingInterval = null;
+        }
+      }, 100);
+    }
+    window.addEventListener('pointerdown', () => { window.focus(); canvas.focus(); });
+    function sendMessageToUnity(name, value) {
+      if (window.unityInstance && typeof window.unityInstance.SendMessage === 'function') {
+        window.unityInstance.SendMessage('PlaygamaBridge', name, value || '');
+      }
+    }
+    const asBool = v => v ? 'true' : 'false';
+    window.getPlatformId = () => '';
+    window.getPlatformLanguage = () => 'en';
+    window.getPlatformPayload = () => '';
+    window.getPlatformTld = () => '';
+    window.sendMessageToPlatform = () => {};
+    window.getServerTime = () => sendMessageToUnity('OnGetServerTimeCompleted', Date.now().toString());
+    window.getDeviceType = () => 'desktop';
+    window.getIsPlayerAuthorizationSupported = () => asBool(false);
+    window.getIsPlayerAuthorized = () => asBool(false);
+    window.getPlayerId = () => '';
+    window.getPlayerName = () => '';
+    window.getPlayerPhotos = () => '[]';
+    window.authorizePlayer = () => sendMessageToUnity('OnAuthorizeCompleted', asBool(false));
+    window.getVisibilityState = () => 'visible';
+    window.getStorageDefaultType = () => 'local';
+    window.getIsStorageSupported = () => asBool(true);
+    window.getIsStorageAvailable = () => asBool(true);
+    window.getStorageData = (key) => sendMessageToUnity('OnGetStorageDataSuccess', `${key}{bridge_data_separator}`);
+    window.setStorageData = (key) => sendMessageToUnity('OnSetStorageDataSuccess', key);
+    window.deleteStorageData = (key) => sendMessageToUnity('OnDeleteStorageDataSuccess', key);
+    window.getInterstitialState = () => '';
+    window.getIsBannerSupported = () => asBool(false);
+    window.getMinimumDelayBetweenInterstitial = () => '0';
+    window.setMinimumDelayBetweenInterstitial = () => {};
+    window.showBanner = () => {};
+    window.hideBanner = () => {};
+    window.showInterstitial = () => {};
+    window.showRewarded = () => {};
+    window.checkAdBlock = () => sendMessageToUnity('OnCheckAdBlockCompleted', asBool(false));
+    window.getIsShareSupported = () => asBool(false);
+    window.getIsInviteFriendsSupported = () => asBool(false);
+    window.getIsJoinCommunitySupported = () => asBool(false);
+    window.getIsCreatePostSupported = () => asBool(false);
+    window.getIsAddToHomeScreenSupported = () => asBool(false);
+    window.getIsAddToFavoritesSupported = () => asBool(false);
+    window.getIsRateSupported = () => asBool(false);
+    window.getIsExternalLinksAllowed = () => asBool(true);
+    window.share = () => sendMessageToUnity('OnShareCompleted', asBool(false));
+    window.inviteFriends = () => sendMessageToUnity('OnInviteFriendsCompleted', asBool(false));
+    window.joinCommunity = () => sendMessageToUnity('OnJoinCommunityCompleted', asBool(false));
+    window.createPost = () => sendMessageToUnity('OnCreatePostCompleted', asBool(false));
+    window.addToHomeScreen = () => sendMessageToUnity('OnAddToHomeScreenCompleted', asBool(false));
+    window.addToFavorites = () => sendMessageToUnity('OnAddToFavoritesCompleted', asBool(false));
+    window.rate = () => sendMessageToUnity('OnRateCompleted', asBool(false));
+    window.getIsLeaderboardSupported = () => asBool(false);
+    window.getIsLeaderboardNativePopupSupported = () => asBool(false);
+    window.getIsLeaderboardSetScoreSupported = () => asBool(false);
+    window.getIsLeaderboardGetScoreSupported = () => asBool(false);
+    window.getIsLeaderboardGetEntriesSupported = () => asBool(false);
+    window.leaderboardSetScore = () => sendMessageToUnity('OnLeaderboardSetScoreCompleted', asBool(false));
+    window.leaderboardGetScore = () => sendMessageToUnity('OnLeaderboardGetScoreCompleted', '');
+    window.leaderboardGetEntries = () => sendMessageToUnity('OnLeaderboardGetEntriesCompletedSuccess', '[]');
+    window.leaderboardShowNativePopup = () => sendMessageToUnity('OnLeaderboardShowNativePopupCompleted', asBool(false));
+    window.getIsPaymentsSupported = () => asBool(false);
+    window.getIsCatalogSupported = () => asBool(false);
+    window.getIsPurchaseListSupported = () => asBool(false);
+    window.getIsPurchaseConsumingSupported = () => asBool(false);
+    window.paymentsPurchase = () => sendMessageToUnity('OnPaymentsPurchaseFailed', '');
+    window.paymentsConsumePurchase = () => sendMessageToUnity('OnPaymentsConsumePurchaseCompleted', asBool(false));
+    window.paymentsGetCatalog = () => sendMessageToUnity('OnPaymentsGetCatalogCompletedSuccess', '[]');
+    window.paymentsGetPurchases = () => sendMessageToUnity('OnPaymentsGetPurchasesCompletedSuccess', '[]');
+    window.getIsRemoteConfigSupported = () => asBool(false);
+    window.remoteConfigGet = () => sendMessageToUnity('OnRemoteConfigGetFailed', '');
+    window.getIsAchievementsSupported = () => asBool(false);
+    window.getIsGetAchievementsListSupported = () => asBool(false);
+    window.getIsAchievementsNativePopupSupported = () => asBool(false);
+    window.achievementsUnlock = () => sendMessageToUnity('OnAchievementsUnlockCompleted', asBool(false));
+    window.achievementsShowNativePopup = () => sendMessageToUnity('OnAchievementsShowNativePopupCompleted', asBool(false));
+    window.achievementsGetList = () => sendMessageToUnity('OnAchievementsGetListCompletedSuccess', '[]');
+    function ensureHowlerReady() {
+      return new Promise((resolve) => {
+        const start = Date.now();
+        (function waitForHowl() {
+          if (typeof window.Howl === 'function') return resolve(true);
+          if (Date.now() - start > 3000) return resolve(false);
+          setTimeout(waitForHowl, 25);
+        })();
+      });
+    }
+    let primedLoop = null;
+    function primeAudio() {
+      try {
+        primedLoop = new Howl({ src:['https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/silent.mp3'], loop:true, volume:0 });
+        primedLoop.play();
+      } catch (e) {}
+    }
+    function resumeAudio() {
+      try {
+        if (Howler && Howler.ctx && Howler.ctx.state !== 'running') {
+          Howler.ctx.resume();
+        }
+      } catch {}
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') resumeAudio();
+    });
+    (async function autoStartAudio() {
+      const ok = await ensureHowlerReady();
+      if (ok) {
+        primeAudio();
+        setTimeout(resumeAudio, 150);
+      }
+    })();
+    // Unity loader
+    (async function bootUnity() {
+      try {
+        await new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/Build/web.loader.js';
+          s.onload = resolve;
+          s.onerror = () => reject(new Error('web.loader.js failed to load'));
+          document.body.appendChild(s);
+        });
+      } catch (e) {
+        console.error(e.message);
+        alert('ゲームを読み込めませんでした。ページを再読み込みしてください。');
+        return;
+      }
+      if (typeof createUnityInstance !== 'function') {
+        console.error('createUnityInstance is not available.');
+        alert('ゲームを読み込めませんでした。ページを再読み込みしてください。');
+        return;
+      }
+      try {
+        const instance = await createUnityInstance(
+          canvas,
+          {
+            dataUrl: 'https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/Build/web.data.unityweb',
+            frameworkUrl: 'https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/Build/web.framework.js.unityweb',
+            codeUrl: 'https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/Build/web.wasm.unityweb',
+            streamingAssetsUrl: 'https://cdn.jsdelivr.net/gh/StaticQuasar931/Brawl-Stars@main/StreamingAssets',
+            companyName: 'StaticQuasar931',
+            productName: 'Brawl Stars',
+            productVersion: '1.0'
+          },
+          onUnityLoadingProgressChanged
+        );
+        window.unityInstance = instance;
+        loadingOverlay.remove();
+        canvas.focus();
+      } catch (error) {
+        console.error('Unity の読み込みに失敗しました:', error);
+        alert('ゲームを読み込めませんでした。ページを再読み込みしてください。');
+      }
+    })();
+  </script>
+  <noscript>
+    <p style="color:#fff; padding:1rem; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
+      JavaScript is required to play Brawl Stars.
+    </p>
+  </noscript>
+</body>
+</html>

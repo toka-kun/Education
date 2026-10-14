@@ -226,6 +226,20 @@
         "contextWindow": 1048576,
         "maxOutputTokens": 943718,
         "desc": "1.2と1.3がなかったので1.1で代用"
+      },
+      "meta/muse-wonder": {
+        "displayName": "Muse Wonder",
+        "shortName": "Muse Wonder",
+        "cost": "4.00/20.00",
+        "tags": ["very-expensive"],
+        "effort": ["minimal", "low", "medium", "high", "xhigh", "max"],
+        "defaultEffort": "medium",
+        "intelligenceIndex": null,
+        "inputModalities": ["text", "file", "image", "audio", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 943718,
+        "desc": ""
       }
     }
   },
@@ -323,7 +337,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 393216,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {

@@ -71,6 +71,20 @@
         "contextWindow": 1048576,
         "maxOutputTokens": 65536,
         "desc": "2026年2月からずっと更新されておらず、性能も3.8 Flashに追い抜かれているので非推奨。20万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
+      },
+      "google/gemini-4-argon": {
+        "displayName": "Gemini 4 Argon",
+        "shortName": "Gemini 4 Argon",
+        "cost": "2.00/10.00",
+        "tags": ["expensive"],
+        "effort": ["low", "medium", "high"],
+        "defaultEffort": "medium",
+        "intelligenceIndex": 52.6,
+        "inputModalities": ["text", "file", "image", "audio", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 65536,
+        "desc": "2026年12月からは2倍の通常価格"
       }
     }
   },
@@ -88,7 +102,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 131072,
-        "maxOutputTokens": 117964,
+        "maxOutputTokens": 65536,
         "desc": "2025年8月からずっと更新されていないので非推奨"
       },
       "openai/gpt-6-luna": {
@@ -403,7 +417,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943717,
+        "maxOutputTokens": 943718,
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -517,7 +531,7 @@
         "tags": [],
         "effort": ["low", "medium", "high"],
         "defaultEffort": "medium",
-        "intelligenceIndex": null,
+        "intelligenceIndex": 43.7,
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1000000,

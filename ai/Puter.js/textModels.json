@@ -157,7 +157,7 @@
         "shortName": "Haiku 5.5",
         "cost": "0.10/0.50",
         "tags": ["recommended"],
-        "effort": ["low", "medium", "high", "xhigh", "max"],
+        "effort": ["none", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
         "intelligenceIndex": 43.4,
         "inputModalities": ["text", "file", "image"],
@@ -345,7 +345,7 @@
         "shortName": "DeepSeek V4.1 Flash",
         "cost": "0.15/0.60",
         "tags": [],
-        "effort": ["low", "high", "max"],
+        "effort": ["none", "low", "high", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 39.5,
         "inputModalities": ["text", "image"],
@@ -359,7 +359,7 @@
         "shortName": "DeepSeek V4 Pro 0813",
         "cost": "0.66/1.98",
         "tags": [],
-        "effort": ["low", "high", "max"],
+        "effort": ["none", "low", "high", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 36,
         "inputModalities": ["text"],
@@ -417,7 +417,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 943717,
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -458,7 +458,7 @@
         "shortName": "Kimi K3",
         "cost": "3.00/15.00",
         "tags": ["expensive"],
-        "effort": ["low", "high", "max"],
+        "effort": ["none", "low", "high", "max"],
         "defaultEffort": "max",
         "intelligenceIndex": 43.6,
         "inputModalities": ["text", "image", "video"],
@@ -534,7 +534,7 @@
         "intelligenceIndex": 43.7,
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
-        "contextWindow": 1000000,
+        "contextWindow": 1048576,
         "maxOutputTokens": 64000,
         "desc": ""
       }

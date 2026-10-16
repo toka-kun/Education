@@ -102,7 +102,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 131072,
-        "maxOutputTokens": 65536,
+        "maxOutputTokens": 117964,
         "desc": "2025年8月からずっと更新されていないので非推奨"
       },
       "openai/gpt-6-luna": {
@@ -227,19 +227,19 @@
         "maxOutputTokens": 16384,
         "desc": ""
       },
-      "meta/muse-spark-1.1": {
-        "displayName": "Muse Spark 1.1",
-        "shortName": "Muse Spark 1.1",
+      "meta/muse-spark-1.3": {
+        "displayName": "Muse Spark 1.3",
+        "shortName": "Muse Spark 1.3",
         "cost": "1.25/4.25",
         "tags": ["expensive"],
-        "effort": ["minimal", "low", "medium", "high", "xhigh"],
+        "effort": ["minimal", "low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "medium",
-        "intelligenceIndex": 33.7,
+        "intelligenceIndex": 48.1,
         "inputModalities": ["text", "file", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
         "maxOutputTokens": 943718,
-        "desc": "1.2と1.3がなかったので1.1で代用"
+        "desc": ""
       },
       "meta/muse-wonder": {
         "displayName": "Muse Wonder",
@@ -407,8 +407,8 @@
     "desc": "",
     "models": {
       "z-ai/glm-5.3-flash": {
-        "displayName": "GLM 5.3 Flash",
-        "shortName": "GLM 5.3 Flash",
+        "displayName": "GLM-5.3-Flash",
+        "shortName": "GLM-5.3-Flash",
         "cost": "0.15/0.50",
         "tags": [],
         "effort": ["low", "high", "max"],
@@ -421,8 +421,8 @@
         "desc": ""
       },
       "z-ai/glm-5.3": {
-        "displayName": "GLM 5.3",
-        "shortName": "GLM 5.3",
+        "displayName": "GLM-5.3",
+        "shortName": "GLM-5.3",
         "cost": "1.40/4.40",
         "tags": ["expensive"],
         "effort": ["low", "high", "max"],

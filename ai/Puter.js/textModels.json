@@ -102,7 +102,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 131072,
-        "maxOutputTokens": 117964,
+        "maxOutputTokens": 65536,
         "desc": "2025年8月からずっと更新されていないので非推奨"
       },
       "openai/gpt-6-luna": {
@@ -417,7 +417,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943717,
+        "maxOutputTokens": 131072,
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -546,8 +546,8 @@
       "inclusionai/ling-3.1-flash": {
         "displayName": "Ling 3.1 Flash",
         "shortName": "Ling 3.1 Flash",
-        "cost": "0.00/0.00",
-        "tags": ["free"],
+        "cost": "0.30/0.90",
+        "tags": [],
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": 41.1,

@@ -652,7 +652,7 @@
     let listId = null;
 
     // 1. URLの中に list=ID, playlist=ID, /channel/ID, /wkt/c/ID があるかまとめてチェック
-    const m = input.match(/(?:[?&](?:list|playlist)=|\/(?:channel|wkt\/c)\/)([a-zA-Z0-9_-]+)/);
+    const m = input.match(/(?:[?&](?:list|playlist)=|\/(?:channel|wkt\/c|wkt\/p)\/)([a-zA-Z0-9_-]+)/);
     
     if (m) {
       // 見つかったらそのIDを取得

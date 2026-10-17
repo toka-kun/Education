@@ -290,6 +290,53 @@
       }
     }
   },
+  "🇺🇸 NVIDIA": {
+    "desc": "",
+    "models": {
+      "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+        "displayName": "Nemotron 3 Nano Omni",
+        "shortName": "Nemotron 3 Nano Omni",
+        "cost": "0.00/0.00",
+        "tags": ["free"],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": 10.3,
+        "inputModalities": ["text", "image", "audio", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 256000,
+        "maxOutputTokens": 65536,
+        "desc": ""
+      },
+      "nvidia/nemotron-3.5-lightning:free": {
+        "displayName": "Nemotron 3.5 Lightning",
+        "shortName": "Nemotron 3.5 Lightning",
+        "cost": "0.00/0.00",
+        "tags": ["free"],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": 12.9,
+        "inputModalities": ["text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 65536,
+        "desc": ""
+      },
+      "nvidia/nemotron-3.5-super-vl:free": {
+        "displayName": "Nemotron 3.5 Super VL",
+        "shortName": "Nemotron 3.5 Super VL",
+        "cost": "0.00/0.00",
+        "tags": ["free"],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": 26.5,
+        "inputModalities": ["text", "image", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 131072,
+        "desc": ""
+      }
+    }
+  },
   "🇯🇵 Sakana AI": {
     "desc": "",
     "models": {
@@ -351,7 +398,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 131072,
+        "maxOutputTokens": 943718,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {
@@ -387,9 +434,23 @@
         "maxOutputTokens": 131072,
         "desc": ""
       },
+      "qwen/qwen3.8-omni-flash": {
+        "displayName": "Qwen3.8 Omni Flash",
+        "shortName": "Qwen3.8 Omni Flash",
+        "cost": "0.15/0.47",
+        "tags": [],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": null,
+        "inputModalities": ["text", "image", "audio", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 131072,
+        "desc": ""
+      },
       "qwen/qwen3.8-max-0902": {
-        "displayName": "Qwen3.8 Max 0902",
-        "shortName": "Qwen3.8 Max 0902",
+        "displayName": "Qwen3.8 Max (0902)",
+        "shortName": "Qwen3.8 Max (0902)",
         "cost": "2.00/6.00",
         "tags": ["expensive"],
         "effort": ["minimal", "low", "medium", "high", "xhigh"],
@@ -417,7 +478,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 131072,
+        "maxOutputTokens": 943717,
         "desc": ""
       },
       "z-ai/glm-5.3": {

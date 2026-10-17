@@ -394,11 +394,11 @@
         "tags": [],
         "effort": ["none", "low", "high", "max"],
         "defaultEffort": "high",
-        "intelligenceIndex": 39.5,
+        "intelligenceIndex": 24.7,
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 393216,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {

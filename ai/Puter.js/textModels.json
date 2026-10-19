@@ -83,7 +83,7 @@
         "inputModalities": ["text", "file", "image", "audio", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 65536,
+        "maxOutputTokens": 943718,
         "desc": "2026年12月からは2倍の通常価格"
       }
     }
@@ -387,18 +387,18 @@
   "🇨🇳 DeepSeek": {
     "desc": "",
     "models": {
-      "deepseek/deepseek-v4.1-flash": {
-        "displayName": "DeepSeek V4.1 Flash",
-        "shortName": "DeepSeek V4.1 Flash",
+      "deepseek/deepseek-v4.1-flash-1017": {
+        "displayName": "DeepSeek V4.1 Flash 1017",
+        "shortName": "DeepSeek V4.1 Flash 1017",
         "cost": "0.15/0.60",
         "tags": [],
         "effort": ["none", "low", "high", "max"],
         "defaultEffort": "high",
-        "intelligenceIndex": 24.7,
+        "intelligenceIndex": 39.5,
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 393216,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {

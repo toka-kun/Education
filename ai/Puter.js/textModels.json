@@ -384,6 +384,25 @@
       }
     }
   },
+  "🇫🇷 Mistral AI": {
+    "desc": "",
+    "models": {
+      "mistralai/mistral-large-4": {
+        "displayName": "Mistral Large 4",
+        "shortName": "Mistral Large 4",
+        "cost": "1.36/4.18",
+        "tags": ["expensive"],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": null,
+        "inputModalities": [],
+        "outputModalities": [],
+        "contextWindow": null,
+        "maxOutputTokens": null,
+        "desc": ""
+      }
+    }
+  },
   "🇨🇳 DeepSeek": {
     "desc": "",
     "models": {
@@ -530,6 +549,25 @@
       }
     }
   },
+  "🇨🇳 StepFun": {
+    "desc": "",
+    "models": {
+      "stepfun/step-5-preview": {
+        "displayName": "Step 5 Preview",
+        "shortName": "Step 5 Preview",
+        "cost": "1.00/2.70",
+        "tags": [],
+        "effort": ["low", "medium", "high"],
+        "defaultEffort": "medium",
+        "intelligenceIndex": 43.7,
+        "inputModalities": ["text", "image", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 64000,
+        "desc": ""
+      }
+    }
+  },
   "🇨🇳 Tencent": {
     "desc": "",
     "models": {
@@ -578,25 +616,6 @@
         "outputModalities": ["text"],
         "contextWindow": 1050000,
         "maxOutputTokens": 131072,
-        "desc": ""
-      }
-    }
-  },
-  "🇨🇳 StepFun": {
-    "desc": "",
-    "models": {
-      "stepfun/step-5-preview": {
-        "displayName": "Step 5 Preview",
-        "shortName": "Step 5 Preview",
-        "cost": "1.00/2.70",
-        "tags": [],
-        "effort": ["low", "medium", "high"],
-        "defaultEffort": "medium",
-        "intelligenceIndex": 43.7,
-        "inputModalities": ["text", "image", "video"],
-        "outputModalities": ["text"],
-        "contextWindow": 1048576,
-        "maxOutputTokens": 64000,
         "desc": ""
       }
     }

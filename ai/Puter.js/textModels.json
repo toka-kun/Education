@@ -568,6 +568,25 @@
       }
     }
   },
+  "🇨🇳 MiniMax": {
+    "desc": "",
+    "models": {
+      "minimax/minimax-m3.1-flash:free": {
+        "displayName": "MiniMax M3.1 Flash",
+        "shortName": "MiniMax M3.1 Flash",
+        "cost": "0.00/0.00",
+        "tags": ["free"],
+        "effort": ["low", "medium", "high", "xhigh", "max"],
+        "defaultEffort": "max",
+        "intelligenceIndex": 42.7,
+        "inputModalities": ["text", "image", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1000000,
+        "maxOutputTokens": 524288,
+        "desc": ""
+      }
+    }
+  },
   "🇨🇳 Tencent": {
     "desc": "",
     "models": {

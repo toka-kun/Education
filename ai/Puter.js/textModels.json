@@ -549,25 +549,6 @@
       }
     }
   },
-  "🇨🇳 StepFun": {
-    "desc": "",
-    "models": {
-      "stepfun/step-5-preview": {
-        "displayName": "Step 5 Preview",
-        "shortName": "Step 5 Preview",
-        "cost": "1.00/2.70",
-        "tags": [],
-        "effort": ["low", "medium", "high"],
-        "defaultEffort": "medium",
-        "intelligenceIndex": 43.7,
-        "inputModalities": ["text", "image", "video"],
-        "outputModalities": ["text"],
-        "contextWindow": 1048576,
-        "maxOutputTokens": 64000,
-        "desc": ""
-      }
-    }
-  },
   "🇨🇳 MiniMax": {
     "desc": "",
     "models": {
@@ -583,6 +564,25 @@
         "outputModalities": ["text"],
         "contextWindow": 1000000,
         "maxOutputTokens": 524288,
+        "desc": "日本時間2026年10月22日 21:00に無料提供は終了、入力0.15、出力0.60になります。"
+      }
+    }
+  },
+  "🇨🇳 StepFun": {
+    "desc": "",
+    "models": {
+      "stepfun/step-5-preview": {
+        "displayName": "Step 5 Preview",
+        "shortName": "Step 5 Preview",
+        "cost": "1.00/2.70",
+        "tags": [],
+        "effort": ["low", "medium", "high"],
+        "defaultEffort": "medium",
+        "intelligenceIndex": 43.7,
+        "inputModalities": ["text", "image", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 64000,
         "desc": ""
       }
     }

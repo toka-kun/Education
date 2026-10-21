@@ -431,7 +431,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 384000,
+        "maxOutputTokens": 393216,
         "desc": "9月14日からV4.1 Proの提供開始まで、すべてのリクエストはV4.1 Flashにルーティングされ、V4.1 Flashの料金が適用されます。"
       }
     }

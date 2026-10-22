@@ -511,7 +511,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 262144,
         "desc": ""
       }
     }

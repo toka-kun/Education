@@ -497,7 +497,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 943717,
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -511,7 +511,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 262144,
+        "maxOutputTokens": 943718,
         "desc": ""
       }
     }
@@ -562,7 +562,7 @@
         "intelligenceIndex": 42.7,
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
-        "contextWindow": 1000000,
+        "contextWindow": 1048576,
         "maxOutputTokens": 524288,
         "desc": "日本時間2026年10月22日 21:00に無料提供は終了、入力0.15、出力0.60になります。"
       }

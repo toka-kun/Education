@@ -604,8 +604,8 @@
     "genre": "optional",
     "hlsUrl": "https://i24newsenglish-cdn.encoders.immergo.tv/master.m3u8",
     "fallbackVideoId": "",
-    "channelId": "",
-    "playlistId": ""
+    "channelId": "UCvHDpsWKADrDia0c99X37vg",
+    "playlistId": "UULVvHDpsWKADrDia0c99X37vg"
   },
   "me/asharq-news": {
     "name": "Asharq News",

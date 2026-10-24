@@ -387,18 +387,18 @@
   "🇫🇷 Mistral AI": {
     "desc": "",
     "models": {
-      "mistralai/mistral-large-4": {
+      "mistralai/mistral-large-4-0": {
         "displayName": "Mistral Large 4",
         "shortName": "Mistral Large 4",
         "cost": "1.36/4.18",
         "tags": ["expensive"],
-        "effort": [],
-        "defaultEffort": null,
-        "intelligenceIndex": null,
-        "inputModalities": [],
-        "outputModalities": [],
-        "contextWindow": null,
-        "maxOutputTokens": null,
+        "effort": ["none", "high"],
+        "defaultEffort": "high",
+        "intelligenceIndex": 38.4,
+        "inputModalities": ["text", "image"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 262144,
         "desc": ""
       }
     }
@@ -552,11 +552,11 @@
   "🇨🇳 MiniMax": {
     "desc": "",
     "models": {
-      "minimax/minimax-m3.1-flash:free": {
+      "minimax/minimax-m3.1-flash": {
         "displayName": "MiniMax M3.1 Flash",
         "shortName": "MiniMax M3.1 Flash",
-        "cost": "0.00/0.00",
-        "tags": ["free"],
+        "cost": "0.15/0.60",
+        "tags": [],
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "max",
         "intelligenceIndex": 42.7,
@@ -564,7 +564,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1048576,
         "maxOutputTokens": 524288,
-        "desc": "日本時間2026年10月22日 21:00に無料提供は終了、入力0.15、出力0.60になります。"
+        "desc": ""
       }
     }
   },

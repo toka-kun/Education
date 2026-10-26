@@ -27,7 +27,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 262144,
-        "maxOutputTokens": 16384,
+        "maxOutputTokens": 235929,
         "desc": ""
       },
       "google/gemini-3.5-flash-lite": {
@@ -519,28 +519,14 @@
   "🇨🇳 Moonshot AI": {
     "desc": "",
     "models": {
-      "moonshotai/kimi-k2.7-code": {
-        "displayName": "Kimi K2.7 Code",
-        "shortName": "Kimi K2.7 Code",
-        "cost": "0.95/4.00",
-        "tags": [],
-        "effort": [],
-        "defaultEffort": null,
-        "intelligenceIndex": 25.8,
-        "inputModalities": ["text", "image"],
-        "outputModalities": ["text"],
-        "contextWindow": 262144,
-        "maxOutputTokens": 235929,
-        "desc": ""
-      },
-      "moonshotai/kimi-k3": {
-        "displayName": "Kimi K3",
-        "shortName": "Kimi K3",
-        "cost": "3.00/15.00",
+      "moonshotai/kimi-k3.1-pro": {
+        "displayName": "Kimi K3.1 Pro",
+        "shortName": "Kimi K3.1 Pro",
+        "cost": "2.00/10.00",
         "tags": ["expensive"],
         "effort": ["none", "low", "high", "max"],
         "defaultEffort": "max",
-        "intelligenceIndex": 43.6,
+        "intelligenceIndex": 55.1,
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,

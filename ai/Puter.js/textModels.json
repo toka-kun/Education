@@ -27,7 +27,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 262144,
-        "maxOutputTokens": 235929,
+        "maxOutputTokens": 16384,
         "desc": ""
       },
       "google/gemini-3.5-flash-lite": {

@@ -47,6 +47,14 @@
     "channelId": "",
     "playlistId": ""
   },
+  "na/livenow-fox": {
+    "name": "LiveNOW from FOX",
+    "genre": "optional",
+    "hlsUrl": "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00488-foxdigital-livenowbyfox-lgus/playlist.m3u8",
+    "fallbackVideoId": "",
+    "channelId": "",
+    "playlistId": ""
+  },
   "na/newsmax": {
     "name": "Newsmax",
     "genre": "optional",

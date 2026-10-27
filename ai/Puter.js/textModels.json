@@ -119,6 +119,20 @@
         "maxOutputTokens": 128000,
         "desc": "27.2万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
       },
+      "openai/gpt-6.1-terra": {
+        "displayName": "GPT-6.1 Terra",
+        "shortName": "6.1 Terra",
+        "cost": "1.00/5.00",
+        "tags": [],
+        "effort": ["none", "low", "medium", "high", "xhigh", "max"],
+        "defaultEffort": "medium",
+        "intelligenceIndex": 48.1,
+        "inputModalities": ["text", "file", "image"],
+        "outputModalities": ["text"],
+        "contextWindow": 1050000,
+        "maxOutputTokens": 128000,
+        "desc": "27.2万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
+      },
       "openai/gpt-6.1-sol": {
         "displayName": "GPT-6.1 Sol",
         "shortName": "6.1 Sol",

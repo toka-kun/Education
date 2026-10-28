@@ -43,7 +43,7 @@
     "name": "Fox News",
     "genre": "optional",
     "hlsUrl": "https://247preview.foxnews.com/hls/live/2020027/fncv3preview/primary.m3u8",
-    "fallbackVideoId": "C96oohpWBGw",
+    "fallbackVideoId": "",
     "channelId": "",
     "playlistId": ""
   },
@@ -51,7 +51,7 @@
     "name": "LiveNOW from FOX",
     "genre": "optional",
     "hlsUrl": "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00488-foxdigital-livenowbyfox-lgus/playlist.m3u8",
-    "fallbackVideoId": "",
+    "fallbackVideoId": "C96oohpWBGw",
     "channelId": "",
     "playlistId": ""
   },

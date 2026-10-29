@@ -511,7 +511,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 131072,
+        "maxOutputTokens": 943717,
         "desc": ""
       },
       "z-ai/glm-5.3": {

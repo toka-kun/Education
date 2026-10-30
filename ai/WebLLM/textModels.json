@@ -4,7 +4,7 @@
     "models": {
       "Llama-3.2-1B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3.2-1B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3.2-1B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1128.82,
         "low_resource_required": true,
         "overrides": {
@@ -16,7 +16,7 @@
       },
       "Llama-3.2-1B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3.2-1B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3.2-1B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 879.04,
         "low_resource_required": true,
         "overrides": {
@@ -28,7 +28,7 @@
       },
       "Llama-3.2-1B-Instruct-q0f32-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3.2-1B-Instruct-q0f32_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3.2-1B-Instruct-q0f32_cs1k-webgpu.wasm",
         "vram_required_MB": 5106.26,
         "low_resource_required": true,
         "overrides": {
@@ -40,7 +40,7 @@
       },
       "Llama-3.2-1B-Instruct-q0f16-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q0f16-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3.2-1B-Instruct-q0f16_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3.2-1B-Instruct-q0f16_cs1k-webgpu.wasm",
         "vram_required_MB": 2573.13,
         "low_resource_required": true,
         "overrides": {
@@ -52,7 +52,7 @@
       },
       "Llama-3.2-3B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.2-3B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3.2-3B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3.2-3B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2951.51,
         "low_resource_required": true,
         "overrides": {
@@ -64,7 +64,7 @@
       },
       "Llama-3.2-3B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.2-3B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3.2-3B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3.2-3B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2263.69,
         "low_resource_required": true,
         "overrides": {
@@ -76,7 +76,7 @@
       },
       "Llama-3.1-8B-Instruct-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.1-8B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3_1-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3_1-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5295.7,
         "low_resource_required": true,
         "overrides": {
@@ -88,7 +88,7 @@
       },
       "Llama-3.1-8B-Instruct-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.1-8B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3_1-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3_1-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4598.34,
         "low_resource_required": true,
         "overrides": {
@@ -100,7 +100,7 @@
       },
       "Llama-3.1-8B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.1-8B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3_1-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3_1-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6101.01,
         "overrides": {
           "context_window_size": 4096
@@ -111,7 +111,7 @@
       },
       "Llama-3.1-8B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.1-8B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3_1-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3_1-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5001,
         "overrides": {
           "context_window_size": 4096
@@ -122,7 +122,7 @@
       },
       "Llama-3.1-70B-Instruct-q3f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3.1-70B-Instruct-q3f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3_1-70B-Instruct-q3f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3_1-70B-Instruct-q3f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 31153.13,
         "overrides": {
           "context_window_size": 4096
@@ -133,7 +133,7 @@
       },
       "Llama-3-8B-Instruct-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Llama-3-8B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5295.7,
         "low_resource_required": true,
         "overrides": {
@@ -145,7 +145,7 @@
       },
       "Llama-3-8B-Instruct-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Llama-3-8B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4598.34,
         "low_resource_required": true,
         "overrides": {
@@ -157,7 +157,7 @@
       },
       "Llama-3-8B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3-8B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6101.01,
         "overrides": {
           "context_window_size": 4096
@@ -168,7 +168,7 @@
       },
       "Llama-3-8B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3-8B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5001,
         "overrides": {
           "context_window_size": 4096
@@ -179,7 +179,7 @@
       },
       "Llama-3-70B-Instruct-q3f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-3-70B-Instruct-q3f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3-70B-Instruct-q3f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3-70B-Instruct-q3f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 31153.13,
         "overrides": {
           "context_window_size": 4096
@@ -190,7 +190,7 @@
       },
       "Llama-2-7b-chat-hf-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Llama-2-7b-chat-hf-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-2-7b-chat-hf-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-2-7b-chat-hf-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5284.01,
         "overrides": {
           "context_window_size": 1024
@@ -201,7 +201,7 @@
       },
       "Llama-2-7b-chat-hf-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Llama-2-7b-chat-hf-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-2-7b-chat-hf-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-2-7b-chat-hf-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4618.52,
         "overrides": {
           "context_window_size": 1024
@@ -215,7 +215,7 @@
       },
       "Llama-2-7b-chat-hf-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-2-7b-chat-hf-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-2-7b-chat-hf-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-2-7b-chat-hf-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 9109.03,
         "overrides": {
           "context_window_size": 4096
@@ -226,7 +226,7 @@
       },
       "Llama-2-7b-chat-hf-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-2-7b-chat-hf-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-2-7b-chat-hf-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-2-7b-chat-hf-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6749.02,
         "overrides": {
           "context_window_size": 4096
@@ -240,7 +240,7 @@
       },
       "Llama-2-13b-chat-hf-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Llama-2-13b-chat-hf-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-2-13b-chat-hf-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-2-13b-chat-hf-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 11814.09,
         "overrides": {
           "context_window_size": 4096
@@ -259,7 +259,7 @@
     "models": {
       "Qwen3-0.6B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-0.6B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-0.6B-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-0.6B-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1403.34,
         "low_resource_required": true,
         "overrides": {
@@ -271,7 +271,7 @@
       },
       "Qwen3-0.6B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-0.6B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-0.6B-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-0.6B-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1924.98,
         "low_resource_required": true,
         "overrides": {
@@ -283,7 +283,7 @@
       },
       "Qwen3-0.6B-q0f16-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-0.6B-q0f16-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-0.6B-q0f16_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-0.6B-q0f16_cs1k-webgpu.wasm",
         "vram_required_MB": 2220.38,
         "low_resource_required": true,
         "overrides": {
@@ -295,7 +295,7 @@
       },
       "Qwen3-0.6B-q0f32-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-0.6B-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-0.6B-q0f32_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-0.6B-q0f32_cs1k-webgpu.wasm",
         "vram_required_MB": 3843.25,
         "low_resource_required": true,
         "overrides": {
@@ -307,7 +307,7 @@
       },
       "Qwen3-1.7B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-1.7B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-1.7B-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-1.7B-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2036.66,
         "low_resource_required": true,
         "overrides": {
@@ -319,7 +319,7 @@
       },
       "Qwen3-1.7B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-1.7B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-1.7B-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-1.7B-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2635.44,
         "low_resource_required": true,
         "overrides": {
@@ -331,7 +331,7 @@
       },
       "Qwen3-4B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-4B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-4B-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-4B-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3431.59,
         "low_resource_required": true,
         "overrides": {
@@ -343,7 +343,7 @@
       },
       "Qwen3-4B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-4B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-4B-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-4B-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4327.71,
         "low_resource_required": true,
         "overrides": {
@@ -355,7 +355,7 @@
       },
       "Qwen3-8B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-8B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-8B-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-8B-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5695.78,
         "overrides": {
           "context_window_size": 4096
@@ -366,7 +366,7 @@
       },
       "Qwen3-8B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3-8B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-8B-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3-8B-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6852.55,
         "overrides": {
           "context_window_size": 4096
@@ -377,12 +377,18 @@
       },
       "Qwen3.5-0.8B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3.5-0.8B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3.5-0.8B-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3.5-0.8B-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1629.49,
         "low_resource_required": true,
         "overrides": {
           "context_window_size": 4096,
-          "max_history_size": 1
+          "max_history_size": 1,
+          "conv_config": {
+            "stop_token_ids": [
+              248046,
+              248044
+            ]
+          }
         },
         "displayName": "Qwen3.5 0.8B (q4f16_1)",
         "shortName": "Qwen3.5 0.8B (q4f16)",
@@ -390,12 +396,18 @@
       },
       "Qwen3.5-0.8B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3.5-0.8B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3.5-0.8B-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3.5-0.8B-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1894.19,
         "low_resource_required": true,
         "overrides": {
           "context_window_size": 4096,
-          "max_history_size": 1
+          "max_history_size": 1,
+          "conv_config": {
+            "stop_token_ids": [
+              248046,
+              248044
+            ]
+          }
         },
         "displayName": "Qwen3.5 0.8B (q4f32_1)",
         "shortName": "Qwen3.5 0.8B (q4f32)",
@@ -403,12 +415,18 @@
       },
       "Qwen3.5-0.8B-q0f16-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3.5-0.8B-q0f16-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3.5-0.8B-q0f16_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3.5-0.8B-q0f16_cs1k-webgpu.wasm",
         "vram_required_MB": 2660.27,
         "low_resource_required": true,
         "overrides": {
           "context_window_size": 4096,
-          "max_history_size": 1
+          "max_history_size": 1,
+          "conv_config": {
+            "stop_token_ids": [
+              248046,
+              248044
+            ]
+          }
         },
         "displayName": "Qwen3.5 0.8B (q0f16)",
         "shortName": "Qwen3.5 0.8B (q0f16)",
@@ -416,11 +434,17 @@
       },
       "Qwen3.5-2B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3.5-2B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3.5-2B-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3.5-2B-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2245.44,
         "overrides": {
           "context_window_size": 4096,
-          "max_history_size": 1
+          "max_history_size": 1,
+          "conv_config": {
+            "stop_token_ids": [
+              248046,
+              248044
+            ]
+          }
         },
         "displayName": "Qwen3.5 2B (q4f16_1)",
         "shortName": "Qwen3.5 2B (q4f16)",
@@ -428,11 +452,17 @@
       },
       "Qwen3.5-2B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3.5-2B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3.5-2B-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3.5-2B-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2591.55,
         "overrides": {
           "context_window_size": 4096,
-          "max_history_size": 1
+          "max_history_size": 1,
+          "conv_config": {
+            "stop_token_ids": [
+              248046,
+              248044
+            ]
+          }
         },
         "displayName": "Qwen3.5 2B (q4f32_1)",
         "shortName": "Qwen3.5 2B (q4f32)",
@@ -440,11 +470,17 @@
       },
       "Qwen3.5-4B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3.5-4B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3.5-4B-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3.5-4B-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3867.82,
         "overrides": {
           "context_window_size": 4096,
-          "max_history_size": 1
+          "max_history_size": 1,
+          "conv_config": {
+            "stop_token_ids": [
+              248046,
+              248044
+            ]
+          }
         },
         "displayName": "Qwen3.5 4B (q4f16_1)",
         "shortName": "Qwen3.5 4B (q4f16)",
@@ -452,11 +488,17 @@
       },
       "Qwen3.5-4B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3.5-4B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3.5-4B-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3.5-4B-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4680.36,
         "overrides": {
           "context_window_size": 4096,
-          "max_history_size": 1
+          "max_history_size": 1,
+          "conv_config": {
+            "stop_token_ids": [
+              248046,
+              248044
+            ]
+          }
         },
         "displayName": "Qwen3.5 4B (q4f32_1)",
         "shortName": "Qwen3.5 4B (q4f32)",
@@ -464,11 +506,17 @@
       },
       "Qwen3.5-9B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3.5-9B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3.5-9B-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3.5-9B-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6433.01,
         "overrides": {
           "context_window_size": 4096,
-          "max_history_size": 1
+          "max_history_size": 1,
+          "conv_config": {
+            "stop_token_ids": [
+              248046,
+              248044
+            ]
+          }
         },
         "displayName": "Qwen3.5 9B (q4f16_1)",
         "shortName": "Qwen3.5 9B (q4f16)",
@@ -476,11 +524,17 @@
       },
       "Qwen3.5-9B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen3.5-9B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3.5-9B-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen3.5-9B-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 7544.74,
         "overrides": {
           "context_window_size": 4096,
-          "max_history_size": 1
+          "max_history_size": 1,
+          "conv_config": {
+            "stop_token_ids": [
+              248046,
+              248044
+            ]
+          }
         },
         "displayName": "Qwen3.5 9B (q4f32_1)",
         "shortName": "Qwen3.5 9B (q4f32)",
@@ -488,7 +542,7 @@
       },
       "Qwen2.5-0.5B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-0.5B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 944.62,
         "low_resource_required": true,
         "overrides": {
@@ -500,7 +554,7 @@
       },
       "Qwen2.5-0.5B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-0.5B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1060.2,
         "low_resource_required": true,
         "overrides": {
@@ -512,7 +566,7 @@
       },
       "Qwen2.5-0.5B-Instruct-q0f16-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-0.5B-Instruct-q0f16-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q0f16_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q0f16_cs1k-webgpu.wasm",
         "vram_required_MB": 1624.12,
         "low_resource_required": true,
         "overrides": {
@@ -524,7 +578,7 @@
       },
       "Qwen2.5-0.5B-Instruct-q0f32-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-0.5B-Instruct-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q0f32_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q0f32_cs1k-webgpu.wasm",
         "vram_required_MB": 2654.75,
         "low_resource_required": true,
         "overrides": {
@@ -536,7 +590,7 @@
       },
       "Qwen2.5-1.5B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-1.5B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1629.75,
         "low_resource_required": true,
         "overrides": {
@@ -548,7 +602,7 @@
       },
       "Qwen2.5-1.5B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-1.5B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1888.97,
         "low_resource_required": true,
         "overrides": {
@@ -560,7 +614,7 @@
       },
       "Qwen2.5-3B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-3B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2.5-3B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2.5-3B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2504.76,
         "low_resource_required": true,
         "overrides": {
@@ -572,7 +626,7 @@
       },
       "Qwen2.5-3B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-3B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2.5-3B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2.5-3B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2893.64,
         "low_resource_required": true,
         "overrides": {
@@ -584,7 +638,7 @@
       },
       "Qwen2.5-7B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-7B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5106.67,
         "overrides": {
           "context_window_size": 4096
@@ -595,7 +649,7 @@
       },
       "Qwen2.5-7B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-7B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5900.09,
         "overrides": {
           "context_window_size": 4096
@@ -606,7 +660,7 @@
       },
       "Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-0.5B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 944.62,
         "low_resource_required": true,
         "overrides": {
@@ -618,7 +672,7 @@
       },
       "Qwen2.5-Coder-0.5B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-0.5B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1060.2,
         "low_resource_required": true,
         "overrides": {
@@ -630,7 +684,7 @@
       },
       "Qwen2.5-Coder-0.5B-Instruct-q0f16-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-0.5B-Instruct-q0f16-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q0f16_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q0f16_cs1k-webgpu.wasm",
         "vram_required_MB": 1624.12,
         "low_resource_required": true,
         "overrides": {
@@ -642,7 +696,7 @@
       },
       "Qwen2.5-Coder-0.5B-Instruct-q0f32-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-0.5B-Instruct-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q0f32_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q0f32_cs1k-webgpu.wasm",
         "vram_required_MB": 2654.75,
         "low_resource_required": true,
         "overrides": {
@@ -654,7 +708,7 @@
       },
       "Qwen2.5-Coder-1.5B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-1.5B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1629.75,
         "overrides": {
           "context_window_size": 4096
@@ -665,7 +719,7 @@
       },
       "Qwen2.5-Coder-1.5B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-1.5B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1888.97,
         "overrides": {
           "context_window_size": 4096
@@ -676,7 +730,7 @@
       },
       "Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2.5-3B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2.5-3B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2504.76,
         "low_resource_required": true,
         "overrides": {
@@ -688,7 +742,7 @@
       },
       "Qwen2.5-Coder-3B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-3B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2.5-3B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2.5-3B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2893.64,
         "low_resource_required": true,
         "overrides": {
@@ -700,7 +754,7 @@
       },
       "Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5106.67,
         "overrides": {
           "context_window_size": 4096
@@ -711,7 +765,7 @@
       },
       "Qwen2.5-Coder-7B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Coder-7B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5900.09,
         "overrides": {
           "context_window_size": 4096
@@ -722,7 +776,7 @@
       },
       "Qwen2.5-Math-1.5B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Math-1.5B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1629.75,
         "low_resource_required": true,
         "overrides": {
@@ -734,7 +788,7 @@
       },
       "Qwen2.5-Math-1.5B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2.5-Math-1.5B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1888.97,
         "low_resource_required": true,
         "overrides": {
@@ -746,7 +800,7 @@
       },
       "Qwen2-0.5B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-0.5B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 944.62,
         "low_resource_required": true,
         "overrides": {
@@ -758,7 +812,7 @@
       },
       "Qwen2-0.5B-Instruct-q0f16-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-0.5B-Instruct-q0f16-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q0f16_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q0f16_cs1k-webgpu.wasm",
         "vram_required_MB": 1624.12,
         "low_resource_required": true,
         "overrides": {
@@ -770,7 +824,7 @@
       },
       "Qwen2-0.5B-Instruct-q0f32-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-0.5B-Instruct-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-0.5B-Instruct-q0f32_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-0.5B-Instruct-q0f32_cs1k-webgpu.wasm",
         "vram_required_MB": 2654.75,
         "low_resource_required": true,
         "overrides": {
@@ -782,7 +836,7 @@
       },
       "Qwen2-1.5B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-1.5B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1629.75,
         "low_resource_required": true,
         "overrides": {
@@ -794,7 +848,7 @@
       },
       "Qwen2-1.5B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-1.5B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1888.97,
         "low_resource_required": true,
         "overrides": {
@@ -806,7 +860,7 @@
       },
       "Qwen2-7B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-7B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5106.67,
         "overrides": {
           "context_window_size": 4096
@@ -817,7 +871,7 @@
       },
       "Qwen2-7B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-7B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5900.09,
         "overrides": {
           "context_window_size": 4096
@@ -828,7 +882,7 @@
       },
       "Qwen2-Math-1.5B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-Math-1.5B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1629.75,
         "low_resource_required": true,
         "overrides": {
@@ -840,7 +894,7 @@
       },
       "Qwen2-Math-1.5B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-Math-1.5B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-1.5B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1888.97,
         "low_resource_required": true,
         "overrides": {
@@ -852,7 +906,7 @@
       },
       "Qwen2-Math-7B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-Math-7B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5106.67,
         "overrides": {
           "context_window_size": 4096
@@ -863,7 +917,7 @@
       },
       "Qwen2-Math-7B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Qwen2-Math-7B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5900.09,
         "overrides": {
           "context_window_size": 4096
@@ -879,7 +933,7 @@
     "models": {
       "gemma-4-E2B-it-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-4-E2B-it-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-4-E2B-it-q4f16_1_cs512-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-4-E2B-it-q4f16_1_cs512-webgpu.wasm",
         "vram_required_MB": 3387.37,
         "overrides": {
           "context_window_size": 4096
@@ -894,7 +948,7 @@
       },
       "gemma-4-E2B-it-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-4-E2B-it-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-4-E2B-it-q4f32_1_cs512-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-4-E2B-it-q4f32_1_cs512-webgpu.wasm",
         "vram_required_MB": 3862.72,
         "overrides": {
           "context_window_size": 4096
@@ -906,7 +960,7 @@
       },
       "gemma-2-2b-it-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-2-2b-it-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2-2b-it-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2-2b-it-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1895.3,
         "overrides": {
           "context_window_size": 4096
@@ -920,7 +974,7 @@
       },
       "gemma-2-2b-it-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-2-2b-it-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2-2b-it-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2-2b-it-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2508.75,
         "overrides": {
           "context_window_size": 4096
@@ -931,7 +985,7 @@
       },
       "gemma-2-2b-it-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/gemma-2-2b-it-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2-2b-it-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2-2b-it-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1583.3,
         "low_resource_required": true,
         "overrides": {
@@ -946,7 +1000,7 @@
       },
       "gemma-2-2b-it-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/gemma-2-2b-it-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2-2b-it-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2-2b-it-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1884.75,
         "low_resource_required": true,
         "overrides": {
@@ -958,7 +1012,7 @@
       },
       "gemma-2-9b-it-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-2-9b-it-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2-9b-it-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2-9b-it-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6422.01,
         "overrides": {
           "context_window_size": 4096
@@ -972,7 +1026,7 @@
       },
       "gemma-2-9b-it-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-2-9b-it-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2-9b-it-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2-9b-it-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 8383.33,
         "overrides": {
           "context_window_size": 4096
@@ -983,7 +1037,7 @@
       },
       "gemma-2-2b-jpn-it-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-2-2b-jpn-it-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2-2b-jpn-it-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2-2b-jpn-it-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1895.3,
         "low_resource_required": true,
         "overrides": {
@@ -998,7 +1052,7 @@
       },
       "gemma-2-2b-jpn-it-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-2-2b-jpn-it-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2-2b-jpn-it-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2-2b-jpn-it-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2508.75,
         "low_resource_required": true,
         "overrides": {
@@ -1010,11 +1064,12 @@
       },
       "gemma3-1b-it-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma3-1b-it-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma3-1b-it-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma3-1b-it-q4f16_1_cs512-webgpu.wasm",
         "vram_required_MB": 711.07,
         "low_resource_required": true,
         "overrides": {
-          "context_window_size": 4096
+          "context_window_size": 4096,
+          "sliding_window_size": -1
         },
         "displayName": "Gemma 3 1B IT (q4f16_1)",
         "shortName": "Gemma 3 1B (q4f16)",
@@ -1022,7 +1077,7 @@
       },
       "gemma-2b-it-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-2b-it-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2b-it-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2b-it-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1476.52,
         "overrides": {
           "context_window_size": 4096
@@ -1037,7 +1092,7 @@
       },
       "gemma-2b-it-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/gemma-2b-it-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2b-it-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2b-it-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1750.66,
         "overrides": {
           "context_window_size": 4096
@@ -1049,7 +1104,7 @@
       },
       "gemma-2b-it-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/gemma-2b-it-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2b-it-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2b-it-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1476.52,
         "low_resource_required": true,
         "overrides": {
@@ -1065,7 +1120,7 @@
       },
       "gemma-2b-it-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/gemma-2b-it-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/gemma-2b-it-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/gemma-2b-it-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1750.66,
         "low_resource_required": true,
         "overrides": {
@@ -1083,7 +1138,7 @@
     "models": {
       "Phi-3.5-mini-instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Phi-3.5-mini-instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3.5-mini-instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3.5-mini-instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3672.07,
         "overrides": {
           "context_window_size": 4096
@@ -1094,7 +1149,7 @@
       },
       "Phi-3.5-mini-instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Phi-3.5-mini-instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3.5-mini-instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3.5-mini-instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5483.12,
         "overrides": {
           "context_window_size": 4096
@@ -1105,7 +1160,7 @@
       },
       "Phi-3.5-mini-instruct-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Phi-3.5-mini-instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3.5-mini-instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3.5-mini-instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2520.07,
         "low_resource_required": true,
         "overrides": {
@@ -1117,7 +1172,7 @@
       },
       "Phi-3.5-mini-instruct-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Phi-3.5-mini-instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3.5-mini-instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3.5-mini-instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3179.12,
         "low_resource_required": true,
         "overrides": {
@@ -1129,7 +1184,7 @@
       },
       "Phi-3.5-vision-instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Phi-3.5-vision-instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3.5-vision-instruct-q4f16_1_cs4k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3.5-vision-instruct-q4f16_1_cs4k-webgpu.wasm",
         "vram_required_MB": 4521.54,
         "overrides": {
           "context_window_size": 4096
@@ -1141,7 +1196,7 @@
       },
       "Phi-3.5-vision-instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Phi-3.5-vision-instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3.5-vision-instruct-q4f32_1_cs4k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3.5-vision-instruct-q4f32_1_cs4k-webgpu.wasm",
         "vram_required_MB": 7050.65,
         "overrides": {
           "context_window_size": 4096
@@ -1153,7 +1208,7 @@
       },
       "Phi-4-mini-instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Phi-4-mini-instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-4-mini-instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-4-mini-instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3437.58,
         "overrides": {
           "context_window_size": 4096
@@ -1164,7 +1219,7 @@
       },
       "Phi-4-mini-instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Phi-4-mini-instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-4-mini-instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-4-mini-instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4220.59,
         "overrides": {
           "context_window_size": 4096
@@ -1175,7 +1230,7 @@
       },
       "Phi-3-mini-4k-instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Phi-3-mini-4k-instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3-mini-4k-instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3-mini-4k-instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3672.07,
         "overrides": {
           "context_window_size": 4096
@@ -1186,7 +1241,7 @@
       },
       "Phi-3-mini-4k-instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Phi-3-mini-4k-instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3-mini-4k-instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3-mini-4k-instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5483.12,
         "overrides": {
           "context_window_size": 4096
@@ -1197,7 +1252,7 @@
       },
       "Phi-3-mini-4k-instruct-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Phi-3-mini-4k-instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3-mini-4k-instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3-mini-4k-instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2520.07,
         "low_resource_required": true,
         "overrides": {
@@ -1209,7 +1264,7 @@
       },
       "Phi-3-mini-4k-instruct-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/Phi-3-mini-4k-instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Phi-3-mini-4k-instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Phi-3-mini-4k-instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3179.12,
         "low_resource_required": true,
         "overrides": {
@@ -1221,7 +1276,7 @@
       },
       "phi-2-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/phi-2-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/phi-2-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/phi-2-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3053.97,
         "overrides": {
           "context_window_size": 2048
@@ -1235,7 +1290,7 @@
       },
       "phi-2-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/phi-2-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/phi-2-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/phi-2-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4032.48,
         "overrides": {
           "context_window_size": 2048
@@ -1246,7 +1301,7 @@
       },
       "phi-2-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/phi-2-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/phi-2-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/phi-2-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2131.97,
         "low_resource_required": true,
         "overrides": {
@@ -1261,7 +1316,7 @@
       },
       "phi-2-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/phi-2-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/phi-2-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/phi-2-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2740.48,
         "low_resource_required": true,
         "overrides": {
@@ -1273,7 +1328,7 @@
       },
       "phi-1_5-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/phi-1_5-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/phi-1_5-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/phi-1_5-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1210.09,
         "low_resource_required": true,
         "overrides": {
@@ -1288,7 +1343,7 @@
       },
       "phi-1_5-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/phi-1_5-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/phi-1_5-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/phi-1_5-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1682.09,
         "low_resource_required": true,
         "overrides": {
@@ -1300,7 +1355,7 @@
       },
       "phi-1_5-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/phi-1_5-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/phi-1_5-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/phi-1_5-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1210.09,
         "low_resource_required": true,
         "overrides": {
@@ -1315,7 +1370,7 @@
       },
       "phi-1_5-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/phi-1_5-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/phi-1_5-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/phi-1_5-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1682.09,
         "low_resource_required": true,
         "overrides": {
@@ -1332,7 +1387,7 @@
     "models": {
       "Mistral-7B-Instruct-v0.3-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Mistral-7B-Instruct-v0.3-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4573.39,
         "overrides": {
           "context_window_size": 4096,
@@ -1347,7 +1402,7 @@
       },
       "Mistral-7B-Instruct-v0.3-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Mistral-7B-Instruct-v0.3-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Mistral-7B-Instruct-v0.3-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Mistral-7B-Instruct-v0.3-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5619.27,
         "overrides": {
           "context_window_size": 4096,
@@ -1359,7 +1414,7 @@
       },
       "Mistral-7B-Instruct-v0.2-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Mistral-7B-Instruct-v0.2-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4573.39,
         "overrides": {
           "context_window_size": 4096,
@@ -1374,7 +1429,7 @@
       },
       "Ministral-3-3B-Base-2512-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Ministral-3-3B-Base-2512-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Ministral-3-3B-Base-2512-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Ministral-3-3B-Base-2512-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2863.69,
         "low_resource_required": true,
         "overrides": {
@@ -1386,7 +1441,7 @@
       },
       "Ministral-3-3B-Base-2512-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Ministral-3-3B-Base-2512-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Ministral-3-3B-Base-2512-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Ministral-3-3B-Base-2512-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3532.37,
         "low_resource_required": true,
         "overrides": {
@@ -1398,7 +1453,7 @@
       },
       "Ministral-3-3B-Reasoning-2512-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Ministral-3-3B-Reasoning-2512-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Ministral-3-3B-Reasoning-2512-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Ministral-3-3B-Reasoning-2512-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2863.69,
         "low_resource_required": true,
         "overrides": {
@@ -1410,7 +1465,7 @@
       },
       "Ministral-3-3B-Reasoning-2512-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Ministral-3-3B-Reasoning-2512-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Ministral-3-3B-Reasoning-2512-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Ministral-3-3B-Reasoning-2512-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3532.37,
         "low_resource_required": true,
         "overrides": {
@@ -1422,7 +1477,7 @@
       },
       "Ministral-3-3B-Instruct-2512-BF16-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Ministral-3-3B-Instruct-2512-BF16-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Ministral-3-3B-Instruct-2512-BF16-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Ministral-3-3B-Instruct-2512-BF16-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2863.69,
         "low_resource_required": true,
         "overrides": {
@@ -1434,7 +1489,7 @@
       },
       "Ministral-3-3B-Instruct-2512-BF16-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Ministral-3-3B-Instruct-2512-BF16-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Ministral-3-3B-Instruct-2512-BF16-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Ministral-3-3B-Instruct-2512-BF16-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3532.37,
         "low_resource_required": true,
         "overrides": {
@@ -1451,7 +1506,7 @@
     "models": {
       "DeepSeek-R1-Distill-Qwen-7B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/DeepSeek-R1-Distill-Qwen-7B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5106.67,
         "overrides": {
           "context_window_size": 4096
@@ -1462,7 +1517,7 @@
       },
       "DeepSeek-R1-Distill-Qwen-7B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/DeepSeek-R1-Distill-Qwen-7B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Qwen2-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5900.09,
         "overrides": {
           "context_window_size": 4096
@@ -1473,7 +1528,7 @@
       },
       "DeepSeek-R1-Distill-Llama-8B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/DeepSeek-R1-Distill-Llama-8B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3_1-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3_1-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6101.01,
         "overrides": {
           "context_window_size": 4096
@@ -1484,7 +1539,7 @@
       },
       "DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3_1-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3_1-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5001,
         "overrides": {
           "context_window_size": 4096
@@ -1500,7 +1555,7 @@
     "models": {
       "Hermes-2-Theta-Llama-3-8B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Hermes-2-Theta-Llama-3-8B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4976.13,
         "overrides": {
           "context_window_size": 4096
@@ -1511,7 +1566,7 @@
       },
       "Hermes-2-Theta-Llama-3-8B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Hermes-2-Theta-Llama-3-8B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6051.27,
         "overrides": {
           "context_window_size": 4096
@@ -1522,7 +1577,7 @@
       },
       "Hermes-2-Pro-Llama-3-8B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Hermes-2-Pro-Llama-3-8B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4976.13,
         "overrides": {
           "context_window_size": 4096
@@ -1533,7 +1588,7 @@
       },
       "Hermes-2-Pro-Llama-3-8B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Hermes-2-Pro-Llama-3-8B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6051.27,
         "overrides": {
           "context_window_size": 4096
@@ -1544,7 +1599,7 @@
       },
       "Hermes-3-Llama-3.2-3B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Hermes-3-Llama-3.2-3B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3.2-3B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3.2-3B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2951.51,
         "low_resource_required": true,
         "overrides": {
@@ -1556,7 +1611,7 @@
       },
       "Hermes-3-Llama-3.2-3B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Hermes-3-Llama-3.2-3B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3.2-3B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3.2-3B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2263.69,
         "low_resource_required": true,
         "overrides": {
@@ -1568,7 +1623,7 @@
       },
       "Hermes-3-Llama-3.1-8B-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Hermes-3-Llama-3.1-8B-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3_1-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3_1-8B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 5779.27,
         "overrides": {
           "context_window_size": 4096
@@ -1579,7 +1634,7 @@
       },
       "Hermes-3-Llama-3.1-8B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Hermes-3-Llama-3.1-8B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Llama-3_1-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Llama-3_1-8B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4876.13,
         "overrides": {
           "context_window_size": 4096
@@ -1590,7 +1645,7 @@
       },
       "Hermes-2-Pro-Mistral-7B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/Hermes-2-Pro-Mistral-7B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4033.28,
         "overrides": {
           "context_window_size": 4096,
@@ -1605,7 +1660,7 @@
       },
       "OpenHermes-2.5-Mistral-7B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/OpenHermes-2.5-Mistral-7B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4573.39,
         "overrides": {
           "context_window_size": 4096,
@@ -1620,7 +1675,7 @@
       },
       "NeuralHermes-2.5-Mistral-7B-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/NeuralHermes-2.5-Mistral-7B-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4573.39,
         "overrides": {
           "context_window_size": 4096,
@@ -1640,7 +1695,7 @@
     "models": {
       "SmolLM2-1.7B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/SmolLM2-1.7B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/SmolLM2-1.7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM2-1.7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1774.19,
         "low_resource_required": true,
         "overrides": {
@@ -1655,7 +1710,7 @@
       },
       "SmolLM2-1.7B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/SmolLM2-1.7B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/SmolLM2-1.7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM2-1.7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2692.38,
         "low_resource_required": true,
         "overrides": {
@@ -1667,7 +1722,7 @@
       },
       "SmolLM2-360M-Instruct-q0f16-MLC": {
         "model": "https://huggingface.co/mlc-ai/SmolLM2-360M-Instruct-q0f16-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/SmolLM2-360M-Instruct-q0f16_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM2-360M-Instruct-q0f16_cs1k-webgpu.wasm",
         "vram_required_MB": 871.99,
         "low_resource_required": true,
         "overrides": {
@@ -1682,7 +1737,7 @@
       },
       "SmolLM2-360M-Instruct-q0f32-MLC": {
         "model": "https://huggingface.co/mlc-ai/SmolLM2-360M-Instruct-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/SmolLM2-360M-Instruct-q0f32_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM2-360M-Instruct-q0f32_cs1k-webgpu.wasm",
         "vram_required_MB": 1743.99,
         "low_resource_required": true,
         "overrides": {
@@ -1694,7 +1749,7 @@
       },
       "SmolLM2-360M-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/SmolLM2-360M-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/SmolLM2-360M-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM2-360M-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 376.06,
         "low_resource_required": true,
         "overrides": {
@@ -1709,7 +1764,7 @@
       },
       "SmolLM2-360M-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/SmolLM2-360M-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/SmolLM2-360M-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM2-360M-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 579.61,
         "low_resource_required": true,
         "overrides": {
@@ -1721,7 +1776,7 @@
       },
       "SmolLM2-135M-Instruct-q0f16-MLC": {
         "model": "https://huggingface.co/mlc-ai/SmolLM2-135M-Instruct-q0f16-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/SmolLM2-135M-Instruct-q0f16_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM2-135M-Instruct-q0f16_cs1k-webgpu.wasm",
         "vram_required_MB": 359.69,
         "low_resource_required": true,
         "overrides": {
@@ -1736,7 +1791,7 @@
       },
       "SmolLM2-135M-Instruct-q0f32-MLC": {
         "model": "https://huggingface.co/mlc-ai/SmolLM2-135M-Instruct-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/SmolLM2-135M-Instruct-q0f32_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM2-135M-Instruct-q0f32_cs1k-webgpu.wasm",
         "vram_required_MB": 719.38,
         "low_resource_required": true,
         "overrides": {
@@ -1753,7 +1808,7 @@
     "models": {
       "OLMo-2-1124-7B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/OLMo-2-1124-7B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/OLMo-2-1124-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/OLMo-2-1124-7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 6479.01,
         "overrides": {
           "context_window_size": 4096
@@ -1764,7 +1819,7 @@
       },
       "OLMo-2-1124-7B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/OLMo-2-1124-7B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/OLMo-2-1124-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/OLMo-2-1124-7B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 9086.02,
         "overrides": {
           "context_window_size": 4096
@@ -1775,7 +1830,7 @@
       },
       "OLMo-2-0425-1B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/OLMo-2-0425-1B-Instruct-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/OLMo-2-0425-1B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/OLMo-2-0425-1B-Instruct-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1776.75,
         "low_resource_required": true,
         "overrides": {
@@ -1787,7 +1842,7 @@
       },
       "OLMo-2-0425-1B-Instruct-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/OLMo-2-0425-1B-Instruct-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/OLMo-2-0425-1B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/OLMo-2-0425-1B-Instruct-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2453.51,
         "low_resource_required": true,
         "overrides": {
@@ -1804,7 +1859,7 @@
     "models": {
       "stablelm-2-zephyr-1_6b-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/stablelm-2-zephyr-1_6b-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/stablelm-2-zephyr-1_6b-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/stablelm-2-zephyr-1_6b-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2087.66,
         "overrides": {
           "context_window_size": 4096
@@ -1815,7 +1870,7 @@
       },
       "stablelm-2-zephyr-1_6b-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/stablelm-2-zephyr-1_6b-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/stablelm-2-zephyr-1_6b-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/stablelm-2-zephyr-1_6b-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2999.33,
         "overrides": {
           "context_window_size": 4096
@@ -1826,7 +1881,7 @@
       },
       "stablelm-2-zephyr-1_6b-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/stablelm-2-zephyr-1_6b-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/stablelm-2-zephyr-1_6b-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/stablelm-2-zephyr-1_6b-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1511.66,
         "low_resource_required": true,
         "overrides": {
@@ -1838,7 +1893,7 @@
       },
       "stablelm-2-zephyr-1_6b-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/stablelm-2-zephyr-1_6b-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/stablelm-2-zephyr-1_6b-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/stablelm-2-zephyr-1_6b-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 1847.33,
         "low_resource_required": true,
         "overrides": {
@@ -1855,7 +1910,7 @@
     "models": {
       "RedPajama-INCITE-Chat-3B-v1-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/RedPajama-INCITE-Chat-3B-v1-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/RedPajama-INCITE-Chat-3B-v1-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/RedPajama-INCITE-Chat-3B-v1-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2972.09,
         "overrides": {
           "context_window_size": 2048
@@ -1869,7 +1924,7 @@
       },
       "RedPajama-INCITE-Chat-3B-v1-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/RedPajama-INCITE-Chat-3B-v1-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/RedPajama-INCITE-Chat-3B-v1-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/RedPajama-INCITE-Chat-3B-v1-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 3928.09,
         "overrides": {
           "context_window_size": 2048
@@ -1880,7 +1935,7 @@
       },
       "RedPajama-INCITE-Chat-3B-v1-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/RedPajama-INCITE-Chat-3B-v1-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/RedPajama-INCITE-Chat-3B-v1-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/RedPajama-INCITE-Chat-3B-v1-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2041.09,
         "low_resource_required": true,
         "overrides": {
@@ -1895,7 +1950,7 @@
       },
       "RedPajama-INCITE-Chat-3B-v1-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/RedPajama-INCITE-Chat-3B-v1-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/RedPajama-INCITE-Chat-3B-v1-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/RedPajama-INCITE-Chat-3B-v1-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 2558.09,
         "low_resource_required": true,
         "overrides": {
@@ -1912,7 +1967,7 @@
     "models": {
       "TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/TinyLlama-1.1B-Chat-v1.0-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/TinyLlama-1.1B-Chat-v1.0-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 697.24,
         "low_resource_required": true,
         "overrides": {
@@ -1927,7 +1982,7 @@
       },
       "TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/TinyLlama-1.1B-Chat-v1.0-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/TinyLlama-1.1B-Chat-v1.0-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 839.98,
         "low_resource_required": true,
         "overrides": {
@@ -1939,7 +1994,7 @@
       },
       "TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/TinyLlama-1.1B-Chat-v1.0-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/TinyLlama-1.1B-Chat-v1.0-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 675.24,
         "low_resource_required": true,
         "overrides": {
@@ -1954,7 +2009,7 @@
       },
       "TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v1.0-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/TinyLlama-1.1B-Chat-v1.0-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/TinyLlama-1.1B-Chat-v1.0-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 795.98,
         "low_resource_required": true,
         "overrides": {
@@ -1966,7 +2021,7 @@
       },
       "TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/TinyLlama-1.1B-Chat-v0.4-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/TinyLlama-1.1B-Chat-v0.4-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 697.24,
         "low_resource_required": true,
         "overrides": {
@@ -1981,7 +2036,7 @@
       },
       "TinyLlama-1.1B-Chat-v0.4-q4f32_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v0.4-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/TinyLlama-1.1B-Chat-v0.4-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/TinyLlama-1.1B-Chat-v0.4-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 839.98,
         "low_resource_required": true,
         "overrides": {
@@ -1993,7 +2048,7 @@
       },
       "TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v0.4-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/TinyLlama-1.1B-Chat-v0.4-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/TinyLlama-1.1B-Chat-v0.4-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 675.24,
         "low_resource_required": true,
         "overrides": {
@@ -2008,7 +2063,7 @@
       },
       "TinyLlama-1.1B-Chat-v0.4-q4f32_1-MLC-1k": {
         "model": "https://huggingface.co/mlc-ai/TinyLlama-1.1B-Chat-v0.4-q4f32_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/TinyLlama-1.1B-Chat-v0.4-q4f32_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/TinyLlama-1.1B-Chat-v0.4-q4f32_1_cs1k-webgpu.wasm",
         "vram_required_MB": 795.98,
         "low_resource_required": true,
         "overrides": {
@@ -2025,7 +2080,7 @@
     "models": {
       "WizardMath-7B-V1.1-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/WizardMath-7B-V1.1-q4f16_1-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/Mistral-7B-Instruct-v0.3-q4f16_1_cs1k-webgpu.wasm",
         "vram_required_MB": 4573.39,
         "overrides": {
           "context_window_size": 4096,
@@ -2045,7 +2100,7 @@
     "models": {
       "snowflake-arctic-embed-m-q0f32-MLC-b32": {
         "model": "https://huggingface.co/mlc-ai/snowflake-arctic-embed-m-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/snowflake-arctic-embed-m-q0f32-ctx512_cs512_batch32-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/snowflake-arctic-embed-m-q0f32-ctx512_cs512_batch32-webgpu.wasm",
         "vram_required_MB": 1407.51,
         "model_type": 1,
         "displayName": "Snowflake Arctic Embed M (q0f32, batch 32)",
@@ -2054,7 +2109,7 @@
       },
       "snowflake-arctic-embed-m-q0f32-MLC-b4": {
         "model": "https://huggingface.co/mlc-ai/snowflake-arctic-embed-m-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/snowflake-arctic-embed-m-q0f32-ctx512_cs512_batch4-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/snowflake-arctic-embed-m-q0f32-ctx512_cs512_batch4-webgpu.wasm",
         "vram_required_MB": 539.4,
         "model_type": 1,
         "displayName": "Snowflake Arctic Embed M (q0f32, batch 4)",
@@ -2063,7 +2118,7 @@
       },
       "snowflake-arctic-embed-s-q0f32-MLC-b32": {
         "model": "https://huggingface.co/mlc-ai/snowflake-arctic-embed-s-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/snowflake-arctic-embed-s-q0f32-ctx512_cs512_batch32-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/snowflake-arctic-embed-s-q0f32-ctx512_cs512_batch32-webgpu.wasm",
         "vram_required_MB": 1022.82,
         "model_type": 1,
         "displayName": "Snowflake Arctic Embed S (q0f32, batch 32)",
@@ -2072,7 +2127,7 @@
       },
       "snowflake-arctic-embed-s-q0f32-MLC-b4": {
         "model": "https://huggingface.co/mlc-ai/snowflake-arctic-embed-s-q0f32-MLC",
-        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/snowflake-arctic-embed-s-q0f32-ctx512_cs512_batch4-webgpu.wasm",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/snowflake-arctic-embed-s-q0f32-ctx512_cs512_batch4-webgpu.wasm",
         "vram_required_MB": 238.71,
         "model_type": 1,
         "displayName": "Snowflake Arctic Embed S (q0f32, batch 4)",

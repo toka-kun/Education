@@ -13,7 +13,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 262144,
-        "maxOutputTokens": 32768,
+        "maxOutputTokens": 235929,
         "desc": ""
       },
       "google/gemma-4-31b-it": {
@@ -23,7 +23,7 @@
         "tags": ["free"],
         "effort": [],
         "defaultEffort": null,
-        "intelligenceIndex": null,
+        "intelligenceIndex": 4.4,
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 262144,
@@ -281,7 +281,7 @@
         "tags": ["expensive"],
         "effort": ["low", "medium", "high", "xhigh"],
         "defaultEffort": "high",
-        "intelligenceIndex": null,
+        "intelligenceIndex": 31,
         "inputModalities": ["text", "file", "image"],
         "outputModalities": ["text"],
         "contextWindow": 500000,
@@ -590,18 +590,18 @@
   "🇨🇳 Tencent": {
     "desc": "",
     "models": {
-      "tencent/hy4-preview": {
-        "displayName": "Hy4 Preview",
-        "shortName": "Hy4 Preview",
-        "cost": "0.83/2.50",
+      "tencent/hy4": {
+        "displayName": "Hy4",
+        "shortName": "Hy4",
+        "cost": "0.417/1.251",
         "tags": [],
         "effort": ["none", "low", "high"],
         "defaultEffort": "high",
-        "intelligenceIndex": null,
-        "inputModalities": ["text"],
+        "intelligenceIndex": 34.6,
+        "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 64000,
+        "maxOutputTokens": 65536,
         "desc": ""
       }
     }

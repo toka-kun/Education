@@ -593,7 +593,7 @@
       "tencent/hy4": {
         "displayName": "Hy4",
         "shortName": "Hy4",
-        "cost": "0.417/1.251",
+        "cost": "0.834/2.501",
         "tags": [],
         "effort": ["none", "low", "high"],
         "defaultEffort": "high",

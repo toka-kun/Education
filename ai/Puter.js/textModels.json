@@ -13,7 +13,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 262144,
-        "maxOutputTokens": 235929,
+        "maxOutputTokens": 128000,
         "desc": ""
       },
       "google/gemma-4-31b-it": {
@@ -98,7 +98,7 @@
         "tags": [],
         "effort": ["low", "medium", "high"],
         "defaultEffort": "medium",
-        "intelligenceIndex": null,
+        "intelligenceIndex": 3.8,
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 131072,
@@ -511,7 +511,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 131072,
+        "maxOutputTokens": 943717,
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -581,7 +581,7 @@
         "intelligenceIndex": 28.5,
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
-        "contextWindow": 1048576,
+        "contextWindow": 1000000,
         "maxOutputTokens": 64000,
         "desc": ""
       }

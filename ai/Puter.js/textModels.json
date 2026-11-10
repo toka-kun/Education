@@ -192,7 +192,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1000000,
         "maxOutputTokens": 128000,
-        "desc": "フォールバック時はSonnet 5で実行されます。"
+        "desc": "フォールバック時はSonnet 5またはSonnet 4.6で実行されます。"
       },
       "anthropic/claude-opus-5-5": {
         "displayName": "Claude Opus 5.5",
@@ -208,14 +208,14 @@
         "maxOutputTokens": 128000,
         "desc": "フォールバック時はOpus 5またはOpus 4.8で実行されます。"
       },
-      "anthropic/claude-fable-5-1": {
-        "displayName": "Claude Fable 5.1",
-        "shortName": "Fable 5.1",
-        "cost": "10.00/50.00",
+      "anthropic/claude-fable-5-2": {
+        "displayName": "Claude Fable 5.2",
+        "shortName": "Fable 5.2",
+        "cost": "8.00/40.00",
         "tags": ["very-expensive"],
         "effort": ["low", "medium", "high", "xhigh", "max"],
         "defaultEffort": "high",
-        "intelligenceIndex": 50,
+        "intelligenceIndex": 64.6,
         "inputModalities": ["text", "file", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1000000,
@@ -227,18 +227,18 @@
   "🇺🇸 Meta": {
     "desc": "",
     "models": {
-      "meta/muse-glimmer-30b": {
-        "displayName": "Muse Glimmer 30B",
-        "shortName": "Muse Glimmer",
-        "cost": "0.30/1.10",
-        "tags": [],
-        "effort": ["low", "medium", "high", "xhigh"],
-        "defaultEffort": "medium",
-        "intelligenceIndex": 6.3,
-        "inputModalities": ["text", "image"],
+      "meta/muse-ember": {
+        "displayName": "Muse Ember",
+        "shortName": "Muse Ember",
+        "cost": "0.10/0.50",
+        "tags": ["recommended"],
+        "effort": ["minimal", "low", "medium", "high", "xhigh", "max"],
+        "defaultEffort": "max",
+        "intelligenceIndex": null,
+        "inputModalities": ["text", "file", "image", "audio", "video"],
         "outputModalities": ["text"],
-        "contextWindow": 131072,
-        "maxOutputTokens": 16384,
+        "contextWindow": 1048576,
+        "maxOutputTokens": 943718,
         "desc": ""
       },
       "meta/muse-spark-1.3": {

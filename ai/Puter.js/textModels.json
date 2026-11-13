@@ -85,6 +85,20 @@
         "contextWindow": 1048576,
         "maxOutputTokens": 943718,
         "desc": "2026年12月からは2倍の通常価格"
+      },
+      "google/gemini-4-carbon": {
+        "displayName": "Gemini 4 Carbon",
+        "shortName": "Gemini 4 Carbon",
+        "cost": "2.00/10.00",
+        "tags": ["expensive"],
+        "effort": ["low", "medium", "high"],
+        "defaultEffort": "medium",
+        "intelligenceIndex": 60,
+        "inputModalities": ["text", "file", "image", "audio", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 943718,
+        "desc": "2026年12月からは2倍の通常価格"
       }
     }
   },

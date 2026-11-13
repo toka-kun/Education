@@ -44,19 +44,19 @@
         "maxOutputTokens": 65536,
         "desc": ""
       },
-      "google/gemini-3.8-flash": {
-        "displayName": "Gemini 3.8 Flash",
-        "shortName": "Gemini 3.8 Flash",
-        "cost": "0.75/3.75",
-        "tags": ["recommended"],
-        "effort": ["low", "medium", "high"],
+      "google/gemini-4-hydrogen": {
+        "displayName": "Gemini 4 Hydrogen",
+        "shortName": "4 Hydrogen",
+        "cost": "1.50/7.50",
+        "tags": ["expensive"],
+        "effort": ["low", "medium", "high", "xhigh"],
         "defaultEffort": "medium",
-        "intelligenceIndex": 30.8,
+        "intelligenceIndex": null,
         "inputModalities": ["text", "file", "image", "audio", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 65536,
-        "desc": "2027年1月からは2倍の通常価格"
+        "maxOutputTokens": 943718,
+        "desc": ""
       },
       "google/gemini-3.1-pro-preview": {
         "displayName": "Gemini 3.1 Pro Preview",
@@ -70,11 +70,11 @@
         "outputModalities": ["text"],
         "contextWindow": 1048576,
         "maxOutputTokens": 65536,
-        "desc": "2026年2月からずっと更新されておらず、性能も3.8 Flashに追い抜かれているので非推奨。20万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
+        "desc": "2026年2月からずっと更新されておらず、性能も4 Hydrogenに追い抜かれているので非推奨。20万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
       },
       "google/gemini-4-argon": {
-        "displayName": "Gemini 4 Argon",
-        "shortName": "Gemini 4 Argon",
+        "displayName": "4 Argon",
+        "shortName": "4 Argon",
         "cost": "2.00/10.00",
         "tags": ["expensive"],
         "effort": ["low", "medium", "high"],
@@ -87,8 +87,8 @@
         "desc": "2026年12月からは2倍の通常価格"
       },
       "google/gemini-4-carbon": {
-        "displayName": "Gemini 4 Carbon",
-        "shortName": "Gemini 4 Carbon",
+        "displayName": "4 Carbon",
+        "shortName": "4 Carbon",
         "cost": "2.00/10.00",
         "tags": ["expensive"],
         "effort": ["low", "medium", "high"],
@@ -464,7 +464,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 393216,
+        "maxOutputTokens": 943718,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {

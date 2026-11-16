@@ -471,6 +471,246 @@
     "channelId": "",
     "playlistId": ""
   },
+  "asia/fnn-news": {
+    "name": "FNN News",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "",
+    "channelId": "UCoQBJMzcwmXrRSHBFAlTsIw",
+    "playlistId": "UULVoQBJMzcwmXrRSHBFAlTsIw"
+  },
+  "asia/famelack-zcW6vCKG9ZO6s9": {
+    "name": "ABCテレビニュース",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "3Z7ZOgCT4SU",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-iDPxLdUClyuBG1": {
+    "name": "Anileap: アニリープ公式",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "-RogqxfnBdg",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-0y6A0PfJfOwnxT": {
+    "name": "CGNTV Japan",
+    "genre": "optional",
+    "hlsUrl": "https://d2p4mrcwl6ly4.cloudfront.net/out/v1/8d50f69fdbbf411a8d302743e4263716/CGNWebLiveJP.m3u8",
+    "fallbackVideoId": "",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-AY9El1RUmBJaPD": {
+    "name": "Earthquake Alert Channel",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "I5_vUnu1GN4",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-iAAKFVIzXYEola": {
+    "name": "Fukuoka TNC News Broadcast",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "A76bj7NZSs0",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-EJU67zKw2oX8W5": {
+    "name": "HBC Hokkaido News 24",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "Ncus1Xy-5T0",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-OPJr34iVleC5zs": {
+    "name": "Hiroshima News 24",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "e2pgLUmaxGs",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-KG9SAnaHQHc2LL": {
+    "name": "HTB Hokkaido News 24",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "tvgbZZYS4Nk",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-DYc6FdzoKztkkH": {
+    "name": "KBC News",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "xEbGUGufpx0",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-mrmqPrrdPzqoWG": {
+    "name": "KTS News 鹿児島",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "j0SW3bmbiMc",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-LXJZE9lLeFU629": {
+    "name": "MRO",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "VLJvicKJKjo",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-ihnGwU2sIXqoDQ": {
+    "name": "Nagoya TV News",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "-C6FE2m7kX8",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-GUSggBQ6IDRV8m": {
+    "name": "Neko Atsume's Yard",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "GbczJ3odUt4",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-en6lXive6kcLPT": {
+    "name": "Pokémon Kids TV English",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "HpxyHcKpouY",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-RBU2hbbWKTIbuY": {
+    "name": "Pokémon Kids TV Japanese",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "9N90nJ2gdw0",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-wXR8eBaeZKqj0W": {
+    "name": "QVC",
+    "genre": "optional",
+    "hlsUrl": "https://d1flvb4iqlercm.cloudfront.net/live/live_1080p_2nd.m3u8",
+    "fallbackVideoId": "",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-PjUU6ZmfuLbOka": {
+    "name": "RCC News 24",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "uKZAB-EWw8E",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-dS0Hi9Oo1lT24W": {
+    "name": "RKB News 24",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "p8vaSmXx5Sc",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-kbQV9EuwPGLwNE": {
+    "name": "SBS News",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "8XFmEKZyRcQ",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-VFHPY4Y8ToG3zS": {
+    "name": "Shop Channel",
+    "genre": "optional",
+    "hlsUrl": "https://stream3.shopch.jp/HLS/master.m3u8",
+    "fallbackVideoId": "Vq3jz0c7oMs",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-qNDlG3J8FqlbVd": {
+    "name": "STV News Hokkaido",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "Wvqa1Csp5Vk",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-PsC2Ff8IrDt4Uv": {
+    "name": "Su_Root: Earthquake Monitoring",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "mCYGHvCZtP0",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-1qjAxlbXqhZnO0": {
+    "name": "SUNTV News",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "m9UTkNVzdKE",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-ToMXBmes3Kja4W": {
+    "name": "TeNY Niigata News",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "UemTp5s26W0",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-PMnW8x6cQgamlD": {
+    "name": "Tokai TV News ONE",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "hgogqv0lZpE",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-QlJob3NpyaPaoh": {
+    "name": "TOS News",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "b_7InZC9hRI",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-ldMuaEv5ZnKJiR": {
+    "name": "TV Kanazawa News",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "QdJWeODVjvA",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-HVdEMkaLsWHdoq": {
+    "name": "UTY News 24h",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "CQFZblF3seM",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-o94Wa6r2SObZ5m": {
+    "name": "Weathernews",
+    "genre": "optional",
+    "hlsUrl": "https://rch01e-alive-hls.akamaized.net/38fb45b25cdb05a1/out/v1/4e907bfabc684a1dae10df8431a84d21/index.m3u8",
+    "fallbackVideoId": "",
+    "channelId": "",
+    "playlistId": ""
+  },
   "asia/cti-news": {
     "name": "CTI News (Taiwan)",
     "genre": "optional",

@@ -108,7 +108,7 @@
       "openai/gpt-oss-120b": {
         "displayName": "GPT-OSS 120B",
         "shortName": "OSS 120B",
-        "cost": "0.04/0.17",
+        "cost": "0.03/0.15",
         "tags": [],
         "effort": ["low", "medium", "high"],
         "defaultEffort": "medium",

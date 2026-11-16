@@ -464,7 +464,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 384000,
+        "maxOutputTokens": 943718,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {
@@ -514,14 +514,14 @@
         "maxOutputTokens": 131072,
         "desc": ""
       },
-      "qwen/qwen3.8-max-0902": {
-        "displayName": "Qwen3.8 Max (0902)",
-        "shortName": "Qwen3.8 Max (0902)",
-        "cost": "2.00/6.00",
+      "qwen/qwen4-max": {
+        "displayName": "Qwen4-Max",
+        "shortName": "Qwen4-Max",
+        "cost": "1.50/4.50",
         "tags": ["expensive"],
-        "effort": ["minimal", "low", "medium", "high", "xhigh"],
-        "defaultEffort": "xhigh",
-        "intelligenceIndex": 33.7,
+        "effort": ["none", "low", "high", "xhigh"],
+        "defaultEffort": "high",
+        "intelligenceIndex": null,
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1000000,
@@ -675,17 +675,17 @@
   "🇨🇳 InclusionAI": {
     "desc": "",
     "models": {
-      "inclusionai/ling-3.1-flash": {
-        "displayName": "Ling 3.1 Flash",
-        "shortName": "Ling 3.1 Flash",
-        "cost": "0.30/0.90",
-        "tags": [],
+      "inclusionai/ling-3.2-flash:free": {
+        "displayName": "Ling 3.2 Flash",
+        "shortName": "Ling 3.2 Flash",
+        "cost": "0.00/0.00",
+        "tags": ["free"],
         "effort": [],
         "defaultEffort": null,
-        "intelligenceIndex": 29.6,
-        "inputModalities": ["text"],
+        "intelligenceIndex": null,
+        "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
-        "contextWindow": 1000000,
+        "contextWindow": 1048576,
         "maxOutputTokens": 262144,
         "desc": ""
       }

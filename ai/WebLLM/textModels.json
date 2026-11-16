@@ -1693,6 +1693,31 @@
   "🤗 Hugging Face": {
     "desc": "",
     "models": {
+      "SmolLM3-3B-q4f16_1-MLC": {
+        "model": "https://huggingface.co/mlc-ai/SmolLM3-3B-q4f16_1-MLC",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM3-3B-q4f16_1_cs1k-webgpu.wasm",
+        "vram_required_MB": 2053.32,
+        "overrides": {
+          "context_window_size": 4096
+        },
+        "required_features": [
+          "shader-f16"
+        ],
+        "displayName": "SmolLM3 3B (q4f16_1)",
+        "shortName": "SmolLM3 3B (q4f16)",
+        "desc": ""
+      },
+      "SmolLM3-3B-q4f32_1-MLC": {
+        "model": "https://huggingface.co/mlc-ai/SmolLM3-3B-q4f32_1-MLC",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM3-3B-q4f32_1_cs1k-webgpu.wasm",
+        "vram_required_MB": 2589.38,
+        "overrides": {
+          "context_window_size": 4096
+        },
+        "displayName": "SmolLM3 3B (q4f32_1)",
+        "shortName": "SmolLM3 3B (q4f32)",
+        "desc": ""
+      },
       "SmolLM2-1.7B-Instruct-q4f16_1-MLC": {
         "model": "https://huggingface.co/mlc-ai/SmolLM2-1.7B-Instruct-q4f16_1-MLC",
         "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/SmolLM2-1.7B-Instruct-q4f16_1_cs1k-webgpu.wasm",
@@ -2132,6 +2157,94 @@
         "model_type": 1,
         "displayName": "Snowflake Arctic Embed S (q0f32, batch 4)",
         "shortName": "Snowflake Arctic Embed S (q0f32, b4)",
+        "desc": ""
+      }
+    }
+  },
+  "その他": {
+    "desc": "",
+    "models": {
+      "MiniCPM5-2B-q4f16_1-MLC": {
+        "model": "https://huggingface.co/mlc-ai/MiniCPM5-2B-q4f16_1-MLC",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/MiniCPM5-2B-q4f16_1_cs1k-webgpu.wasm",
+        "vram_required_MB": 1586.33,
+        "overrides": {
+          "context_window_size": 4096
+        },
+        "required_features": [
+          "shader-f16"
+        ],
+        "displayName": "MiniCPM5 2B (q4f16_1)",
+        "shortName": "MiniCPM5 2B (q4f16)",
+        "desc": ""
+      },
+      "MiniCPM5-2B-q4f32_1-MLC": {
+        "model": "https://huggingface.co/mlc-ai/MiniCPM5-2B-q4f32_1-MLC",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/MiniCPM5-2B-q4f32_1_cs1k-webgpu.wasm",
+        "vram_required_MB": 1940.66,
+        "overrides": {
+          "context_window_size": 4096
+        },
+        "displayName": "MiniCPM5 2B (q4f32_1)",
+        "shortName": "MiniCPM5 2B (q4f32)",
+        "desc": ""
+      },
+      "LFM2.5-1.2B-Instruct-q4f16_1-MLC": {
+        "model": "https://huggingface.co/mlc-ai/LFM2.5-1.2B-Instruct-q4f16_1-MLC",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/LFM2.5-1.2B-Instruct-q4f16_1_cs1k-webgpu.wasm",
+        "vram_required_MB": 1001.09,
+        "low_resource_required": true,
+        "overrides": {
+          "context_window_size": 4096,
+          "max_history_size": 1
+        },
+        "required_features": [
+          "shader-f16"
+        ],
+        "displayName": "LFM2.5 1.2B Instruct (q4f16_1)",
+        "shortName": "LFM2.5 1.2B (q4f16)",
+        "desc": ""
+      },
+      "LFM2.5-1.2B-Instruct-q4f32_1-MLC": {
+        "model": "https://huggingface.co/mlc-ai/LFM2.5-1.2B-Instruct-q4f32_1-MLC",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/LFM2.5-1.2B-Instruct-q4f32_1_cs1k-webgpu.wasm",
+        "vram_required_MB": 1172.18,
+        "low_resource_required": true,
+        "overrides": {
+          "context_window_size": 4096,
+          "max_history_size": 1
+        },
+        "displayName": "LFM2.5 1.2B Instruct (q4f32_1)",
+        "shortName": "LFM2.5 1.2B (q4f32)",
+        "desc": ""
+      },
+      "LFM2.5-350M-q4f16_1-MLC": {
+        "model": "https://huggingface.co/mlc-ai/LFM2.5-350M-q4f16_1-MLC",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/LFM2.5-350M-q4f16_1_cs1k-webgpu.wasm",
+        "vram_required_MB": 532.3,
+        "low_resource_required": true,
+        "overrides": {
+          "context_window_size": 4096,
+          "max_history_size": 1
+        },
+        "required_features": [
+          "shader-f16"
+        ],
+        "displayName": "LFM2.5 350M (q4f16_1)",
+        "shortName": "LFM2.5 350M (q4f16)",
+        "desc": ""
+      },
+      "LFM2.5-350M-q4f32_1-MLC": {
+        "model": "https://huggingface.co/mlc-ai/LFM2.5-350M-q4f32_1-MLC",
+        "model_lib": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_87/base/LFM2.5-350M-q4f32_1_cs1k-webgpu.wasm",
+        "vram_required_MB": 631.59,
+        "low_resource_required": true,
+        "overrides": {
+          "context_window_size": 4096,
+          "max_history_size": 1
+        },
+        "displayName": "LFM2.5 350M (q4f32_1)",
+        "shortName": "LFM2.5 350M (q4f32)",
         "desc": ""
       }
     }

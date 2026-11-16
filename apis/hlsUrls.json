@@ -63,6 +63,14 @@
     "channelId": "UCx6h-dWzJ5NpAlja1YsApdg",
     "playlistId": "UULVx6h-dWzJ5NpAlja1YsApdg"
   },
+  "na/newsmax-2": {
+    "name": "Newsmax2",
+    "genre": "optional",
+    "hlsUrl": "https://n2ctsota.akamaized.net/hls/live/2113130/Live_1/index.m3u8",
+    "fallbackVideoId": "",
+    "channelId": "UCx6h-dWzJ5NpAlja1YsApdg",
+    "playlistId": "UULVx6h-dWzJ5NpAlja1YsApdg"
+  },
   "na/abc-news": {
     "name": "ABC News",
     "genre": "optional",

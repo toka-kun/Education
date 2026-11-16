@@ -59,15 +59,15 @@
     "name": "Newsmax",
     "genre": "optional",
     "hlsUrl": "https://n1ctsota.akamaized.net/hls/live/2113880/Live_1/index.m3u8",
-    "fallbackVideoId": "N3GJ8o_qZHQ",
-    "channelId": "",
-    "playlistId": ""
+    "fallbackVideoId": "",
+    "channelId": "UCx6h-dWzJ5NpAlja1YsApdg",
+    "playlistId": "UULVx6h-dWzJ5NpAlja1YsApdg"
   },
   "na/abc-news": {
     "name": "ABC News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "iipR5yUp36o",
+    "fallbackVideoId": "",
     "channelId": "UCBi2mrWuNuyYy4gbM6fU18Q",
     "playlistId": "UULVBi2mrWuNuyYy4gbM6fU18Q"
   },
@@ -387,7 +387,7 @@
     "name": "C5N",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "j6oh4Kqz3UM",
+    "fallbackVideoId": "",
     "channelId": "UCFgk2Q2mVO1BklRQhSv6p0w",
     "playlistId": "UULVFgk2Q2mVO1BklRQhSv6p0w"
   },
@@ -708,8 +708,8 @@
     "genre": "optional",
     "hlsUrl": "https://rch01e-alive-hls.akamaized.net/38fb45b25cdb05a1/out/v1/4e907bfabc684a1dae10df8431a84d21/index.m3u8",
     "fallbackVideoId": "",
-    "channelId": "",
-    "playlistId": ""
+    "channelId": "UCNsidkYpIAQ4QaufptQBPHQ",
+    "playlistId": "UULVNsidkYpIAQ4QaufptQBPHQ"
   },
   "asia/cti-news": {
     "name": "CTI News (Taiwan)",
@@ -755,7 +755,7 @@
     "name": "NHK World Japan",
     "genre": "optional",
     "hlsUrl": "https://media-tyo.hls.nhkworld.jp/hls/w/live/master.m3u8",
-    "fallbackVideoId": "IimtbuqYIE8",
+    "fallbackVideoId": "",
     "channelId": "UCSPEjw8F2nQDtmUKPFNF7_A",
     "playlistId": "UULVSPEjw8F2nQDtmUKPFNF7_A"
   },
@@ -819,9 +819,9 @@
     "name": "TRT World",
     "genre": "optional",
     "hlsUrl": "https://tv-trtworld.medya.trt.com.tr/master.m3u8",
-    "fallbackVideoId": "b8lPrtjmnmw",
-    "channelId": "",
-    "playlistId": ""
+    "fallbackVideoId": "",
+    "channelId": "UC7fWeaHhqgM4Ry-RMpM2YYw",
+    "playlistId": "UULV7fWeaHhqgM4Ry-RMpM2YYw"
   },
   "me/iran-intl": {
     "name": "Iran International",
@@ -971,7 +971,7 @@
     "name": "Arise News",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "Fy_03Aorpq8",
+    "fallbackVideoId": "",
     "channelId": "UCyEJX-kSj0kOOCS7Qlq2G7g",
     "playlistId": "UULVyEJX-kSj0kOOCS7Qlq2G7g"
   },

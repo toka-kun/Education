@@ -623,6 +623,20 @@
   "🇨🇳 Tencent": {
     "desc": "",
     "models": {
+      "tencent/hy4-flash": {
+        "displayName": "Hy4 Flash",
+        "shortName": "Hy4 Flash",
+        "cost": "0.035/0.1405",
+        "tags": [],
+        "effort": [],
+        "defaultEffort": null,
+        "intelligenceIndex": null,
+        "inputModalities": ["text", "image"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 65536,
+        "desc": "2026年12月からは2倍の通常価格"
+      },
       "tencent/hy4": {
         "displayName": "Hy4",
         "shortName": "Hy4",

@@ -531,7 +531,7 @@
     "name": "HBC Hokkaido News 24",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "f7Z2Ym1wN4s",
+    "fallbackVideoId": "cWEHnbQEOYA",
     "channelId": "",
     "playlistId": ""
   },
@@ -548,14 +548,6 @@
     "genre": "optional",
     "hlsUrl": "",
     "fallbackVideoId": "tvgbZZYS4Nk",
-    "channelId": "",
-    "playlistId": ""
-  },
-  "asia/famelack-G0HNzTOFDVRXMe": {
-    "name": "JapaNews24",
-    "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": "sftlHrAMDPI",
     "channelId": "",
     "playlistId": ""
   },
@@ -579,7 +571,7 @@
     "name": "MRO",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "XRD9GElpOpw",
+    "fallbackVideoId": "Zmkt6-LFvaU",
     "channelId": "",
     "playlistId": ""
   },

@@ -2,8 +2,8 @@
   "na/bloomberg": {
     "name": "Bloomberg",
     "genre": "full",
-    "hlsUrl": "",
-    "fallbackVideoId": "f39oHo6vFLg",
+    "hlsUrl": "https://www.bloomberg.com/media-manifest/streams/us.m3u8",
+    "fallbackVideoId": "QB5BNdBFujE",
     "channelId": "UCIALMKvObZNtJ6AmdCLP7Lg",
     "playlistId": "UULVIALMKvObZNtJ6AmdCLP7Lg"
   },
@@ -531,7 +531,7 @@
     "name": "HBC Hokkaido News 24",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "tE8zuj3EuW0",
+    "fallbackVideoId": "f7Z2Ym1wN4s",
     "channelId": "",
     "playlistId": ""
   },
@@ -555,7 +555,7 @@
     "name": "JapaNews24",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "mpx2gcMtrzQ",
+    "fallbackVideoId": "sftlHrAMDPI",
     "channelId": "",
     "playlistId": ""
   },
@@ -579,7 +579,7 @@
     "name": "MRO",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "MxlUl10W1Pk",
+    "fallbackVideoId": "XRD9GElpOpw",
     "channelId": "",
     "playlistId": ""
   },
@@ -738,10 +738,10 @@
   "asia/wion": {
     "name": "WION",
     "genre": "optional",
-    "hlsUrl": "",
+    "hlsUrl": "https://d7x8z4yuq42qn.cloudfront.net/index_7.m3u8",
     "fallbackVideoId": "vfszY1JYbMc",
-    "channelId": "",
-    "playlistId": ""
+    "channelId": "UC_gUM8rL-Lrg6O3adPW9K1g",
+    "playlistId": "UULV_gUM8rL-Lrg6O3adPW9K1g"
   },
   "asia/ndtv": {
     "name": "NDTV 24x7",
@@ -763,9 +763,9 @@
     "name": "CNA (NewsAsia)",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "XWq5kBlakcQ",
-    "channelId": "",
-    "playlistId": ""
+    "fallbackVideoId": "",
+    "channelId": "UC83jt4dlz1Gjl58fzQrrKZg",
+    "playlistId": "UULV83jt4dlz1Gjl58fzQrrKZg"
   },
   "asia/nhk-world": {
     "name": "NHK World Japan",

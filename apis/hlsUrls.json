@@ -531,7 +531,7 @@
     "name": "HBC Hokkaido News 24",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "cWEHnbQEOYA",
+    "fallbackVideoId": "hgNIYAE438A",
     "channelId": "",
     "playlistId": ""
   },
@@ -571,7 +571,7 @@
     "name": "MRO",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "Zmkt6-LFvaU",
+    "fallbackVideoId": "vDLaOacOLSQ",
     "channelId": "",
     "playlistId": ""
   },
@@ -762,7 +762,7 @@
   "asia/nhk-world": {
     "name": "NHK World Japan",
     "genre": "optional",
-    "hlsUrl": "https://media-tyo.hls.nhkworld.jp/hls/w/live/master.m3u8",
+    "hlsUrl": "https://masterpl.hls.nhkworld.jp/hls/w/live/master.m3u8",
     "fallbackVideoId": "",
     "channelId": "UCSPEjw8F2nQDtmUKPFNF7_A",
     "playlistId": "UULVSPEjw8F2nQDtmUKPFNF7_A"

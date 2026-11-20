@@ -511,14 +511,6 @@
     "channelId": "",
     "playlistId": ""
   },
-  "asia/famelack-AY9El1RUmBJaPD": {
-    "name": "Earthquake Alert Channel",
-    "genre": "optional",
-    "hlsUrl": "",
-    "fallbackVideoId": "I5_vUnu1GN4",
-    "channelId": "",
-    "playlistId": ""
-  },
   "asia/famelack-iAAKFVIzXYEola": {
     "name": "Fukuoka TNC News Broadcast",
     "genre": "optional",
@@ -531,7 +523,7 @@
     "name": "HBC Hokkaido News 24",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "hgNIYAE438A",
+    "fallbackVideoId": "O0vTC5rBaP0",
     "channelId": "",
     "playlistId": ""
   },
@@ -548,6 +540,14 @@
     "genre": "optional",
     "hlsUrl": "",
     "fallbackVideoId": "tvgbZZYS4Nk",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-G0HNzTOFDVRXMe": {
+    "name": "JapaNews24",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "GpflnJDPT08",
     "channelId": "",
     "playlistId": ""
   },
@@ -571,7 +571,7 @@
     "name": "MRO",
     "genre": "optional",
     "hlsUrl": "",
-    "fallbackVideoId": "vDLaOacOLSQ",
+    "fallbackVideoId": "sUl_TJEvW5E",
     "channelId": "",
     "playlistId": ""
   },
@@ -612,6 +612,14 @@
     "genre": "optional",
     "hlsUrl": "https://d1flvb4iqlercm.cloudfront.net/live/live_1080p_2nd.m3u8",
     "fallbackVideoId": "",
+    "channelId": "",
+    "playlistId": ""
+  },
+  "asia/famelack-a5vR6lvVTEno0g": {
+    "name": "RBC News 24",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "Pu_yjra492Q",
     "channelId": "",
     "playlistId": ""
   },

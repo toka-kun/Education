@@ -558,7 +558,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943717,
+        "maxOutputTokens": 131072,
         "desc": ""
       },
       "z-ai/glm-5.3": {
@@ -680,7 +680,7 @@
         "intelligenceIndex": 26.7,
         "inputModalities": ["text", "image", "audio", "video"],
         "outputModalities": ["text"],
-        "contextWindow": 1050000,
+        "contextWindow": 1048576,
         "maxOutputTokens": 131072,
         "desc": ""
       },
@@ -694,7 +694,7 @@
         "intelligenceIndex": 29.9,
         "inputModalities": ["text", "image", "audio", "video"],
         "outputModalities": ["text"],
-        "contextWindow": 1050000,
+        "contextWindow": 1048576,
         "maxOutputTokens": 131072,
         "desc": ""
       }

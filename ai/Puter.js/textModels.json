@@ -72,6 +72,20 @@
         "maxOutputTokens": 65536,
         "desc": "2026年2月からずっと更新されておらず、性能も4 Hydrogenに追い抜かれているので非推奨。20万トークンを超えるプロンプトの場合、入力価格は2倍、出力価格は1.5倍になります。"
       },
+      "google/gemini-4-neon": {
+        "displayName": "Gemini 4 Neon",
+        "shortName": "4 Neon",
+        "cost": "3.00/15.00",
+        "tags": ["expensive"],
+        "effort": ["low", "medium", "high", "xhigh"],
+        "defaultEffort": "medium",
+        "intelligenceIndex": 61.4,
+        "inputModalities": ["text", "file", "image", "audio", "video"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 943718,
+        "desc": ""
+      },
       "google/gemini-4-argon": {
         "displayName": "Gemini 4 Argon",
         "shortName": "4 Argon",
@@ -116,7 +130,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 131072,
-        "maxOutputTokens": 65536,
+        "maxOutputTokens": 117964,
         "desc": "2025年8月からずっと更新されていないので非推奨"
       },
       "openai/gpt-6-luna": {
@@ -379,7 +393,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 131072,
+        "maxOutputTokens": 943718,
         "desc": "入力内容が学習等に使われる場合があります。"
       }
     }
@@ -464,7 +478,7 @@
         "inputModalities": ["text", "image"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 393216,
         "desc": "日本時間の平日10:00〜13:00、および15:00〜19:00は2倍のピーク時間帯料金"
       },
       "deepseek/deepseek-v4-pro-0813": {

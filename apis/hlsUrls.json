@@ -511,6 +511,14 @@
     "channelId": "",
     "playlistId": ""
   },
+  "asia/famelack-AY9El1RUmBJaPD": {
+    "name": "Earthquake Alert Channel",
+    "genre": "optional",
+    "hlsUrl": "",
+    "fallbackVideoId": "6cSqfcag4tM",
+    "channelId": "",
+    "playlistId": ""
+  },
   "asia/famelack-iAAKFVIzXYEola": {
     "name": "Fukuoka TNC News Broadcast",
     "genre": "optional",

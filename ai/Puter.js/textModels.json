@@ -382,11 +382,25 @@
   "🇺🇸 Thinking Machines Lab": {
     "desc": "",
     "models": {
-      "thinkingmachines/inkling-2-small:free": {
+      "thinkingmachines/inkling-2-mini": {
+        "displayName": "Inkling 2 Mini",
+        "shortName": "Inkling 2 Mini",
+        "cost": "0.15/0.50",
+        "tags": [],
+        "effort": ["none", "minimal", "low", "medium", "high", "max"],
+        "defaultEffort": "high",
+        "intelligenceIndex": 20.1,
+        "inputModalities": ["text", "image"],
+        "outputModalities": ["text"],
+        "contextWindow": 1048576,
+        "maxOutputTokens": 65536,
+        "desc": ""
+      },
+      "thinkingmachines/inkling-2-small": {
         "displayName": "Inkling 2 Small",
         "shortName": "Inkling 2 Small",
-        "cost": "0.00/0.00",
-        "tags": ["free"],
+        "cost": "0.30/1.00",
+        "tags": [],
         "effort": ["minimal", "low", "medium", "high", "max"],
         "defaultEffort": "high",
         "intelligenceIndex": 30.6,
@@ -394,7 +408,7 @@
         "outputModalities": ["text"],
         "contextWindow": 1048576,
         "maxOutputTokens": 943718,
-        "desc": "入力内容が学習等に使われる場合があります。"
+        "desc": ""
       }
     }
   },
@@ -558,7 +572,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 131072,
+        "maxOutputTokens": 943718,
         "desc": ""
       },
       "z-ai/glm-5.3": {

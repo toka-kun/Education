@@ -9,7 +9,7 @@
         "tags": ["free"],
         "effort": [],
         "defaultEffort": null,
-        "intelligenceIndex": null,
+        "intelligenceIndex": 4,
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 262144,
@@ -506,7 +506,7 @@
         "inputModalities": ["text"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 393216,
         "desc": "9月14日からV4.1 Proの提供開始まで、すべてのリクエストはV4.1 Flashにルーティングされ、V4.1 Flashの料金が適用されます。"
       }
     }
@@ -572,7 +572,7 @@
         "inputModalities": ["text", "image", "video"],
         "outputModalities": ["text"],
         "contextWindow": 1048576,
-        "maxOutputTokens": 943718,
+        "maxOutputTokens": 943717,
         "desc": ""
       },
       "z-ai/glm-5.3": {

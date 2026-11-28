@@ -714,6 +714,25 @@
       }
     }
   },
+  "🇨🇳 Baidu": {
+    "desc": "",
+    "models": {
+      "baidu/ernie-5.5-flash-preview:free": {
+        "displayName": "ERNIE 5.5 Flash Preview",
+        "shortName": "ERNIE 5.5 Flash Preview",
+        "cost": "0.00/0.00",
+        "tags": ["free"],
+        "effort": ["none", "low", "medium", "high"],
+        "defaultEffort": "high",
+        "intelligenceIndex": null,
+        "inputModalities": ["text"],
+        "outputModalities": ["text"],
+        "contextWindow": 1024000,
+        "maxOutputTokens": 921600,
+        "desc": ""
+      }
+    }
+  },
   "🇨🇳 InclusionAI": {
     "desc": "",
     "models": {

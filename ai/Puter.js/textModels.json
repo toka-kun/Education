@@ -736,11 +736,11 @@
   "🇨🇳 InclusionAI": {
     "desc": "",
     "models": {
-      "inclusionai/ling-3.2-flash:free": {
+      "inclusionai/ling-3.2-flash": {
         "displayName": "Ling 3.2 Flash",
         "shortName": "Ling 3.2 Flash",
-        "cost": "0.00/0.00",
-        "tags": ["free"],
+        "cost": "0.30/0.90",
+        "tags": [],
         "effort": [],
         "defaultEffort": null,
         "intelligenceIndex": null,
